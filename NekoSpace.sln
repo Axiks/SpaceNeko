@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.API", "NekoSpaceList\NekoSpace.API.csproj", "{D31E0E77-D037-4460-A556-D3835078B83C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Data", "NekoSpace.Data\NekoSpace.Data.csproj", "{86F51D87-2804-407A-A7B4-203A67945B15}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Seed", "NekoSpace.Seed\NekoSpace.Seed.csproj", "{B0454266-85ED-4730-9BD8-F452BDABB9BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mami", "ManamiAnimeOfflineRepository\Mami.csproj", "{774933AF-1DF3-4FE6-8CCE-8D268835A3A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D31E0E77-D037-4460-A556-D3835078B83C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D31E0E77-D037-4460-A556-D3835078B83C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D31E0E77-D037-4460-A556-D3835078B83C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D31E0E77-D037-4460-A556-D3835078B83C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86F51D87-2804-407A-A7B4-203A67945B15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86F51D87-2804-407A-A7B4-203A67945B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86F51D87-2804-407A-A7B4-203A67945B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86F51D87-2804-407A-A7B4-203A67945B15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0454266-85ED-4730-9BD8-F452BDABB9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0454266-85ED-4730-9BD8-F452BDABB9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0454266-85ED-4730-9BD8-F452BDABB9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0454266-85ED-4730-9BD8-F452BDABB9BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{774933AF-1DF3-4FE6-8CCE-8D268835A3A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{774933AF-1DF3-4FE6-8CCE-8D268835A3A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{774933AF-1DF3-4FE6-8CCE-8D268835A3A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{774933AF-1DF3-4FE6-8CCE-8D268835A3A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8783DAB8-AF69-4964-B5CF-74097BA8CFAD}
+	EndGlobalSection
+EndGlobal

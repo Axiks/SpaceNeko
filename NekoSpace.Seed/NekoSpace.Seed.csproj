@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MamiRepository\Mami.csproj" />
     <ProjectReference Include="..\ManamiAnimeOfflineRepository\Mami.csproj" />
     <ProjectReference Include="..\NekoSpace.Data\NekoSpace.Data.csproj" />
   </ItemGroup>

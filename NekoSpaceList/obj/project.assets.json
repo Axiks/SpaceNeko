@@ -9769,8 +9769,8 @@
     },
     "Mami/1.0.0": {
       "type": "project",
-      "path": "../ManamiAnimeOfflineRepository/Mami.csproj",
-      "msbuildProject": "../ManamiAnimeOfflineRepository/Mami.csproj"
+      "path": "../MamiRepository/Mami.csproj",
+      "msbuildProject": "../MamiRepository/Mami.csproj"
     },
     "NekoSpace.Data/1.0.0": {
       "type": "project",

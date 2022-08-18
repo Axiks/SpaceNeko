@@ -33,9 +33,9 @@ namespace AnimeDB
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
         {
-            Database.EnsureDeleted();
+            // Database.EnsureDeleted();
             Database.EnsureCreated();
-            //Database.EnsureCreated();
+            // Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

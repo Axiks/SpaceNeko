@@ -8,8 +8,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Data", "NekoSpace.Data\NekoSpace.Data.csproj", "{86F51D87-2804-407A-A7B4-203A67945B15}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Seed", "NekoSpace.Seed\NekoSpace.Seed.csproj", "{B0454266-85ED-4730-9BD8-F452BDABB9BC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3EE72A43-44C3-4C99-AE03-48D7F04166B7} = {3EE72A43-44C3-4C99-AE03-48D7F04166B7}
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mami", "ManamiAnimeOfflineRepository\Mami.csproj", "{774933AF-1DF3-4FE6-8CCE-8D268835A3A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mami", "MamiRepository\Mami.csproj", "{3EE72A43-44C3-4C99-AE03-48D7F04166B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +32,10 @@ Global
 		{B0454266-85ED-4730-9BD8-F452BDABB9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0454266-85ED-4730-9BD8-F452BDABB9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0454266-85ED-4730-9BD8-F452BDABB9BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{774933AF-1DF3-4FE6-8CCE-8D268835A3A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{774933AF-1DF3-4FE6-8CCE-8D268835A3A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{774933AF-1DF3-4FE6-8CCE-8D268835A3A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{774933AF-1DF3-4FE6-8CCE-8D268835A3A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EE72A43-44C3-4C99-AE03-48D7F04166B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EE72A43-44C3-4C99-AE03-48D7F04166B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EE72A43-44C3-4C99-AE03-48D7F04166B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EE72A43-44C3-4C99-AE03-48D7F04166B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

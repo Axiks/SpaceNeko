@@ -20,11 +20,17 @@ namespace NekoSpace.API.Controllers
 
         // GET: AnimesController
         [HttpGet]
-        public IEnumerable<Anime> Index()
+        public IEnumerable<Anime> Index(int lenght, int offset)
         {
-            var animes = _animeRepository.GetAll().Take(100).ToList();
+            if(lenght > 100)
+            {
+                lenght = 100;
+            }
 
-            var a = _animeRepository.GetAll().ToList();
+            var animes = _animeRepository.Get(includeProperties: "CreatedAt",
+                orderBy: null,
+                filter: null
+                );// Skip(offset).Take(lenght);
             return animes;
         }
 

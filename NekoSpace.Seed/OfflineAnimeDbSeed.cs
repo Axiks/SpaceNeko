@@ -31,7 +31,7 @@ namespace NekoSpace.Seed
 
         private IEnumerable<Anime> GetManamiAnimes()
         {
-            ManamiAnimeRepository manamiAnimeRepository = new ManamiAnimeRepository(@"ManamiFolder", true);
+            MamiDatabase manamiAnimeRepository = new MamiDatabase(@"ManamiFolder", true);
 
             List<ManamiAnime> manamiAnimes = manamiAnimeRepository.GetAllAnime();
             List<Anime> animes = new List<Anime>();

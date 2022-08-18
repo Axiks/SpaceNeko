@@ -10,6 +10,20 @@ namespace NekoSpace.Data.Repository
     {
         public AnimeRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
+
+            int[] numbers = { 2, 3, 4, 5 };
+            var squaredNumbers = numbers.Select(x => x * x);
+
+            
+
+            //Func<Anime> anilambda = c => c.
+
+            //var lam = _dbContext.Set<Anime>().Include();
+            //var aa = x => x.Id;
         }
+        /*public override IQueryable<Anime> GetAll(int limit, int offset) {
+            
+        }*/
+
     }
 }

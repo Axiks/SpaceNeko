@@ -41,6 +41,8 @@ namespace NekoSpaceList.Models.General
             public bool IsOriginal { get; set; }
             Guid MediaId { get; set; }
             T Media { get; set; }
+            public bool? IsAcceptProposal { get; set; }
+            public Guid? CreatorUserId { get; set; }
             public DateTimeOffset CreatedAt { get; set; }
             public DateTimeOffset UpdatedAt { get; set; }
         }

@@ -31,6 +31,8 @@ namespace NekoSpaceList.Models.CharacterModels
         public Character Media { get; set; }
         public Guid CharacterId { get => MediaId; set => MediaId = value; }
         public Character Character { get => Media; set => Media = value; }
+        public bool? IsAcceptProposal { get; set; }
+        public Guid? CreatorUserId { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
     }
@@ -47,6 +49,8 @@ namespace NekoSpaceList.Models.CharacterModels
         public Character Media { get; set; }
         public Guid CharacterId { get => MediaId; set => MediaId = value; }
         public Character Character { get => Media; set => Media = value; }
+        public bool? IsAcceptProposal { get; set; }
+        public Guid? CreatorUserId { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
     }

@@ -38,6 +38,8 @@ namespace NekoSpaceList.Models.Manga
         public Manga Media { get; set; }
         public Guid MangaId { get => MediaId; set => MediaId = value; }
         public Manga Manga { get => Media; set => Media = value; }
+        public bool? IsAcceptProposal { get; set; }
+        public Guid? CreatorUserId { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
     }
@@ -54,6 +56,8 @@ namespace NekoSpaceList.Models.Manga
         public Manga Media { get; set; }
         public Guid MangaId { get => MediaId; set => MediaId = value; }
         public Manga Manga { get => Media; set => Media = value; }
+        public bool? IsAcceptProposal { get; set; }
+        public Guid? CreatorUserId { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
     }

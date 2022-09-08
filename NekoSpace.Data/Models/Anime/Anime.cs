@@ -8,7 +8,7 @@ namespace NekoSpaceList.Models.Anime
     {
         public Guid Id { get; set; }
         public long MalId { get; set; }
-        public ICollection<AnimeTitle> Titles { get; set; }
+        public ICollection<AnimeTitle>? Titles { get; set; }
         public ICollection<AnimeSynopsis> Synopsises { get; set; }
         public AnimeType Type { get; set; }
         public AiringStatus AiringStatus { get; set; }
@@ -39,6 +39,8 @@ namespace NekoSpaceList.Models.Anime
         public Anime Media { get; set; }
         public Guid AnimeId { get => MediaId; set => MediaId = value; }
         public Anime Anime { get => Media; set => Media = value; }
+        public bool? IsAcceptProposal { get; set; }
+        public Guid? CreatorUserId { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
     }
@@ -55,6 +57,8 @@ namespace NekoSpaceList.Models.Anime
         public Anime Media { get; set; }
         public Guid AnimeId { get => MediaId; set => MediaId = value; }
         public Anime Anime { get => Media; set => Media = value; }
+        public bool? IsAcceptProposal { get; set; }
+        public Guid? CreatorUserId { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
     }

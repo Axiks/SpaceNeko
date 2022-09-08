@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AnimeDB;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NekoSpace.Data.Interfaces;
 using NekoSpace.Seed.Interfaces;
@@ -10,33 +11,30 @@ namespace NekoSpace.API.Controllers
     [ApiController]
     public class AnimesController : ControllerBase
     {
-        private IAnimeRepository _animeRepository;
-        private IDBSeed<Anime> _idbSeed;
-        public AnimesController(IAnimeRepository animeRepository, IDBSeed<Anime> idbSeed)
+        private IDBSeed<Anime>  _idbSeed;
+        public AnimesController(IDBSeed<Anime> iDBSeed)
         {
-            _animeRepository = animeRepository;
-            _idbSeed = idbSeed;
+            _idbSeed = iDBSeed;
         }
 
-        // GET: AnimesController
-        [HttpGet]
-        public IEnumerable<Anime> Index(int lenght, int offset)
-        {
-            if(lenght > 100)
-            {
-                lenght = 100;
-            }
+        /*        // GET: AnimesController
+                [HttpGet]
+                public IEnumerable<Anime> Index(int lenght, int offset)
+                {
+                    if (lenght > 100)
+                    {
+                        lenght = 100;
+                    }
 
-            var animes = _animeRepository.Get(includeProperties: "CreatedAt",
-                orderBy: null,
-                filter: null
-                );// Skip(offset).Take(lenght);
-            return animes;
-        }
+                    var animes = _animeRepository.Get();// Skip(offset).Take(lenght);
+                    return animes.ToList();
+                }*/
 
         [HttpGet("/runSeeding")]
         public void RunSeeding()
         {
+            /*var AnimeRepo = _applicationDbContext.Set<Anime>();
+
             var animes = _idbSeed.RunSeed().ToList();
 
             int itemCount = animes.Count();
@@ -44,91 +42,91 @@ namespace NekoSpace.API.Controllers
             int page = 1;
             int limit = 1000;
 
-            while (page * offset <= itemCount)
+            *//*while (page * offset <= itemCount)
             {
                 for (int i = offset * (page - 1); i < offset * page; i++)
                 {
-                    _animeRepository.Insert(animes[i]);
+                    AnimeRepo.Add(animes[i]);
                 }
                 page++;
-                _animeRepository.Save();
-            }
+                _applicationDbContext.SaveChanges();
+            }*//*
 
-            /*foreach (var anime in animes)
+            foreach (var anime in animes)
             {
-                _animeRepository.Insert(anime);
+                AnimeRepo.Add(anime);
             }
-            _animeRepository.Save();*/
+            _applicationDbContext.SaveChanges();*/
         }
 
-        // GET: AnimesController/Details/5
-        /*public ActionResult Details(int id)
-        {
-            //return View();
-        }*/
+        /* // GET: AnimesController/Details/5
+         public ActionResult Details(int id)
+         {
+             //return View();
+         }
 
-        // GET: AnimesController/Create
-        [HttpPost]
-        public void Create(Anime anime)
-        {
-            _animeRepository.Insert(anime);
-        }
+         // GET: AnimesController/Create
+         [HttpPost]
+         public void Create(Anime anime)
+         {
+             _animeRepository.Insert(anime);
+         }*/
 
-        // POST: AnimesController/Create
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]*/
-        /*public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }*/
+        /*        // POST: AnimesController/Create
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public ActionResult Create(IFormCollection collection)
+                {
+                    try
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch
+                    {
+                        return View();
+                    }
+                }
 
-        // GET: AnimesController/Edit/5
-        /*public ActionResult Edit(int id)
-        {
-            return View();
-        }*/
+                // GET: AnimesController/Edit/5
+                public ActionResult Edit(int id)
+                {
+                    return View();
+                }
 
-        // POST: AnimesController/Edit/5
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }*/
+                // POST: AnimesController/Edit/5
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public ActionResult Edit(int id, IFormCollection collection)
+                {
+                    try
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch
+                    {
+                        return View();
+                    }
+                }
 
-        // GET: AnimesController/Delete/5
-        /*public ActionResult Delete(int id)
-        {
-            return View();
-        }*/
+                // GET: AnimesController/Delete/5
+                public ActionResult Delete(int id)
+                {
+                    return View();
+                }
 
-        // POST: AnimesController/Delete/5
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]*/
-        /*public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }*/
+                // POST: AnimesController/Delete/5
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public ActionResult Delete(int id, IFormCollection collection)
+                {
+                    try
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch
+                    {
+                        return View();
+                    }
+                }*/
     }
 }

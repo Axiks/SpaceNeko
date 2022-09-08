@@ -44,32 +44,10 @@ namespace NekoSpace.Data.Repository
             throw new NotImplementedException();
         }*/
 
-        public virtual IEnumerable<E> Get(
-            Expression<Func<E, bool>> filter = null,
-            Func<IQueryable<E>, IOrderedQueryable<E>> orderBy = null,
-            string includeProperties = "")
+        public virtual IEnumerable<E> Get()
         {
             IQueryable<E> query = _dbContext.Set<E>();
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            foreach (var includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query.Include(includeProperty);
-            }
-
-            if (orderBy != null)
-            {
-                return orderBy(query).ToList();
-            }
-            else
-            {
-                return query.ToList();
-            }
+            return query.ToList();
 
         }
 
@@ -84,11 +62,8 @@ namespace NekoSpace.Data.Repository
 
         public void Insert(E media)
         {
-            using (_dbContext)
-            {
-                var tableContext = _dbContext.Set<E>();
-                tableContext.Add(media);
-            }
+            var tableContext = _dbContext.Set<E>();
+            tableContext.Add(media);
         }
 
         public void Save()

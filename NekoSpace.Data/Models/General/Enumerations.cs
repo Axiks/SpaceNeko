@@ -22,7 +22,7 @@
         FinishedAiring,
         CurrentlyAiring,
         NotYetAired,
-        UNKNOWN
+        Unknown
     }
 
     public enum AgeRating
@@ -32,7 +32,8 @@
         pg13,
         r17,
         r,
-        rx
+        rx,
+        Unknown
     }
 
     public enum Source
@@ -88,5 +89,14 @@
         Reding,
         Completed,
         Upcoming
+    }
+
+    public enum Role
+    {
+        Administrator,
+        Moderator,
+        Creator,
+        User,
+        Guest
     }
 }

@@ -7,7 +7,6 @@ namespace NekoSpaceList.Models.Manga
     public class Manga : IMedia
     {
         public Guid Id { get; set; }
-        public long MalId { get; set; }
         public ICollection<MangaTitle> Titles { get; set; }
         public ICollection<MangaSynopsis> Synopsises { get; set; }
         public ICollection<MangaPoster> Posters { get; set; }
@@ -17,8 +16,7 @@ namespace NekoSpaceList.Models.Manga
         public ICollection<MangaCharacter> Characters { get; set; }
         public Published Published { get; set; }
         public bool Publishing { get; set; }
-        public bool IsOriginal { get; set; }
-        public MangaStatus ReadStatus { get; set; }
+        public MangaStatus ReadStatus { get; set; } // Where user Login
         public MangaType Type { get; set; }
         public int Volumes { get; set; }
         public AnotherMangaService AnotherService { get; set; }

@@ -30,10 +30,10 @@ namespace NekoSpace.API.Controllers
                     return animes.ToList();
                 }*/
 
-        [HttpGet("/runSeeding")]
+ /*       [HttpGet("/runSeeding")]
         public void RunSeeding()
         {
-            /*var AnimeRepo = _applicationDbContext.Set<Anime>();
+            var AnimeRepo = _applicationDbContext.Set<Anime>();
 
             var animes = _idbSeed.RunSeed().ToList();
 
@@ -42,7 +42,8 @@ namespace NekoSpace.API.Controllers
             int page = 1;
             int limit = 1000;
 
-            *//*while (page * offset <= itemCount)
+
+            while (page * offset <= itemCount)
             {
                 for (int i = offset * (page - 1); i < offset * page; i++)
                 {
@@ -50,14 +51,14 @@ namespace NekoSpace.API.Controllers
                 }
                 page++;
                 _applicationDbContext.SaveChanges();
-            }*//*
+            }
 
             foreach (var anime in animes)
             {
                 AnimeRepo.Add(anime);
             }
-            _applicationDbContext.SaveChanges();*/
-        }
+            _applicationDbContext.SaveChanges();
+        }*/
 
         /* // GET: AnimesController/Details/5
          public ActionResult Details(int id)

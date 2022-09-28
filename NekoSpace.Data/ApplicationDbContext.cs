@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using NekoSpace.Data.Models.User;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.CharacterModels;
 using NekoSpaceList.Models.General;
@@ -7,7 +10,7 @@ using static NekoSpaceList.Models.General.GeneralModel;
 
 namespace AnimeDB
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<NekoUser>
     {
         public DbSet<Anime> Animes { get; set; }
         public DbSet<AnimeTitle> AnimeTitles { get; set; }
@@ -34,13 +37,13 @@ namespace AnimeDB
         : base(options)
         {
             // Database.EnsureDeleted();
-            Database.EnsureCreated();
             // Database.EnsureCreated();
         }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder); // For identity user
             //      Anime       >>
 
             modelBuilder.
@@ -50,11 +53,6 @@ namespace AnimeDB
             modelBuilder.
                 Entity<Anime>()
                 .HasKey(x => x.Id);
-
-            modelBuilder.
-                Entity<Anime>()
-                .Property(x => x.MalId)
-                .HasColumnName("MalId");
 
             modelBuilder.
                 Entity<Anime>()
@@ -444,11 +442,6 @@ namespace AnimeDB
 
             modelBuilder.
                 Entity<Manga>()
-                .Property(x => x.MalId)
-                .HasColumnName("MalId");
-
-            modelBuilder.
-                Entity<Manga>()
                 .Property(x => x.ChaptersCount)
                 .HasColumnName("ChaptersCount")
                 .IsRequired();
@@ -719,11 +712,6 @@ namespace AnimeDB
 
             modelBuilder.
                 Entity<Character>()
-                .Property(x => x.MalId)
-                .HasColumnName("MalId");
-
-            modelBuilder.
-                Entity<Character>()
                 .Property(x => x.CreatedAt)
                 .HasColumnName("CreatedAt")
                 .HasDefaultValueSql("NOW()::timestamp")
@@ -899,7 +887,52 @@ namespace AnimeDB
                 .WithOne(t => t.Character)
                 .HasForeignKey(t => t.CharacterId)
                 .HasPrincipalKey(t => t.Id);
+
+            // Seeding data
+
+            Guid GuidAdminRole = SeedRoles(modelBuilder);
+            Guid GuidAdminUser = SeedAdminUser(modelBuilder);
+            SeedUserRoles(GuidAdminRole, GuidAdminUser, modelBuilder);
+
         }
 
+        private Guid SeedAdminUser(ModelBuilder builder)
+        {
+            Guid GuidAdminUser = Guid.NewGuid();
+            NekoUser user = new NekoUser()
+            {
+                Id = GuidAdminUser.ToString(),
+                UserName = "Admin",
+                Email = "admin@example.local",
+                LockoutEnabled = false,
+            };
+
+            PasswordHasher<NekoUser> passwordHasher = new PasswordHasher<NekoUser>();
+            passwordHasher.HashPassword(user, "Pass123!!!");
+
+            builder.Entity<NekoUser>().HasData(user);
+
+            return GuidAdminUser;
+        }
+
+        private Guid SeedRoles(ModelBuilder builder)
+        {
+            Guid GuidAdminRole = Guid.NewGuid();
+            builder.Entity<IdentityRole>().HasData(
+                new IdentityRole() { Id = GuidAdminRole.ToString(), Name = Role.Administrator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Administrator.ToString() },
+                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Moderator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Moderator.ToString() },
+                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Creator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Creator.ToString() },
+                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.User.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.User.ToString() },
+                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Guest.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Guest.ToString() }
+                );
+            return GuidAdminRole;
+        }
+
+        private void SeedUserRoles(Guid GuidAdminRole, Guid GuidAdminUser, ModelBuilder builder)
+        {
+            builder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string>() { RoleId = GuidAdminRole.ToString(), UserId = GuidAdminUser.ToString() }
+                );
+        }
     }
 }

@@ -24,6 +24,16 @@ namespace NekoSpace.Seed
             return GetManamiAnimes();
         }
 
+        public void RunSeedRoles()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RunSeedUsers()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Anime> Search()
         {
             throw new NotImplementedException();
@@ -100,7 +110,7 @@ namespace NekoSpace.Seed
                         }
                     default:
                         {
-                            airingStatus = AiringStatus.UNKNOWN;
+                            airingStatus = AiringStatus.Unknown;
                             break;
                         }
                 }
@@ -181,7 +191,6 @@ namespace NekoSpace.Seed
                             anotherAnimeServices.LivechartMeId = Int32.Parse(sourceLink.Id);
                             break;
                         case (Resource.MyanimelistNet):
-                            anime.MalId = Int32.Parse(sourceLink.Id);
                             anotherAnimeServices.MyAnimeList = Int32.Parse(sourceLink.Id);
                             break;
                     }

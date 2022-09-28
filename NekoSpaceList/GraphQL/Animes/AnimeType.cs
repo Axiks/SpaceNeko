@@ -11,12 +11,7 @@ namespace NekoSpace.API.GraphQL.Animes
 
             descriptor.
                 Field(p => p.Id)
-                .Description("");
-
-            descriptor.
-                Field(p => p.MalId)
-                .Description("Need Delete")
-                .Ignore();
+                .Description("Anime Id");
 
             descriptor.
                 Field(p => p.Titles)

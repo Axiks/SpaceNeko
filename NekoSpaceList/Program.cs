@@ -1,19 +1,26 @@
 using AnimeDB;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using NekoSpace.API;
+using NekoSpace.API.Configuration;
 using NekoSpace.API.GraphQL;
 using NekoSpace.API.GraphQL.Animes;
 using NekoSpace.Data.Interfaces;
+using NekoSpace.Data.Models.User;
 using NekoSpace.Data.Repository;
 using NekoSpace.Seed;
 using NekoSpace.Seed.Interfaces;
 using NekoSpaceList.Models.Anime;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddPooledDbContextFactory<ApplicationDbContext>(
         options => options.
-            UseNpgsql("Host=localhost;Database=anilist_db;Username=neko;Password=mya", b => b.MigrationsAssembly("NekoSpace.API"))
+            UseNpgsql("Server=postgres_db;Database=anilist_db;Username=neko;Password=mya", b => b.MigrationsAssembly("NekoSpace.API"))
             .EnableDetailedErrors()
             .EnableSensitiveDataLogging()
             .LogTo(
@@ -22,6 +29,10 @@ builder.Services.AddPooledDbContextFactory<ApplicationDbContext>(
                 LogLevel.Information
             )
         );
+
+builder.Services.AddIdentity<NekoUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+builder.Services.AddScoped<ApplicationDbContext>(p => p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>().CreateDbContext());
 
 builder.Services.AddScoped<IDBSeed<Anime>, OfflineAnimeDbSeed>(provider =>
 {
@@ -33,6 +44,7 @@ builder.Services
     .AddGraphQLServer()
     .RegisterDbContext<ApplicationDbContext>()
     .RegisterService<IDBSeed<Anime>>()
+    .AddAuthorization()
     .AddQueryType<Query>()
     .AddMutationType<Mutation>()
     .AddType<AnimeType>()
@@ -49,6 +61,41 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IMangaRepository, MangaRepository>();
 builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();*/
 
+builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
+JwtConfig jwtConfig = new JwtConfig(builder.Configuration["JwtConfig:Secret"])
+{
+    validIssuer = builder.Configuration["JwtConfig:ValidIssuer"],
+    validAudience = builder.Configuration["JwtConfig:ValidAudience"]
+};
+
+builder.Services.AddSingleton<JwtConfig>(jwtConfig);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
+    {
+        options.SaveToken = true;
+        options.TokenValidationParameters =
+            new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = jwtConfig.GetSymmetricSecurityKey(),
+                ValidateIssuer = false,
+                ValidIssuer = jwtConfig.validIssuer,
+                ValidateAudience = false,
+                ValidAudience = jwtConfig.validAudience,
+                ValidateLifetime = true,
+                RequireExpirationTime = false, // Only test!
+            };
+    });
+
+builder.Services.AddAuthorization();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -60,6 +107,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
@@ -72,20 +120,24 @@ app.UseEndpoints(endpoints =>
     endpoints.MapGraphQLVoyager("ui/voyager");
 });
 
-//app.MapGraphQL();
+// Seeding user and roles
+/*using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    SeedData seeder = new SeedData();
+    await seeder.InitializeAsync(services);
+}*/
 
-// Отримання даних
-// app.MapGet("/GetAnimes", (ApplicationDbContext db) => db.Animes.ToList());
+/*using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
 
-/*app.MapGet("/RunSeeding", (ApplicationDbContext db, IDBSeed<Anime> dBSeed) => {
-    //var animeRepo = db.Set<Anime>();
-    var animes = dBSeed.RunSeed().ToList();
-
-    *//*foreach (var anime in animes)
+    var context = services.GetRequiredService<ApplicationDbContext>();
+    if (context.Database.GetPendingMigrations().Any())
     {
-        animeRepo.Add(anime);
+        context.Database.Migrate();
     }
-    db.SaveChanges();*//*
-});*/
+}*/
+app.MigrateDatabase();
 
 app.Run();

@@ -1,5 +1,8 @@
 ﻿using AnimeDB;
+using HotChocolate.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using NekoSpace.API.General;
+using NekoSpace.API.GraphQL.AnimeNameControll;
 using NekoSpace.API.GraphQL.Seeding;
 using NekoSpace.API.GraphQL.TranslationDecision;
 using NekoSpace.API.GraphQL.TranslationProposal;
@@ -11,6 +14,7 @@ namespace NekoSpace.API.GraphQL
 {
     public class Mutation
     {
+        [Authorize(Roles = new[] { Roles.AdministratorRole })]
         [UseDbContext(typeof(ApplicationDbContext))]
         public async Task<AddSeedingPayload> RunSeedingAsync(AddSeedingInput input, [ScopedService] ApplicationDbContext context, [Service] IDBSeed<Anime> dBSeed)
         {
@@ -46,6 +50,7 @@ namespace NekoSpace.API.GraphQL
             return new AddSeedingPayload(animeRepo.ToList());
         }
 
+        [Authorize(Roles = new[] { Roles.AdministratorRole, Roles.ModeratorRole, Roles.CreatorRole, Roles.UserRole })]
         [UseDbContext(typeof(ApplicationDbContext))]
         public async Task<AddTranslationProposalPayload> AddTranslationProposalAsync(AddTranslationProposalInput input, [ScopedService] ApplicationDbContext context)
         {
@@ -77,11 +82,11 @@ namespace NekoSpace.API.GraphQL
             return new AddTranslationProposalPayload(animeItem);
         }
 
+        [Authorize(Roles = new[] { Roles.AdministratorRole, Roles.ModeratorRole, Roles.CreatorRole })]
         [UseDbContext(typeof(ApplicationDbContext))]
         public async Task<AddTranslationDecisionPayload> AddTranslationDecisionAsync(AddTranslationDecisionInput input, [ScopedService] ApplicationDbContext context)
         {
             var animeTitleItem = context.AnimeTitles.FirstOrDefault(item => item.Id == input.TitleId);
-            var animeTitleItemAll = context.AnimeTitles;
 
             switch (input.Decision)
             {
@@ -95,6 +100,35 @@ namespace NekoSpace.API.GraphQL
             context.SaveChangesAsync();
 
             return new AddTranslationDecisionPayload(animeTitleItem);
+        }
+
+        // Update name
+        [Authorize(Roles = new[] { Roles.AdministratorRole, Roles.ModeratorRole })]
+        [UseDbContext(typeof(ApplicationDbContext))]
+        public async Task<UpdateTranslationNamePayload> UpdateTranslationNameAsync(UpdateTranslationNameInput input, [ScopedService] ApplicationDbContext context)
+        {
+            var animeTitleItem = context.AnimeTitles.FirstOrDefault(item => item.Id == input.Id);
+            if (animeTitleItem == null) return new UpdateTranslationNamePayload(animeTitle: null);
+
+            animeTitleItem.Body = input.Body;
+            animeTitleItem.Language = input.Language;
+            animeTitleItem.IsOriginal = input.IsOriginal;
+
+            context.SaveChangesAsync();
+
+            return new UpdateTranslationNamePayload(animeTitleItem);
+        }
+
+        // Delete name
+        [Authorize(Roles = new[] { Roles.AdministratorRole, Roles.ModeratorRole })]
+        [UseDbContext(typeof(ApplicationDbContext))]
+        public async Task<DeleteTranslationNamePayload> DeleteTranslationNameAsync(DeleteTranslationNameInput input, [ScopedService] ApplicationDbContext context)
+        {
+            var animeTitleItem = context.AnimeTitles.FirstOrDefault(item => item.Id == input.Id);
+            context.AnimeTitles.Remove(animeTitleItem);
+            context.SaveChangesAsync();
+
+            return new DeleteTranslationNamePayload(true);
         }
     }
 }

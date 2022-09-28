@@ -2,8 +2,6 @@ C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\NekoSpa
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\NekoSpace.Data.runtimeconfig.json
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\NekoSpace.Data.exe
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\.filenesting.json
-C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\appsettings.json
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\NekoSpace.Seed.exe
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\NekoSpace.Seed.deps.json
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\NekoSpace.Seed.runtimeconfig.json
@@ -40,3 +38,8 @@ C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\obj\Debug\net6.0\NekoSpa
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\obj\Debug\net6.0\ref\NekoSpace.Seed.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\Mami.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\Mami.pdb
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll

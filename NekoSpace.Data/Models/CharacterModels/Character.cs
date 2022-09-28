@@ -8,7 +8,6 @@ namespace NekoSpaceList.Models.CharacterModels
     public class Character : IMedia
     {
         public Guid Id { get; set; }
-        public long MalId { get; set; }
         public ICollection<CharacterNames> Names { get; set; }
         public ICollection<CharacterAbout> Abouts { get; set; }
         public ICollection<CharacterPoster> Posters { get; set; }

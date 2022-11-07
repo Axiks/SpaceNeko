@@ -20,4 +20,5 @@ RUN dotnet build "NekoSpace.API.csproj" -c Release -o /app/build
 FROM base AS final
 WORKDIR /app
 COPY --from=build  /app ./
+RUN dotnet ef database update
 ENTRYPOINT ["dotnet", "NekoSpace.API.dll"]

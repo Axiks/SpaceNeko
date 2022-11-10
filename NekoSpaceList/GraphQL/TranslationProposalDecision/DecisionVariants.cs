@@ -1,4 +1,4 @@
-﻿namespace NekoSpace.API.GraphQL.TranslationDecision
+﻿namespace NekoSpace.API.GraphQL.TranslationProposalDecision
 {
     public enum DecisionVariants
     {

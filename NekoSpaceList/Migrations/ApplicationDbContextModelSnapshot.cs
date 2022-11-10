@@ -50,38 +50,38 @@ namespace NekoSpace.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c233bc2b-8667-4172-8d08-7ca08092e289",
+                            Id = "4b09195f-a423-48ff-8979-82f7469375a9",
                             ConcurrencyStamp = "1",
                             Name = "Administrator",
-                            NormalizedName = "Administrator"
+                            NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "8a8b95ac-eb6f-4f07-bc57-0bd2f863839c",
+                            Id = "919ef74c-63d2-4f0b-8f4c-0bcdb80720cf",
                             ConcurrencyStamp = "1",
                             Name = "Moderator",
-                            NormalizedName = "Moderator"
+                            NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "70eccf39-dee5-4d9a-a0ae-d79cb500d9d7",
+                            Id = "f5b11b2b-6b50-4b70-840c-fdfe8ee852d8",
                             ConcurrencyStamp = "1",
                             Name = "Creator",
-                            NormalizedName = "Creator"
+                            NormalizedName = "CREATOR"
                         },
                         new
                         {
-                            Id = "1e651010-017d-41aa-879b-e34b1c162bc2",
+                            Id = "e8035066-74b6-41e3-8851-451a3c6ed9e1",
                             ConcurrencyStamp = "1",
                             Name = "User",
-                            NormalizedName = "User"
+                            NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "3f3560f5-7832-4ae5-8aaa-ce842f034163",
+                            Id = "7cc7d07b-20b3-4229-b205-244b1876e96b",
                             ConcurrencyStamp = "1",
                             Name = "Guest",
-                            NormalizedName = "Guest"
+                            NormalizedName = "GUEST"
                         });
                 });
 
@@ -174,8 +174,8 @@ namespace NekoSpace.API.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "7df613a5-3027-4d55-8f3c-2b2a2a31fb12",
-                            RoleId = "c233bc2b-8667-4172-8d08-7ca08092e289"
+                            UserId = "4ae9bd33-0bad-44ef-ab09-50cca47ee099",
+                            RoleId = "4b09195f-a423-48ff-8979-82f7469375a9"
                         });
                 });
 
@@ -267,17 +267,102 @@ namespace NekoSpace.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7df613a5-3027-4d55-8f3c-2b2a2a31fb12",
+                            Id = "4ae9bd33-0bad-44ef-ab09-50cca47ee099",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c8257901-f978-4a01-9aa4-4a91661c21fe",
+                            ConcurrencyStamp = "9ee9012d-bf3a-44a6-b8ea-3ba51b54d36d",
                             Email = "admin@example.local",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@EXAMPLE.LOCAL",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHcnJe+yZ9BMU/ZP+V42eQaJYhEMQw4gKoLXDQFEHKcwhElL+c2NC7MkZJu2onNIdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "00ea5660-85d0-4296-b155-291b0d5798d1",
+                            SecurityStamp = "eb1abba6-cc65-40ee-b714-59795b4a3221",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Models.User.UserAnimeViewingStatus", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AnimeId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer")
+                        .HasColumnName("Status");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnimeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserAnimeViewingStatus", (string)null);
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Models.User.UserFavoriteAnime", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("AnimeId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("UserId", "AnimeId");
+
+                    b.HasIndex("AnimeId");
+
+                    b.ToTable("UserFavoriteAnime", (string)null);
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Models.User.UserRatingAnime", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AnimeId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<float>("RatingValue")
+                        .HasColumnType("real")
+                        .HasColumnName("RatingValue");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnimeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRatingAnime", (string)null);
                 });
 
             modelBuilder.Entity("NekoSpaceList.Models.Anime.Aired", b =>
@@ -446,6 +531,10 @@ namespace NekoSpace.API.Migrations
                     b.Property<bool?>("IsAcceptProposal")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsHidden")
+                        .HasColumnType("boolean")
+                        .HasColumnName("IsHidden");
+
                     b.Property<bool>("IsMain")
                         .HasColumnType("boolean")
                         .HasColumnName("IsMain");
@@ -502,6 +591,12 @@ namespace NekoSpace.API.Migrations
 
                     b.Property<bool?>("IsAcceptProposal")
                         .HasColumnType("boolean");
+
+                    b.Property<bool>("IsHidden")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsHidden");
 
                     b.Property<bool>("IsMain")
                         .HasColumnType("boolean")
@@ -1088,6 +1183,63 @@ namespace NekoSpace.API.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("NekoSpace.Data.Models.User.UserAnimeViewingStatus", b =>
+                {
+                    b.HasOne("NekoSpaceList.Models.Anime.Anime", "Anime")
+                        .WithMany()
+                        .HasForeignKey("AnimeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NekoSpace.Data.Models.User.NekoUser", "User")
+                        .WithMany("AnimeViewingStatuses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Anime");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Models.User.UserFavoriteAnime", b =>
+                {
+                    b.HasOne("NekoSpaceList.Models.Anime.Anime", "Anime")
+                        .WithMany("FavoriteInUsers")
+                        .HasForeignKey("AnimeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NekoSpace.Data.Models.User.NekoUser", "User")
+                        .WithMany("FavoriteAnimes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Anime");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Models.User.UserRatingAnime", b =>
+                {
+                    b.HasOne("NekoSpaceList.Models.Anime.Anime", "Anime")
+                        .WithMany()
+                        .HasForeignKey("AnimeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NekoSpace.Data.Models.User.NekoUser", "User")
+                        .WithMany("RatingAnimes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Anime");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("NekoSpaceList.Models.Anime.Aired", b =>
                 {
                     b.HasOne("NekoSpaceList.Models.Anime.Anime", null)
@@ -1389,6 +1541,15 @@ namespace NekoSpace.API.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("NekoSpace.Data.Models.User.NekoUser", b =>
+                {
+                    b.Navigation("AnimeViewingStatuses");
+
+                    b.Navigation("FavoriteAnimes");
+
+                    b.Navigation("RatingAnimes");
+                });
+
             modelBuilder.Entity("NekoSpaceList.Models.Anime.Anime", b =>
                 {
                     b.Navigation("Aired");
@@ -1399,6 +1560,8 @@ namespace NekoSpace.API.Migrations
                     b.Navigation("Characters");
 
                     b.Navigation("Covers");
+
+                    b.Navigation("FavoriteInUsers");
 
                     b.Navigation("Genres");
 

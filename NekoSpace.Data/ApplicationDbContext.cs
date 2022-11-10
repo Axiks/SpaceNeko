@@ -32,6 +32,9 @@ namespace AnimeDB
         public DbSet<Character> Characters { get; set; }
         public DbSet<CharacterPoster> CharacterPoster { get; set; }
         public DbSet<CharacterCover> CharacterCover { get; set; }
+        public DbSet<UserFavoriteAnime> UserFavoriteAnime { get; set; }
+        public DbSet<UserRatingAnime> UserRatingAnime { get; set; }
+        public DbSet<UserAnimeViewingStatus> UserAnimeViewingStatus { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -164,6 +167,13 @@ namespace AnimeDB
 
             modelBuilder.
                 Entity<AnimeTitle>()
+                .Property(x => x.IsHidden)
+                .HasColumnName("IsHidden")
+                .HasDefaultValue(false)
+                .IsRequired();
+
+            modelBuilder.
+                Entity<AnimeTitle>()
                 .Property(x => x.AnimeId)
                 .HasColumnName("AnimeId")
                 .IsRequired();
@@ -230,6 +240,12 @@ namespace AnimeDB
                 Entity<AnimeSynopsis>()
                 .Property(x => x.IsMain)
                 .HasColumnName("IsMain")
+                .IsRequired();
+
+            modelBuilder.
+                Entity<AnimeSynopsis>()
+                .Property(x => x.IsHidden)
+                .HasColumnName("IsHidden")
                 .IsRequired();
 
             modelBuilder.
@@ -888,11 +904,85 @@ namespace AnimeDB
                 .HasForeignKey(t => t.CharacterId)
                 .HasPrincipalKey(t => t.Id);
 
-            // Seeding data
+            // NekoUser
 
+            // Favorite anime
+            modelBuilder.
+                Entity<UserFavoriteAnime>()
+                .ToTable("UserFavoriteAnime");
+
+            modelBuilder.
+                Entity<UserFavoriteAnime>()
+                .HasKey(t => new { t.UserId, t.AnimeId });
+
+            /// Relations M-M
+
+            modelBuilder
+                .Entity<NekoUser>()
+                .HasMany(t => t.FavoriteAnimes)
+                .WithOne(t => t.User)
+                .HasForeignKey(t => t.UserId)
+                .HasPrincipalKey(t => t.Id);
+
+            modelBuilder
+                .Entity<Anime>()
+                .HasMany(t => t.FavoriteInUsers)
+                .WithOne(t => t.Anime)
+                .HasForeignKey(t => t.AnimeId)
+                .HasPrincipalKey(t => t.Id);
+
+            // Rating anime
+            modelBuilder.
+                Entity<UserRatingAnime>()
+                .ToTable("UserRatingAnime");
+
+            modelBuilder.
+                Entity<UserRatingAnime>()
+                .HasKey(x => x.Id);
+
+            modelBuilder.
+                Entity<UserRatingAnime>()
+                .Property(x => x.RatingValue)
+                .HasColumnName("RatingValue")
+                .IsRequired();
+
+            /// Relations
+            modelBuilder
+                .Entity<NekoUser>()
+                .HasMany(t => t.RatingAnimes)
+                .WithOne(t => t.User)
+                .HasForeignKey(t => t.UserId)
+                .HasPrincipalKey(t => t.Id);
+
+            // Anime Viewing Status
+
+            // Rating anime
+            modelBuilder.
+                Entity<UserAnimeViewingStatus>()
+                .ToTable("UserAnimeViewingStatus");
+
+            modelBuilder.
+                Entity<UserAnimeViewingStatus>()
+                .HasKey(x => x.Id);
+
+            modelBuilder.
+                Entity<UserAnimeViewingStatus>()
+                .Property(x => x.Status)
+                .HasColumnName("Status")
+                .IsRequired();
+
+            /// Relations
+            modelBuilder
+                .Entity<NekoUser>()
+                .HasMany(t => t.AnimeViewingStatuses)
+                .WithOne(t => t.User)
+                .HasForeignKey(t => t.UserId)
+                .HasPrincipalKey(t => t.Id);
+
+            // Seeding data
             Guid GuidAdminRole = SeedRoles(modelBuilder);
             Guid GuidAdminUser = SeedAdminUser(modelBuilder);
-            SeedUserRoles(GuidAdminRole, GuidAdminUser, modelBuilder);
+            SetAdminUserRoles(GuidAdminRole, GuidAdminUser, modelBuilder);
 
         }
 
@@ -903,12 +993,15 @@ namespace AnimeDB
             {
                 Id = GuidAdminUser.ToString(),
                 UserName = "Admin",
+                NormalizedUserName = "ADMIN",
                 Email = "admin@example.local",
+                NormalizedEmail = "ADMIN@EXAMPLE.LOCAL",
+                PasswordHash = "AQAAAAEAACcQAAAAEHcnJe+yZ9BMU/ZP+V42eQaJYhEMQw4gKoLXDQFEHKcwhElL+c2NC7MkZJu2onNIdw==",
                 LockoutEnabled = false,
             };
 
-            PasswordHasher<NekoUser> passwordHasher = new PasswordHasher<NekoUser>();
-            passwordHasher.HashPassword(user, "Pass123!!!");
+            /*PasswordHasher<NekoUser> passwordHasher = new PasswordHasher<NekoUser>();
+            passwordHasher.HashPassword(user, "Pass123!!!");*/
 
             builder.Entity<NekoUser>().HasData(user);
 
@@ -919,16 +1012,16 @@ namespace AnimeDB
         {
             Guid GuidAdminRole = Guid.NewGuid();
             builder.Entity<IdentityRole>().HasData(
-                new IdentityRole() { Id = GuidAdminRole.ToString(), Name = Role.Administrator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Administrator.ToString() },
-                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Moderator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Moderator.ToString() },
-                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Creator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Creator.ToString() },
-                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.User.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.User.ToString() },
-                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Guest.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Guest.ToString() }
+                new IdentityRole() { Id = GuidAdminRole.ToString(), Name = Role.Administrator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Administrator.ToString().ToUpper() },
+                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Moderator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Moderator.ToString().ToUpper() },
+                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Creator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Creator.ToString().ToUpper() },
+                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.User.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.User.ToString().ToUpper() },
+                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Guest.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Guest.ToString().ToUpper() }
                 );
             return GuidAdminRole;
         }
 
-        private void SeedUserRoles(Guid GuidAdminRole, Guid GuidAdminUser, ModelBuilder builder)
+        private void SetAdminUserRoles(Guid GuidAdminRole, Guid GuidAdminUser, ModelBuilder builder)
         {
             builder.Entity<IdentityUserRole<string>>().HasData(
                 new IdentityUserRole<string>() { RoleId = GuidAdminRole.ToString(), UserId = GuidAdminUser.ToString() }

@@ -2,5 +2,5 @@
 
 namespace NekoSpace.API.GraphQL.TranslationProposal
 {
-    public record AddTranslationProposalPayload(Anime anime);
+    public record CreateTranslationProposalPayload(bool isSucces);
 }

@@ -1,4 +1,5 @@
-﻿using NekoSpaceList.Models.CharacterModels;
+﻿using NekoSpace.Data.Models.User;
+using NekoSpaceList.Models.CharacterModels;
 using NekoSpaceList.Models.General;
 using static NekoSpaceList.Models.General.GeneralModel;
 
@@ -22,6 +23,7 @@ namespace NekoSpaceList.Models.Anime
         public ICollection<AnimePoster>? Posters { get; set; }
         public ICollection<AnimeCover>? Covers { get; set; }
         public AnotherAnimeService AnotherService { get; set; }
+        public ICollection<UserFavoriteAnime> FavoriteInUsers { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
     }
@@ -39,6 +41,7 @@ namespace NekoSpaceList.Models.Anime
         public Guid AnimeId { get => MediaId; set => MediaId = value; }
         public Anime Anime { get => Media; set => Media = value; }
         public bool? IsAcceptProposal { get; set; }
+        public bool IsHidden { get; set; }
         public Guid? CreatorUserId { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
@@ -57,6 +60,7 @@ namespace NekoSpaceList.Models.Anime
         public Guid AnimeId { get => MediaId; set => MediaId = value; }
         public Anime Anime { get => Media; set => Media = value; }
         public bool? IsAcceptProposal { get; set; }
+        public bool IsHidden { get; set; }
         public Guid? CreatorUserId { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }

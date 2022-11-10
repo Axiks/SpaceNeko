@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using NekoSpace.API;
 using NekoSpace.API.Configuration;
 using NekoSpace.API.GraphQL;
 using NekoSpace.API.GraphQL.Animes;
+using NekoSpace.API.GraphQL.Users;
+using NekoSpace.API.Helpers;
 using NekoSpace.Data.Interfaces;
 using NekoSpace.Data.Models.User;
 using NekoSpace.Data.Repository;
@@ -39,6 +40,8 @@ builder.Services.AddScoped<IDBSeed<Anime>, OfflineAnimeDbSeed>(provider =>
     return new OfflineAnimeDbSeed() { };
 });
 
+builder.Services.AddScoped<IUpdateDB, UpdateDB>();
+
 // register graphQL
 builder.Services
     .AddGraphQLServer()
@@ -48,6 +51,8 @@ builder.Services
     .AddQueryType<Query>()
     .AddMutationType<Mutation>()
     .AddType<AnimeType>()
+    .AddType<UserType>()
+    .AddType<AnimeTitleType>()
     .AddFiltering()
     .AddSorting()
     .AddProjections();

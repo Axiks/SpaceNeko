@@ -1,4 +1,5 @@
-﻿using HotChocolate.AspNetCore.Authorization;
+﻿using AnimeDB;
+using HotChocolate.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using NekoSpace.API.Configuration;
 using NekoSpace.API.Dto;
 using NekoSpace.API.DTO;
+using NekoSpace.API.General;
 using NekoSpace.Data.Models.User;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -48,7 +50,7 @@ namespace NekoSpace.API.Controllers
             if (user == null)
             {
                 //return BadRequest(new RegistrationResponseDto { Errors = new string["Login, ", ""]  });
-                return BadRequest("User noy found");
+                return BadRequest("The user was not found");
             }
             var result = await
             _signInManager.PasswordSignInAsync(user, userForAuthenticationDto.Password, userForAuthenticationDto.RememberMe, true);
@@ -104,15 +106,21 @@ namespace NekoSpace.API.Controllers
                 UserName = userForRegistration.Username,
                 
             };
+
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
             if (!result.Succeeded)
             {
                 var errors = result.Errors.Select(e => e.Description);
-
                 return BadRequest(new RegistrationResponse { Errors = errors });
             }
 
-            //  await _signInManager.SignInAsync(user, isPersistent: false);
+            // Set User Role
+            var setRoleResult = await _userManager.AddToRoleAsync(user, Roles.UserRole);
+            if (!setRoleResult.Succeeded)
+            {
+                var errors = setRoleResult.Errors.Select(e => e.Description);
+                return BadRequest(new RegistrationResponse { Errors = errors });
+            }
 
             return StatusCode(201);
         }

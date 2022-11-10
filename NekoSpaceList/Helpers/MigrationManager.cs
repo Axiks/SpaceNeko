@@ -1,7 +1,7 @@
 ﻿using AnimeDB;
 using Microsoft.EntityFrameworkCore;
 
-namespace NekoSpace.API
+namespace NekoSpace.API.Helpers
 {
     public static class MigrationManager
     {
@@ -13,7 +13,15 @@ namespace NekoSpace.API
                 {
                     try
                     {
-                        appContext.Database.Migrate();
+                        //appContext.Database.Migrate();
+
+                        appContext.Database.EnsureCreated();
+
+                        // AutoUpdate DB
+                        /*var updateDB = scope.ServiceProvider.GetRequiredService<IUpdateDB>();
+                        updateDB.RunAsync();*/
+
+                        //appContext.Seed();
                     }
                     catch (Exception ex)
                     {

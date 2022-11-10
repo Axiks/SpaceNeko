@@ -12,6 +12,7 @@ using NekoSpace.Data.Interfaces;
 using NekoSpace.Data.Models.User;
 using NekoSpace.Data.Repository;
 using NekoSpace.Seed;
+using NekoSpace.Seed.Driver;
 using NekoSpace.Seed.Interfaces;
 using NekoSpaceList.Models.Anime;
 using System.Text;
@@ -35,9 +36,14 @@ builder.Services.AddIdentity<NekoUser, IdentityRole>().AddEntityFrameworkStores<
 
 builder.Services.AddScoped<ApplicationDbContext>(p => p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>().CreateDbContext());
 
-builder.Services.AddScoped<IDBSeed<Anime>, OfflineAnimeDbSeed>(provider =>
+/*builder.Services.AddScoped<IDBSeed<Anime>, OfflineAnimeDbSeed>(provider =>
 {
     return new OfflineAnimeDbSeed() { };
+});*/
+
+builder.Services.AddScoped<IDBSeed<Anime>, MalDriver>(provider =>
+{
+    return new MalDriver() { };
 });
 
 builder.Services.AddScoped<IUpdateDB, UpdateDB>();

@@ -84,7 +84,7 @@ namespace NekoSpaceList.Models.Anime
     public class Aired : ITimePeriod
     {
         public Guid Id { get; set; }
-        public DateTime From { get; set; }
+        public DateTime? From { get; set; }
         public DateTime? To { get; set; }
     }
 
@@ -114,6 +114,13 @@ namespace NekoSpaceList.Models.Anime
 
     public class AnotherAnimeService : AnotherService
     {
+        private int malId;
+
+        /*public AnotherAnimeService(int MalId)
+        {
+            malId = MalId;
+        }*/
+
         public int? KitsuId { get; set; }
         public string? NotifyId { get; set; }
         public string? AnimePlanetId { get; set; }

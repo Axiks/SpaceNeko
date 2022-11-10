@@ -43,3 +43,4 @@ C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\Microso
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net6.0\JikanDotNet.dll

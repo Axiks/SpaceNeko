@@ -22,7 +22,13 @@ namespace NekoSpace.API.GraphQL
 {
     public class Mutation
     {
-        //[Authorize(Roles = new[] { Roles.AdministratorRole })]
+        [Authorize(Roles = new[] { Roles.AdministratorRole })]
+        public async Task<IEnumerable<Anime>> TestAsync([Service] IDBSeed<Anime> dBSeed)
+        {
+            return dBSeed.RunSeed();
+        }
+
+        [Authorize(Roles = new[] { Roles.AdministratorRole })]
         [UseDbContext(typeof(ApplicationDbContext))]
         public async Task<AddSeedingPayload> RunSeedingAsync(AddSeedingInput input, [ScopedService] ApplicationDbContext context, [Service] IDBSeed<Anime> dBSeed)
         {

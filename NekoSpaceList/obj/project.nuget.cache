@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "x5oq8pkhvA6QGLMwztMRT1E7jJqDv2w1dnkOcZ0I5l2nSAaq5x5+T8HDj4qiro3K5UVdNxHwn9K0j66EHxu/nQ==",
+  "dgSpecHash": "YklvLRKi4woG8KUkk2npefjY9ZvOrODzS7WYbQw85P7VKIsYpmfEQdwcxGz3RELFhX/8qtIwtCjtuAwz1KQ/8w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpaceList\\NekoSpace.API.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.utilities.introspection\\12.13.2\\hotchocolate.utilities.introspection.12.13.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.validation\\12.13.2\\hotchocolate.validation.12.13.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\jikandotnet\\2.4.0\\jikandotnet.2.4.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",

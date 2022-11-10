@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "BxUAQzyBXvsyLupAFP5bCUYHBI7XbE1D1AOv68xsCgEemth582MZNYHEhxArPeKbSIhduUTlTAXdV7JqrI18ew==",
+  "dgSpecHash": "fDRBLxKpsrUlIKYOF0Mb0fNzshw3/UvBqhuVS7S2+DxpwsMnNsoLZKFeDn591T9NvOxvcD5q5wAeRgDZzCVmRw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Seed\\NekoSpace.Seed.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Niko\\.nuget\\packages\\jikandotnet\\2.4.0\\jikandotnet.2.4.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.8\\microsoft.aspnetcore.cryptography.internal.6.0.8.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.8\\microsoft.aspnetcore.cryptography.keyderivation.6.0.8.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.8\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.8.nupkg.sha512",

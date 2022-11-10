@@ -68,3 +68,4 @@ C:\Users\Niko\source\repos\NekoSpaceList\obj\Debug\docker-compose.dcproj.Assembl
 C:\Users\Niko\source\repos\NekoSpaceList\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\Niko\source\repos\NekoSpaceList\obj\Debug\docker-compose.dcproj.CopyComplete
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\ManamiFolderdatabase.json
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\JikanDotNet.dll

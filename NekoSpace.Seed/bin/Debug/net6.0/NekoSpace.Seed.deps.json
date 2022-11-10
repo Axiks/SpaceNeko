@@ -8,12 +8,21 @@
     ".NETCoreApp,Version=v6.0": {
       "NekoSpace.Seed/1.0.0": {
         "dependencies": {
+          "JikanDotNet": "2.4.0",
           "Mami": "1.0.0",
           "NekoSpace.Data": "1.0.0",
           "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "NekoSpace.Seed.dll": {}
+        }
+      },
+      "JikanDotNet/2.4.0": {
+        "runtime": {
+          "lib/net6.0/JikanDotNet.dll": {
+            "assemblyVersion": "2.4.0.0",
+            "fileVersion": "2.4.0.0"
+          }
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/6.0.8": {
@@ -283,6 +292,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "JikanDotNet/2.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ny9RqZmNh5Hjvh4h2AM0Cf92ORIRyexKaQaxsJkI7qBJq3uS39QjkxzC/D2gY7yIlzE8bNt7WgyOuNyyvvTNQg==",
+      "path": "jikandotnet/2.4.0",
+      "hashPath": "jikandotnet.2.4.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/6.0.8": {
       "type": "package",

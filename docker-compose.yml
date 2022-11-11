@@ -11,7 +11,8 @@ services:
         - "postgres_db"
     container_name: nekospace.api
     ports:
-        - "8001:80"
+        - "8003:80"
+        - "8033:443"
     build:
       context: .
       dockerfile: NekoSpaceList/Dockerfile

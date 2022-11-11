@@ -7,6 +7,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
+RUN dotnet new webapi -o app
+RUN dotnet dev-certs https
 COPY ["NekoSpaceList/NekoSpace.API.csproj", "NekoSpaceList/"]
 COPY ["NekoSpace.Seed/NekoSpace.Seed.csproj", "NekoSpace.Seed/"]
 COPY ["MamiRepository/Mami.csproj", "MamiRepository/"]
@@ -22,4 +24,5 @@ RUN dotnet publish "NekoSpace.API.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=build /root/.dotnet/corefx/cryptography/x509stores/my/* /root/.dotnet/corefx/cryptography/x509stores/my/
 ENTRYPOINT ["dotnet", "NekoSpace.API.dll"]

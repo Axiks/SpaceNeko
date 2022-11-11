@@ -8,14 +8,10 @@ using NekoSpace.API.GraphQL;
 using NekoSpace.API.GraphQL.Animes;
 using NekoSpace.API.GraphQL.Users;
 using NekoSpace.API.Helpers;
-using NekoSpace.Data.Interfaces;
 using NekoSpace.Data.Models.User;
-using NekoSpace.Data.Repository;
 using NekoSpace.Seed;
-using NekoSpace.Seed.Driver;
 using NekoSpace.Seed.Interfaces;
 using NekoSpaceList.Models.Anime;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,17 +32,17 @@ builder.Services.AddIdentity<NekoUser, IdentityRole>().AddEntityFrameworkStores<
 
 builder.Services.AddScoped<ApplicationDbContext>(p => p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>().CreateDbContext());
 
-/*builder.Services.AddScoped<IDBSeed<Anime>, OfflineAnimeDbSeed>(provider =>
+builder.Services.AddScoped<IDBSeed<Anime>, OfflineAnimeDbSeed>(provider =>
 {
     return new OfflineAnimeDbSeed() { };
-});*/
-
-builder.Services.AddScoped<IDBSeed<Anime>, MalDriver>(provider =>
-{
-    return new MalDriver() { };
 });
 
-builder.Services.AddScoped<IUpdateDB, UpdateDB>();
+/*builder.Services.AddScoped<IDBSeed<Anime>, MalDriver>(provider =>
+{
+    return new MalDriver() { };
+});*/
+
+//builder.Services.AddScoped<IUpdateDB, UpdateDB>();
 
 // register graphQL
 builder.Services
@@ -68,9 +64,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-/*builder.Services.AddScoped<IAnimeRepository, AnimeRepository>();
-builder.Services.AddScoped<IMangaRepository, MangaRepository>();
-builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();*/
 
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 JwtConfig jwtConfig = new JwtConfig(builder.Configuration["JwtConfig:Secret"])
@@ -139,7 +132,7 @@ app.UseEndpoints(endpoints =>
     await seeder.InitializeAsync(services);
 }*/
 
-/*using (var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
@@ -148,7 +141,7 @@ app.UseEndpoints(endpoints =>
     {
         context.Database.Migrate();
     }
-}*/
+}
 app.MigrateDatabase();
 
 app.Run();

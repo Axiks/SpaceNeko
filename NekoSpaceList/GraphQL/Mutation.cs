@@ -25,7 +25,7 @@ namespace NekoSpace.API.GraphQL
         [Authorize(Roles = new[] { Roles.AdministratorRole })]
         public async Task<IEnumerable<Anime>> TestAsync([Service] IDBSeed<Anime> dBSeed)
         {
-            return dBSeed.RunSeed();
+            return dBSeed.RunSeed(); 
         }
 
         [Authorize(Roles = new[] { Roles.AdministratorRole })]

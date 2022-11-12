@@ -124,14 +124,6 @@ app.UseEndpoints(endpoints =>
     endpoints.MapGraphQLVoyager("ui/voyager");
 });
 
-// Seeding user and roles
-/*using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    SeedData seeder = new SeedData();
-    await seeder.InitializeAsync(services);
-}*/
-
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -139,7 +131,8 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<ApplicationDbContext>();
     if (context.Database.GetPendingMigrations().Any())
     {
-        context.Database.Migrate();
+        //context.Database.Migrate();
+        context.Database.EnsureCreated();
     }
 }
 // app.MigrateDatabase();

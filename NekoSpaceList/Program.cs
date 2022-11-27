@@ -9,8 +9,6 @@ using NekoSpace.API.GraphQL.Animes;
 using NekoSpace.API.GraphQL.Users;
 using NekoSpace.API.Helpers;
 using NekoSpace.Data.Models.User;
-using NekoSpace.Seed;
-using NekoSpace.Seed.Interfaces;
 using NekoSpaceList.Models.Anime;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,10 +30,10 @@ builder.Services.AddIdentity<NekoUser, IdentityRole>().AddEntityFrameworkStores<
 
 builder.Services.AddScoped<ApplicationDbContext>(p => p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>().CreateDbContext());
 
-builder.Services.AddScoped<IDBSeed<Anime>, OfflineAnimeDbSeed>(provider =>
+/*builder.Services.AddScoped<IRepositoryDriver<Anime, int>, OfflineAnimeDbSeed>(provider =>
 {
     return new OfflineAnimeDbSeed() { };
-});
+});*/
 
 /*builder.Services.AddScoped<IDBSeed<Anime>, MalDriver>(provider =>
 {
@@ -48,7 +46,7 @@ builder.Services.AddScoped<IDBSeed<Anime>, OfflineAnimeDbSeed>(provider =>
 builder.Services
     .AddGraphQLServer()
     .RegisterDbContext<ApplicationDbContext>()
-    .RegisterService<IDBSeed<Anime>>()
+    //.RegisterService<IRepositoryDriver<Anime, int>>()
     .AddAuthorization()
     .AddQueryType<Query>()
     .AddMutationType<Mutation>()
@@ -102,6 +100,20 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+app.UseHttpsRedirection();
+
+app.UseRouting();
+app.UseCors("allowedOrigin");
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGraphQL();
+    endpoints.MapGraphQLVoyager("ui/voyager");
+});
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -109,20 +121,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
-app.UseAuthentication();
-app.UseAuthorization();
-
 app.MapControllers();
-
-app.UseRouting();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGraphQL();
-    endpoints.MapGraphQLVoyager("ui/voyager");
-});
 
 using (var scope = app.Services.CreateScope())
 {
@@ -135,6 +134,7 @@ using (var scope = app.Services.CreateScope())
         context.Database.EnsureCreated();
     }
 }
+
 // app.MigrateDatabase();
 
 app.Run();

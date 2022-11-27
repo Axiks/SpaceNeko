@@ -82,6 +82,7 @@ namespace NekoSpace.API.GraphQL
             //var searchAnime = dbContext.Animes.Include(a => a.Titles).ThenInclude(a => a.Body.Contains(input.query)).Take(input.first);
 
             var searchAnime2 = dbContext.AnimeTitles.Include(i => i.Anime).Where(t => t.Body.Contains(input.query));
+            //var searchAnime2 = dbContext.AnimeTitles.Include(i => i.Anime)
 
             /*var searchAnime = from anime in dbContext.Animes.Include(a => a.Titles)
                               where 
@@ -96,17 +97,19 @@ namespace NekoSpace.API.GraphQL
             return searchAnime2;
         }
 
+        [UseDbContext(typeof(ApplicationDbContext))]
         [Authorize]
-        public async Task<NekoUser> GetMe(ClaimsPrincipal claimsPrincipal, [Service] UserManager<NekoUser> userManager)
+        public async Task<NekoUser> GetMe(ClaimsPrincipal claimsPrincipal, [ScopedService] ApplicationDbContext dbContext, [Service] UserManager<NekoUser> userManager)
         {
             var user = await userManager.GetUserAsync(claimsPrincipal);
+
+            var userDbContext = await dbContext.Users
+                .Include(u => u.FavoriteAnimes).ThenInclude(u => u.Anime)
+                .Include(u => u.AnimeViewingStatuses).ThenInclude(u => u.Anime)
+                .Include(u => u.RatingAnimes).ThenInclude(u => u.Anime)
+                .FirstAsync(t => t.Id == user.Id);
             //var email = user.Email;
-            return user;
-
-            // Omitted code for brevity
-            //var userId = claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var user = claimsPrincipal.Identity;
-
+            return userDbContext;
         }
 
         [Authorize]

@@ -17,31 +17,44 @@ using NekoSpace.API.GraphQL.AnimeTitleItem;
 using NekoSpace.API.GraphQL.Search;
 using NekoSpace.API.GraphQL.Users;
 using NekoSpace.API.GraphQL.UserLibraryEntry;
+using NekoSpace.Seed.Driver;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace NekoSpace.API.GraphQL
 {
     public class Mutation
     {
         // [Authorize(Roles = new[] { Roles.AdministratorRole })]
-        public async Task<IEnumerable<Anime>> TestAsync([Service] IDBSeed<Anime> dBSeed)
+      /*  public async Task<IEnumerable<Anime>> TestAsync([Service] IRepositoryDriver<Anime, int> dBSeed)
         {
             return dBSeed.RunSeed(); 
-        }
+        }*/
 
         [Authorize(Roles = new[] { Roles.AdministratorRole })]
         [UseDbContext(typeof(ApplicationDbContext))]
-        public async Task<AddSeedingPayload> RunSeedingAsync(AddSeedingInput input, [ScopedService] ApplicationDbContext context, [Service] IDBSeed<Anime> dBSeed)
+        public async Task<AddSeedingPayload> RunSeedingAsync(AddSeedingInput input, [ScopedService] ApplicationDbContext context)
         {
+
             if (input.InRecreateDB ?? false)
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
             }
 
-            var animeRepo = context.Animes;
-            var animes = dBSeed.RunSeed().ToList();
+            ISelectMediaAll<Anime> animeDriver = new MamiAnimeDriver();
 
-            int itemCount = animes.Count();
+            var animeRepo = context.Animes;
+
+            var animesRTO = animeDriver.GetAll();
+
+            foreach(RTO<Anime> anime in animesRTO)
+            {
+                animeRepo.Add(anime.contain);
+            }
+            context.SaveChanges();
+
+
+            /*int itemCount = animesRTO.Count();
             int offset = input.offset ?? itemCount;
             int page = input.page ?? 1;
 
@@ -49,19 +62,61 @@ namespace NekoSpace.API.GraphQL
             {
                 for (int i = offset * (page - 1); i < offset * page; i++)
                 {
-                    animeRepo.Add(animes[i]);
+                    var anime = animesRTO[i].contain;
+                    animeRepo.Add(anime);
                 }
                 page++;
-                context.SaveChanges();
             }
+            context.SaveChanges();
 
-            /*foreach (var anime in animes)
+            foreach (var anime in animes)
             {
                 animeRepo.Add(anime);
             }
             context.SaveChanges();*/
 
-            return new AddSeedingPayload(animeRepo.ToList());
+            return new AddSeedingPayload(animeRepo);
+        }
+
+        [Authorize(Roles = new[] { Roles.AdministratorRole })]
+        [UseDbContext(typeof(ApplicationDbContext))]
+        public async Task<AddSeedingPayload> RunSeedingCharacterAsync(AddSeedingInput input, [ScopedService] ApplicationDbContext context)
+        {
+            int skip = 200;
+            int take = 10;
+            var malCharacterDriver = new MalCharacterDriver();
+
+            // Завантажуємо 100 ID аніме
+            var animeContext = context.Animes;
+            var animes = animeContext.Where(x => x.AnotherService.MyAnimeList != null).Select(x => x.AnotherService.MyAnimeList).Skip(skip).Take(take);
+            // Шукаємо для них персонажів, і отриманих персонажів зберігаємо у БД
+            foreach (long animeId in animes)
+            {
+                var character = malCharacterDriver.GetAllCharactersByAnimeMALId(animeId);
+
+                var characterId = character.First().contain.AnotherService.MyAnimeList;
+
+                if (characterId != null)
+                {
+                    // Шукаємо персонажа у БД
+                    var selectCharacter = context.Characters.Include(x => x.AnotherService).Select(x => x.AnotherService.MyAnimeList).Where(x => x.Value == characterId).Any();
+                }
+                //SingleOrDefault(x => x.MyAnimeList == charavterId);
+
+
+                //Where(x => x.MyAnimeList.HasValue(78));
+
+                //bool isHas = selectCharacter != null;
+
+                /*if (isHas)
+                {
+                    context.Add(character);
+                };*/
+                Thread.Sleep(1000);
+            }
+            context.SaveChanges();
+
+            return new AddSeedingPayload(animeContext);
         }
 
         [Authorize(Roles = new[] { Roles.AdministratorRole, Roles.ModeratorRole, Roles.CreatorRole, Roles.UserRole })]
@@ -259,7 +314,7 @@ namespace NekoSpace.API.GraphQL
                 .Include(x => x.FavoriteAnimes).ThenInclude(x => x.Anime)
                 .Include(x => x.AnimeViewingStatuses).ThenInclude(x => x.Anime)
                 .Single(item => item.Id == userStringId);
-            if (authUser == null) return new UserLibraryEntryPayload(null, "Error: Could not find User");
+            // if (authUser == null) return new UserLibraryEntryPayload(null, "Error: Could not find User");
 
             // Знаходимо аніме
             var animeItem = context.Animes.Single(item => item.Id == input.animeId);

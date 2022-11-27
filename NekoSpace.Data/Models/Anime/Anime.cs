@@ -24,6 +24,8 @@ namespace NekoSpaceList.Models.Anime
         public ICollection<AnimeCover>? Covers { get; set; }
         public AnotherAnimeService AnotherService { get; set; }
         public ICollection<UserFavoriteAnime> FavoriteInUsers { get; set; }
+        public ICollection<UserRatingAnime> RatingInUsers { get; set; }
+        public ICollection<UserAnimeViewingStatus> ViewingStatusInUsers { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
     }

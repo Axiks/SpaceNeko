@@ -20,8 +20,6 @@ C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.EntityFrameworkCore
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Data.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Seed.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.Extensions.Identity.Core.dll
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.AspNetCore.Authorization.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Data.EntityFramework.dll
@@ -41,11 +39,7 @@ C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Language.SyntaxT
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Language.Utf8.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Npgsql.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Mami.dll
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.IdentityModel.Protocols.dll
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Language.Visitors.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Language.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Utilities.dll
@@ -59,7 +53,6 @@ C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\GreenDonut.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Fetching.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Validation.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.OpenApi.dll
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Data.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Seed.pdb
@@ -69,3 +62,4 @@ C:\Users\Niko\source\repos\NekoSpaceList\obj\Debug\docker-compose.dcproj.CoreCom
 C:\Users\Niko\source\repos\NekoSpaceList\obj\Debug\docker-compose.dcproj.CopyComplete
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\ManamiFolderdatabase.json
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\JikanDotNet.dll
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.IdentityModel.Abstractions.dll

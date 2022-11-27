@@ -42,8 +42,6 @@ namespace AnimeDB
             // Database.EnsureDeleted();
             // Database.EnsureCreated();
         }
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // For identity user
@@ -322,6 +320,18 @@ namespace AnimeDB
                 .WithOne(t => t.Character)
                 .HasForeignKey(t => t.CharacterId)
                 .HasPrincipalKey(t => t.Id);
+
+            //      Relation    //
+
+            modelBuilder
+                .Entity<AnotherCharacterService>()
+                .ToTable("Characters");
+
+            modelBuilder.
+                Entity<Character>()
+                .HasOne(x => x.AnotherService)
+                .WithOne()
+                .HasForeignKey<AnotherCharacterService>(x => x.Id);
 
             //      Premier     >>
 
@@ -938,7 +948,7 @@ namespace AnimeDB
 
             modelBuilder.
                 Entity<UserRatingAnime>()
-                .HasKey(x => x.Id);
+                .HasKey(t => new { t.UserId, t.AnimeId });
 
             modelBuilder.
                 Entity<UserRatingAnime>()
@@ -946,12 +956,20 @@ namespace AnimeDB
                 .HasColumnName("RatingValue")
                 .IsRequired();
 
-            /// Relations
+            /// Relations M - M
+            
             modelBuilder
                 .Entity<NekoUser>()
                 .HasMany(t => t.RatingAnimes)
                 .WithOne(t => t.User)
                 .HasForeignKey(t => t.UserId)
+                .HasPrincipalKey(t => t.Id);
+
+            modelBuilder
+                .Entity<Anime>()
+                .HasMany(t => t.RatingInUsers)
+                .WithOne(t => t.Anime)
+                .HasForeignKey(t => t.AnimeId)
                 .HasPrincipalKey(t => t.Id);
 
             // Anime Viewing Status
@@ -963,7 +981,7 @@ namespace AnimeDB
 
             modelBuilder.
                 Entity<UserAnimeViewingStatus>()
-                .HasKey(x => x.Id);
+                .HasKey(t => new { t.UserId, t.AnimeId });
 
             modelBuilder.
                 Entity<UserAnimeViewingStatus>()
@@ -978,6 +996,14 @@ namespace AnimeDB
                 .WithOne(t => t.User)
                 .HasForeignKey(t => t.UserId)
                 .HasPrincipalKey(t => t.Id);
+
+            modelBuilder
+                .Entity<Anime>()
+                .HasMany(t => t.ViewingStatusInUsers)
+                .WithOne(t => t.Anime)
+                .HasForeignKey(t => t.AnimeId)
+                .HasPrincipalKey(t => t.Id);
+
 
             // Seeding data
             Guid GuidAdminRole = SeedRoles(modelBuilder);

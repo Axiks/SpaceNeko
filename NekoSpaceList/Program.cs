@@ -97,6 +97,12 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
+builder.Services.AddCors( option =>
+{
+    option.AddPolicy("allowedOrigin",
+            builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+        );
+});
 
 var app = builder.Build();
 

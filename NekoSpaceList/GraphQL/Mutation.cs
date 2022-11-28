@@ -34,7 +34,6 @@ namespace NekoSpace.API.GraphQL
         [UseDbContext(typeof(ApplicationDbContext))]
         public async Task<AddSeedingPayload> RunSeedingAsync(AddSeedingInput input, [ScopedService] ApplicationDbContext context)
         {
-
             if (input.InRecreateDB ?? false)
             {
                 context.Database.EnsureDeleted();

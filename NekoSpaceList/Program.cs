@@ -135,6 +135,6 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// app.MigrateDatabase();
+//app.MigrateDatabase();
 
 app.Run();

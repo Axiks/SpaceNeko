@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WlLXZeexvjw1SwY7S3lpvvFin2T+8igGOZ0C5Rd2h3Y=",
+  "Hash": "qhGS/SKWui2edWBpvX/0v0h6JAwW2SxOTzDh29U6DWA=",
   "Source": "NekoSpace.Seed",
   "BasePath": "_content/NekoSpace.Seed",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "NekoSpace.Data",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
     }
   ],

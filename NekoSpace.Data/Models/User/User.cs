@@ -24,7 +24,6 @@ namespace NekoSpace.Data.Models.User
 
     public class UserRatingAnime
     {
-        public Guid Id;
         public float RatingValue { get; set; }
         public Guid AnimeId { get; set; }
         public Anime Anime { get; set; }
@@ -36,7 +35,6 @@ namespace NekoSpace.Data.Models.User
 
     public class UserAnimeViewingStatus
     {
-        public Guid Id;
         public UserViewStatus Status { get; set; }
         public Guid AnimeId { get; set; }
         public Anime Anime { get; set; }

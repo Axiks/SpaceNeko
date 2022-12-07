@@ -12,7 +12,9 @@
           "GraphQL.Server.Ui.Voyager": "7.1.1",
           "HotChocolate.AspNetCore": "12.15.2",
           "HotChocolate.AspNetCore.Authorization": "12.15.2",
+          "HotChocolate.Data": "12.15.2",
           "HotChocolate.Data.EntityFramework": "12.15.2",
+          "HotChocolate.Types.Filters": "12.15.2",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.0",
@@ -340,6 +342,18 @@
         },
         "runtime": {
           "lib/net6.0/HotChocolate.Types.CursorPagination.dll": {
+            "assemblyVersion": "12.15.2.0",
+            "fileVersion": "12.15.2.0"
+          }
+        }
+      },
+      "HotChocolate.Types.Filters/12.15.2": {
+        "dependencies": {
+          "HotChocolate.Language.Visitors": "12.15.2",
+          "HotChocolate.Types": "12.15.2"
+        },
+        "runtime": {
+          "lib/net6.0/HotChocolate.Types.Filters.dll": {
             "assemblyVersion": "12.15.2.0",
             "fileVersion": "12.15.2.0"
           }
@@ -3110,6 +3124,13 @@
       "sha512": "sha512-X/TjsOhBl2/ozc4n7F+QyoAfye/u7SwZvcG9dHbgZwJjrzQzs3vxv3hTZNaLJRRUE+gacy6IuOV/gx0IlxxE7Q==",
       "path": "hotchocolate.types.cursorpagination/12.15.2",
       "hashPath": "hotchocolate.types.cursorpagination.12.15.2.nupkg.sha512"
+    },
+    "HotChocolate.Types.Filters/12.15.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VF3C3Fa8O5zGWbHTIKj6ZPgQCOruZKVgEB1H26drEc255/gvvyiw+0fpix0aiUYbfwsFcwobvGu2ijrrME4mlQ==",
+      "path": "hotchocolate.types.filters/12.15.2",
+      "hashPath": "hotchocolate.types.filters.12.15.2.nupkg.sha512"
     },
     "HotChocolate.Types.Mutations/12.15.2": {
       "type": "package",

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cXFI0HwN0WNAVtZ76XJBTCnOqJU7Ugv3TIgmYc7FQxl2KRdcaMVEQlVlYEAmtRXrYbLM3QTRLdalmmAcjMj98g==",
+  "dgSpecHash": "da3SIcRyyxgRr6OxGwdwYR8YhYbvSUKEueQbsAe6LrKBfGRLWOYmnLCuP0Mpubayt6P1Y0ZsC8qR+1AtHhhVxw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpaceList\\NekoSpace.API.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.subscriptions.inmemory\\12.15.2\\hotchocolate.subscriptions.inmemory.12.15.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.types\\12.15.2\\hotchocolate.types.12.15.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.types.cursorpagination\\12.15.2\\hotchocolate.types.cursorpagination.12.15.2.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.types.filters\\12.15.2\\hotchocolate.types.filters.12.15.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.types.mutations\\12.15.2\\hotchocolate.types.mutations.12.15.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.types.offsetpagination\\12.15.2\\hotchocolate.types.offsetpagination.12.15.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.types.scalars.upload\\12.15.2\\hotchocolate.types.scalars.upload.12.15.2.nupkg.sha512",

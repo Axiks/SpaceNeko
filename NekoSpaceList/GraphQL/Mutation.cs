@@ -30,7 +30,7 @@ namespace NekoSpace.API.GraphQL
             return dBSeed.RunSeed(); 
         }*/
 
-        [Authorize(Roles = new[] { Roles.AdministratorRole })]
+        /*[Authorize(Roles = new[] { Roles.AdministratorRole })]*/
         [UseDbContext(typeof(ApplicationDbContext))]
         public async Task<AddSeedingPayload> RunSeedingAsync(AddSeedingInput input, [ScopedService] ApplicationDbContext context)
         {
@@ -42,15 +42,26 @@ namespace NekoSpace.API.GraphQL
 
             ISelectMediaAll<Anime> animeDriver = new MamiAnimeDriver();
 
-            var animeRepo = context.Animes;
-
-            var animesRTO = animeDriver.GetAll();
-
-            foreach(RTO<Anime> anime in animesRTO)
+            using (var dataContext = context)
             {
-                animeRepo.Add(anime.contain);
+                var animeRepo = dataContext.Animes;
+                Console.WriteLine("Anime repo count obj: " + animeRepo.Count().ToString());
+                var animesRTO = animeDriver.GetAll();
+                int animeRTOCount = animesRTO.Count();
+                Console.WriteLine("Anime RTO count obj: " + animeRTOCount.ToString());
+
+                foreach (RTO<Anime> anime in animesRTO)
+                {
+                    animeRepo.Add(anime.contain);
+                }
+                context.SaveChanges();
+
+                return new AddSeedingPayload(animeRepo);
+
             }
-            context.SaveChanges();
+
+
+
 
 
             /*int itemCount = animesRTO.Count();
@@ -74,7 +85,7 @@ namespace NekoSpace.API.GraphQL
             }
             context.SaveChanges();*/
 
-            return new AddSeedingPayload(animeRepo);
+            return new AddSeedingPayload(null);
         }
 
         [Authorize(Roles = new[] { Roles.AdministratorRole })]
@@ -176,12 +187,72 @@ namespace NekoSpace.API.GraphQL
             return new CreateTranslationProposalPayload(false);
         }
 
+        [Authorize(Roles = new[] { Roles.AdministratorRole, Roles.ModeratorRole, Roles.CreatorRole, Roles.UserRole })]
+        [UseDbContext(typeof(ApplicationDbContext))]
+        public async Task<CreateTranslationProposalPayload> CreateTranslationProposalSynopsisAsync(CreateTranslationProposalInput input, ClaimsPrincipal claimsPrincipal, [ScopedService] ApplicationDbContext context)
+        {
+
+            Guid animeId = input.AnimeId;
+
+            string userStringId = claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
+            Guid userId = Guid.Parse(userStringId);
+
+            var animeItem = context.Animes.Include(x => x.Synopsises).FirstOrDefault(item => item.Id == animeId);
+
+            if (animeItem != null)
+            {
+                AnimeSynopsis animeSynopsis = new AnimeSynopsis();
+                animeSynopsis.AnimeId = animeId;
+                animeSynopsis.Body = input.Proposition;
+                animeSynopsis.CreatorUserId = userId;
+                animeSynopsis.IsMain = false;
+                animeSynopsis.IsOriginal = false;
+                animeSynopsis.IsAcceptProposal = null;
+                animeSynopsis.Language = input.Language;
+                animeSynopsis.From = ItemFrom.User;
+
+                animeSynopsis.UpdatedAt = DateTime.UtcNow;
+                animeSynopsis.CreatedAt = DateTime.UtcNow;
+
+                // Якщо користувач є Адміном, Модератором, чи креатором, його варіант прийняти автоматично
+                if (claimsPrincipal.IsInRole(Roles.AdministratorRole) || claimsPrincipal.IsInRole(Roles.ModeratorRole) || claimsPrincipal.IsInRole(Roles.CreatorRole))
+                {
+                    animeSynopsis.IsAcceptProposal = true;
+
+                    // Якщо даний варіант є першим, у конкретній мові - зробити його основним
+                    var query = from p in context.AnimeTitles
+                                where p.AnimeId == animeId && p.Language == input.Language && p.IsMain == true
+                                select new
+                                {
+                                    p.Id
+                                };
+                    var countElements = query.Count();
+                    if (countElements == 0)
+                    {
+                        animeSynopsis.IsMain = true;
+                    }
+                }
+
+                animeItem.Synopsises.Add(animeSynopsis);
+                //var succes = animeItem.Titles.Add(animeTitle);
+
+                if (await context.SaveChangesAsync() > 0)
+                {
+                    return new CreateTranslationProposalPayload(true);
+                }
+            }
+
+            return new CreateTranslationProposalPayload(false);
+        }
+
 
         [Authorize(Roles = new[] { Roles.AdministratorRole, Roles.ModeratorRole, Roles.CreatorRole })]
         [UseDbContext(typeof(ApplicationDbContext))]
         public async Task<SetDecisionTranslationProposalPayload> SetDecisionTranslationProposalAsync(SetDecisionTranslationProposalInput input, [ScopedService] ApplicationDbContext context)
         {
             var animeTitleItem = context.AnimeTitles.FirstOrDefault(item => item.Id == input.TitleId);
+            if(animeTitleItem == null) return new SetDecisionTranslationProposalPayload(null, "Error: Not found");
+
 
             switch (input.Decision)
             {
@@ -212,7 +283,7 @@ namespace NekoSpace.API.GraphQL
 
             context.SaveChangesAsync();
 
-            return new SetDecisionTranslationProposalPayload(animeTitleItem);
+            return new SetDecisionTranslationProposalPayload(animeTitleItem, null);
         }
 
 
@@ -227,7 +298,7 @@ namespace NekoSpace.API.GraphQL
             if (animeTitleItem == null) return new SetMainTitleInputPayload(null, "Error: Could not find this option. Did you enter the ID correctly?");
 
             // Перевіряємо чи це пийнята пропозиця
-            if (animeTitleItem.IsAcceptProposal != true) return new SetMainTitleInputPayload(null, "Error: The option must be confirmed");
+            // if (animeTitleItem.IsAcceptProposal != true) return new SetMainTitleInputPayload(null, "Error: The option must be confirmed");
 
             // Знаходимо аніме якому належить варіант перекладу
             var anime = context.Animes.Include(x => x.Titles).Single(item => item.Id == animeTitleItem.MediaId);

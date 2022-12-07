@@ -327,3 +327,4 @@ C:\Users\Niko\source\repos\NekoSpaceList\NekoSpaceList\bin\Debug\net7.0\Arch.Ent
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpaceList\bin\Debug\net7.0\Arch.EntityFrameworkCore.Relational.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpaceList\bin\Debug\net7.0\Remotion.Linq.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpaceList\bin\Debug\net7.0\System.Interactive.Async.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpaceList\bin\Debug\net7.0\HotChocolate.Types.Filters.dll

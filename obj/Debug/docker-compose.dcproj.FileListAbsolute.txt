@@ -63,3 +63,4 @@ C:\Users\Niko\source\repos\NekoSpaceList\obj\Debug\docker-compose.dcproj.CopyCom
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\ManamiFolderdatabase.json
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\JikanDotNet.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Types.Filters.dll

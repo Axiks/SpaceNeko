@@ -3,5 +3,5 @@ using NekoSpaceList.Models.Anime;
 
 namespace NekoSpace.API.GraphQL.TranslationProposalDecision
 {
-    public record SetDecisionTranslationProposalPayload(AnimeTitle animeTitle);
+    public record SetDecisionTranslationProposalPayload(AnimeTitle animeTitle, String? Error);
 }

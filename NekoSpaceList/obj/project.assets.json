@@ -244,7 +244,8 @@
           }
         },
         "build": {
-          "build/_._": {}
+          "build/HotChocolate.Data.props": {},
+          "build/HotChocolate.Data.targets": {}
         }
       },
       "HotChocolate.Data.EntityFramework/12.15.2": {
@@ -446,6 +447,23 @@
         },
         "runtime": {
           "lib/net6.0/HotChocolate.Types.CursorPagination.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "HotChocolate.Types.Filters/12.15.2": {
+        "type": "package",
+        "dependencies": {
+          "HotChocolate.Language.Visitors": "12.15.2",
+          "HotChocolate.Types": "12.15.2"
+        },
+        "compile": {
+          "lib/net6.0/HotChocolate.Types.Filters.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/HotChocolate.Types.Filters.dll": {
             "related": ".xml"
           }
         }
@@ -5153,6 +5171,29 @@
         "lib/netcoreapp3.1/HotChocolate.Types.CursorPagination.xml",
         "lib/netstandard2.0/HotChocolate.Types.CursorPagination.dll",
         "lib/netstandard2.0/HotChocolate.Types.CursorPagination.xml",
+        "strawberryshake-signet.png"
+      ]
+    },
+    "HotChocolate.Types.Filters/12.15.2": {
+      "sha512": "VF3C3Fa8O5zGWbHTIKj6ZPgQCOruZKVgEB1H26drEc255/gvvyiw+0fpix0aiUYbfwsFcwobvGu2ijrrME4mlQ==",
+      "type": "package",
+      "path": "hotchocolate.types.filters/12.15.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "greendonut-signet.png",
+        "hotchocolate-signet.png",
+        "hotchocolate.types.filters.12.15.2.nupkg.sha512",
+        "hotchocolate.types.filters.nuspec",
+        "lib/net5.0/HotChocolate.Types.Filters.dll",
+        "lib/net5.0/HotChocolate.Types.Filters.xml",
+        "lib/net6.0/HotChocolate.Types.Filters.dll",
+        "lib/net6.0/HotChocolate.Types.Filters.xml",
+        "lib/netcoreapp3.1/HotChocolate.Types.Filters.dll",
+        "lib/netcoreapp3.1/HotChocolate.Types.Filters.xml",
+        "lib/netstandard2.0/HotChocolate.Types.Filters.dll",
+        "lib/netstandard2.0/HotChocolate.Types.Filters.xml",
         "strawberryshake-signet.png"
       ]
     },
@@ -12930,7 +12971,9 @@
       "GraphQL.Server.Ui.Voyager >= 7.1.1",
       "HotChocolate.AspNetCore >= 12.15.2",
       "HotChocolate.AspNetCore.Authorization >= 12.15.2",
+      "HotChocolate.Data >= 12.15.2",
       "HotChocolate.Data.EntityFramework >= 12.15.2",
+      "HotChocolate.Types.Filters >= 12.15.2",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.0",
@@ -13014,7 +13057,15 @@
             "target": "Package",
             "version": "[12.15.2, )"
           },
+          "HotChocolate.Data": {
+            "target": "Package",
+            "version": "[12.15.2, )"
+          },
           "HotChocolate.Data.EntityFramework": {
+            "target": "Package",
+            "version": "[12.15.2, )"
+          },
+          "HotChocolate.Types.Filters": {
             "target": "Package",
             "version": "[12.15.2, )"
           },

@@ -50,6 +50,7 @@ namespace NekoSpace.Seed.Driver
 
         private RTO<Anime> PullManamiAnime(ManamiAnime manamiAnime)
         {
+            ////////////
             Anime anime = new Anime();
 
             List<AnimeTitle> animeTitles = new List<AnimeTitle>();
@@ -62,6 +63,8 @@ namespace NekoSpace.Seed.Driver
             animeTitle.Language = Languages.EN;
             animeTitles.Add(animeTitle);
 
+            Console.WriteLine("Assert");
+
             foreach (string synomim in manamiAnime.synonyms)
             {
                 animeTitle = new AnimeTitle();
@@ -70,6 +73,8 @@ namespace NekoSpace.Seed.Driver
                 animeTitle.IsMain = false;
                 animeTitle.From = ItemFrom.ExternalSource;
                 animeTitle.Language = Languages.und;
+                //animeTitle.LanguageDetectionBySystem = false;
+                //Console.WriteLine("Assert");
                 animeTitles.Add(animeTitle);
             }
 

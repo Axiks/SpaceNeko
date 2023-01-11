@@ -449,6 +449,17 @@
           }
         }
       },
+      "LanguageDetection.NETStandard/1.3.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/LanguageDetection.dll": {
+            "assemblyVersion": "1.3.1.0",
+            "fileVersion": "1.3.1.0"
+          }
+        }
+      },
       "MessagePack/2.1.152": {
         "dependencies": {
           "MessagePack.Annotations": "2.1.152",
@@ -2918,6 +2929,7 @@
       "NekoSpace.Data/1.0.0": {
         "dependencies": {
           "Arch.EntityFrameworkCore.Design": "2.1.15",
+          "LanguageDetection.NETStandard": "1.3.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.0",
           "Microsoft.EntityFrameworkCore.Abstractions": "7.0.0",
@@ -3187,6 +3199,13 @@
       "sha512": "sha512-fRv1gVuxR49j/EhBM9k/GGncLMgA2e2NvF+Um5dVgzu8Rw9rqUENkujq0C2S3EGWWtk1QMTL6K0wHbPbpebdsA==",
       "path": "jikandotnet/2.4.1",
       "hashPath": "jikandotnet.2.4.1.nupkg.sha512"
+    },
+    "LanguageDetection.NETStandard/1.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DmYYzJihHiU3z36ORMHiPtncZVu2gCEUSt96I0VoRHhcGtQLBoGkwOvkHLdfi1AoNKdgOyVKlFb+qcjgH1cbzw==",
+      "path": "languagedetection.netstandard/1.3.1",
+      "hashPath": "languagedetection.netstandard.1.3.1.nupkg.sha512"
     },
     "MessagePack/2.1.152": {
       "type": "package",

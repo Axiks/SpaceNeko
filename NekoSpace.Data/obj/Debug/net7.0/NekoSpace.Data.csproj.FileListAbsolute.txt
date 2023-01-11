@@ -45,3 +45,5 @@ C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\Arch.En
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\Arch.EntityFrameworkCore.Relational.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\Remotion.Linq.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\System.Interactive.Async.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\LanguageDetection.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\Newtonsoft.Json.dll

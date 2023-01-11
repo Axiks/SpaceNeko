@@ -97,10 +97,27 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddCors( option =>
+/*builder.Services.AddCors( option =>
 {
     option.AddPolicy("allowedOrigin",
             builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+        );
+});*/
+
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy(name: "allowedOrigin",
+            policy =>
+            {
+                policy.WithOrigins("http://localhost:3000",
+                    "https://localhost:3000",
+                    "http://localhost:2083",
+                    "https://localhost:2083",
+                    "https://web.neko3.space"
+                    )
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+            }
         );
 });
 

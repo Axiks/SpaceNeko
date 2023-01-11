@@ -50,35 +50,35 @@ namespace NekoSpace.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f103aab6-b20b-4b89-9d42-227a2beff401",
+                            Id = "9b351b39-896c-41c3-950d-3f6b62f179ba",
                             ConcurrencyStamp = "1",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "5154749c-b052-4cb2-8e3c-bdb34bee648b",
+                            Id = "f679c7f7-6eff-4b4f-bc68-7b53adf41c75",
                             ConcurrencyStamp = "1",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "659a87f6-6230-4a94-9120-c121fd0d3ee3",
+                            Id = "b2b69d87-c020-474d-919a-904bfd1c58e3",
                             ConcurrencyStamp = "1",
                             Name = "Creator",
                             NormalizedName = "CREATOR"
                         },
                         new
                         {
-                            Id = "484f1214-7d66-49aa-a3e6-b416fd6cab8f",
+                            Id = "db1b0726-ed51-464f-8413-4cfa68e3eacc",
                             ConcurrencyStamp = "1",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4c10f542-2f59-44a4-abf7-864955b0edc6",
+                            Id = "9faa44a4-09b4-4514-bd29-a5f7b9dcd6b5",
                             ConcurrencyStamp = "1",
                             Name = "Guest",
                             NormalizedName = "GUEST"
@@ -174,8 +174,8 @@ namespace NekoSpace.API.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "41c04c7b-f0e0-479f-aee3-3479969097fb",
-                            RoleId = "f103aab6-b20b-4b89-9d42-227a2beff401"
+                            UserId = "74989410-06c5-4ddd-a79c-90efecc00ac4",
+                            RoleId = "9b351b39-896c-41c3-950d-3f6b62f179ba"
                         });
                 });
 
@@ -267,9 +267,9 @@ namespace NekoSpace.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "41c04c7b-f0e0-479f-aee3-3479969097fb",
+                            Id = "74989410-06c5-4ddd-a79c-90efecc00ac4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9b39b751-486e-4605-8e6a-b434fd75b9af",
+                            ConcurrencyStamp = "6af00544-69dd-4ed7-a55b-bf267495011c",
                             Email = "admin@example.local",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -277,7 +277,7 @@ namespace NekoSpace.API.Migrations
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "AQAAAAEAACcQAAAAEHcnJe+yZ9BMU/ZP+V42eQaJYhEMQw4gKoLXDQFEHKcwhElL+c2NC7MkZJu2onNIdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9b3ae6a0-67c4-47a2-bbf4-95b5341460bc",
+                            SecurityStamp = "ec8546b0-9ccf-4cb1-b561-3065e51f58a6",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -534,6 +534,9 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("Language");
 
+                    b.Property<bool>("LanguageDetectionBySystem")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
@@ -596,6 +599,9 @@ namespace NekoSpace.API.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("Language");
+
+                    b.Property<bool>("LanguageDetectionBySystem")
+                        .HasColumnType("boolean");
 
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .ValueGeneratedOnAdd()

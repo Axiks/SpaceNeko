@@ -3,10 +3,10 @@ using ManamiAnimeOfflineRepository.Constans;
 using ManamiAnimeOfflineRepository.Constans.Costumes;
 using ManamiAnimeOfflineRepository.Models;
 using ManamiAnimeOfflineRepository.Models.Costumes;
+using NekoSpace.Data.Contracts.Enumerations;
 using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
 using NekoSpaceList.Models.Anime;
-using NekoSpaceList.Models.General;
 using static NekoSpaceList.Models.General.GeneralModel;
 
 namespace NekoSpace.Seed.Driver

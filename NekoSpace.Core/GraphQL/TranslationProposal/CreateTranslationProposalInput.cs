@@ -1,4 +1,4 @@
-﻿using NekoSpaceList.Models.General;
+﻿using NekoSpace.Data.Contracts.Enumerations;
 
 namespace NekoSpace.API.GraphQL.TranslationProposal
 {

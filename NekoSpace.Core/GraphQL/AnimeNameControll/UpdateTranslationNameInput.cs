@@ -1,5 +1,5 @@
-﻿using NekoSpaceList.Models.Anime;
-using NekoSpaceList.Models.General;
+﻿using NekoSpace.Data.Contracts.Enumerations;
+using NekoSpaceList.Models.Anime;
 
 namespace NekoSpace.API.GraphQL.AnimeNameControll
 {

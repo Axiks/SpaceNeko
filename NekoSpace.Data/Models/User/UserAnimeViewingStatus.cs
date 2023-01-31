@@ -1,5 +1,5 @@
-﻿using NekoSpaceList.Models.Anime;
-using NekoSpaceList.Models.General;
+﻿using NekoSpace.Data.Contracts.Enumerations;
+using NekoSpaceList.Models.Anime;
 using System.ComponentModel.DataAnnotations;
 
 namespace NekoSpace.Data.Models.User

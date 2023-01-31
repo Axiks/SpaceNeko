@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NekoSpace.Data.Contracts.Enumerations;
 using NekoSpace.Data.Models.User;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.CharacterModels;
-using NekoSpaceList.Models.General;
 using NekoSpaceList.Models.Manga;
 using static NekoSpaceList.Models.General.GeneralModel;
 

@@ -1,8 +1,8 @@
-﻿using NekoSpace.Seed.Interfaces;
+﻿using NekoSpace.Data.Contracts.Enumerations;
+using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.CharacterModels;
-using NekoSpaceList.Models.General;
 using NekoSpaceList.Models.Manga;
 using static NekoSpaceList.Models.General.GeneralModel;
 using JikanDN = JikanDotNet;

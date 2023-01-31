@@ -1,8 +1,8 @@
 ﻿//using JikanDotNet;
+using NekoSpace.Data.Contracts.Enumerations;
 using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
 using NekoSpaceList.Models.Anime;
-using NekoSpaceList.Models.General;
 using System.Text.RegularExpressions;
 using static NekoSpaceList.Models.General.GeneralModel;
 using JikanDN = JikanDotNet;

@@ -10,7 +10,6 @@ using NekoSpace.API.GraphQL.TranslationProposal;
 using NekoSpace.Data.Models.User;
 using NekoSpace.Seed.Interfaces;
 using NekoSpaceList.Models.Anime;
-using NekoSpaceList.Models.General;
 using System.Security.Claims;
 using NekoSpace.API.GraphQL.SetMainTitle;
 using NekoSpace.API.GraphQL.AnimeTitleItem;
@@ -19,6 +18,7 @@ using NekoSpace.API.GraphQL.Users;
 using NekoSpace.API.GraphQL.UserLibraryEntry;
 using NekoSpace.Seed.Driver;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using NekoSpace.Data.Contracts.Enumerations;
 
 namespace NekoSpace.API.GraphQL
 {

@@ -1,4 +1,4 @@
-﻿using NekoSpaceList.Models.General;
+﻿using NekoSpace.Data.Contracts.Enumerations;
 using System.ComponentModel.DataAnnotations;
 
 namespace NekoSpaceList.Models.Anime

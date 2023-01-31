@@ -64,3 +64,7 @@ C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Seed.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Mami.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Users\Niko\source\repos\NekoSpaceList\obj\Debug\docker-compose.dcproj.CopyComplete
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll

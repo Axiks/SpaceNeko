@@ -51,3 +51,7 @@ C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net7.0\Arch.En
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net7.0\Remotion.Linq.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net7.0\System.Interactive.Async.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net7.0\LanguageDetection.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Seed\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll

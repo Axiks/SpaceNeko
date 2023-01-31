@@ -380,8 +380,6 @@ C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\HotChoc
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Humanizer.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\JikanDotNet.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\LanguageDetection.dll
-C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\MessagePack.dll
-C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\MessagePack.Annotations.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -423,7 +421,6 @@ C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microso
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.NET.StringTools.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.OpenApi.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
-C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.VisualStudio.Debugger.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\dotnet-aspnet-codegenerator-design.dll
@@ -660,3 +657,8 @@ C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\obj\Debug\net7.0\refint\
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\obj\Debug\net7.0\NekoSpace.API.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\obj\Debug\net7.0\NekoSpace.API.genruntimeconfig.cache
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\obj\Debug\net7.0\ref\NekoSpace.API.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.CodeAnalysis.Elfie.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll

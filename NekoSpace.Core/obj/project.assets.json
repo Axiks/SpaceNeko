@@ -4607,6 +4607,16 @@
           "bin/placeholder/Mami.dll": {}
         }
       },
+      "NekoSpace.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/NekoSpace.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NekoSpace.Common.dll": {}
+        }
+      },
       "NekoSpace.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -13099,6 +13109,11 @@
       "path": "../MamiRepository/Mami.csproj",
       "msbuildProject": "../MamiRepository/Mami.csproj"
     },
+    "NekoSpace.Common/1.0.0": {
+      "type": "project",
+      "path": "../NekoSpace.Common/NekoSpace.Common.csproj",
+      "msbuildProject": "../NekoSpace.Common/NekoSpace.Common.csproj"
+    },
     "NekoSpace.Data/1.0.0": {
       "type": "project",
       "path": "../NekoSpace.Data/NekoSpace.Data.csproj",
@@ -13129,6 +13144,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.2",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.3",
+      "NekoSpace.Common >= 1.0.0",
       "NekoSpace.Data >= 1.0.0",
       "NekoSpace.Seed >= 1.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 7.0.1",
@@ -13167,6 +13183,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj": {
+              "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj"
+            },
             "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj": {
               "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj"
             },

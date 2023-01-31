@@ -1,63 +1,41 @@
 ﻿using NekoSpaceList.Models.CharacterModels;
 using NekoSpaceList.Models.General;
+using System.ComponentModel.DataAnnotations;
 using static NekoSpaceList.Models.General.GeneralModel;
 
 namespace NekoSpaceList.Models.Manga
 {
-    public class Manga : IMedia
+    public class Manga : Media
     {
-        public Guid Id { get; set; }
         public ICollection<MangaTitle> Titles { get; set; }
         public ICollection<MangaSynopsis> Synopsises { get; set; }
         public ICollection<MangaPoster> Posters { get; set; }
         public ICollection<MangaCover> Covers { get; set; }
+        [Required]
         public int ChaptersCount { get; set; }
         public ICollection<MangaGenre> Genres { get; set; }
         public ICollection<MangaCharacter> Characters { get; set; }
+        [Required]
         public Published Published { get; set; }
         public bool Publishing { get; set; }
         public MangaStatus ReadStatus { get; set; } // Where user Login
         public MangaType Type { get; set; }
+        [Required]
         public int Volumes { get; set; }
         public AnotherMangaService AnotherService { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
     }
 
-    public class MangaTitle : ITextVariantSubItem<Manga>
+    public class MangaTitle : TextVariantSubItem<Manga>
     {
-        public Guid Id { get; set; }
-        public string Body { get; set; }
-        public Languages Language { get; set; }
-        public ItemFrom From { get; set; }
-        public bool IsMain { get; set; }
-        public bool IsOriginal { get; set; }
-        public Guid MediaId { get; set; }
-        public Manga Media { get; set; }
+        [Required]
         public Guid MangaId { get => MediaId; set => MediaId = value; }
         public Manga Manga { get => Media; set => Media = value; }
-        public bool? IsAcceptProposal { get; set; }
-        public Guid? CreatorUserId { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
     }
 
-    public class MangaSynopsis : ITextVariantSubItem<Manga>
+    public class MangaSynopsis : TextVariantSubItem<Manga>
     {
-        public Guid Id { get; set; }
-        public string Body { get; set; }
-        public Languages Language { get; set; }
-        public ItemFrom From { get; set; }
-        public bool IsMain { get; set; }
-        public bool IsOriginal { get; set; }
-        public Guid MediaId { get; set; }
-        public Manga Media { get; set; }
         public Guid MangaId { get => MediaId; set => MediaId = value; }
         public Manga Manga { get => Media; set => Media = value; }
-        public bool? IsAcceptProposal { get; set; }
-        public Guid? CreatorUserId { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
     }
 
     public class MangaGenre

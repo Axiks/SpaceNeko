@@ -1,9 +1,6 @@
 C:\Users\Niko\source\repos\NekoSpaceList\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.deps.json
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.runtimeconfig.json
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Data.deps.json
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Data.runtimeconfig.json
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Data.exe
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Seed.deps.json
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Seed.runtimeconfig.json
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\.filenesting.json

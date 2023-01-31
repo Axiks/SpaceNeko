@@ -50,7 +50,7 @@ namespace NekoSpace.API.GraphQL.Animes
                 .Description("Translation language");
 
             descriptor.
-                Field(p => p.MediaId)
+                Field(p => p.AnimeId)
                 .Description("Id media belongs");
 
             descriptor.

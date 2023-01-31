@@ -2,7 +2,7 @@
 
 namespace NekoSpace.Seed.Interfaces
 {
-    public interface ISelectMediaByMALId<T> where T : IMedia
+    public interface ISelectMediaByMALId<T> where T : Media
     {
         public RTO<T> GetByMALId(long Id);
     }

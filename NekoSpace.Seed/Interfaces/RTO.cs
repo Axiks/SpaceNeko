@@ -3,7 +3,7 @@ using NekoSpaceList.Models.General;
 
 namespace NekoSpace.Seed.Interfaces
 {
-    public class RTO<T> where T : IMedia
+    public class RTO<T> where T : Media
     {
         public List<Media2MediaLink> Media2MediaLinks { get; set; }
         public T contain { get; }

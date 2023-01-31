@@ -1,5 +1,7 @@
 ﻿using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.Manga;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NekoSpaceList.Models.General
 {
@@ -31,25 +33,37 @@ namespace NekoSpaceList.Models.General
                     public DateTimeOffset UpdatedAt { get; set; }
                 }*/
 
-        public interface ITextVariantSubItem<T> where T : IMedia
+        public abstract class TextVariantSubItem<T> where T : Media
         {
             public Guid Id { get; set; }
+            [Required]
             public string Body { get; set; }
+            public bool LanguageDetectionBySystem { get; set; } = false;
+            [Required]
             public Languages Language { get; set; }
+            [Required]
             public ItemFrom From { get; set; }
+            [Required]
             public bool IsMain { get; set; }
             public bool IsOriginal { get; set; }
-            Guid MediaId { get; set; }
-            T Media { get; set; }
+            [NotMapped]
+            private protected Guid MediaId { get; set; }
+            [NotMapped]
+            private protected T Media { get; set; }
             public bool? IsAcceptProposal { get; set; }
+            [Required]
+            public bool IsHidden { get; set; } = false;
             public Guid? CreatorUserId { get; set; }
-            public DateTimeOffset CreatedAt { get; set; }
-            public DateTimeOffset UpdatedAt { get; set; }
+            [Required]
+            public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
+            [Required]
+            public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.Now;
         }
 
         public class Genre
         {
             public int Id { get; set; }
+            [Required]
             public string Name { get; set; }
             public ICollection<AnimeGenre> Animes { get; set; }
             public ICollection<MangaGenre> Mangas { get; set; }
@@ -65,11 +79,12 @@ namespace NekoSpaceList.Models.General
         public class Image
         {
             public int Id { get; set; }
-            //public Anime Anime { get; set; }
+            [Required]
             public string Original { get; set; }
             public string? Large { get; set; }
             public string? Medium { get; set; }
             public string? Small { get; set; }
+            [Required]
             public ItemFrom From { get; set; }
             public AnimePoster Posters { get; set; }
         }

@@ -25,6 +25,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "7.0.2",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.17.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.3",
+          "NekoSpace.Common": "1.0.0",
           "NekoSpace.Data": "1.0.0",
           "NekoSpace.Seed": "1.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.1",
@@ -2891,6 +2892,11 @@
           "Mami.dll": {}
         }
       },
+      "NekoSpace.Common/1.0.0": {
+        "runtime": {
+          "NekoSpace.Common.dll": {}
+        }
+      },
       "NekoSpace.Data/1.0.0": {
         "dependencies": {
           "Arch.EntityFrameworkCore.Design": "2.1.15",
@@ -4580,6 +4586,11 @@
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
     "Mami/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NekoSpace.Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

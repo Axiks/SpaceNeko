@@ -1,13 +1,13 @@
 ﻿using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.General;
 using NekoSpaceList.Models.Manga;
+using System.ComponentModel.DataAnnotations;
 using static NekoSpaceList.Models.General.GeneralModel;
 
 namespace NekoSpaceList.Models.CharacterModels
 {
-    public class Character : IMedia
+    public class Character : Media
     {
-        public Guid Id { get; set; }
         public ICollection<CharacterNames> Names { get; set; }
         public ICollection<CharacterAbout> Abouts { get; set; }
         public ICollection<CharacterPoster> Posters { get; set; }
@@ -15,44 +15,20 @@ namespace NekoSpaceList.Models.CharacterModels
         public ICollection<AnimeCharacter> Animes { get; set; }
         public ICollection<MangaCharacter> Mangas { get; set; }
         public AnotherCharacterService AnotherService { get; set; } // Воно містить посилання на зовнішні ресурси
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
     }
 
-    public class CharacterNames : ITextVariantSubItem<Character>
+    public class CharacterNames : TextVariantSubItem<Character>
     {
-        public Guid Id { get; set; }
-        public string Body { get; set; }
-        public Languages Language { get; set; }
-        public ItemFrom From { get; set; }
-        public bool IsOriginal { get; set; }
-        public bool IsMain { get; set; }
-        public Guid MediaId { get; set; }
-        public Character Media { get; set; }
+        [Required]
         public Guid CharacterId { get => MediaId; set => MediaId = value; }
         public Character Character { get => Media; set => Media = value; }
-        public bool? IsAcceptProposal { get; set; }
-        public Guid? CreatorUserId { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
     }
 
-    public class CharacterAbout : ITextVariantSubItem<Character>
+    public class CharacterAbout : TextVariantSubItem<Character>
     {
-        public Guid Id { get; set; }
-        public string Body { get; set; }
-        public Languages Language { get; set; }
-        public ItemFrom From { get; set; }
-        public bool IsOriginal { get; set; }
-        public bool IsMain { get; set; }
-        public Guid MediaId { get; set; }
-        public Character Media { get; set; }
+        [Required]
         public Guid CharacterId { get => MediaId; set => MediaId = value; }
         public Character Character { get => Media; set => Media = value; }
-        public bool? IsAcceptProposal { get; set; }
-        public Guid? CreatorUserId { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
     }
 
     public class CharacterPoster

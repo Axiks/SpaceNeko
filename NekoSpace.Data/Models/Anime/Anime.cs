@@ -1,21 +1,22 @@
 ﻿using NekoSpace.Data.Models.User;
 using NekoSpaceList.Models.CharacterModels;
 using NekoSpaceList.Models.General;
+using System.ComponentModel.DataAnnotations;
 using static NekoSpaceList.Models.General.GeneralModel;
 
 namespace NekoSpaceList.Models.Anime
 {
-    public class Anime : IMedia
+    public class Anime : Media
     {
-        public Guid Id { get; set; }
         public ICollection<AnimeTitle> Titles { get; set; }
         public ICollection<AnimeSynopsis>? Synopsises { get; set; }
         public AnimeType Type { get; set; }
         public AiringStatus AiringStatus { get; set; }
         public AgeRating AgeRating { get; set; }
-        public Source Source { get; set; }
+        public Source Source { get; set; } = Source.Undefined;
         public ICollection<AnimeGenre>? Genres { get; set; }
         public ICollection<AnimeCharacter>? Characters { get; set; }
+        [Required]
         public int? NumEpisodes { get; set; }
         public int? EpisodesDurationSeconds { get; set; }
         public Premier? Premier { get; set; }
@@ -26,54 +27,27 @@ namespace NekoSpaceList.Models.Anime
         public ICollection<UserFavoriteAnime> FavoriteInUsers { get; set; }
         public ICollection<UserRatingAnime> RatingInUsers { get; set; }
         public ICollection<UserAnimeViewingStatus> ViewingStatusInUsers { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
     }
 
-    public class AnimeTitle : ITextVariantSubItem<Anime>
+    public class AnimeTitle : TextVariantSubItem<Anime>
     {
-        public Guid Id { get; set; }
-        public string Body { get; set; }
-        public Languages Language { get; set; }
-        public bool LanguageDetectionBySystem { get; set; }
-        public ItemFrom From { get; set; }
-        public bool IsMain { get; set; }
-        public bool IsOriginal { get; set; }
-        public Guid MediaId { get; set; }
-        public Anime Media { get; set; }
+        [Required]
         public Guid AnimeId { get => MediaId; set => MediaId = value; }
         public Anime Anime { get => Media; set => Media = value; }
-        public bool? IsAcceptProposal { get; set; }
-        public bool IsHidden { get; set; }
-        public Guid? CreatorUserId { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
     }
 
-    public class AnimeSynopsis : ITextVariantSubItem<Anime>
+    public class AnimeSynopsis : TextVariantSubItem<Anime>
     {
-        public Guid Id { get; set; }
-        public string Body { get; set; }
-        public Languages Language { get; set; }
-        public bool LanguageDetectionBySystem { get; set; }
-        public ItemFrom From { get; set; }
-        public bool IsMain { get; set; }
-        public bool IsOriginal { get; set; }
-        public Guid MediaId { get; set; }
-        public Anime Media { get; set; }
         public Guid AnimeId { get => MediaId; set => MediaId = value; }
         public Anime Anime { get => Media; set => Media = value; }
-        public bool? IsAcceptProposal { get; set; }
-        public bool IsHidden { get; set; }
-        public Guid? CreatorUserId { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
     }
 
     public class Premier
     {
         public Guid Id { get; set; }
+        [Required]
         public int? Year { get; set; }
+        [Required]
         public Sezon Sezon { get; set; }
     }
 
@@ -88,6 +62,7 @@ namespace NekoSpaceList.Models.Anime
     public class Aired : ITimePeriod
     {
         public Guid Id { get; set; }
+        [Required]
         public DateTime? From { get; set; }
         public DateTime? To { get; set; }
     }

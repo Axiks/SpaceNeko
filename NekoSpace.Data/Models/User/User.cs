@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.General;
+using System.ComponentModel.DataAnnotations;
 
 namespace NekoSpace.Data.Models.User
 {
@@ -24,6 +25,7 @@ namespace NekoSpace.Data.Models.User
 
     public class UserRatingAnime
     {
+        [Required]
         public float RatingValue { get; set; }
         public Guid AnimeId { get; set; }
         public Anime Anime { get; set; }
@@ -35,6 +37,7 @@ namespace NekoSpace.Data.Models.User
 
     public class UserAnimeViewingStatus
     {
+        [Required]
         public UserViewStatus Status { get; set; }
         public Guid AnimeId { get; set; }
         public Anime Anime { get; set; }

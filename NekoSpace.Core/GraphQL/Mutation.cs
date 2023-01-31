@@ -301,7 +301,7 @@ namespace NekoSpace.API.GraphQL
             // if (animeTitleItem.IsAcceptProposal != true) return new SetMainTitleInputPayload(null, "Error: The option must be confirmed");
 
             // Знаходимо аніме якому належить варіант перекладу
-            var anime = context.Animes.Include(x => x.Titles).Single(item => item.Id == animeTitleItem.MediaId);
+            var anime = context.Animes.Include(x => x.Titles).Single(item => item.Id == animeTitleItem.AnimeId);
             if (anime == null) return new SetMainTitleInputPayload(null, "Error: It was not possible to find the anime to which this option belongs");
 
             // Знаходимо усі варіанти перекладів для даного аніме з конкретною мовою

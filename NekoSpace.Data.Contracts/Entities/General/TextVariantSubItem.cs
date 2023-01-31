@@ -1,12 +1,10 @@
 ﻿using NekoSpace.Data.Contracts.Entities.Enumerations;
-using NekoSpaceList.Models.Anime;
-using NekoSpaceList.Models.Manga;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NekoSpaceList.Models.General
 {
-    public class GeneralModel
+    public partial class GeneralModel
     {
         /*        public class Name
                 {
@@ -59,42 +57,6 @@ namespace NekoSpaceList.Models.General
             public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
             [Required]
             public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.Now;
-        }
-
-        public class Genre
-        {
-            public int Id { get; set; }
-            [Required]
-            public string Name { get; set; }
-            public ICollection<AnimeGenre> Animes { get; set; }
-            public ICollection<MangaGenre> Mangas { get; set; }
-        }
-
-        public interface ITimePeriod
-        {
-            public Guid Id { get; set; }
-            public DateTime? From { get; set; }
-            public DateTime? To { get; set; }
-        }
-
-        public class Image
-        {
-            public int Id { get; set; }
-            [Required]
-            public string Original { get; set; }
-            public string? Large { get; set; }
-            public string? Medium { get; set; }
-            public string? Small { get; set; }
-            [Required]
-            public ItemFrom From { get; set; }
-            public AnimePoster Posters { get; set; }
-        }
-
-        public abstract class AnotherService
-        {
-            public Guid Id { get; set; }
-            public int? AnimeDBId { get; set; }
-            public int? AnilistId { get; set; }
         }
     }
 }

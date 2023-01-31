@@ -65,3 +65,5 @@ C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.Extensions.Identity
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Data.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Data.Contracts.pdb

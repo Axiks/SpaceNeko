@@ -3,11 +3,8 @@ using static NekoSpaceList.Models.General.GeneralModel;
 
 namespace NekoSpaceList.Models.Anime
 {
-    public class Aired : ITimePeriod
+    public class Aired : TimePeriod
     {
-        public Guid Id { get; set; }
-        [Required]
-        public DateTime? From { get; set; }
-        public DateTime? To { get; set; }
+
     }
 }

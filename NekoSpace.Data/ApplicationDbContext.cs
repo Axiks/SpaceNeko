@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using NekoSpace.Data.Contracts.Enumerations;
+using NekoSpace.Data.Contracts.Entities.Enumerations;
 using NekoSpace.Data.Models.User;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.CharacterModels;

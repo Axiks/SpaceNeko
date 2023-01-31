@@ -1,5 +1,5 @@
 ﻿//using JikanDotNet;
-using NekoSpace.Data.Contracts.Enumerations;
+using NekoSpace.Data.Contracts.Entities.Enumerations;
 using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
 using NekoSpaceList.Models.Anime;

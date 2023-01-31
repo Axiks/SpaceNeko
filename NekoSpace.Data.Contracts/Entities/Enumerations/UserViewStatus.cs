@@ -1,4 +1,4 @@
-﻿namespace NekoSpace.Data.Contracts.Enumerations
+﻿namespace NekoSpace.Data.Contracts.Entities.Enumerations
 {
 
     public enum UserViewStatus

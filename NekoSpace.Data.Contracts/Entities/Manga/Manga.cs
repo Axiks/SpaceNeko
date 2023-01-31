@@ -1,4 +1,4 @@
-﻿using NekoSpace.Data.Contracts.Enumerations;
+﻿using NekoSpace.Data.Contracts.Entities.Enumerations;
 using NekoSpaceList.Models.General;
 using System.ComponentModel.DataAnnotations;
 

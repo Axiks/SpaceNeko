@@ -20,3 +20,6 @@ C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\refint\
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.genruntimeconfig.cache
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\ref\NekoSpace.Data.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\NekoSpace.Data.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\NekoSpace.Data.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.csproj.CopyComplete

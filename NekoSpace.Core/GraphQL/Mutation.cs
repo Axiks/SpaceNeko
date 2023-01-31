@@ -18,7 +18,7 @@ using NekoSpace.API.GraphQL.Users;
 using NekoSpace.API.GraphQL.UserLibraryEntry;
 using NekoSpace.Seed.Driver;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using NekoSpace.Data.Contracts.Enumerations;
+using NekoSpace.Data.Contracts.Entities.Enumerations;
 
 namespace NekoSpace.API.GraphQL
 {

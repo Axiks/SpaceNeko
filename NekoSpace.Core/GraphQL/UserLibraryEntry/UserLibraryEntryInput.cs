@@ -1,4 +1,4 @@
-﻿using NekoSpace.Data.Contracts.Enumerations;
+﻿using NekoSpace.Data.Contracts.Entities.Enumerations;
 
 namespace NekoSpace.API.GraphQL.UserLibraryEntry
 {

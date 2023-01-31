@@ -11,7 +11,7 @@ services:
         - "2083:443"
     build:
       context: .
-      dockerfile: NekoSpaceList/Dockerfile
+      dockerfile: NekoSpace.Core/Dockerfile
 
   postgres_db:
     image: postgres:latest

@@ -13,7 +13,7 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - C:\Users\Niko\source\repos\NekoSpaceList\NekoSpaceList:/app
+      - C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Core:/app
       - C:\Users\Niko\source\repos\NekoSpaceList:/src
       - C:\Users\Niko\vsdbg\vs2017u5:/remote_debugger:rw
       - C:\Users\Niko\.nuget\packages\:/root/.nuget/packages:ro

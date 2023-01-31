@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NlEN8rffit7CoHUutDjxJ7CGCPxJmLh+i3DyI+x6ZiMeN9B+0UfVSxzIxCm4l/IGR5/JqzC4QBzdPiHm4OkwBg==",
+  "dgSpecHash": "Ree9NYAiqvxOoIJAb8PM4O7OTuNIYs/kVaevMqBKoQII6qxhQbsq43U94G9fhkJjqVeOytUwR2zkEpBKSxNP0w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpaceList\\NekoSpace.API.csproj",
+  "projectFilePath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Core\\NekoSpace.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Niko\\.nuget\\packages\\arch.entityframeworkcore\\2.1.15\\arch.entityframeworkcore.2.1.15.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\arch.entityframeworkcore.abstractions\\2.1.15\\arch.entityframeworkcore.abstractions.2.1.15.nupkg.sha512",

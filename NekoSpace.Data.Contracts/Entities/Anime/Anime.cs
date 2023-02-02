@@ -1,6 +1,6 @@
 ﻿using NekoSpace.Data.Contracts.Entities.Enumerations;
+using NekoSpace.Data.Contracts.Entities.General.Abstract;
 using NekoSpace.Data.Models.User;
-using NekoSpaceList.Models.General;
 using System.ComponentModel.DataAnnotations;
 
 namespace NekoSpaceList.Models.Anime

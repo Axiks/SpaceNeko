@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace NekoSpaceList.Models.General
+namespace NekoSpace.Data.Contracts.Entities.General.Abstract
 {
     public abstract class Media
     {

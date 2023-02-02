@@ -1,5 +1,5 @@
-﻿using NekoSpaceList.Models.Anime;
-using NekoSpaceList.Models.General;
+﻿using NekoSpace.Data.Contracts.Entities.General.Abstract;
+using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.Manga;
 
 namespace NekoSpaceList.Models.CharacterModels

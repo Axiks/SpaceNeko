@@ -1,4 +1,4 @@
-﻿using NekoSpaceList.Models.General;
+﻿using NekoSpace.Data.Contracts.Entities.General.Abstract;
 
 namespace NekoSpace.Seed.Interfaces
 {

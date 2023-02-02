@@ -1,5 +1,5 @@
 ﻿using NekoSpace.Data.Contracts.Entities.Enumerations;
-using NekoSpaceList.Models.General;
+using NekoSpace.Data.Contracts.Entities.General.Abstract;
 using System.ComponentModel.DataAnnotations;
 
 namespace NekoSpaceList.Models.Manga

@@ -1,5 +1,5 @@
-﻿using NekoSpace.Seed.Models;
-using NekoSpaceList.Models.General;
+﻿using NekoSpace.Data.Contracts.Entities.General.Abstract;
+using NekoSpace.Seed.Models;
 
 namespace NekoSpace.Seed.Interfaces
 {

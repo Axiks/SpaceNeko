@@ -1,6 +1,5 @@
 ﻿using AnimeDB;
 using NekoSpace.Data.Interfaces;
-using NekoSpace.Data.Repository;
 using NekoSpaceList.Models.Anime;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;

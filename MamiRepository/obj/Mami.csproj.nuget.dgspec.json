@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\MamiRepository\\Mami.csproj": {}
+    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\MamiRepository\\Mami.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\MamiRepository\\Mami.csproj": {
+    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\MamiRepository\\Mami.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\MamiRepository\\Mami.csproj",
+        "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\MamiRepository\\Mami.csproj",
         "projectName": "Mami",
-        "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\MamiRepository\\Mami.csproj",
+        "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\MamiRepository\\Mami.csproj",
         "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\MamiRepository\\obj\\",
+        "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\MamiRepository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

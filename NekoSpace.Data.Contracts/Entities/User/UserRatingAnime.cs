@@ -10,7 +10,7 @@ namespace NekoSpace.Data.Models.User
         public Guid AnimeId { get; set; }
         public Anime Anime { get; set; }
         public string UserId { get; set; }
-        public NekoUser User { get; set; }
+        public UserEntity User { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
     }

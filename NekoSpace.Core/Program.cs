@@ -9,6 +9,8 @@ using NekoSpace.API.GraphQL.Animes;
 using NekoSpace.API.GraphQL.Users;
 using NekoSpace.API.Helpers;
 using NekoSpace.Data.Models.User;
+using NekoSpace.Log;
+using NekoSpace.Log.Interface;
 using NekoSpaceList.Models.Anime;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +43,11 @@ builder.Services.AddScoped<ApplicationDbContext>(p => p.GetRequiredService<IDbCo
 });*/
 
 //builder.Services.AddScoped<IUpdateDB, UpdateDB>();
+
+builder.Services.AddScoped<ILog, FileLoger>(provider =>
+{
+    return new FileLoger("log.txt") { };
+});
 
 // register graphQL
 builder.Services

@@ -13,9 +13,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MamiRepository\Mami.csproj" />
-    <ProjectReference Include="..\NekoSpace.Data\NekoSpace.Data.csproj" />
-  </ItemGroup>
+
 
 </Project>

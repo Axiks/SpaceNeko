@@ -73,3 +73,5 @@ C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.Contracts.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\bin\Debug\NekoSpace.Core.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache

@@ -1,15 +1,17 @@
-name: dockercompose3293424445778129702
+name: dockercompose6635405791973067647
 services:
   nekospace.api:
     build:
-      context: C:\Users\Niko\source\repos\NekoSpaceList
-      dockerfile: NekoSpaceList/Dockerfile
+      context: C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList
+      dockerfile: NekoSpace.Core/Dockerfile
     container_name: nekospace.api
     depends_on:
       postgres_db:
         condition: service_started
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_Kestrel__Certificates__Default__Password: pass123
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/NekoSpace.API.pfx
       ASPNETCORE_URLS: https://+:443;http://+:80
     image: nekospaceapi
     networks:
@@ -31,14 +33,20 @@ services:
       protocol: tcp
     volumes:
     - type: bind
-      source: C:\Users\Niko\AppData\Roaming/Microsoft/UserSecrets
-      target: /root/.microsoft/usersecrets
+      source: C:\Users\Niko\.aspnet\https
+      target: /https
       read_only: true
       bind:
         create_host_path: true
     - type: bind
       source: C:\Users\Niko\AppData\Roaming/ASP.NET/Https
       target: /root/.aspnet/https
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Niko\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
       read_only: true
       bind:
         create_host_path: true
@@ -71,14 +79,14 @@ services:
       volume: {}
 networks:
   default:
-    name: dockercompose3293424445778129702_default
+    name: dockercompose6635405791973067647_default
 volumes:
   pgconf:
-    name: dockercompose3293424445778129702_pgconf
+    name: dockercompose6635405791973067647_pgconf
     driver: local
   pgdata:
-    name: dockercompose3293424445778129702_pgdata
+    name: dockercompose6635405791973067647_pgdata
     driver: local
   pglog:
-    name: dockercompose3293424445778129702_pglog
+    name: dockercompose6635405791973067647_pglog
     driver: local

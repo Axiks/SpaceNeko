@@ -7,13 +7,12 @@ using System.Security.Claims;
 using NekoSpace.API.Configuration;
 using NekoSpace.API.General;
 using NekoSpace.Core.Contracts.Models.AccountController.Login;
-using NekoSpace.Core.Contracts.Models.AccountController.Registration;
 
 namespace NekoSpace.Core.Services.AccountController
 {
     public class AccountController
     {
-        private readonly UserManager<NekoUser> _userManager;
+        private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<NekoUser> _signInManager;
         private readonly JwtConfig _jwtConfig;
 

@@ -38,12 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\NekoSpace.API.Contracts\NekoSpace.API.Contracts.csproj" />
-    <ProjectReference Include="..\..\NekoSpace.Core.Contracts\NekoSpace.Core.Contracts.csproj" />
-    <ProjectReference Include="..\NekoSpace.API\NekoSpace.API.csproj" />
-    <ProjectReference Include="..\NekoSpace.Common\NekoSpace.Common.csproj" />
+    <ProjectReference Include="..\NekoSpace.Core.Contracts\NekoSpace.Core.Contracts.csproj" />
     <ProjectReference Include="..\NekoSpace.Data\NekoSpace.Data.csproj" />
-    <ProjectReference Include="..\NekoSpace.Seed\NekoSpace.Seed.csproj" />
+    <ProjectReference Include="..\NekoSpace.Log\NekoSpace.Log.csproj" />
   </ItemGroup>
 
 </Project>

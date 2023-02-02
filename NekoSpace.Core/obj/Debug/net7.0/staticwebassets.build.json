@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "+UmU/xHn4r8dOPQircjvS6ZpAa11JooZ5Ns9iEfVeNg=",
-  "Source": "NekoSpace.API",
-  "BasePath": "_content/NekoSpace.API",
+  "Hash": "z9zvIrx8HX7GUP6OAdbky8oUnVT3CiWykEJnHBLztXs=",
+  "Source": "NekoSpace.Core",
+  "BasePath": "_content/NekoSpace.Core",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [

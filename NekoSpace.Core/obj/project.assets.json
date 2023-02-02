@@ -13177,9 +13177,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Core\\NekoSpace.API.csproj",
-      "projectName": "NekoSpace.API",
-      "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Core\\NekoSpace.API.csproj",
+      "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Core\\NekoSpace.Core.csproj",
+      "projectName": "NekoSpace.Core",
+      "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Core\\NekoSpace.Core.csproj",
       "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Core\\obj\\",
       "projectStyle": "PackageReference",

@@ -1,6 +1,4 @@
 C:\Users\Niko\source\repos\NekoSpaceList\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.deps.json
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.runtimeconfig.json
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Seed.deps.json
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Seed.runtimeconfig.json
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\.filenesting.json
@@ -11,8 +9,6 @@ C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\ManamiFolder\database.json
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\ManamiFolder\databassmalle.json
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\ManamiFolder\setting.json
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\ManamiFolderdatabase.json
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.exe
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Data.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Abstractions.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Npgsql.EntityFrameworkCore.PostgreSQL.dll
@@ -55,7 +51,6 @@ C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Fetching.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\HotChocolate.Validation.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.OpenApi.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Data.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Seed.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Mami.pdb
@@ -67,3 +62,8 @@ C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.AspNetCore.Cryptogr
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Data.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Data.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.deps.json
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.runtimeconfig.json
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.exe
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.dll
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.pdb

@@ -67,3 +67,5 @@ C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.runtimeconfig.
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.exe
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.pdb
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.dll
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.pdb

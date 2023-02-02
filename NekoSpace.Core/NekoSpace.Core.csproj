@@ -38,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NekoSpace.API\NekoSpace.API.csproj" />
     <ProjectReference Include="..\NekoSpace.Common\NekoSpace.Common.csproj" />
     <ProjectReference Include="..\NekoSpace.Data\NekoSpace.Data.csproj" />
     <ProjectReference Include="..\NekoSpace.Seed\NekoSpace.Seed.csproj" />

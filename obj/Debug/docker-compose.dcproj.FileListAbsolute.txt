@@ -69,3 +69,7 @@ C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.dll
 C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.pdb
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.Core.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpaceList\bin\Debug\NekoSpace.API.Contracts.pdb

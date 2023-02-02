@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Common", "NekoSpa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Data.Contracts", "NekoSpace.Data.Contracts\NekoSpace.Data.Contracts.csproj", "{2F934593-1A9D-4C55-9C54-18586D86F763}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoSpace.API", "NekoSpace.API\NekoSpace.API.csproj", "{13D4E524-AA36-42CC-AF86-9DEF3F63778E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{2F934593-1A9D-4C55-9C54-18586D86F763}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F934593-1A9D-4C55-9C54-18586D86F763}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F934593-1A9D-4C55-9C54-18586D86F763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13D4E524-AA36-42CC-AF86-9DEF3F63778E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13D4E524-AA36-42CC-AF86-9DEF3F63778E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13D4E524-AA36-42CC-AF86-9DEF3F63778E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13D4E524-AA36-42CC-AF86-9DEF3F63778E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,24 +3,21 @@ using System;
 using AnimeDB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace NekoSpace.API.Migrations
+namespace NekoSpace.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221127194944_addManyToManyRelationsToAnimeAndUser")]
-    partial class addManyToManyRelationsToAnimeAndUser
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -53,35 +50,35 @@ namespace NekoSpace.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f103aab6-b20b-4b89-9d42-227a2beff401",
+                            Id = "3c5ae579-e150-4d4b-b27c-466084c78008",
                             ConcurrencyStamp = "1",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "5154749c-b052-4cb2-8e3c-bdb34bee648b",
+                            Id = "fa1b5680-d29e-46fa-935c-263383786fa7",
                             ConcurrencyStamp = "1",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "659a87f6-6230-4a94-9120-c121fd0d3ee3",
+                            Id = "4fcc00ca-d077-41fe-a7ed-69dd482ab92c",
                             ConcurrencyStamp = "1",
                             Name = "Creator",
                             NormalizedName = "CREATOR"
                         },
                         new
                         {
-                            Id = "484f1214-7d66-49aa-a3e6-b416fd6cab8f",
+                            Id = "44ab4366-a5c6-4fbd-b257-0b21a691ff13",
                             ConcurrencyStamp = "1",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4c10f542-2f59-44a4-abf7-864955b0edc6",
+                            Id = "bf2c528d-950f-4b4b-85eb-18a2a924f81a",
                             ConcurrencyStamp = "1",
                             Name = "Guest",
                             NormalizedName = "GUEST"
@@ -177,8 +174,8 @@ namespace NekoSpace.API.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "41c04c7b-f0e0-479f-aee3-3479969097fb",
-                            RoleId = "f103aab6-b20b-4b89-9d42-227a2beff401"
+                            UserId = "f57b352f-b2d7-4202-9d68-1a54d9f48935",
+                            RoleId = "3c5ae579-e150-4d4b-b27c-466084c78008"
                         });
                 });
 
@@ -270,9 +267,9 @@ namespace NekoSpace.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "41c04c7b-f0e0-479f-aee3-3479969097fb",
+                            Id = "f57b352f-b2d7-4202-9d68-1a54d9f48935",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9b39b751-486e-4605-8e6a-b434fd75b9af",
+                            ConcurrencyStamp = "2cca5a28-c5af-40b7-8b87-b56b954a71db",
                             Email = "admin@example.local",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -280,7 +277,7 @@ namespace NekoSpace.API.Migrations
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "AQAAAAEAACcQAAAAEHcnJe+yZ9BMU/ZP+V42eQaJYhEMQw4gKoLXDQFEHKcwhElL+c2NC7MkZJu2onNIdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9b3ae6a0-67c4-47a2-bbf4-95b5341460bc",
+                            SecurityStamp = "b183bef3-c72e-4e2c-8106-6baef8aaa1d0",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -298,8 +295,7 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("Status")
-                        .HasColumnType("integer")
-                        .HasColumnName("Status");
+                        .HasColumnType("integer");
 
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -341,8 +337,7 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<float>("RatingValue")
-                        .HasColumnType("real")
-                        .HasColumnName("RatingValue");
+                        .HasColumnType("real");
 
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -361,12 +356,10 @@ namespace NekoSpace.API.Migrations
 
                     b.Property<DateTime?>("From")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("From");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("To")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("To");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -381,45 +374,32 @@ namespace NekoSpace.API.Migrations
 
                     b.Property<string>("AgeRating")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("AgeRating");
+                        .HasColumnType("text");
 
                     b.Property<string>("AiringStatus")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("AiringStatus");
+                        .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("CreatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("EpisodesDurationSeconds")
                         .HasColumnType("integer");
 
                     b.Property<int?>("NumEpisodes")
                         .IsRequired()
-                        .HasColumnType("integer")
-                        .HasColumnName("NumEpisodes");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Source")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValue("Undefined")
-                        .HasColumnName("Source");
+                        .HasColumnType("text");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Type");
+                        .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("UpdatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -496,19 +476,14 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("AnimeId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("AnimeId");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Body");
+                        .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("CreatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
@@ -522,12 +497,10 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<bool>("IsHidden")
-                        .HasColumnType("boolean")
-                        .HasColumnName("IsHidden");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsMain")
-                        .HasColumnType("boolean")
-                        .HasColumnName("IsMain");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsOriginal")
                         .HasColumnType("boolean");
@@ -537,11 +510,11 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("Language");
 
+                    b.Property<bool>("LanguageDetectionBySystem")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTimeOffset>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("UpdatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -557,19 +530,14 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("AnimeId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("AnimeId");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Body");
+                        .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("CreatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
@@ -583,14 +551,10 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<bool>("IsHidden")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false)
-                        .HasColumnName("IsHidden");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsMain")
-                        .HasColumnType("boolean")
-                        .HasColumnName("IsMain");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsOriginal")
                         .HasColumnType("boolean");
@@ -600,11 +564,11 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("Language");
 
+                    b.Property<bool>("LanguageDetectionBySystem")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTimeOffset>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("UpdatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -653,13 +617,11 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<int>("Sezon")
-                        .HasColumnType("integer")
-                        .HasColumnName("Sezon");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("Year")
                         .IsRequired()
-                        .HasColumnType("integer")
-                        .HasColumnName("Year");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -692,21 +654,14 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTimeOffset>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("UpdatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Characters", null, t =>
-                        {
-                            t.Property("UpdatedAt")
-                                .HasColumnName("UpdatedAt1");
-                        });
+                    b.ToTable("Characters", (string)null);
                 });
 
             modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterAbout", b =>
@@ -717,32 +672,28 @@ namespace NekoSpace.API.Migrations
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Body");
+                        .HasColumnType("text");
 
                     b.Property<Guid>("CharacterId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("CharacterId");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTimeOffset>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("CreatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
 
                     b.Property<int>("From")
-                        .HasColumnType("integer")
-                        .HasColumnName("From");
+                        .HasColumnType("integer");
 
                     b.Property<bool?>("IsAcceptProposal")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsHidden")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsMain")
-                        .HasColumnType("boolean")
-                        .HasColumnName("IsMain");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsOriginal")
                         .HasColumnType("boolean");
@@ -752,11 +703,11 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("Language");
 
+                    b.Property<bool>("LanguageDetectionBySystem")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTimeOffset>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("UpdatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -788,32 +739,28 @@ namespace NekoSpace.API.Migrations
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Body");
+                        .HasColumnType("text");
 
                     b.Property<Guid>("CharacterId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("CharacterId");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTimeOffset>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("CreatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
 
                     b.Property<int>("From")
-                        .HasColumnType("integer")
-                        .HasColumnName("From");
+                        .HasColumnType("integer");
 
                     b.Property<bool?>("IsAcceptProposal")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsHidden")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsMain")
-                        .HasColumnType("boolean")
-                        .HasColumnName("IsMain");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsOriginal")
                         .HasColumnType("boolean");
@@ -823,11 +770,11 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("Language");
 
+                    b.Property<bool>("LanguageDetectionBySystem")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTimeOffset>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("UpdatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -855,15 +802,13 @@ namespace NekoSpace.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("Id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Name");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -879,25 +824,20 @@ namespace NekoSpace.API.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("From")
-                        .HasColumnType("integer")
-                        .HasColumnName("From");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Large")
-                        .HasColumnType("text")
-                        .HasColumnName("Large");
+                        .HasColumnType("text");
 
                     b.Property<string>("Medium")
-                        .HasColumnType("text")
-                        .HasColumnName("Medium");
+                        .HasColumnType("text");
 
                     b.Property<string>("Original")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Original");
+                        .HasColumnType("text");
 
                     b.Property<string>("Small")
-                        .HasColumnType("text")
-                        .HasColumnName("Small");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -927,16 +867,13 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<int>("ChaptersCount")
-                        .HasColumnType("integer")
-                        .HasColumnName("ChaptersCount");
+                        .HasColumnType("integer");
 
                     b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("CreatedAt");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Publishing")
-                        .HasColumnType("boolean")
-                        .HasColumnName("Publishing");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("ReadStatus")
                         .HasColumnType("integer");
@@ -948,8 +885,7 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("Volumes")
-                        .HasColumnType("integer")
-                        .HasColumnName("Volumes");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -1024,28 +960,25 @@ namespace NekoSpace.API.Migrations
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Body");
+                        .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("CreatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
 
                     b.Property<int>("From")
-                        .HasColumnType("integer")
-                        .HasColumnName("From");
+                        .HasColumnType("integer");
 
                     b.Property<bool?>("IsAcceptProposal")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsHidden")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsMain")
-                        .HasColumnType("boolean")
-                        .HasColumnName("IsMain");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsOriginal")
                         .HasColumnType("boolean");
@@ -1055,15 +988,15 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("Language");
 
+                    b.Property<bool>("LanguageDetectionBySystem")
+                        .HasColumnType("boolean");
+
                     b.Property<Guid>("MangaId")
                         .HasColumnType("uuid")
                         .HasColumnName("MangaId");
 
                     b.Property<DateTimeOffset>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("UpdatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -1080,28 +1013,25 @@ namespace NekoSpace.API.Migrations
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Body");
+                        .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("CreatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
 
                     b.Property<int>("From")
-                        .HasColumnType("integer")
-                        .HasColumnName("From");
+                        .HasColumnType("integer");
 
                     b.Property<bool?>("IsAcceptProposal")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsHidden")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsMain")
-                        .HasColumnType("boolean")
-                        .HasColumnName("IsMain");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsOriginal")
                         .HasColumnType("boolean");
@@ -1111,15 +1041,14 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("Language");
 
+                    b.Property<bool>("LanguageDetectionBySystem")
+                        .HasColumnType("boolean");
+
                     b.Property<Guid>("MangaId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("MangaId");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTimeOffset>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("UpdatedAt")
-                        .HasDefaultValueSql("NOW()::timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -1134,6 +1063,7 @@ namespace NekoSpace.API.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("From")
+                        .IsRequired()
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("To")

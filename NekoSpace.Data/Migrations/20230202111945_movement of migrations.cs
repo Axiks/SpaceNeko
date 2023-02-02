@@ -4,10 +4,14 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace NekoSpace.API.Migrations
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
+namespace NekoSpace.Data.Migrations
 {
-    public partial class Init : Migration
+    /// <inheritdoc />
+    public partial class movementofmigrations : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -15,13 +19,12 @@ namespace NekoSpace.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    MalId = table.Column<long>(type: "bigint", nullable: false),
                     Type = table.Column<string>(type: "text", nullable: false),
                     AiringStatus = table.Column<string>(type: "text", nullable: false),
                     AgeRating = table.Column<string>(type: "text", nullable: false),
-                    Source = table.Column<string>(type: "text", nullable: false, defaultValue: "Undefined"),
+                    Source = table.Column<string>(type: "text", nullable: false),
                     NumEpisodes = table.Column<int>(type: "integer", nullable: false),
-                    EpisodesDurationSeconds = table.Column<int>(type: "integer", nullable: false),
+                    EpisodesDurationSeconds = table.Column<int>(type: "integer", nullable: true),
                     Year = table.Column<int>(type: "integer", nullable: true),
                     Sezon = table.Column<int>(type: "integer", nullable: true),
                     From = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -34,8 +37,8 @@ namespace NekoSpace.API.Migrations
                     MyAnimeList = table.Column<int>(type: "integer", nullable: true),
                     AnimeDBId = table.Column<int>(type: "integer", nullable: true),
                     AnilistId = table.Column<int>(type: "integer", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp"),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp")
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,8 +64,7 @@ namespace NekoSpace.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
-                    About = table.Column<string>(type: "text", nullable: false),
-                    Gender = table.Column<string>(type: "text", nullable: false),
+                    About = table.Column<string>(type: "text", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -88,9 +90,11 @@ namespace NekoSpace.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    MalId = table.Column<long>(type: "bigint", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp"),
-                    UpdatedAt1 = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                    MyAnimeList = table.Column<int>(type: "integer", nullable: true),
+                    AnimeDBId = table.Column<int>(type: "integer", nullable: true),
+                    AnilistId = table.Column<int>(type: "integer", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -132,12 +136,10 @@ namespace NekoSpace.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    MalId = table.Column<long>(type: "bigint", nullable: false),
                     ChaptersCount = table.Column<int>(type: "integer", nullable: false),
                     From = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     To = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Publishing = table.Column<bool>(type: "boolean", nullable: false),
-                    IsOriginal = table.Column<bool>(type: "boolean", nullable: false),
                     ReadStatus = table.Column<int>(type: "integer", nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
                     Volumes = table.Column<int>(type: "integer", nullable: false),
@@ -156,16 +158,18 @@ namespace NekoSpace.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    AnimeId = table.Column<Guid>(type: "uuid", nullable: false),
                     Body = table.Column<string>(type: "text", nullable: false),
+                    LanguageDetectionBySystem = table.Column<bool>(type: "boolean", nullable: false),
                     Language = table.Column<string>(type: "text", nullable: false),
                     From = table.Column<string>(type: "text", nullable: false),
                     IsMain = table.Column<bool>(type: "boolean", nullable: false),
                     IsOriginal = table.Column<bool>(type: "boolean", nullable: false),
-                    AnimeId = table.Column<Guid>(type: "uuid", nullable: false),
                     IsAcceptProposal = table.Column<bool>(type: "boolean", nullable: true),
+                    IsHidden = table.Column<bool>(type: "boolean", nullable: false),
                     CreatorUserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp"),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp")
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -183,16 +187,18 @@ namespace NekoSpace.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    AnimeId = table.Column<Guid>(type: "uuid", nullable: false),
                     Body = table.Column<string>(type: "text", nullable: false),
+                    LanguageDetectionBySystem = table.Column<bool>(type: "boolean", nullable: false),
                     Language = table.Column<string>(type: "text", nullable: false),
                     From = table.Column<string>(type: "text", nullable: false),
                     IsMain = table.Column<bool>(type: "boolean", nullable: false),
                     IsOriginal = table.Column<bool>(type: "boolean", nullable: false),
-                    AnimeId = table.Column<Guid>(type: "uuid", nullable: false),
                     IsAcceptProposal = table.Column<bool>(type: "boolean", nullable: true),
+                    IsHidden = table.Column<bool>(type: "boolean", nullable: false),
                     CreatorUserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp"),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp")
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -312,6 +318,85 @@ namespace NekoSpace.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserAnimeViewingStatus",
+                columns: table => new
+                {
+                    AnimeId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserAnimeViewingStatus", x => new { x.UserId, x.AnimeId });
+                    table.ForeignKey(
+                        name: "FK_UserAnimeViewingStatus_Animes_AnimeId",
+                        column: x => x.AnimeId,
+                        principalTable: "Animes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserAnimeViewingStatus_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserFavoriteAnime",
+                columns: table => new
+                {
+                    AnimeId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserFavoriteAnime", x => new { x.UserId, x.AnimeId });
+                    table.ForeignKey(
+                        name: "FK_UserFavoriteAnime_Animes_AnimeId",
+                        column: x => x.AnimeId,
+                        principalTable: "Animes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserFavoriteAnime_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserRatingAnime",
+                columns: table => new
+                {
+                    AnimeId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    RatingValue = table.Column<float>(type: "real", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserRatingAnime", x => new { x.UserId, x.AnimeId });
+                    table.ForeignKey(
+                        name: "FK_UserRatingAnime_Animes_AnimeId",
+                        column: x => x.AnimeId,
+                        principalTable: "Animes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserRatingAnime_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AnimeCharacters",
                 columns: table => new
                 {
@@ -340,16 +425,18 @@ namespace NekoSpace.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CharacterId = table.Column<Guid>(type: "uuid", nullable: false),
                     Body = table.Column<string>(type: "text", nullable: false),
+                    LanguageDetectionBySystem = table.Column<bool>(type: "boolean", nullable: false),
                     Language = table.Column<string>(type: "text", nullable: false),
                     From = table.Column<int>(type: "integer", nullable: false),
-                    IsOriginal = table.Column<bool>(type: "boolean", nullable: false),
                     IsMain = table.Column<bool>(type: "boolean", nullable: false),
-                    CharacterId = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsOriginal = table.Column<bool>(type: "boolean", nullable: false),
                     IsAcceptProposal = table.Column<bool>(type: "boolean", nullable: true),
+                    IsHidden = table.Column<bool>(type: "boolean", nullable: false),
                     CreatorUserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp"),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp")
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -367,16 +454,18 @@ namespace NekoSpace.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CharacterId = table.Column<Guid>(type: "uuid", nullable: false),
                     Body = table.Column<string>(type: "text", nullable: false),
+                    LanguageDetectionBySystem = table.Column<bool>(type: "boolean", nullable: false),
                     Language = table.Column<string>(type: "text", nullable: false),
                     From = table.Column<int>(type: "integer", nullable: false),
-                    IsOriginal = table.Column<bool>(type: "boolean", nullable: false),
                     IsMain = table.Column<bool>(type: "boolean", nullable: false),
-                    CharacterId = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsOriginal = table.Column<bool>(type: "boolean", nullable: false),
                     IsAcceptProposal = table.Column<bool>(type: "boolean", nullable: true),
+                    IsHidden = table.Column<bool>(type: "boolean", nullable: false),
                     CreatorUserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp"),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp")
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -610,16 +699,18 @@ namespace NekoSpace.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    MangaId = table.Column<Guid>(type: "uuid", nullable: false),
                     Body = table.Column<string>(type: "text", nullable: false),
+                    LanguageDetectionBySystem = table.Column<bool>(type: "boolean", nullable: false),
                     Language = table.Column<string>(type: "text", nullable: false),
                     From = table.Column<int>(type: "integer", nullable: false),
                     IsMain = table.Column<bool>(type: "boolean", nullable: false),
                     IsOriginal = table.Column<bool>(type: "boolean", nullable: false),
-                    MangaId = table.Column<Guid>(type: "uuid", nullable: false),
                     IsAcceptProposal = table.Column<bool>(type: "boolean", nullable: true),
+                    IsHidden = table.Column<bool>(type: "boolean", nullable: false),
                     CreatorUserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp"),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp")
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -637,16 +728,18 @@ namespace NekoSpace.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    MangaId = table.Column<Guid>(type: "uuid", nullable: false),
                     Body = table.Column<string>(type: "text", nullable: false),
+                    LanguageDetectionBySystem = table.Column<bool>(type: "boolean", nullable: false),
                     Language = table.Column<string>(type: "text", nullable: false),
                     From = table.Column<int>(type: "integer", nullable: false),
                     IsMain = table.Column<bool>(type: "boolean", nullable: false),
                     IsOriginal = table.Column<bool>(type: "boolean", nullable: false),
-                    MangaId = table.Column<Guid>(type: "uuid", nullable: false),
                     IsAcceptProposal = table.Column<bool>(type: "boolean", nullable: true),
+                    IsHidden = table.Column<bool>(type: "boolean", nullable: false),
                     CreatorUserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp"),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW()::timestamp")
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -658,6 +751,28 @@ namespace NekoSpace.API.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "3c5ae579-e150-4d4b-b27c-466084c78008", "1", "Administrator", "ADMINISTRATOR" },
+                    { "44ab4366-a5c6-4fbd-b257-0b21a691ff13", "1", "User", "USER" },
+                    { "4fcc00ca-d077-41fe-a7ed-69dd482ab92c", "1", "Creator", "CREATOR" },
+                    { "bf2c528d-950f-4b4b-85eb-18a2a924f81a", "1", "Guest", "GUEST" },
+                    { "fa1b5680-d29e-46fa-935c-263383786fa7", "1", "Moderator", "MODERATOR" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "About", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "f57b352f-b2d7-4202-9d68-1a54d9f48935", null, 0, "2cca5a28-c5af-40b7-8b87-b56b954a71db", "admin@example.local", false, false, null, "ADMIN@EXAMPLE.LOCAL", "ADMIN", "AQAAAAEAACcQAAAAEHcnJe+yZ9BMU/ZP+V42eQaJYhEMQw4gKoLXDQFEHKcwhElL+c2NC7MkZJu2onNIdw==", null, false, "b183bef3-c72e-4e2c-8106-6baef8aaa1d0", false, "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "3c5ae579-e150-4d4b-b27c-466084c78008", "f57b352f-b2d7-4202-9d68-1a54d9f48935" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AnimeCharacters_CharacterId",
@@ -781,8 +896,24 @@ namespace NekoSpace.API.Migrations
                 name: "IX_MangaTitles_MangaId",
                 table: "MangaTitles",
                 column: "MangaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserAnimeViewingStatus_AnimeId",
+                table: "UserAnimeViewingStatus",
+                column: "AnimeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserFavoriteAnime_AnimeId",
+                table: "UserFavoriteAnime",
+                column: "AnimeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRatingAnime_AnimeId",
+                table: "UserRatingAnime",
+                column: "AnimeId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
@@ -849,13 +980,16 @@ namespace NekoSpace.API.Migrations
                 name: "MangaTitles");
 
             migrationBuilder.DropTable(
-                name: "Animes");
+                name: "UserAnimeViewingStatus");
+
+            migrationBuilder.DropTable(
+                name: "UserFavoriteAnime");
+
+            migrationBuilder.DropTable(
+                name: "UserRatingAnime");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Characters");
@@ -868,6 +1002,12 @@ namespace NekoSpace.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Mangas");
+
+            migrationBuilder.DropTable(
+                name: "Animes");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

@@ -4641,6 +4641,16 @@
           "bin/placeholder/NekoSpace.Common.dll": {}
         }
       },
+      "NekoSpace.Core.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/NekoSpace.Core.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NekoSpace.Core.Contracts.dll": {}
+        }
+      },
       "NekoSpace.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -13157,6 +13167,11 @@
       "path": "../NekoSpace.Common/NekoSpace.Common.csproj",
       "msbuildProject": "../NekoSpace.Common/NekoSpace.Common.csproj"
     },
+    "NekoSpace.Core.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../../NekoSpace.Core.Contracts/NekoSpace.Core.Contracts.csproj",
+      "msbuildProject": "../../NekoSpace.Core.Contracts/NekoSpace.Core.Contracts.csproj"
+    },
     "NekoSpace.Data/1.0.0": {
       "type": "project",
       "path": "../NekoSpace.Data/NekoSpace.Data.csproj",
@@ -13194,6 +13209,7 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.3",
       "NekoSpace.API >= 1.0.0",
       "NekoSpace.Common >= 1.0.0",
+      "NekoSpace.Core.Contracts >= 1.0.0",
       "NekoSpace.Data >= 1.0.0",
       "NekoSpace.Seed >= 1.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 7.0.1",
@@ -13232,6 +13248,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "C:\\Users\\Niko\\source\\repos\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj": {
+              "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj"
+            },
             "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.API\\NekoSpace.API.csproj": {
               "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.API\\NekoSpace.API.csproj"
             },

@@ -17,6 +17,9 @@
     <PackageReference Include="HotChocolate.Data" Version="12.16.0" />
     <PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.16.0" />
     <PackageReference Include="HotChocolate.Types.Filters" Version="12.16.0" />
+    <PackageReference Include="Mapster.Core" Version="1.2.0" />
+    <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
+    <PackageReference Include="Mapster.EFCore" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
@@ -38,9 +41,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\NekoSpace.Log\NekoSpace.Log.csproj" />
     <ProjectReference Include="..\NekoSpace.Core.Contracts\NekoSpace.Core.Contracts.csproj" />
     <ProjectReference Include="..\NekoSpace.Data\NekoSpace.Data.csproj" />
     <ProjectReference Include="..\NekoSpace.Log\NekoSpace.Log.csproj" />
+    <ProjectReference Include="..\NekoSpace.Seed\NekoSpace.Seed.csproj" />
   </ItemGroup>
 
 </Project>

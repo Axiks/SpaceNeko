@@ -6,6 +6,6 @@ namespace NekoSpace.Seed.Interfaces
 {
     public interface IGetAllAnimeByCharacterMALId
     {
-        public Task<RTO<Anime>> GetAllAnimeByCharacterMALId(long MALId);
+        public Task<RTO<AnimeEntity>> GetAllAnimeByCharacterMALId(long MALId);
     }
 }

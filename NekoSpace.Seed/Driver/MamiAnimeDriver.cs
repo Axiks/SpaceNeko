@@ -3,41 +3,43 @@ using ManamiAnimeOfflineRepository.Constans;
 using ManamiAnimeOfflineRepository.Constans.Costumes;
 using ManamiAnimeOfflineRepository.Models;
 using ManamiAnimeOfflineRepository.Models.Costumes;
-using NekoSpace.Data.Contracts.Entities.Enumerations;
+using NekoSpace.Data.Contracts.Entities.Anime;
+using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
 using NekoSpaceList.Models.Anime;
+using NekoSpaceList.Models.General;
 using static NekoSpaceList.Models.General.GeneralModel;
 
 namespace NekoSpace.Seed.Driver
 {
-    public class MamiAnimeDriver : ISelectMediaByMALId<Anime>, ISelectMediaAll<Anime>
+    public class MamiAnimeDriver : ISelectMediaByMALId<AnimeEntity>, ISelectMediaAll<AnimeEntity>
     {
-        private IEnumerable<RTO<Anime>> _manamiAnimes;
+        private IEnumerable<RTO<AnimeEntity>> _manamiAnimes;
 
         public MamiAnimeDriver()
         {
-            MamiDatabase manamiAnimeRepository = new MamiDatabase(@"ManamiFolder", true);
+            MamiDatabase manamiAnimeRepository = new MamiDatabase(@"Models/Temp/ManamiRepository", true);
             _manamiAnimes = PullAllManamiAnimes(manamiAnimeRepository);
         }
 
-        public IEnumerable<RTO<Anime>> GetAll()
+        public IEnumerable<RTO<AnimeEntity>> GetAll()
         {
             return _manamiAnimes;
         }
 
-        public RTO<Anime> GetByMALId(long MALId)
+        public RTO<AnimeEntity> GetByMALId(long MALId)
         {
             // var anime = context.Animes.Include(x => x.Titles).Single(item => item.Id == animeTitleItem.MediaId);
-            RTO<Anime> animeObj = _manamiAnimes.SingleOrDefault(x => x.contain.AnotherService.MyAnimeList == MALId);
+            RTO<AnimeEntity> animeObj = _manamiAnimes.SingleOrDefault(x => x.contain.AnotherService.MyAnimeList == MALId);
             return animeObj;
         }
 
-        private IEnumerable<RTO<Anime>> PullAllManamiAnimes(MamiDatabase manamiAnimeRepository)
+        private IEnumerable<RTO<AnimeEntity>> PullAllManamiAnimes(MamiDatabase manamiAnimeRepository)
         {
             List<ManamiAnime> manamiAnimes = manamiAnimeRepository.GetAllAnime();
 
-            List<RTO<Anime>> rtoAnimes = new List<RTO<Anime>>();
+            List<RTO<AnimeEntity>> rtoAnimes = new List<RTO<AnimeEntity>>();
 
 
             foreach (ManamiAnime manamiAnime in manamiAnimes)
@@ -48,31 +50,31 @@ namespace NekoSpace.Seed.Driver
             return rtoAnimes;
         }
 
-        private RTO<Anime> PullManamiAnime(ManamiAnime manamiAnime)
+        private RTO<AnimeEntity> PullManamiAnime(ManamiAnime manamiAnime)
         {
             ////////////
-            Anime anime = new Anime();
+            AnimeEntity anime = new AnimeEntity();
 
-            List<AnimeTitle> animeTitles = new List<AnimeTitle>();
+            List<AnimeTitleEntity> animeTitles = new List<AnimeTitleEntity>();
 
-            AnimeTitle animeTitle = new AnimeTitle();
+            AnimeTitleEntity animeTitle = new AnimeTitleEntity();
             animeTitle.Body = manamiAnime.title;
             animeTitle.IsOriginal = true;
             animeTitle.IsMain = true;
             animeTitle.From = ItemFrom.ExternalSource;
-            animeTitle.Language = Languages.EN;
+            animeTitle.Language = Language.EN;
             animeTitles.Add(animeTitle);
 
             Console.WriteLine("Assert");
 
             foreach (string synomim in manamiAnime.synonyms)
             {
-                animeTitle = new AnimeTitle();
+                animeTitle = new AnimeTitleEntity();
                 animeTitle.Body = synomim;
                 animeTitle.IsOriginal = false;
                 animeTitle.IsMain = false;
                 animeTitle.From = ItemFrom.ExternalSource;
-                animeTitle.Language = Languages.und;
+                animeTitle.Language = Language.und;
                 //animeTitle.LanguageDetectionBySystem = false;
                 //Console.WriteLine("Assert");
                 animeTitles.Add(animeTitle);
@@ -80,13 +82,13 @@ namespace NekoSpace.Seed.Driver
 
             anime.Titles = animeTitles;
 
-            Image poster = new Image();
+            ImageEntity poster = new ImageEntity();
             poster.Original = manamiAnime.picture;
             poster.Small = manamiAnime.thumbnail;
             poster.From = ItemFrom.ExternalSource;
 
-            List<AnimePoster> animePosterConnections = new List<AnimePoster>() {
-                    new AnimePoster()
+            List<AnimePosterEntity> animePosterConnections = new List<AnimePosterEntity>() {
+                    new AnimePosterEntity()
                     {
                         Anime = anime,
                         Poster = poster
@@ -143,7 +145,7 @@ namespace NekoSpace.Seed.Driver
                     break;
             }
 
-            anime.Premier = new Premier
+            anime.Premier = new PremierEntity
             {
                 Year = manamiAnime.animeSeason.year,
                 Sezon = sezon
@@ -170,7 +172,7 @@ namespace NekoSpace.Seed.Driver
             }
             anime.Type = animeType;
 
-            AnotherAnimeService anotherAnimeServices = new AnotherAnimeService();
+            AnotherAnimeServiceEntity anotherAnimeServices = new AnotherAnimeServiceEntity();
             foreach (SourceLink sourceLink in manamiAnime.sourceLinks)
             {
                 switch (sourceLink.resource)
@@ -246,7 +248,7 @@ namespace NekoSpace.Seed.Driver
 
             }
 
-            RTO<Anime> animeRTO = new RTO<Anime>(anime)
+            RTO<AnimeEntity> animeRTO = new RTO<AnimeEntity>(anime)
             {
                 Media2MediaLinks = anime2MediaLinks
             };

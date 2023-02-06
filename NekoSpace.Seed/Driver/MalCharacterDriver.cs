@@ -1,15 +1,17 @@
-﻿using NekoSpace.Data.Contracts.Entities.Enumerations;
+﻿using NekoSpace.Data.Contracts.Entities.Character;
+using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.CharacterModels;
+using NekoSpaceList.Models.General;
 using NekoSpaceList.Models.Manga;
 using static NekoSpaceList.Models.General.GeneralModel;
 using JikanDN = JikanDotNet;
 
 namespace NekoSpace.Seed.Driver
 {
-    public class MalCharacterDriver : ISelectMediaByMALId<Character>, IGetAllCharactersByAnimeMALId
+    public class MalCharacterDriver : ISelectMediaByMALId<CharacterEntity>, IGetAllCharactersByAnimeMALId
     {
         private JikanDN.IJikan jikan;
 
@@ -19,9 +21,9 @@ namespace NekoSpace.Seed.Driver
             jikan = new JikanDN.Jikan();
         }
 
-        public IEnumerable<RTO<Character>> GetAllCharactersByAnimeMALId(long MALId)
+        public IEnumerable<RTO<CharacterEntity>> GetAllCharactersByAnimeMALId(long MALId)
         {
-            var characters = new List<RTO<Character>>();
+            var characters = new List<RTO<CharacterEntity>>();
             var animeCharactersAsync = jikan.GetAnimeCharactersAsync(MALId);
 
             var JCharacterList = animeCharactersAsync.Result.Data;
@@ -39,41 +41,41 @@ namespace NekoSpace.Seed.Driver
             return characters;
         }
 
-        public RTO<Character> GetByMALId(long Id)
+        public RTO<CharacterEntity> GetByMALId(long Id)
         {
             return getMalCharacterById(Id);
         }
 
-        private RTO<Character> getMalCharacterById(long MalId)
+        private RTO<CharacterEntity> getMalCharacterById(long MalId)
         {
-            Character character = new Character();
+            CharacterEntity character = new CharacterEntity();
 
             // Send request for "Spike Spiege" character
             var spikeAsync = jikan.GetCharacterFullDataAsync(MalId).Result;
             var spike = spikeAsync.Data;
 
-            character.AnotherService = new AnotherCharacterService
+            character.AnotherService = new AnotherCharacterServiceEntity
             {
                 MyAnimeList = (int)spike.MalId
             };
 
-            var nameEng = new CharacterNames
+            var nameEng = new CharacterNamesEntity
             {
                 Body = spike.Name,
-                Language = Languages.EN,
+                Language = Language.EN,
                 IsAcceptProposal = true,
                 IsMain = true
             };
 
-            var nameJp = new CharacterNames
+            var nameJp = new CharacterNamesEntity
             {
                 Body = spike.NameKanji,
-                Language = Languages.JA,
+                Language = Language.JA,
                 IsAcceptProposal = true,
                 IsMain = true
             };
 
-            ICollection<CharacterNames> animeCharacters = new List<CharacterNames>()
+            ICollection<CharacterNamesEntity> animeCharacters = new List<CharacterNamesEntity>()
             {
                 nameEng,
                 nameJp
@@ -82,36 +84,36 @@ namespace NekoSpace.Seed.Driver
             var JdnNicknames = spike.Nicknames;
             foreach (string JdnNickname in JdnNicknames)
             {
-                CharacterNames characterAlt = new CharacterNames();
+                CharacterNamesEntity characterAlt = new CharacterNamesEntity();
                 characterAlt.Body = JdnNickname;
                 characterAlt.IsOriginal = false;
                 characterAlt.IsMain = false;
-                characterAlt.Language = Languages.und;
+                characterAlt.Language = Language.und;
                 animeCharacters.Add(characterAlt);
             }
 
-            var about = new CharacterAbout
+            var about = new CharacterAboutEntity
             {
                 Body = spike.About,
-                Language = Languages.EN,
+                Language = Language.EN,
                 IsAcceptProposal = true,
                 IsMain = true
 
             };
 
-            character.Abouts = new List<CharacterAbout> { about };
+            character.Abouts = new List<CharacterAboutEntity> { about };
 
-            Image mangaPosterImage = new Image();
+            ImageEntity mangaPosterImage = new ImageEntity();
             mangaPosterImage.Small = spike.Images.JPG.SmallImageUrl;
             mangaPosterImage.Medium = spike.Images.JPG.MediumImageUrl;
             mangaPosterImage.Original = spike.Images.JPG.MaximumImageUrl;
 
-            CharacterPoster charaterPoster = new CharacterPoster();
+            CharacterPosterEntity charaterPoster = new CharacterPosterEntity();
             // Wow -\|_|/-
             charaterPoster.Poster = mangaPosterImage;
             charaterPoster.Character = character;
 
-            character.Posters = new List<CharacterPoster>()
+            character.Posters = new List<CharacterPosterEntity>()
             {
                 charaterPoster
             };
@@ -138,7 +140,7 @@ namespace NekoSpace.Seed.Driver
                 character2mediaLinks.Add(media2MangaLink);
             }
 
-            RTO <Character> characterRTO = new RTO<Character>(character)
+            RTO <CharacterEntity> characterRTO = new RTO<CharacterEntity>(character)
             {
                 Media2MediaLinks = character2mediaLinks
             };

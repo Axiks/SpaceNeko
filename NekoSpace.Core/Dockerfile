@@ -9,11 +9,12 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 RUN dotnet new webapi -o app
 RUN dotnet dev-certs https
-COPY ["NekoSpaceList/NekoSpace.API.csproj", "NekoSpaceList/"]
+COPY ["NekoSpace.API/NekoSpace.API.csproj", "NekoSpace.API/"]
+COPY ["NekoSpace.Core/NekoSpace.Core.csproj", "NekoSpace.Core/"]
 COPY ["NekoSpace.Seed/NekoSpace.Seed.csproj", "NekoSpace.Seed/"]
 COPY ["MamiRepository/Mami.csproj", "MamiRepository/"]
 COPY ["NekoSpace.Data/NekoSpace.Data.csproj", "NekoSpace.Data/"]
-RUN dotnet restore "NekoSpaceList/NekoSpace.API.csproj"
+RUN dotnet restore "NekoSpace.API/NekoSpace.API.csproj"
 COPY . .
 WORKDIR "/src/NekoSpaceList"
 RUN dotnet build "NekoSpace.API.csproj" -c Release -o /app/build

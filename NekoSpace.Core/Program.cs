@@ -1,13 +1,13 @@
-using AnimeDB;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using NekoSpace.API.Configuration;
-using NekoSpace.API.GraphQL;
+/*using NekoSpace.API.GraphQL;
 using NekoSpace.API.GraphQL.Animes;
-using NekoSpace.API.GraphQL.Users;
+using NekoSpace.API.GraphQL.Users;*/
 using NekoSpace.API.Helpers;
+using NekoSpace.Core.Services.AccountService.JwtConfiguration;
+using NekoSpace.Data;
 using NekoSpace.Data.Models.User;
 using NekoSpace.Log;
 using NekoSpace.Log.Interface;
@@ -28,21 +28,9 @@ builder.Services.AddPooledDbContextFactory<ApplicationDbContext>(
             )
         );
 
-builder.Services.AddIdentity<NekoUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.AddIdentity<UserEntity, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddScoped<ApplicationDbContext>(p => p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>().CreateDbContext());
-
-/*builder.Services.AddScoped<IRepositoryDriver<Anime, int>, OfflineAnimeDbSeed>(provider =>
-{
-    return new OfflineAnimeDbSeed() { };
-});*/
-
-/*builder.Services.AddScoped<IDBSeed<Anime>, MalDriver>(provider =>
-{
-    return new MalDriver() { };
-});*/
-
-//builder.Services.AddScoped<IUpdateDB, UpdateDB>();
 
 builder.Services.AddScoped<ILog, FileLoger>(provider =>
 {
@@ -50,7 +38,7 @@ builder.Services.AddScoped<ILog, FileLoger>(provider =>
 });
 
 // register graphQL
-builder.Services
+/*builder.Services
     .AddGraphQLServer()
     .RegisterDbContext<ApplicationDbContext>()
     //.RegisterService<IRepositoryDriver<Anime, int>>()
@@ -62,7 +50,7 @@ builder.Services
     .AddType<AnimeTitleType>()
     .AddFiltering()
     .AddSorting()
-    .AddProjections();
+    .AddProjections();*/
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -76,7 +64,6 @@ JwtConfig jwtConfig = new JwtConfig(builder.Configuration["JwtConfig:Secret"])
     validIssuer = builder.Configuration["JwtConfig:ValidIssuer"],
     validAudience = builder.Configuration["JwtConfig:ValidAudience"]
 };
-
 builder.Services.AddSingleton<JwtConfig>(jwtConfig);
 
 builder.Services.AddAuthentication(options =>
@@ -140,8 +127,8 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapGraphQL();
-    endpoints.MapGraphQLVoyager("ui/voyager");
+    //endpoints.MapGraphQL();
+    //endpoints.MapGraphQLVoyager("ui/voyager");
 });
 
 // Configure the HTTP request pipeline.

@@ -1,119 +1,9 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-/*using NekoSpace.API.GraphQL;
-using NekoSpace.API.GraphQL.Animes;
-using NekoSpace.API.GraphQL.Users;*/
-using NekoSpace.API.Helpers;
-using NekoSpace.Core.Services.AccountService.JwtConfiguration;
-using NekoSpace.Data;
-using NekoSpace.Data.Models.User;
-using NekoSpace.Log;
-using NekoSpace.Log.Interface;
-using NekoSpaceList.Models.Anime;
+using NekoSpace.Core.Startup;
+using NekoSpace.Core.Startup.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddPooledDbContextFactory<ApplicationDbContext>(
-        options => options.
-            UseNpgsql("Server=postgres_db;Database=anilist_db;Username=neko;Password=mya", b => b.MigrationsAssembly("NekoSpace.Data"))
-            .EnableDetailedErrors()
-            .EnableSensitiveDataLogging()
-            .LogTo(
-                Console.WriteLine,
-                new[] { DbLoggerCategory.Database.Command.Name },
-                LogLevel.Information
-            )
-        );
-
-builder.Services.AddIdentity<UserEntity, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-
-builder.Services.AddScoped<ApplicationDbContext>(p => p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>().CreateDbContext());
-
-builder.Services.AddScoped<ILog, FileLoger>(provider =>
-{
-    return new FileLoger("log.txt") { };
-});
-
-// register graphQL
-/*builder.Services
-    .AddGraphQLServer()
-    .RegisterDbContext<ApplicationDbContext>()
-    //.RegisterService<IRepositoryDriver<Anime, int>>()
-    .AddAuthorization()
-    .AddQueryType<Query>()
-    .AddMutationType<Mutation>()
-    .AddType<AnimeType>()
-    .AddType<UserType>()
-    .AddType<AnimeTitleType>()
-    .AddFiltering()
-    .AddSorting()
-    .AddProjections();*/
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-
-builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
-JwtConfig jwtConfig = new JwtConfig(builder.Configuration["JwtConfig:Secret"])
-{
-    validIssuer = builder.Configuration["JwtConfig:ValidIssuer"],
-    validAudience = builder.Configuration["JwtConfig:ValidAudience"]
-};
-builder.Services.AddSingleton<JwtConfig>(jwtConfig);
-
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-    .AddJwtBearer(options =>
-    {
-        options.SaveToken = true;
-        options.TokenValidationParameters =
-            new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = jwtConfig.GetSymmetricSecurityKey(),
-                ValidateIssuer = false,
-                ValidIssuer = jwtConfig.validIssuer,
-                ValidateAudience = false,
-                ValidAudience = jwtConfig.validAudience,
-                ValidateLifetime = true,
-                RequireExpirationTime = false, // Only test!
-            };
-    });
-
-builder.Services.AddAuthorization();
-
-/*builder.Services.AddCors( option =>
-{
-    option.AddPolicy("allowedOrigin",
-            builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
-        );
-});*/
-
-builder.Services.AddCors(option =>
-{
-    option.AddPolicy(name: "allowedOrigin",
-            policy =>
-            {
-                policy.WithOrigins("http://localhost:3000",
-                    "https://localhost:3000",
-                    "http://localhost:2083",
-                    "https://localhost:2083",
-                    "https://web.neko3.space"
-                    )
-                .AllowAnyHeader()
-                .AllowAnyMethod();
-            }
-        );
-});
+builder.Services.RegisterService(builder.Configuration);
 
 var app = builder.Build();
 
@@ -140,18 +30,6 @@ if (app.Environment.IsDevelopment())
 
 app.MapControllers();
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-
-    var context = services.GetRequiredService<ApplicationDbContext>();
-    if (context.Database.GetPendingMigrations().Any())
-    {
-        //context.Database.Migrate();
-        context.Database.EnsureCreated();
-    }
-}
-
-//app.MigrateDatabase();
+app.ConfigureSeed();
 
 app.Run();

@@ -480,6 +480,5 @@ $RECYCLE.BIN/
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/NekoSpace/FileContentIndex/4040779c-2c04-4b52-be6e-7b5462304249.vsidx
-/.vs/NekoSpace/FileContentIndex/cf3e80da-2253-402b-8ece-ac14dc609f88.vsidx
-/.vs/NekoSpace/FileContentIndex/d6165388-9a00-4cc8-90b0-85ef329bbea9.vsidx
+schema.extensions.graphql
+schema.graphql

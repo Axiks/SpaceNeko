@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{83880565-D3DE-4BD0-AA4B-0D7F621444F9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Seed", "NekoSpace.Seed\NekoSpace.Seed.csproj", "{E2E1C358-B120-46CE-B25D-5292160E0883}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Log", "NekoSpace.Log\NekoSpace.Log.csproj", "{55962B0B-605E-438E-82C4-49527FE49C1D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Common", "NekoSpace.Common\NekoSpace.Common.csproj", "{6657351A-5D42-4EEC-82AE-1289DAA4FC5A}"
 EndProject
@@ -25,24 +21,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Data.Contracts", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mami", "MamiRepository\Mami.csproj", "{A55E438E-1C05-4DDA-9E5F-C1CA57627299}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose\docker-compose.dcproj", "{83880565-D3DE-4BD0-AA4B-0D7F621444F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Log", "NekoSpace.Log\NekoSpace.Log.csproj", "{2DC56DC1-0E41-404B-B239-A5DBD5281147}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{83880565-D3DE-4BD0-AA4B-0D7F621444F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83880565-D3DE-4BD0-AA4B-0D7F621444F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83880565-D3DE-4BD0-AA4B-0D7F621444F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83880565-D3DE-4BD0-AA4B-0D7F621444F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E2E1C358-B120-46CE-B25D-5292160E0883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E2E1C358-B120-46CE-B25D-5292160E0883}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2E1C358-B120-46CE-B25D-5292160E0883}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2E1C358-B120-46CE-B25D-5292160E0883}.Release|Any CPU.Build.0 = Release|Any CPU
-		{55962B0B-605E-438E-82C4-49527FE49C1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55962B0B-605E-438E-82C4-49527FE49C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55962B0B-605E-438E-82C4-49527FE49C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{55962B0B-605E-438E-82C4-49527FE49C1D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6657351A-5D42-4EEC-82AE-1289DAA4FC5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6657351A-5D42-4EEC-82AE-1289DAA4FC5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6657351A-5D42-4EEC-82AE-1289DAA4FC5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,6 +67,14 @@ Global
 		{A55E438E-1C05-4DDA-9E5F-C1CA57627299}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A55E438E-1C05-4DDA-9E5F-C1CA57627299}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A55E438E-1C05-4DDA-9E5F-C1CA57627299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83880565-D3DE-4BD0-AA4B-0D7F621444F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83880565-D3DE-4BD0-AA4B-0D7F621444F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83880565-D3DE-4BD0-AA4B-0D7F621444F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83880565-D3DE-4BD0-AA4B-0D7F621444F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DC56DC1-0E41-404B-B239-A5DBD5281147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DC56DC1-0E41-404B-B239-A5DBD5281147}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DC56DC1-0E41-404B-B239-A5DBD5281147}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DC56DC1-0E41-404B-B239-A5DBD5281147}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

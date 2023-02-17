@@ -4654,6 +4654,21 @@
           "bin/placeholder/Mami.dll": {}
         }
       },
+      "NekoSpace.API.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "HotChocolate.Types": "12.16.0",
+          "NekoSpace.Common": "1.0.0",
+          "NekoSpace.Core.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NekoSpace.API.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NekoSpace.API.Contracts.dll": {}
+        }
+      },
       "NekoSpace.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -13256,6 +13271,11 @@
       "path": "../MamiRepository/Mami.csproj",
       "msbuildProject": "../MamiRepository/Mami.csproj"
     },
+    "NekoSpace.API.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../NekoSpace.API.Contracts/NekoSpace.API.Contracts.csproj",
+      "msbuildProject": "../NekoSpace.API.Contracts/NekoSpace.API.Contracts.csproj"
+    },
     "NekoSpace.Common/1.0.0": {
       "type": "project",
       "path": "../NekoSpace.Common/NekoSpace.Common.csproj",
@@ -13309,6 +13329,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.2",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.3",
+      "NekoSpace.API.Contracts >= 1.0.0",
       "NekoSpace.Core.Contracts >= 1.0.0",
       "NekoSpace.Data >= 1.0.0",
       "NekoSpace.Log >= 1.0.0",
@@ -13349,8 +13370,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpace.Log\\NekoSpace.Log.csproj": {
-              "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpace.Log\\NekoSpace.Log.csproj"
+            "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj": {
+              "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj"
             },
             "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj": {
               "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj"

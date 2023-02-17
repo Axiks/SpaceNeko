@@ -1,4 +1,5 @@
 ﻿//using JikanDotNet;
+using NekoSpace.Common.Enums;
 using NekoSpace.Data.Contracts.Entities.Anime;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Seed.Interfaces;

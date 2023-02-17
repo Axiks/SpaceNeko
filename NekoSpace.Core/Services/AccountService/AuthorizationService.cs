@@ -7,6 +7,7 @@ using NekoSpace.Core.Contracts.Models.AccountController.Login;
 using NekoSpace.Core.Contracts.Models.AccountService.Registration;
 using NekoSpace.Core.Services.AccountService.JwtConfiguration;
 using NekoSpace.API.General;
+using NekoSpace.API.Contracts.Models.AccountService.Login;
 
 namespace NekoSpace.Core.Services.AccountService
 {
@@ -71,7 +72,7 @@ namespace NekoSpace.Core.Services.AccountService
                 return new LoginResponse(null, "No user found for this username or email");
             }
 
-            var result = await _signInManager.PasswordSignInAsync(user, loginInput.Password, loginInput.RememberMe, true);
+            var result = await _signInManager.PasswordSignInAsync(user, loginInput.Password, true, true);
             if (!result.Succeeded)
             {
                 return new LoginResponse(null, "The password does not match");
@@ -84,8 +85,7 @@ namespace NekoSpace.Core.Services.AccountService
 
         public async Task<bool> SignOutAsync()
         {
-            /*var userEmail = User.FindFirstValue(ClaimTypes.Email); // will give the user's Email
-            return Ok("User: " + userEmail + " Logout success!");*/
+            _signInManager.SignOutAsync();
             return true;
         }
 

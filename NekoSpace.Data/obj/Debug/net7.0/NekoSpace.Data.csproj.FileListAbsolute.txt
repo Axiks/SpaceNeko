@@ -23,11 +23,6 @@ C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\ref\Nek
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\NekoSpace.Data.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\NekoSpace.Data.Contracts.pdb
 C:\Users\Niko\source\repos\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.csproj.CopyComplete
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.csproj.AssemblyReference.cache
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.AssemblyInfoInputs.cache
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.AssemblyInfo.cs
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.csproj.CoreCompileInputs.cache
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\NekoSpace.Data.deps.json
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\NekoSpace.Data.runtimeconfig.json
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\NekoSpace.Data.dll
@@ -36,6 +31,11 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\bin\Debug\net7
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\NekoSpace.Data.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\NekoSpace.Data.Contracts.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\bin\Debug\net7.0\NekoSpace.Common.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.csproj.AssemblyReference.cache
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.AssemblyInfoInputs.cache
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.AssemblyInfo.cs
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.csproj.CoreCompileInputs.cache
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\staticwebassets\msbuild.NekoSpace.Data.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\staticwebassets\msbuild.build.NekoSpace.Data.props
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.NekoSpace.Data.props

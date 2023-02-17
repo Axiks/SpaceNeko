@@ -26,10 +26,6 @@ namespace NekoSpaceList.Models.General
         [Required]
         public bool IsHidden { get; set; } = false;
         public Guid? CreatorUserId { get; set; }
-        [Required]
-        public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
-        [Required]
-        public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.Now;
     }
 
 }

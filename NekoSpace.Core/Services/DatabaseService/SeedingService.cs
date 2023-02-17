@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NekoSpace.API.Helpers;
 using NekoSpace.Data;
+using NekoSpace.Seed.Driver;
 using NekoSpace.Seed.Interfaces;
 using NekoSpaceList.Models.Anime;
 
@@ -10,10 +11,10 @@ public class SeedingService : ISeedingService
     private ApplicationDbContext _context;
     // private IRepositoryDriver<Anime, int> _dBSeed;
     private ISelectMediaAll<AnimeEntity> _animeSelectAllDriver;
-    public SeedingService([ScopedService] ApplicationDbContext context, ISelectMediaAll<AnimeEntity> animeSelectAllDriver)
+    public SeedingService(ApplicationDbContext context)
     {
         _context = context;
-        _animeSelectAllDriver = animeSelectAllDriver;
+        _animeSelectAllDriver = new MamiAnimeDriver();
     }
 
     public async Task RunAsync()

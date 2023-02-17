@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Seed", "NekoSpace
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Common", "NekoSpace.Common\NekoSpace.Common.csproj", "{6657351A-5D42-4EEC-82AE-1289DAA4FC5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.API", "NekoSpace.API\NekoSpace.API.csproj", "{E4B745D9-153B-4235-985D-31BE20608AFC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.API.Contracts", "NekoSpace.API.Contracts\NekoSpace.API.Contracts.csproj", "{C1702985-BA82-4CC2-999E-BF414B50980D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Core", "NekoSpace.Core\NekoSpace.Core.csproj", "{668BF96B-98DD-464D-B4B9-4351614CB664}"
@@ -23,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mami", "MamiRepository\Mami
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose\docker-compose.dcproj", "{83880565-D3DE-4BD0-AA4B-0D7F621444F9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Log", "NekoSpace.Log\NekoSpace.Log.csproj", "{2DC56DC1-0E41-404B-B239-A5DBD5281147}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.API", "NekoSpace.API\NekoSpace.API.csproj", "{D30AC082-0B3E-46A9-85E2-6E4B956D9D9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoSpace.Log", "NekoSpace.Log\NekoSpace.Log.csproj", "{45A1A205-970B-458D-830C-B52B06D8D32B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +39,6 @@ Global
 		{6657351A-5D42-4EEC-82AE-1289DAA4FC5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6657351A-5D42-4EEC-82AE-1289DAA4FC5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6657351A-5D42-4EEC-82AE-1289DAA4FC5A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4B745D9-153B-4235-985D-31BE20608AFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4B745D9-153B-4235-985D-31BE20608AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4B745D9-153B-4235-985D-31BE20608AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4B745D9-153B-4235-985D-31BE20608AFC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1702985-BA82-4CC2-999E-BF414B50980D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1702985-BA82-4CC2-999E-BF414B50980D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1702985-BA82-4CC2-999E-BF414B50980D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -71,10 +67,14 @@ Global
 		{83880565-D3DE-4BD0-AA4B-0D7F621444F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83880565-D3DE-4BD0-AA4B-0D7F621444F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83880565-D3DE-4BD0-AA4B-0D7F621444F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DC56DC1-0E41-404B-B239-A5DBD5281147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DC56DC1-0E41-404B-B239-A5DBD5281147}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DC56DC1-0E41-404B-B239-A5DBD5281147}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DC56DC1-0E41-404B-B239-A5DBD5281147}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D30AC082-0B3E-46A9-85E2-6E4B956D9D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D30AC082-0B3E-46A9-85E2-6E4B956D9D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D30AC082-0B3E-46A9-85E2-6E4B956D9D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D30AC082-0B3E-46A9-85E2-6E4B956D9D9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45A1A205-970B-458D-830C-B52B06D8D32B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45A1A205-970B-458D-830C-B52B06D8D32B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45A1A205-970B-458D-830C-B52B06D8D32B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45A1A205-970B-458D-830C-B52B06D8D32B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

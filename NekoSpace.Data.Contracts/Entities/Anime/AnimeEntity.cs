@@ -1,4 +1,5 @@
-﻿using NekoSpace.Data.Contracts.Entities.Anime;
+﻿using NekoSpace.Common.Enums;
+using NekoSpace.Data.Contracts.Entities.Anime;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
@@ -13,7 +14,7 @@ namespace NekoSpaceList.Models.Anime
         public AnimeType Type { get; set; }
         public AiringStatus AiringStatus { get; set; }
         public AgeRating AgeRating { get; set; }
-        public Source Source { get; set; } = Source.Undefined;
+        public Source Source { get; set; }
         public ICollection<AnimeGenreEntity>? Genres { get; set; }
         public ICollection<AnimeCharacterEntity>? Characters { get; set; }
         [Required]

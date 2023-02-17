@@ -19,7 +19,7 @@ services:
       #- APPDATA\microsoft\UserSecrets\:/root/.microsoft/usersecrets
     build:
       context: .
-      dockerfile: ../NekoSpace.Core/Dockerfile
+      dockerfile: ../NekoSpace.API/Dockerfile
 
 
   postgres_db:

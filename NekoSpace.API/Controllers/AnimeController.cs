@@ -16,7 +16,7 @@ namespace NekoSpace.API.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet("anime")]
+        [HttpGet()]
         public IActionResult GetAnime(int limit = 100, int offset = 0)
         {
             var service = new AnimeService(_dbContext);
@@ -24,12 +24,20 @@ namespace NekoSpace.API.Controllers
             return Ok(anime);
         }
 
-        [HttpGet("anime/{Id}")]
+        [HttpGet("{Id}")]
         public IActionResult GetAnimeById(Guid id)
         {
             var service = new AnimeService(_dbContext);
             var anime = service.GetAnimeById(id);
             return Ok(anime);
+        }
+
+        [HttpGet("Search")]
+        public IActionResult SearchAnimeByName(string q)
+        {
+            var service = new AnimeService(_dbContext);
+            var result = service.SearchAnimeByName(q);
+            return Ok(result);
         }
 
         // Create translation proposition title

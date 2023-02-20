@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace NekoSpace.API.Contracts.Models.UserService.UserUpdates
 {
-    public class UpdateUserResult : AbstractResponseModel<bool>
+    public class UpdateUserResult : AbstractResponseModel<bool?>
     {
-        public UpdateUserResult(bool result, string? error) : base(result, error)
+        public UpdateUserResult(bool? result, string? error) : base(result, error)
         {
         }
     }

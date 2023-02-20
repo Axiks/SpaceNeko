@@ -111,6 +111,19 @@ namespace NekoSpace.Data
                 .HasColumnName("From")
                 .HasConversion<string>();
 
+            // configures one-to-many relationship
+
+            modelBuilder.Entity<AnimeTitleEntity>()
+                .HasOne(e => e.Anime)
+                .WithMany(c => c.Titles);
+
+            /*modelBuilder.
+                 Entity<AnimeEntity>()
+                 .HasMany(t => t.Titles)
+                 .WithOne(t => t.Anime)
+                 .HasForeignKey(t => t.AnimeId)
+                 .HasPrincipalKey(t => t.Id);*/
+
             //      Synopsis       >>
 
             modelBuilder.

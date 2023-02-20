@@ -50,35 +50,35 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9c30579f-9f32-477f-a3ce-c474a1f387b6",
+                            Id = "39ee3e69-8ce3-46e5-bb71-8e6e6a803ca1",
                             ConcurrencyStamp = "1",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "e7a06474-e159-43a7-a972-8137ed520017",
+                            Id = "6d6d9047-95c1-4071-a58d-159de72f9e4a",
                             ConcurrencyStamp = "1",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "cd017b6c-478e-4a2e-9599-0a41a7f26d91",
+                            Id = "2fd471fa-d68a-4d2a-8331-4fc914655eb7",
                             ConcurrencyStamp = "1",
                             Name = "Creator",
                             NormalizedName = "CREATOR"
                         },
                         new
                         {
-                            Id = "1208396f-e413-490b-a068-09439ee1a6ce",
+                            Id = "3d65b528-e0ee-4714-933b-970e8ad27f08",
                             ConcurrencyStamp = "1",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "bb03faa3-7df8-4075-bd90-e8f7f0e5c549",
+                            Id = "e196126e-ed46-4c25-8e64-491c9f6e771a",
                             ConcurrencyStamp = "1",
                             Name = "Guest",
                             NormalizedName = "GUEST"
@@ -174,8 +174,8 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "bbd2394e-b7dc-4512-a4a8-bc86d0926f2f",
-                            RoleId = "9c30579f-9f32-477f-a3ce-c474a1f387b6"
+                            UserId = "12622371-ba3e-414c-8836-44a975367091",
+                            RoleId = "39ee3e69-8ce3-46e5-bb71-8e6e6a803ca1"
                         });
                 });
 
@@ -561,9 +561,9 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bbd2394e-b7dc-4512-a4a8-bc86d0926f2f",
+                            Id = "12622371-ba3e-414c-8836-44a975367091",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "21ea1616-3ab7-411b-af39-eeb1680f33e4",
+                            ConcurrencyStamp = "5030bdc7-5bad-4482-89fa-a9abcd30899e",
                             Email = "admin@example.local",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -571,7 +571,7 @@ namespace NekoSpace.Data.Migrations
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "AQAAAAEAACcQAAAAEHcnJe+yZ9BMU/ZP+V42eQaJYhEMQw4gKoLXDQFEHKcwhElL+c2NC7MkZJu2onNIdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "259c7e62-add5-4638-ac19-0746eedd9ccd",
+                            SecurityStamp = "b3c433b6-4553-46ad-b7c7-07a2f62e59d6",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

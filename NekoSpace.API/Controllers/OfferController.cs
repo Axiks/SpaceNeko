@@ -7,5 +7,9 @@ namespace NekoSpace.API.Controllers
     [ApiController]
     public class OfferController : ControllerBase
     {
+        /*public IActionResult CreateTranslationOffert(Guid AnimeId)
+        {
+
+        }*/
     }
 }

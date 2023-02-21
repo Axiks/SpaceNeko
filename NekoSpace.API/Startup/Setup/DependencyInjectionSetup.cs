@@ -17,10 +17,10 @@ namespace NekoSpace.API.Startup.Setup
         {
             services.RegisterDatabase();
 
-            services.AddScoped<ILog, FileLoger>(provider =>
+            /*services.AddScoped<ILog, FileLoger>(provider =>
             {
                 return new FileLoger("log.txt") { };
-            });
+            });*/
 
             //services.RegisterGraphQl();
 

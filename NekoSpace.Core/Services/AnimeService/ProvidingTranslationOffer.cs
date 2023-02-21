@@ -14,7 +14,7 @@ namespace NekoSpace.Core.Services.AnimeService
         private ClaimsPrincipal _claimsPrincipal;
         private ApplicationDbContext _dbContext;
 
-        public ProvidingTranslationOffer([ScopedService] ClaimsPrincipal claimsPrincipal, [ScopedService] ApplicationDbContext context)
+        public ProvidingTranslationOffer(ClaimsPrincipal claimsPrincipal, ApplicationDbContext context)
         {
             _dbContext = context;
             _claimsPrincipal = claimsPrincipal;

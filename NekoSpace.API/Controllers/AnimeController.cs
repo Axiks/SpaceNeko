@@ -40,6 +40,16 @@ namespace NekoSpace.API.Controllers
             return Ok(result);
         }
 
+        [HttpPost("{Id}/Update")]
+        public IActionResult UpdateAnime(Guid id)
+        {
+
+            /*var service = new AnimeService(_dbContext);
+            var result = service.SearchAnimeByName(q);
+            return Ok(result);*/
+            return Ok();
+        }
+
         // Create translation proposition title
         // Create translation proposition synopsis
         // Decision proposition

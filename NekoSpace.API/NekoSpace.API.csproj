@@ -17,7 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\NekoSpace.API.Contracts\NekoSpace.API.Contracts.csproj" />
     <ProjectReference Include="..\NekoSpace.Core\NekoSpace.Core.csproj" />
-    <ProjectReference Include="..\NekoSpace.Log\NekoSpace.Log.csproj" />
   </ItemGroup>
 
 </Project>

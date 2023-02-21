@@ -4378,16 +4378,6 @@
           "bin/placeholder/NekoSpace.Data.Contracts.dll": {}
         }
       },
-      "NekoSpace.Log/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "compile": {
-          "bin/placeholder/NekoSpace.Log.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/NekoSpace.Log.dll": {}
-        }
-      },
       "NekoSpace.Seed/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -12515,11 +12505,6 @@
       "path": "../NekoSpace.Data.Contracts/NekoSpace.Data.Contracts.csproj",
       "msbuildProject": "../NekoSpace.Data.Contracts/NekoSpace.Data.Contracts.csproj"
     },
-    "NekoSpace.Log/1.0.0": {
-      "type": "project",
-      "path": "../NekoSpace.Log/NekoSpace.Log.csproj",
-      "msbuildProject": "../NekoSpace.Log/NekoSpace.Log.csproj"
-    },
     "NekoSpace.Seed/1.0.0": {
       "type": "project",
       "path": "../NekoSpace.Seed/NekoSpace.Seed.csproj",
@@ -12545,7 +12530,6 @@
       "NekoSpace.API.Contracts >= 1.0.0",
       "NekoSpace.Core.Contracts >= 1.0.0",
       "NekoSpace.Data >= 1.0.0",
-      "NekoSpace.Log >= 1.0.0",
       "NekoSpace.Seed >= 1.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 7.0.1",
       "Swashbuckle.AspNetCore >= 6.5.0"
@@ -12591,9 +12575,6 @@
             },
             "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj": {
               "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj"
-            },
-            "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Log\\NekoSpace.Log.csproj": {
-              "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Log\\NekoSpace.Log.csproj"
             },
             "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Seed\\NekoSpace.Seed.csproj": {
               "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Seed\\NekoSpace.Seed.csproj"

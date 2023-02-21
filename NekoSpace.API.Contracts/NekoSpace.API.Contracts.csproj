@@ -15,5 +15,9 @@
     <ProjectReference Include="..\NekoSpace.Core.Contracts\NekoSpace.Core.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\RestApi\Response\" />
+  </ItemGroup>
+
 
 </Project>

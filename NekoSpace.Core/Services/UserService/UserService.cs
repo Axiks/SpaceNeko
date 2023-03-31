@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
-using NekoSpace.API.Contracts.Models.UserService.User;
+using NekoSpace.API.Contracts.Models.User.Library.Update;
+using NekoSpace.API.Contracts.Models.UserService;
 using NekoSpace.API.Contracts.Models.UserService.UserUpdates;
 using NekoSpace.Data;
 using NekoSpace.Data.Contracts.Enums;
@@ -37,7 +38,7 @@ namespace NekoSpace.Core.Services.UserService
             MapConfigurate();
         }
 
-        public async Task<UserGetResult> GetMe()
+        public async Task<UserResultDTO> GetMe()
         {
             var userResponse = _authUserContext.Adapt<UserGetResponse>();
             var userIdentity = _claimsPrincipal.Identities;
@@ -47,7 +48,7 @@ namespace NekoSpace.Core.Services.UserService
                 userResponse.Roles.Add(role.Name.ToString());
             }
 
-            var userResult = new UserGetResult(userResponse, null);
+            var userResult = new UserResultDTO(userResponse, null);
             return userResult;
         }
 
@@ -83,32 +84,32 @@ namespace NekoSpace.Core.Services.UserService
             return new UserLibraryResult(userLibraryResponse, null);
         }
 
-        public async Task<UpdateUserResult> UpdateLibraryAsync(UpdateLibraryCommand updateLibraryCommand)
+        public async Task<UpdateUserLibraryResult> UpdateLibraryAsync(UpdateUserLibrary updateUserLibrary)
         {
             // GetAnimeObj
-            var animeContext = await _dbContext.Animes.FirstOrDefaultAsync(item => item.Id == updateLibraryCommand.AnimeId);
+            var animeContext = await _dbContext.Animes.FirstOrDefaultAsync(item => item.Id == updateUserLibrary.AnimeId);
 
-            if (animeContext == null) return new UpdateUserResult(false, "Could not find this media. Did you enter the ID correctly?");
+            if (animeContext == null) return new UpdateUserLibraryResult(false, "Could not find this media. Did you enter the ID correctly?");
 
             // Update
-            if (updateLibraryCommand.UserViewStatus != null)
+            if (updateUserLibrary.UserViewStatus != null)
             {
-                ChangeAnimeViewStatus(animeContext, updateLibraryCommand.UserViewStatus);
+                ChangeAnimeViewStatus(animeContext, updateUserLibrary.UserViewStatus);
             }
 
-            if (updateLibraryCommand.Score != null)
+            if (updateUserLibrary.Score != null)
             {
-                ChangeAnimeScore(animeContext, updateLibraryCommand.Score);
+                ChangeAnimeScore(animeContext, updateUserLibrary.Score);
             }
 
-            if (updateLibraryCommand.IsFavorite != null)
+            if (updateUserLibrary.IsFavorite != null)
             {
-                ChangeAnimeFavoriteStatus(animeContext, updateLibraryCommand.IsFavorite);
+                ChangeAnimeFavoriteStatus(animeContext, updateUserLibrary.IsFavorite);
             }
 
 
-            if (_dbContext.SaveChanges() > 0) return new UpdateUserResult(true, null);
-            return new UpdateUserResult(false, "Error saving data");
+            if (_dbContext.SaveChanges() > 0) return new UpdateUserLibraryResult(true, null);
+            return new UpdateUserLibraryResult(false, "Error saving data");
         }
 
         private async Task ChangeAnimeFavoriteStatus(AnimeEntity animeContext, bool? isFavorite)

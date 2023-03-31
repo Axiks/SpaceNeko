@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NekoSpaceList.Models.CharacterModels;
 
-public class CharacterNamesEntity : TextVariantSubItemEntity<CharacterEntity>
+public class CharacterNamesEntity : TextVariantSubItemEntity
 {
     [Required]
-    public Guid CharacterId { get => MediaId; set => MediaId = value; }
-    public CharacterEntity Character { get => Media; set => Media = value; }
+    public Guid CharacterId { get; set; }
+    public CharacterEntity Character { get; set; }
 }

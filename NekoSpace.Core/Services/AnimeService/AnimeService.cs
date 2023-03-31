@@ -2,10 +2,12 @@
 using NekoSpace.Data;
 using Mapster;
 using NekoSpaceList.Models.Anime;
-using System.Collections.Generic;
-using Arch.EntityFrameworkCore;
 using NekoSpace.API.Contracts.Models.SearchService;
 using NekoSpace.Data.Contracts.Entities.Anime;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace NekoSpace.Core.Services.AnimeService
 {
@@ -16,49 +18,52 @@ namespace NekoSpace.Core.Services.AnimeService
             _dbContext = dbContext;
             MapConfigurate();
         }
-        public List<GetAnimeResponse> GetAnimeList(int limit, int offset)
+        public async Task<List<GetAnimeResultDTO>> GetAnimeList(string? query, int limit, int offset)
         {
-            var animeContext = _dbContext.Animes
-                .Include(g => g.Titles).ToList();
+            var animeListContextAsync = query == string.Empty ? TakeAllAnimeAsync(limit, offset) : FindAnimesAsync(query, limit, offset);
 
-            List<GetAnimeResponse> getAnimeResponses= new List<GetAnimeResponse>();
-            foreach (var anime in animeContext) {
+            List<GetAnimeResultDTO> getAnimeResponses = new List<GetAnimeResultDTO>();
+            animeListContextAsync.Wait();
+
+            foreach (var anime in animeListContextAsync.Result) {
                 var x = anime;
-                //var response = anime.Adapt<GetAnimeResponse>();
-                //getAnimeResponses.Add(response);
+                var response = anime.Adapt<GetAnimeResultDTO>();
+                getAnimeResponses.Add(response);
             }
 
             return getAnimeResponses;
         }
 
-        public GetAnimeResponse GetAnimeById(Guid animeId)
+        public async Task<GetAnimeResultDTO> GetAnimeById(Guid animeId)
         {
-            var anime = _dbContext.Animes.Where(a => a.Id== animeId).FirstOrDefault();
+            var anime = _dbContext.Animes
+                .Include(x => x.Titles)
+                .Include(x => x.Synopsises)
+                .Include(x => x.Posters).ThenInclude(x => x.Poster)
+                .FirstOrDefault(a => a.Id == animeId);
 
-            var response = anime.Adapt<GetAnimeResponse>();
+            var response = anime.Adapt<GetAnimeResultDTO>();
             return response;
-
         }
 
-        public SearchAnimeResponse SearchAnimeByName(string query)
+        public async Task<SearchAnimeResultDTO> SearchAnimeByName(string query)
         {
             var searchAnime = _dbContext.AnimeTitles
-                .Include(i => i.Anime)
+                .Include(i => i.Anime).ThenInclude(x => x.Titles)
+                .Include(i => i.Anime).ThenInclude(x => x.Synopsises)
+                .Include(i => i.Anime).ThenInclude(x => x.Posters).ThenInclude(x => x.Poster)
                 .Where(t => t.Body.Contains(query));
 
-            var searchResult = searchAnime.ToList();
+            var searchResultAsync = searchAnime.ToListAsync();
+            searchResultAsync.Wait();
 
-            // Need fix return include object
-            var x = searchAnime.ToList();
-
-            List<GetAnimeResponse> findedAnime = new List<GetAnimeResponse>();
-            foreach (var anime in searchAnime)
+            List<GetAnimeResultDTO> findedAnime = new List<GetAnimeResultDTO>();
+            foreach (var animeTitile in searchResultAsync.Result)
             {
-                findedAnime.Add(anime.Adapt<GetAnimeResponse>());
+                findedAnime.Add(animeTitile.Anime.Adapt<GetAnimeResultDTO>());
             }
 
-
-            SearchAnimeResponse searchAnimeResponse = new SearchAnimeResponse{
+            SearchAnimeResultDTO searchAnimeResponse = new SearchAnimeResultDTO{
                 TotalCount = findedAnime.Count(),
                 Result = findedAnime
             };
@@ -66,31 +71,58 @@ namespace NekoSpace.Core.Services.AnimeService
             return searchAnimeResponse;
         }
 
-        public bool UpdateAnimeTitle(UpdateAnimeTitleInput updateAnimeTitleInput)
+        public async Task<bool> UpdateAnimeTitle(UpdateAnimeTitle updateAnimeTitleInput)
         {
             Guid titleId = updateAnimeTitleInput.TitleId;
-            var searchAnime = _dbContext.AnimeTitles
-               .FirstOrDefault(t => t.Id == titleId);
-
+            var searchAnime = await _dbContext.AnimeTitles
+               .FirstOrDefaultAsync(t => t.Id == titleId);
 
             // var result = searchAnime.Adapt<UpdateAnimeTitleInput>();
             return true;
         }
 
+        private async Task<List<AnimeEntity>> TakeAllAnimeAsync(int limit, int offset)
+        {
+            var animeListContext = _dbContext.Animes
+                .Include(g => g.Titles)
+                .Include(x => x.Synopsises)
+                .Include(x => x.Posters).ThenInclude(x => x.Poster)
+                .Skip(offset)
+                .Take(limit);
+
+            return await animeListContext.ToListAsync();
+        }
+
+        private async Task<List<AnimeEntity>> FindAnimesAsync(string query, int limit, int offset)
+        {
+            var animeListContext = _dbContext.Animes
+                .Include(g => g.Titles)
+                .Where(x => x.Titles.Any(o => o.Body.Contains(query)))
+                .Include(x => x.Synopsises)
+                .Include(x => x.Posters).ThenInclude(x => x.Poster)
+                .Skip(offset)
+                .Take(limit);
+
+            return await animeListContext.ToListAsync();
+        }
+
         private void MapConfigurate()
         {
-            TypeAdapterConfig<AnimeEntity, GetAnimeResponse>.NewConfig()
+            TypeAdapterConfig<AnimeEntity, GetAnimeResultDTO>.NewConfig()
             .Map(
-            dest => dest.TitleOriginal,
-            src => src.Titles.First().Body)
+                dest => dest.TitleOriginal,
+                src => src.Titles.FirstOrDefault(x => x.IsOriginal == true).Body)
+            .IgnoreIf((src, dest) => src.Synopsises.IsNullOrEmpty(), src => src.SynopsisOriginal)
             .Map(
-            dest => dest.SynopsisOriginal,
-            src => src.Synopsises.First().Body)
+               dest => dest.SynopsisOriginal,
+               src => src.Synopsises.First().Body
+            )
+            .IgnoreIf((src, dest) => src.Posters.IsNullOrEmpty(), src => src.PosterOriginal)
             .Map(
             dest => dest.PosterOriginal,
             src => src.Posters.First().Poster.Original);
 
-            TypeAdapterConfig<AnimeTitleEntity, GetAnimeResponse>.NewConfig()
+            TypeAdapterConfig<AnimeTitleEntity, GetAnimeResultDTO>.NewConfig()
 /*            .Map(
             dest => dest.TitleOriginal,
             src => src.Anime.Titles.FirstOrDefault(x => x.IsOriginal == true))

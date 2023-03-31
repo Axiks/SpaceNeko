@@ -34,4 +34,8 @@
     <ProjectReference Include="..\NekoSpace.Common\NekoSpace.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="EntitiesExtension\" />
+  </ItemGroup>
+
 </Project>

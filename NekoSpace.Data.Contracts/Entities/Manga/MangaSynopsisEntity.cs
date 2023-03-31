@@ -1,11 +1,14 @@
-﻿using NekoSpaceList.Models.General;
+﻿using NekoSpaceList.Models.Anime;
+using NekoSpaceList.Models.General;
 using NekoSpaceList.Models.Manga;
+using System.ComponentModel.DataAnnotations;
 
 namespace NekoSpace.Data.Contracts.Entities.Manga
 {
-    public class MangaSynopsisEntity : TextVariantSubItemEntity<MangaEntity>
+    public class MangaSynopsisEntity : TextVariantSubItemEntity
     {
-        public Guid MangaId { get => MediaId; set => MediaId = value; }
-        public MangaEntity Manga { get => Media; set => Media = value; }
+        [Required]
+        public Guid MangaId { get; set; }
+        public MangaEntity Manga { get; set; }
     }
 }

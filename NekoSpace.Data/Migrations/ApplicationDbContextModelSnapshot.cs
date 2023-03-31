@@ -50,35 +50,35 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "39ee3e69-8ce3-46e5-bb71-8e6e6a803ca1",
+                            Id = "66618be5-6635-4053-83ee-880bb4828c96",
                             ConcurrencyStamp = "1",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "6d6d9047-95c1-4071-a58d-159de72f9e4a",
+                            Id = "57c6f76c-2dba-44ad-85a1-ad285245887d",
                             ConcurrencyStamp = "1",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "2fd471fa-d68a-4d2a-8331-4fc914655eb7",
+                            Id = "40c94fc4-7907-4b01-a1da-d59f8a1007f5",
                             ConcurrencyStamp = "1",
                             Name = "Creator",
                             NormalizedName = "CREATOR"
                         },
                         new
                         {
-                            Id = "3d65b528-e0ee-4714-933b-970e8ad27f08",
+                            Id = "6b2bb961-eb95-435a-bd3f-0922c3ddabe1",
                             ConcurrencyStamp = "1",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "e196126e-ed46-4c25-8e64-491c9f6e771a",
+                            Id = "9c43e451-b598-4131-a69c-0dbadfd6c0cf",
                             ConcurrencyStamp = "1",
                             Name = "Guest",
                             NormalizedName = "GUEST"
@@ -174,8 +174,8 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "12622371-ba3e-414c-8836-44a975367091",
-                            RoleId = "39ee3e69-8ce3-46e5-bb71-8e6e6a803ca1"
+                            UserId = "ccb5562e-62f7-4470-b781-ef788733119e",
+                            RoleId = "66618be5-6635-4053-83ee-880bb4828c96"
                         });
                 });
 
@@ -211,6 +211,9 @@ namespace NekoSpace.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
 
@@ -238,6 +241,9 @@ namespace NekoSpace.Data.Migrations
 
                     b.Property<bool>("LanguageDetectionBySystem")
                         .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -259,6 +265,9 @@ namespace NekoSpace.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
 
@@ -286,6 +295,9 @@ namespace NekoSpace.Data.Migrations
 
                     b.Property<bool>("LanguageDetectionBySystem")
                         .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -326,6 +338,9 @@ namespace NekoSpace.Data.Migrations
                     b.Property<Guid>("CharacterId")
                         .HasColumnType("uuid");
 
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
 
@@ -351,6 +366,9 @@ namespace NekoSpace.Data.Migrations
 
                     b.Property<bool>("LanguageDetectionBySystem")
                         .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -385,6 +403,9 @@ namespace NekoSpace.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
 
@@ -415,6 +436,9 @@ namespace NekoSpace.Data.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("MangaId");
 
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.HasKey("Id");
 
                     b.HasIndex("MangaId");
@@ -431,6 +455,9 @@ namespace NekoSpace.Data.Migrations
                     b.Property<string>("Body")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
@@ -460,6 +487,9 @@ namespace NekoSpace.Data.Migrations
 
                     b.Property<Guid>("MangaId")
                         .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -561,9 +591,9 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "12622371-ba3e-414c-8836-44a975367091",
+                            Id = "ccb5562e-62f7-4470-b781-ef788733119e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5030bdc7-5bad-4482-89fa-a9abcd30899e",
+                            ConcurrencyStamp = "febe3e04-8d0c-428a-9351-594a29ab2a2e",
                             Email = "admin@example.local",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -571,7 +601,7 @@ namespace NekoSpace.Data.Migrations
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "AQAAAAEAACcQAAAAEHcnJe+yZ9BMU/ZP+V42eQaJYhEMQw4gKoLXDQFEHKcwhElL+c2NC7MkZJu2onNIdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b3c433b6-4553-46ad-b7c7-07a2f62e59d6",
+                            SecurityStamp = "7890ce60-acd2-42f7-8302-24461ae50589",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -835,6 +865,9 @@ namespace NekoSpace.Data.Migrations
                     b.Property<Guid>("CharacterId")
                         .HasColumnType("uuid");
 
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<Guid?>("CreatorUserId")
                         .HasColumnType("uuid");
 
@@ -860,6 +893,9 @@ namespace NekoSpace.Data.Migrations
 
                     b.Property<bool>("LanguageDetectionBySystem")
                         .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 

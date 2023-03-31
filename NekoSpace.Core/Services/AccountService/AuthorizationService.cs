@@ -55,7 +55,7 @@ namespace NekoSpace.Core.Services.AccountService
             return tokenString;
         }
 
-        public async Task<LoginResponse> SignInAsync(LoginInput loginInput)
+        public async Task<LoginResultDTO> SignInAsync(Login loginInput)
         {
             UserEntity user;
             if (isEmail(loginInput.Username))
@@ -69,27 +69,26 @@ namespace NekoSpace.Core.Services.AccountService
 
             if (user == null)
             {
-                return new LoginResponse(null, "No user found for this username or email");
+                return new LoginResultDTO(null, "No user found for this username or email");
             }
 
             var result = await _signInManager.PasswordSignInAsync(user, loginInput.Password, true, true);
             if (!result.Succeeded)
             {
-                return new LoginResponse(null, "The password does not match");
+                return new LoginResultDTO(null, "The password does not match");
             }
 
             string token = createNewToken(user);
 
-            return new LoginResponse(token, null);
+            return new LoginResultDTO(token, null);
         }
 
-        public async Task<bool> SignOutAsync()
+        public async Task SignOutAsync()
         {
-            _signInManager.SignOutAsync();
-            return true;
+            await _signInManager.SignOutAsync();
         }
 
-        public async Task<RegistrationResponse> RegistrationAsync(RegistrationInput registrationInput)
+        public async Task<RegistrationResultDTO> RegistrationAsync(Registration registrationInput)
         {
 
             var user = new UserEntity
@@ -103,7 +102,7 @@ namespace NekoSpace.Core.Services.AccountService
             if (!result.Succeeded)
             {
                 var errors = result.Errors.Select(e => e.Description);
-                return new RegistrationResponse(false, errors.ToString());
+                return new RegistrationResultDTO(false, errors.ToString());
             }
 
             // Set User Role
@@ -111,10 +110,10 @@ namespace NekoSpace.Core.Services.AccountService
             if (!setRoleResult.Succeeded)
             {
                 var errors = setRoleResult.Errors.Select(e => e.Description);
-                return new RegistrationResponse(false, errors.ToString());
+                return new RegistrationResultDTO(false, errors.ToString());
             }
 
-            return new RegistrationResponse(true, null);
+            return new RegistrationResultDTO(true, null);
         }
 
     }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Jwg2bXhGNbgmne7sprpllrz1jsn6489Td8ErJrKJMtw=",
+  "Hash": "1IB0+4BBceKC+Tzsy4VY4u2NhJW7PR3k+y5xe0oIfYY=",
   "Source": "NekoSpace.API",
   "BasePath": "_content/NekoSpace.API",
   "Mode": "Default",
@@ -29,7 +29,7 @@
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
     },
     {
-      "Identity": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Seed\\NekoSpace.Seed.csproj",
+      "Identity": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\tools\\NekoSpace.Seed\\NekoSpace.Seed.csproj",
       "Version": 2,
       "Source": "NekoSpace.Seed",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",

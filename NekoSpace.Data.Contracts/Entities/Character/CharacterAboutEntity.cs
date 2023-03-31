@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NekoSpace.Data.Contracts.Entities.Character
 {
-    public class CharacterAboutEntity : TextVariantSubItemEntity<CharacterEntity>
+    public class CharacterAboutEntity : TextVariantSubItemEntity
     {
         [Required]
-        public Guid CharacterId { get => MediaId; set => MediaId = value; }
-        public CharacterEntity Character { get => Media; set => Media = value; }
+        public Guid CharacterId { get; set; }
+        public CharacterEntity Character { get; set; }
     }
 }

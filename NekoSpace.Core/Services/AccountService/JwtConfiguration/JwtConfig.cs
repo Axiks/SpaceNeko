@@ -5,7 +5,8 @@ namespace NekoSpace.Core.Services.AccountService.JwtConfiguration
 {
     public class JwtConfig
     {
-        private static string _secretKey;
+        // private static string _secretKey;
+        private string _secretKey;
         public string validIssuer { get; set; }
         public string validAudience { get; set; }
 

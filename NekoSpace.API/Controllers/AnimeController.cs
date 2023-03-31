@@ -16,39 +16,43 @@ namespace NekoSpace.API.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet()]
-        public IActionResult GetAnime(int limit = 100, int offset = 0)
+        [HttpGet]
+        public async Task<IActionResult> GetAnime(string? q, int limit = 40, int offset = 0)
         {
             var service = new AnimeService(_dbContext);
-            var anime = service.GetAnimeList(limit, offset);
+            var anime = await service.GetAnimeList(q, limit, offset);
             return Ok(anime);
         }
 
         [HttpGet("{Id}")]
-        public IActionResult GetAnimeById(Guid id)
+        public async Task<IActionResult> GetAnimeById(Guid id)
         {
             var service = new AnimeService(_dbContext);
-            var anime = service.GetAnimeById(id);
+            var anime = await service.GetAnimeById(id);
+            if(anime == null)
+            {
+                return NotFound();
+            }
             return Ok(anime);
         }
 
         [HttpGet("Search")]
-        public IActionResult SearchAnimeByName(string q)
+        public async Task<IActionResult> SearchAnimeByName(string q)
         {
             var service = new AnimeService(_dbContext);
-            var result = service.SearchAnimeByName(q);
+            var result = await service.SearchAnimeByName(q);
             return Ok(result);
         }
 
-        [HttpPost("{Id}/Update")]
-        public IActionResult UpdateAnime(Guid id)
+       /* [HttpPost("{Id}/Update")]
+        public async Task<IActionResult> UpdateAnime(Guid id)
         {
 
-            /*var service = new AnimeService(_dbContext);
+            *//*var service = new AnimeService(_dbContext);
             var result = service.SearchAnimeByName(q);
-            return Ok(result);*/
+            return Ok(result);*//*
             return Ok();
-        }
+        }*/
 
         // Create translation proposition title
         // Create translation proposition synopsis

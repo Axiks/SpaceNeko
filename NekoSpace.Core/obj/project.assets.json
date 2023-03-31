@@ -12477,8 +12477,8 @@
     },
     "Mami/1.0.0": {
       "type": "project",
-      "path": "../MamiRepository/Mami.csproj",
-      "msbuildProject": "../MamiRepository/Mami.csproj"
+      "path": "../tools/MamiRepository/Mami.csproj",
+      "msbuildProject": "../tools/MamiRepository/Mami.csproj"
     },
     "NekoSpace.API.Contracts/1.0.0": {
       "type": "project",
@@ -12507,8 +12507,8 @@
     },
     "NekoSpace.Seed/1.0.0": {
       "type": "project",
-      "path": "../NekoSpace.Seed/NekoSpace.Seed.csproj",
-      "msbuildProject": "../NekoSpace.Seed/NekoSpace.Seed.csproj"
+      "path": "../tools/NekoSpace.Seed/NekoSpace.Seed.csproj",
+      "msbuildProject": "../tools/NekoSpace.Seed/NekoSpace.Seed.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -12576,8 +12576,8 @@
             "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj": {
               "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj"
             },
-            "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Seed\\NekoSpace.Seed.csproj": {
-              "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Seed\\NekoSpace.Seed.csproj"
+            "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\tools\\NekoSpace.Seed\\NekoSpace.Seed.csproj": {
+              "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\tools\\NekoSpace.Seed\\NekoSpace.Seed.csproj"
             }
           }
         }
@@ -12680,7 +12680,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

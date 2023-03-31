@@ -36,6 +36,33 @@ services:
         POSTGRES_USER: "neko"
         POSTGRES_PASSWORD: "mya"
 
+  #elasticsearch:
+   #container_name: elasticsearch
+   #image: docker.elastic.co/elasticsearch/elasticsearch:8.6.2
+  # ports:
+  #  - 9200:9200
+   #volumes:
+   # - elasticsearch-data:/usr/share/elasticsearch/data
+   #restart: always
+   #environment:
+   #   - xpack.security.enabled=false
+   #   - discovery.type=single-node
+   #ulimits:
+   # memlock:
+   #     soft: -1
+   #     hard: -1
+
+  #kibana:
+   #container_name: kibana
+   #image: docker.elastic.co/kibana/kibana:8.6.2
+  # volumes:
+   #   - kibana-data:/usr/share/kibana/data
+   #ports:
+  #  - 5601:5601
+   #depends_on:
+  #  - elasticsearch
+  # environment:
+   #   - ELASTICSEARCH_URL=http://localhost:9200
 
 volumes:
   pgdata:
@@ -43,4 +70,8 @@ volumes:
   pgconf:
     driver: local
   pglog:
+    driver: local
+  elasticsearch-data:
+    driver: local
+  kibana-data:
     driver: local

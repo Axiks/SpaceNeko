@@ -14,14 +14,14 @@ namespace NekoSpace.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly AuthorizationService _authorizationService;
+        private AuthorizationService _authorizationService;
         public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, ClaimsPrincipal claimsPrincipal, JwtConfig jwtConfig)
         {
             _authorizationService = new AuthorizationService(userManager, signInManager, jwtConfig);
         }
 
         [HttpPost("SignIn")]
-        public async Task<IActionResult> SignInAsync(LoginInput userLoginData)
+        public async Task<IActionResult> SignInAsync(Login userLoginData)
         {
             var task = _authorizationService.SignInAsync(userLoginData);
             task.Wait();
@@ -35,7 +35,7 @@ namespace NekoSpace.API.Controllers
         }
 
         [HttpPost("Registration")]
-        public async Task<IActionResult> RegisterAsync([FromBody] RegistrationInput userRegistrationData)
+        public async Task<IActionResult> RegisterAsync([FromBody] Registration userRegistrationData)
         {
             var task = _authorizationService.RegistrationAsync(userRegistrationData);
             task.Wait();
@@ -49,11 +49,17 @@ namespace NekoSpace.API.Controllers
         }
 
         [Authorize]
-        [HttpGet("SignOut")]
-        public async Task<IActionResult> SignOutAsync()
+        [HttpPost("SignOut")]
+        public async Task<IActionResult> SignOutAsync(CancellationToken ct)
         {
-            _authorizationService.SignOutAsync();
-            return Ok();
+            try
+            {
+                await _authorizationService.SignOutAsync();
+                return Ok();
+            }
+            catch (TaskCanceledException cte) {
+                throw;
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.CharacterModels;
+using NekoSpaceList.Models.General;
 using NekoSpaceList.Models.Manga;
 using static NekoSpaceList.Models.General.GeneralModel;
 
@@ -57,14 +58,12 @@ namespace NekoSpace.Data
             modelBuilder.
                 Entity<AnimeEntity>()
                 .Property(x => x.Type)
-                .HasConversion<string>()
-                .IsRequired();
+                .HasConversion<string>();
 
             modelBuilder.
                 Entity<AnimeEntity>()
                 .Property(x => x.AiringStatus)
-                .HasConversion<string>()
-                .IsRequired();
+                .HasConversion<string>();
 
             modelBuilder.
                 Entity<AnimeEntity>()
@@ -85,6 +84,14 @@ namespace NekoSpace.Data
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
                 .HasPrincipalKey(t => t.Id);
+
+          /*  modelBuilder.
+                Entity<AnimeTitleEntity>()
+                .HasOne(t => t.Anime)
+                .WithMany(t => t.Titles)
+                .HasForeignKey(t => t.AnimeId)
+                .HasPrincipalKey(t => t.Id);*/
+
 
             modelBuilder.
                 Entity<AnimeEntity>()
@@ -111,11 +118,26 @@ namespace NekoSpace.Data
                 .HasColumnName("From")
                 .HasConversion<string>();
 
+            /*modelBuilder.
+               Entity<AnimeTitleEntity>()
+               .Ignore(x => x.AnimeId);
+
+            modelBuilder.
+               Entity<AnimeTitleEntity>()
+               .Ignore(x => x.Anime);*/
+
             // configures one-to-many relationship
 
-            modelBuilder.Entity<AnimeTitleEntity>()
+            /*modelBuilder.
+                Entity<AnimeTitleEntity>()
+                .HasOne(t => t.Anime)
+                .WithMany(c => c.Titles)
+                .HasForeignKey(t => t.AnimeId)
+                .HasPrincipalKey(t => t.Id);*/
+
+            /*modelBuilder.Entity<AnimeTitleEntity>()
                 .HasOne(e => e.Anime)
-                .WithMany(c => c.Titles);
+                .WithMany(c => c.Titles);*/
 
             /*modelBuilder.
                  Entity<AnimeEntity>()

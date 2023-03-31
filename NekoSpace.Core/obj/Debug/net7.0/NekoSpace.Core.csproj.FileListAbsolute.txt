@@ -352,12 +352,10 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.Core.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.Data.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.Data.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.Log.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.Seed.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.API.Contracts.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.Core.Contracts.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.Data.pdb
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.Log.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.Seed.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\Mami.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.Common.pdb

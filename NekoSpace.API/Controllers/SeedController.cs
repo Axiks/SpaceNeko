@@ -18,7 +18,7 @@ namespace NekoSpace.API.Controllers
             seedingService = new SeedingService(_dbContext);
         }
 
-        [HttpGet("runSeed")]
+        [HttpGet("[action]")]
         public IActionResult RunSeed()
         {
             seedingService.RunAsync();

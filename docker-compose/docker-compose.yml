@@ -18,8 +18,8 @@ services:
       - ~/.aspnet/https:/https:ro
       #- APPDATA\microsoft\UserSecrets\:/root/.microsoft/usersecrets
     build:
-      context: .
-      dockerfile: ../NekoSpace.API/Dockerfile
+      context: ..
+      dockerfile: NekoSpace.API/Dockerfile
 
 
   postgres_db:

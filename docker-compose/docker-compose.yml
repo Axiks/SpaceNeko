@@ -1,5 +1,9 @@
 version: '3.4'
 
+networks:
+  mynekonetwork-dev:
+    driver: bridge
+
 services:
   nekospace.api:
     image: ${DOCKER_REGISTRY-}nekospaceapi
@@ -21,6 +25,8 @@ services:
     build:
       context: ..
       dockerfile: NekoSpace.API/Dockerfile
+    networks:
+        - mynekonetwork-dev
 
 
   postgres_db:
@@ -36,6 +42,8 @@ services:
         POSTGRES_DB: "anilist_db"
         POSTGRES_USER: "neko"
         POSTGRES_PASSWORD: "mya"
+    networks:
+        - mynekonetwork-dev
 
   #elasticsearch:
    #container_name: elasticsearch

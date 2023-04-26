@@ -5,7 +5,7 @@ namespace NekoSpace.Core.Services.AnimeService
 {
     public class ProvidingTranslationOffertResultDTO : AbstractResultModel<OfferBasicResultDTO>
     {
-        public ProvidingTranslationOffertResultDTO(OfferBasicResultDTO? result, string? error) : base(result, error)
+        public ProvidingTranslationOffertResultDTO(OfferBasicResultDTO? result, ErrorResultDTO? error) : base(result, error)
         {
         }
     }

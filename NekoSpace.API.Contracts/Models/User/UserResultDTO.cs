@@ -9,7 +9,7 @@ namespace NekoSpace.API.Contracts.Models.UserService
 {
     public class UserResultDTO : AbstractResultModel<UserGetResponse>
     {
-        public UserResultDTO(UserGetResponse? result, string? error) : base(result, error)
+        public UserResultDTO(UserGetResponse? result, ErrorResultDTO? error) : base(result, error)
         {
         }
     }

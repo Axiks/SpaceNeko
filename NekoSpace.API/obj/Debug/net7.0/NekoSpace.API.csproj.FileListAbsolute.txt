@@ -61,8 +61,6 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Mapster.Core.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Mapster.DependencyInjection.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Mapster.EFCore.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\System.Net.Http.Formatting.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\System.Web.Http.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -115,7 +113,6 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Newtonsoft.Json.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Npgsql.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NuGet.Common.dll
@@ -353,3 +350,4 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\obj\Debug\net7.
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\obj\Debug\net7.0\ref\NekoSpace.API.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\.filenesting.json
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\JikanDotNet.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Annotations.dll

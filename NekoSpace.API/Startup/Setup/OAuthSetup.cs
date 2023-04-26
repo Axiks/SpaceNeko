@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -47,6 +48,13 @@ namespace NekoSpace.API.Startup.Setup
 
             services.AddTransient<ClaimsPrincipal>(s =>
                 s.GetService<IHttpContextAccessor>().HttpContext.User);
+
+
+            services.Configure<IdentityOptions>(opts => {
+                opts.Password.RequiredLength = 8;
+                opts.Password.RequireLowercase = true;
+                opts.Password.RequireDigit = true;
+            });
 
             return services;
         }

@@ -8,6 +8,9 @@ using NekoSpace.Core.Services.OfferController;
 using NekoSpace.Core.Contracts.Models.ProvidingTranslationOfferService;
 using Microsoft.AspNetCore.Authorization;
 using JikanDotNet;
+using NekoSpace.API.Contracts.Abstract.General;
+using Swashbuckle.AspNetCore.Annotations;
+using NekoSpace.API.Contracts.Models.ProvidingTranslationOffer;
 
 namespace NekoSpace.API.Controllers
 {
@@ -23,6 +26,8 @@ namespace NekoSpace.API.Controllers
         }
 
         [HttpGet("anime/titles")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<OfferBasicResultDTO>))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
         public IActionResult GetAnimeTitlesOffer()
         {
             var resultAsync = _offerService.GetOfferAnimeTitles();
@@ -33,9 +38,11 @@ namespace NekoSpace.API.Controllers
                 return Ok(result.Result);
                 //return CreatedAtAction(result.Result);
             }
-            return Problem(result.Error, statusCode: 400);
+            return Problem(result.Error.Message, statusCode: 400);
         }
         [HttpGet("anime/synopsis")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<OfferBasicResultDTO>))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
         public IActionResult GetAnimeSynopsisOffer()
         {
             var resultAsync = _offerService.GetOfferAnimeSynopsis();
@@ -46,7 +53,7 @@ namespace NekoSpace.API.Controllers
                 return Ok(result.Result);
                 //return CreatedAtAction(result.Result);
             }
-            return Problem(result.Error, statusCode: 400);
+            return Problem(result.Error.Message, statusCode: 400);
         }
 
         [HttpGet("anime/titles/{titleId}")]
@@ -59,7 +66,7 @@ namespace NekoSpace.API.Controllers
             {
                 return Ok(result.Result);
             }
-            return Problem(result.Error, statusCode: 400);
+            return Problem(result.Error.Message, statusCode: 400);
         }
 
         [HttpPost("anime/{animeId}/titles")]
@@ -73,7 +80,7 @@ namespace NekoSpace.API.Controllers
                 return Ok(result.Result);
                 //return CreatedAtAction(result.Result);
             }
-            return Problem(result.Error, statusCode: 400);
+            return Problem(result.Error.Message, statusCode: 400);
             //return BadRequest(result.Error);
         }
 
@@ -87,7 +94,7 @@ namespace NekoSpace.API.Controllers
             {
                 return Ok(result.Result);
             }
-            return Problem(result.Error, statusCode: 400);
+            return Problem(result.Error.Message, statusCode: 400);
         }
 
 
@@ -102,7 +109,7 @@ namespace NekoSpace.API.Controllers
                 return Ok(result.Result);
                 //return CreatedAtAction(result.Result);
             }
-            return Problem(result.Error, statusCode: 400);
+            return Problem(result.Error.Message, statusCode: 400);
             //return BadRequest(result.Error);
         }
     }

@@ -9,7 +9,7 @@ namespace NekoSpace.API.Contracts.Models.UserService.UserUpdates
 {
     public class UserLibraryResult : AbstractResultModel<UserLibraryResponse?>
     {
-        public UserLibraryResult(UserLibraryResponse? result, string? error) : base(result, error)
+        public UserLibraryResult(UserLibraryResponse? result, ErrorResultDTO? error) : base(result, error)
         {
         }
     }

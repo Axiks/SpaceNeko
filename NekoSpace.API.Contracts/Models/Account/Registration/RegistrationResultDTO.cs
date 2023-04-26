@@ -9,8 +9,10 @@ namespace NekoSpace.Core.Contracts.Models.AccountService.Registration
 {
     public class RegistrationResultDTO : AbstractResultModel<bool>
     {
-        public RegistrationResultDTO(bool result, string? error) : base(result, error)
+        public RegistrationResultDTO(bool result, ErrorResultDTO? error) : base(result, error)
         {
         }
+
     }
+
 }

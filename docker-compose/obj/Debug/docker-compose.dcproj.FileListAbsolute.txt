@@ -53,3 +53,4 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\obj\Debug\dock
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\obj\Debug\docker-compose.dcproj.CopyComplete
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\.filenesting.json
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Swashbuckle.AspNetCore.Annotations.dll

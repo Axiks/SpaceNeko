@@ -1,6 +1,8 @@
 ﻿using JikanDotNet;
 using Mapster;
+using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
+using NekoSpace.API.Contracts.Abstract.General;
 using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.API.Contracts.Models.ProvidingTranslationOffer;
 using NekoSpace.API.General;
@@ -42,7 +44,9 @@ namespace NekoSpace.Core.Services.OfferController
             {
                 title = NewAnimeTitleOfferModel(animeId, providingTranslationOfferInput);
             }
-            else return new ProvidingTranslationOffertResultDTO(null, "No media found");
+            else {
+                return new ProvidingTranslationOffertResultDTO(null, new ErrorResultDTO("No media found"));
+            }
 
             /*if (IsUserHasAutomaticAcceptPermission() && IsFirstTitleLanguageProposition(animeId, providingTranslationOfferInput.Language))
             {
@@ -57,7 +61,7 @@ namespace NekoSpace.Core.Services.OfferController
                 return new ProvidingTranslationOffertResultDTO(offerResult, null);
             }
 
-            return new ProvidingTranslationOffertResultDTO(null, "Save failure");
+            return new ProvidingTranslationOffertResultDTO(null, new ErrorResultDTO("Save failure"));
         }
 
         public async Task<ProvidingTranslationOffertResultListDTO> GetOfferAnimeTitles()
@@ -96,7 +100,10 @@ namespace NekoSpace.Core.Services.OfferController
             {
                 synopsis = NewAnimeSynopsisOfferModel(animeId, providingTranslationOfferInput);
             }
-            else return new ProvidingTranslationOffertResultDTO(null, "No media found");
+            else
+            {
+                return new ProvidingTranslationOffertResultDTO(null, new ErrorResultDTO("No media found"));
+            }
 
             animeItem.Synopsises.Add(synopsis);
 
@@ -106,7 +113,7 @@ namespace NekoSpace.Core.Services.OfferController
                 return new ProvidingTranslationOffertResultDTO(offerResult, null);
             }
 
-            return new ProvidingTranslationOffertResultDTO(null, "Save failure");
+            return new ProvidingTranslationOffertResultDTO(null, new ErrorResultDTO("Save failure"));
         }
 
         private AnimeTitleEntity NewAnimeTitleOfferModel(Guid animeId, ProvidingTranslationOffer providingTranslationOfferInput)

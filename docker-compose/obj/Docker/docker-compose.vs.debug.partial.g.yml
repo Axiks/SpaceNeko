@@ -14,7 +14,7 @@ services:
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
       - C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API:/app
-      - C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose:/src
+      - C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList:/src
       - C:\Users\Niko\vsdbg\vs2017u5:/remote_debugger:rw
       - C:\Users\Niko\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages:/root/.nuget/fallbackpackages:ro

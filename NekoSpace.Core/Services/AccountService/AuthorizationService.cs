@@ -8,6 +8,7 @@ using NekoSpace.Core.Contracts.Models.AccountService.Registration;
 using NekoSpace.Core.Services.AccountService.JwtConfiguration;
 using NekoSpace.API.General;
 using NekoSpace.API.Contracts.Models.AccountService.Login;
+using NekoSpace.API.Contracts.Abstract.General;
 
 namespace NekoSpace.Core.Services.AccountService
 {
@@ -69,18 +70,21 @@ namespace NekoSpace.Core.Services.AccountService
 
             if (user == null)
             {
-                return new LoginResultDTO(null, "No user found for this username or email");
+                var errorResult = new ErrorResultDTO("No user found for this username or email");
+                return new LoginResultDTO(null, errorResult);
             }
 
             var result = await _signInManager.PasswordSignInAsync(user, loginInput.Password, true, true);
             if (!result.Succeeded)
             {
-                return new LoginResultDTO(null, "The password does not match");
+                var errorResult = new ErrorResultDTO("The password does not match");
+                return new LoginResultDTO(null, errorResult);
             }
 
             string token = createNewToken(user);
+            var lgm = new LoginResultModel(token);
 
-            return new LoginResultDTO(token, null);
+            return new LoginResultDTO(lgm, null);
         }
 
         public async Task SignOutAsync()
@@ -102,7 +106,8 @@ namespace NekoSpace.Core.Services.AccountService
             if (!result.Succeeded)
             {
                 var errors = result.Errors.Select(e => e.Description);
-                return new RegistrationResultDTO(false, errors.ToString());
+                var errorResult = new ErrorResultDTO(errors.ToString());
+                return new RegistrationResultDTO(false, errorResult);
             }
 
             // Set User Role
@@ -110,7 +115,8 @@ namespace NekoSpace.Core.Services.AccountService
             if (!setRoleResult.Succeeded)
             {
                 var errors = setRoleResult.Errors.Select(e => e.Description);
-                return new RegistrationResultDTO(false, errors.ToString());
+                var errorResult = new ErrorResultDTO(errors.ToString());
+                return new RegistrationResultDTO(false, errorResult);
             }
 
             return new RegistrationResultDTO(true, null);

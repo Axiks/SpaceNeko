@@ -9,7 +9,7 @@ namespace NekoSpace.API.Contracts.Models.UserService
 {
     public class UserUpdateResult : AbstractResultModel<bool?>
     {
-        public UserUpdateResult(bool? result, string? error) : base(result, error)
+        public UserUpdateResult(bool? result, ErrorResultDTO? error) : base(result, error)
         {
         }
     }

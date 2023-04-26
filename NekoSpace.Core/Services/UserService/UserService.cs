@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using NekoSpace.API.Contracts.Abstract.General;
 using NekoSpace.API.Contracts.Models.User.Library.Update;
 using NekoSpace.API.Contracts.Models.UserService;
 using NekoSpace.API.Contracts.Models.UserService.UserUpdates;
@@ -56,7 +57,7 @@ namespace NekoSpace.Core.Services.UserService
         {
             _authUserContext.About = userUpdateCommand.About;
             if (_dbContext.SaveChanges() > 0) return new UserUpdateResult(true, null);
-            return new UserUpdateResult(false, "Error saving data");
+            return new UserUpdateResult(false, new ErrorResultDTO("Error saving data"));
         }
 
         public async Task<UserLibraryResult> GetLibrary()
@@ -89,7 +90,7 @@ namespace NekoSpace.Core.Services.UserService
             // GetAnimeObj
             var animeContext = await _dbContext.Animes.FirstOrDefaultAsync(item => item.Id == updateUserLibrary.AnimeId);
 
-            if (animeContext == null) return new UpdateUserLibraryResult(false, "Could not find this media. Did you enter the ID correctly?");
+            if (animeContext == null) return new UpdateUserLibraryResult(false, new ErrorResultDTO("Could not find this media. Did you enter the ID correctly?"));
 
             // Update
             if (updateUserLibrary.UserViewStatus != null)
@@ -109,7 +110,7 @@ namespace NekoSpace.Core.Services.UserService
 
 
             if (_dbContext.SaveChanges() > 0) return new UpdateUserLibraryResult(true, null);
-            return new UpdateUserLibraryResult(false, "Error saving data");
+            return new UpdateUserLibraryResult(false, new ErrorResultDTO("Error saving data"));
         }
 
         private async Task ChangeAnimeFavoriteStatus(AnimeEntity animeContext, bool? isFavorite)

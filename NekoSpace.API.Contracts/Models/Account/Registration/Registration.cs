@@ -34,6 +34,8 @@ namespace NekoSpace.Core.Contracts.Models.AccountService.Registration
         [Required(ErrorMessage = "Password confirmation is required")]
         [DataType(DataType.Password)]
         [StringLength(64, MinimumLength = 8)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$",
+         ErrorMessage = "Password must contain a minimum of 8 characters, including upper and lower case letters, numbers and symbols")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string PasswordConfirmation { get; set; }
         

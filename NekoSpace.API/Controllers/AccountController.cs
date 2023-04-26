@@ -40,7 +40,7 @@ namespace NekoSpace.API.Controllers
         }
 
         [HttpPost("Registration")]
-        [SwaggerResponse(StatusCodes.Status200OK)]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(RegistrationResultModel))] 
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Type = typeof(ErrorResultDTO))]
         public async Task<IActionResult> RegisterAsync([FromBody] Registration userRegistrationData)
         {
@@ -50,7 +50,7 @@ namespace NekoSpace.API.Controllers
 
             if (result.Error == null)
             {
-                return Ok();
+                return Ok(result.Result);
             }
             return Unauthorized(result.Error);
         }

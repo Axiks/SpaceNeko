@@ -107,7 +107,7 @@ namespace NekoSpace.Core.Services.AccountService
             {
                 var errors = result.Errors.Select(e => e.Description);
                 var errorResult = new ErrorResultDTO(errors.ToString());
-                return new RegistrationResultDTO(false, errorResult);
+                return new RegistrationResultDTO(null, errorResult);
             }
 
             // Set User Role
@@ -116,10 +116,15 @@ namespace NekoSpace.Core.Services.AccountService
             {
                 var errors = setRoleResult.Errors.Select(e => e.Description);
                 var errorResult = new ErrorResultDTO(errors.ToString());
-                return new RegistrationResultDTO(false, errorResult);
+                return new RegistrationResultDTO(null, errorResult);
             }
 
-            return new RegistrationResultDTO(true, null);
+            //SignIn
+            var loginData = new Login(registrationInput.Username, registrationInput.Password);
+            var signInResult = await SignInAsync(loginData);
+            if(signInResult.Error != null) return new RegistrationResultDTO(null, new ErrorResultDTO("An error occurred while signing in"));
+
+            return new RegistrationResultDTO(new RegistrationResultModel(signInResult.Result.token), null);
         }
 
     }

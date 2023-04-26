@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Linq;
 using System.Collections.Generic;
+using NekoSpace.API.Contracts.Models.Anime;
+using System.Globalization;
+using NekoSpace.Common.Enums.API;
 
 namespace NekoSpace.Core.Services.AnimeService
 {
@@ -18,14 +21,66 @@ namespace NekoSpace.Core.Services.AnimeService
             _dbContext = dbContext;
             MapConfigurate();
         }
-        public async Task<List<GetAnimeResultDTO>> GetAnimeList(string? query, int limit, int offset)
+        public async Task<List<GetAnimeResultDTO>> GetAnimeList(GetAnimeQueryParameters parameters)
         {
-            var animeListContextAsync = query == string.Empty ? TakeAllAnimeAsync(limit, offset) : FindAnimesAsync(query, limit, offset);
+
+            var animeListQuery = (parameters.q == string.Empty || parameters.q == null) ? TakeAllAnimeQuery() : FindAnimeQuery(parameters.q);
+
+            // Pagination
+            /*var owners = FindByCondition(o => o.DateOfBirth.Year >= ownerParameters.MinYearOfBirth &&
+                                o.DateOfBirth.Year <= own
+            erParameters.MaxYearOfBirth)
+                            .OrderBy(on => on.Name);*/
+
+            //var paginationListAsync = parameters.
+
+            //  Перевіряємо правильність властивостей для пагінації
+
+            if (parameters.min_episodes != null && parameters.min_episodes != null && parameters.min_episodes > parameters.max_episodes)
+            {
+                // return error
+            }
+
+            if(parameters.min_episodes != null) animeListQuery = animeListQuery.Where(x => x.NumEpisodes >= parameters.min_episodes);
+            if(parameters.max_episodes != null) animeListQuery = animeListQuery.Where(x => x.NumEpisodes <= parameters.max_episodes);
+
+            if(parameters.min_episode_duration != null) animeListQuery = animeListQuery.Where(x => x.EpisodesDurationSeconds <= parameters.min_episode_duration);
+            if(parameters.max_episode_duration != null) animeListQuery = animeListQuery.Where(x => x.EpisodesDurationSeconds <= parameters.max_episode_duration);
+
+            //Sort
+            if(parameters.sort_by != null)
+            {
+                foreach (AnimeSort sort in parameters.sort_by)
+                {
+                    switch (sort)
+                    {
+                        case AnimeSort.episodes_num:
+                            animeListQuery = animeListQuery.OrderBy(x => x.NumEpisodes);
+                            break;
+                        case AnimeSort.episode_duration:
+                            animeListQuery = animeListQuery.OrderBy(x => x.EpisodesDurationSeconds);
+                            break;
+                        case AnimeSort.episodes_num_desc:
+                            animeListQuery = animeListQuery.OrderByDescending(x => x.NumEpisodes);
+                            break;
+                        case AnimeSort.episode_duration_desc:
+                            animeListQuery = animeListQuery.OrderByDescending(x => x.EpisodesDurationSeconds);
+                            break;
+                    }
+                }
+
+            }
+
+            animeListQuery = animeListQuery
+                .Take(parameters.limit)
+                .Skip(parameters.offset);
+
 
             List<GetAnimeResultDTO> getAnimeResponses = new List<GetAnimeResultDTO>();
-            animeListContextAsync.Wait();
+            var animeListResultAsync = animeListQuery.ToListAsync();
+            animeListResultAsync.Wait();
 
-            foreach (var anime in animeListContextAsync.Result) {
+            foreach (var anime in animeListResultAsync.Result) {
                 var x = anime;
                 var response = anime.Adapt<GetAnimeResultDTO>();
                 getAnimeResponses.Add(response);
@@ -81,30 +136,31 @@ namespace NekoSpace.Core.Services.AnimeService
             return true;
         }
 
-        private async Task<List<AnimeEntity>> TakeAllAnimeAsync(int limit, int offset)
+        private IQueryable<AnimeEntity> TakeAllAnimeQuery()
         {
             var animeListContext = _dbContext.Animes
                 .Include(g => g.Titles)
                 .Include(x => x.Synopsises)
-                .Include(x => x.Posters).ThenInclude(x => x.Poster)
-                .Skip(offset)
-                .Take(limit);
+                .Include(x => x.Posters).ThenInclude(x => x.Poster);
 
-            return await animeListContext.ToListAsync();
+            return animeListContext;
         }
 
-        private async Task<List<AnimeEntity>> FindAnimesAsync(string query, int limit, int offset)
+        private IQueryable<AnimeEntity> FindAnimeQuery(string query)
         {
             var animeListContext = _dbContext.Animes
                 .Include(g => g.Titles)
                 .Where(x => x.Titles.Any(o => o.Body.Contains(query)))
                 .Include(x => x.Synopsises)
-                .Include(x => x.Posters).ThenInclude(x => x.Poster)
-                .Skip(offset)
-                .Take(limit);
+                .Include(x => x.Posters).ThenInclude(x => x.Poster);
 
-            return await animeListContext.ToListAsync();
+            return animeListContext;
         }
+
+        /*private ApplyAnimeSort()
+        {
+
+        }*/
 
         private void MapConfigurate()
         {

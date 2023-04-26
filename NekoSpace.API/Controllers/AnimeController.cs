@@ -1,6 +1,6 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NekoSpace.API.Contracts.Abstract.General;
+using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.API.Contracts.Models.SearchService;
 using NekoSpace.Core.Services.AnimeService;
@@ -22,10 +22,10 @@ namespace NekoSpace.API.Controllers
 
         [HttpGet]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<GetAnimeResultDTO>))]
-        public async Task<IActionResult> GetAnime(string? q, int limit = 40, int offset = 0)
+        public async Task<IActionResult> GetAnime([FromQuery] GetAnimeQueryParameters parameters)
         {
             var service = new AnimeService(_dbContext);
-            var anime = await service.GetAnimeList(q, limit, offset);
+            var anime = await service.GetAnimeList(parameters);
             return Ok(anime);
         }
 
@@ -43,14 +43,14 @@ namespace NekoSpace.API.Controllers
             return Ok(anime);
         }
 
-        [HttpGet("Search")]
+        /*[HttpGet("Search")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(SearchAnimeResultDTO))]
         public async Task<IActionResult> SearchAnimeByName(string q)
         {
             var service = new AnimeService(_dbContext);
             var result = await service.SearchAnimeByName(q);
             return Ok(result);
-        }
+        }*/
 
        /* [HttpPost("{Id}/Update")]
         public async Task<IActionResult> UpdateAnime(Guid id)

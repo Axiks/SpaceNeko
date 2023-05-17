@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "qhGS/SKWui2edWBpvX/0v0h6JAwW2SxOTzDh29U6DWA=",
+  "Source": "NekoSpace.Seed",
+  "BasePath": "_content/NekoSpace.Seed",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\Niko\\source\\repos\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj",
+      "Version": 2,
+      "Source": "NekoSpace.Data",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

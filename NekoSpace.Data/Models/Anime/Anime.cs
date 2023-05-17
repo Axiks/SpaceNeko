@@ -24,6 +24,8 @@ namespace NekoSpaceList.Models.Anime
         public ICollection<AnimeCover>? Covers { get; set; }
         public AnotherAnimeService AnotherService { get; set; }
         public ICollection<UserFavoriteAnime> FavoriteInUsers { get; set; }
+        public ICollection<UserRatingAnime> RatingInUsers { get; set; }
+        public ICollection<UserAnimeViewingStatus> ViewingStatusInUsers { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
     }
@@ -33,6 +35,7 @@ namespace NekoSpaceList.Models.Anime
         public Guid Id { get; set; }
         public string Body { get; set; }
         public Languages Language { get; set; }
+        public bool LanguageDetectionBySystem { get; set; }
         public ItemFrom From { get; set; }
         public bool IsMain { get; set; }
         public bool IsOriginal { get; set; }
@@ -52,6 +55,7 @@ namespace NekoSpaceList.Models.Anime
         public Guid Id { get; set; }
         public string Body { get; set; }
         public Languages Language { get; set; }
+        public bool LanguageDetectionBySystem { get; set; }
         public ItemFrom From { get; set; }
         public bool IsMain { get; set; }
         public bool IsOriginal { get; set; }

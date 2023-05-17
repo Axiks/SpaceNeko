@@ -1,5 +1,6 @@
 ﻿using AnimeDB;
 using Microsoft.EntityFrameworkCore;
+using NekoSpace.Seed.Driver;
 using NekoSpace.Seed.Interfaces;
 using NekoSpaceList.Models.Anime;
 
@@ -8,24 +9,27 @@ namespace NekoSpace.API.Helpers
     public class UpdateDB : IUpdateDB
     {
         private ApplicationDbContext _context;
-        private IDBSeed<Anime> _dBSeed;
-        public UpdateDB([ScopedService] ApplicationDbContext context, IDBSeed<Anime> dBSeed)
+       // private IRepositoryDriver<Anime, int> _dBSeed;
+        private ISelectMediaAll<Anime> _animeSelectAllDriver;
+        public UpdateDB([ScopedService] ApplicationDbContext context, ISelectMediaAll<Anime> animeSelectAllDriver)
         {
             _context = context;
-            _dBSeed = dBSeed;
+            _animeSelectAllDriver = animeSelectAllDriver;
         }
 
         public async Task RunAsync()
         {
             // Завантажуємо дані з зовнішнього джерела
-            var animes = _dBSeed.RunSeed().ToList(); // Remote db data
+            //var animes = _dBSeed.RunSeed().ToList(); // Remote db data
+            var animesRTO = _animeSelectAllDriver.GetAll();
 
             // Перевіряємо, рядок за рядком, чи дані ідентичні. Якщо ні, оновлюємо (вказуємо за якими полями перевіряти)
             List<Anime> animeListNeedToAdd = new List<Anime>();
 
             int c = 0;
-            foreach (Anime anime in animes)
+            foreach (RTO<Anime> animeRTO in animesRTO)
             {
+                var anime = animeRTO.contain;
                 var externalDBMalId = anime.AnotherService.MyAnimeList;
                 /*
                 if (externalDBMalId is not null)
@@ -70,7 +74,7 @@ namespace NekoSpace.API.Helpers
             Console.WriteLine("Add new item record: " + c.ToString());
         }
 
-        public async Task<Guid> IsParagemOnGoingAsync(int externalDBMalId)
+       /* public async Task<Guid> IsParagemOnGoingAsync(int externalDBMalId)
         {
             var query = from p in _context.Animes
                         where p.AnotherService.MyAnimeList == externalDBMalId
@@ -81,6 +85,6 @@ namespace NekoSpace.API.Helpers
 
 
             return query.FirstOrDefaultAsync().Result.Id;
-        }
+        }*/
     }
 }

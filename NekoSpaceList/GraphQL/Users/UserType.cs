@@ -37,6 +37,10 @@ namespace NekoSpace.API.GraphQL.Users
                 .Description("Get date and time, int UTC, when user lockout ends");
 
             descriptor
+                .Field(p => p.FavoriteAnimes)
+                .Description("User's favorite anime");
+
+            descriptor
                 .Field(p => p.TwoFactorEnabled)
                 .Ignore();
 

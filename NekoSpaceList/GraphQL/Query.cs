@@ -25,7 +25,7 @@ namespace NekoSpace.API.GraphQL
         [UseDbContext(typeof(ApplicationDbContext))]
         [UsePaging(IncludeTotalCount = true, DefaultPageSize = 100)]
         [UseProjection]
-        [UseFiltering]
+        [HotChocolate.Types.UseFiltering]
         [UseSorting]
 
         public IQueryable<Anime> GetAnime([ScopedService] ApplicationDbContext dbContext)
@@ -35,10 +35,34 @@ namespace NekoSpace.API.GraphQL
             return dbContext.Animes;
         }
 
-       /* public IQueryable<Manga> GetManga([ScopedService] ApplicationDbContext dbContext)
+        [UseDbContext(typeof(ApplicationDbContext))]
+        [UsePaging(IncludeTotalCount = true, DefaultPageSize = 100)]
+        [UseProjection]
+        [HotChocolate.Types.UseFiltering]
+        [UseSorting]
+
+        public IQueryable<AnimeTitle> GetAnimeTitle([ScopedService] ApplicationDbContext dbContext)
         {
-            return dbContext.Mangas;
-        }*/
+            return dbContext.AnimeTitles
+                .Include(u => u.Anime);
+        }
+
+        [UseDbContext(typeof(ApplicationDbContext))]
+        [UsePaging(IncludeTotalCount = true, DefaultPageSize = 100)]
+        [UseProjection]
+        [HotChocolate.Types.UseFiltering]
+        [UseSorting]
+
+        public IQueryable<AnimeSynopsis> GetAnimeSynopsis([ScopedService] ApplicationDbContext dbContext)
+        {
+            return dbContext.AnimeSynopsises
+                .Include(u => u.Anime);
+        }
+
+        /* public IQueryable<Manga> GetManga([ScopedService] ApplicationDbContext dbContext)
+         {
+             return dbContext.Mangas;
+         }*/
 
         /*public IQueryable<Character> GetCharacter([ScopedService] ApplicationDbContext dbContext)
         {
@@ -82,6 +106,7 @@ namespace NekoSpace.API.GraphQL
             //var searchAnime = dbContext.Animes.Include(a => a.Titles).ThenInclude(a => a.Body.Contains(input.query)).Take(input.first);
 
             var searchAnime2 = dbContext.AnimeTitles.Include(i => i.Anime).Where(t => t.Body.Contains(input.query));
+            //var searchAnime2 = dbContext.AnimeTitles.Include(i => i.Anime)
 
             /*var searchAnime = from anime in dbContext.Animes.Include(a => a.Titles)
                               where 
@@ -96,17 +121,23 @@ namespace NekoSpace.API.GraphQL
             return searchAnime2;
         }
 
+        [UseDbContext(typeof(ApplicationDbContext))]
         [Authorize]
-        public async Task<NekoUser> GetMe(ClaimsPrincipal claimsPrincipal, [Service] UserManager<NekoUser> userManager)
+        [UseProjection]
+        public async Task<NekoUser> GetMe(ClaimsPrincipal claimsPrincipal, [ScopedService] ApplicationDbContext dbContext, [Service] UserManager<NekoUser> userManager)
         {
             var user = await userManager.GetUserAsync(claimsPrincipal);
+
+            var userDbContext = await dbContext.Users
+                .Include(u => u.FavoriteAnimes).ThenInclude(u => u.Anime).ThenInclude(u => u.Titles)
+                .Include(u => u.FavoriteAnimes).ThenInclude(u => u.Anime.Posters).ThenInclude(u => u.Poster)
+                .Include(u => u.AnimeViewingStatuses)
+                /*.Include(u => u.AnimeViewingStatuses).ThenInclude(u => u.Anime).ThenInclude(u => u.Titles)
+                .Include(u => u.RatingAnimes).ThenInclude(u => u.Anime).ThenInclude(u => u.Titles)*/
+                .Include(u => u.RatingAnimes)
+                .FirstAsync(t => t.Id == user.Id);
             //var email = user.Email;
-            return user;
-
-            // Omitted code for brevity
-            //var userId = claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var user = claimsPrincipal.Identity;
-
+            return userDbContext;
         }
 
         [Authorize]

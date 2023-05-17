@@ -14,6 +14,7 @@ namespace NekoSpaceList.Models.CharacterModels
         public ICollection<CharacterCover> Covers { get; set; }
         public ICollection<AnimeCharacter> Animes { get; set; }
         public ICollection<MangaCharacter> Mangas { get; set; }
+        public AnotherCharacterService AnotherService { get; set; } // Воно містить посилання на зовнішні ресурси
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
     }
@@ -68,5 +69,10 @@ namespace NekoSpaceList.Models.CharacterModels
         public Character Character { set; get; }
         public int CoverId { get; set; }
         public Image Cover { set; get; }
+    }
+
+    public class AnotherCharacterService : AnotherService
+    {
+        public int? MyAnimeList { get; set; }
     }
 }

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>a32cf3ee-87da-44aa-9ee9-815059592e8d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Arch.EntityFrameworkCore.Design" Version="2.1.15" />
+    <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="7.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NekoSpace.API.Contracts\NekoSpace.API.Contracts.csproj" />
+    <ProjectReference Include="..\NekoSpace.Core\NekoSpace.Core.csproj" />
+  </ItemGroup>
+
+</Project>

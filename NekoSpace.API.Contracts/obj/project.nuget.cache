@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "WjHpft5zVZ53K+nrzr7J4uqUL2gbAAQZV/2PQGtnPM1inPbBf+qq4rE9ylBLHVrB33J0C3HrvRyRloGwUFAGwg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.abstractions\\12.16.0\\hotchocolate.abstractions.12.16.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.language\\12.16.0\\hotchocolate.language.12.16.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.language.syntaxtree\\12.16.0\\hotchocolate.language.syntaxtree.12.16.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.language.utf8\\12.16.0\\hotchocolate.language.utf8.12.16.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.language.visitors\\12.16.0\\hotchocolate.language.visitors.12.16.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.subscriptions\\12.16.0\\hotchocolate.subscriptions.12.16.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.types\\12.16.0\\hotchocolate.types.12.16.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.utilities\\12.16.0\\hotchocolate.utilities.12.16.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.utilities.introspection\\12.16.0\\hotchocolate.utilities.introspection.12.16.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.4\\microsoft.extensions.dependencyinjection.abstractions.3.1.4.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\microsoft.extensions.objectpool\\3.1.4\\microsoft.extensions.objectpool.3.1.4.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\system.collections.immutable\\1.7.0\\system.collections.immutable.1.7.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\system.text.json\\4.7.0\\system.text.json.4.7.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
+  "logs": []
+}

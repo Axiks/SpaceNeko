@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NekoSpace.Data.Contracts.Entities.Anime;
+using NekoSpace.Data.Contracts.Entities.Character;
+using NekoSpace.Data.Contracts.Entities.Manga;
+using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.CharacterModels;
@@ -8,33 +12,33 @@ using NekoSpaceList.Models.General;
 using NekoSpaceList.Models.Manga;
 using static NekoSpaceList.Models.General.GeneralModel;
 
-namespace AnimeDB
+namespace NekoSpace.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<NekoUser>
+    public class ApplicationDbContext : IdentityDbContext<UserEntity>
     {
-        public DbSet<Anime> Animes { get; set; }
-        public DbSet<AnimeTitle> AnimeTitles { get; set; }
-        public DbSet<AnimeSynopsis> AnimeSynopsises { get; set; }
-        public DbSet<AnimeCharacter> AnimeCharacters { get; set; }
-        public DbSet<Manga> Mangas { get; set; }
-        public DbSet<MangaTitle> MangaTitles { get; set; }
-        public DbSet<MangaSynopsis> MangaSynopsises { get; set; }
-        public DbSet<MangaCharacter> MangaCharacters { get; set; }
-        public DbSet<CharacterNames> CharacterNames { get; set; }
-        public DbSet<CharacterAbout> CharacterAbouts { get; set; }
-        public DbSet<Genre> Genres { get; set; }
-        public DbSet<Published> Publisheds { get; set; }
-        public DbSet<Aired> Aireds { get; set; }
-        public DbSet<Premier> Premiers { get; set; }
-        public DbSet<AnimeGenre> AnimeGenre { get; set; }
-        public DbSet<AnimePoster> AnimePoster { get; set; }
-        public DbSet<AnimeCover> AnimeCover { get; set; }
-        public DbSet<Character> Characters { get; set; }
-        public DbSet<CharacterPoster> CharacterPoster { get; set; }
-        public DbSet<CharacterCover> CharacterCover { get; set; }
-        public DbSet<UserFavoriteAnime> UserFavoriteAnime { get; set; }
-        public DbSet<UserRatingAnime> UserRatingAnime { get; set; }
-        public DbSet<UserAnimeViewingStatus> UserAnimeViewingStatus { get; set; }
+        public DbSet<AnimeEntity> Animes { get; set; }
+        public DbSet<AnimeTitleEntity> AnimeTitles { get; set; }
+        public DbSet<AnimeSynopsisEntity> AnimeSynopsises { get; set; }
+        public DbSet<AnimeCharacterEntity> AnimeCharacters { get; set; }
+        public DbSet<MangaEntity> Mangas { get; set; }
+        public DbSet<MangaTitleEntity> MangaTitles { get; set; }
+        public DbSet<MangaSynopsisEntity> MangaSynopsises { get; set; }
+        public DbSet<MangaCharacterEntity> MangaCharacters { get; set; }
+        public DbSet<CharacterNamesEntity> CharacterNames { get; set; }
+        public DbSet<CharacterAboutEntity> CharacterAbouts { get; set; }
+        public DbSet<GenreEntity> Genres { get; set; }
+        public DbSet<PublishedEntity> Publisheds { get; set; }
+        public DbSet<AiredEntity> Aireds { get; set; }
+        public DbSet<PremierEntity> Premiers { get; set; }
+        public DbSet<AnimeGenreEntity> AnimeGenre { get; set; }
+        public DbSet<AnimePosterEntity> AnimePoster { get; set; }
+        public DbSet<AnimeCoverEntity> AnimeCover { get; set; }
+        public DbSet<CharacterEntity> Characters { get; set; }
+        public DbSet<CharacterPosterEntity> CharacterPoster { get; set; }
+        public DbSet<CharacterCoverEntity> CharacterCover { get; set; }
+        public DbSet<UserFavoriteAnimeEntity> UserFavoriteAnime { get; set; }
+        public DbSet<UserRatingAnimeEntity> UserRatingAnime { get; set; }
+        public DbSet<UserAnimeViewingStatusEntity> UserAnimeViewingStatus { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -48,72 +52,49 @@ namespace AnimeDB
             //      Anime       >>
 
             modelBuilder.
-                Entity<Anime>()
+                Entity<AnimeEntity>()
                 .ToTable("Animes");
 
             modelBuilder.
-                Entity<Anime>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.
-                Entity<Anime>()
+                Entity<AnimeEntity>()
                 .Property(x => x.Type)
-                .HasColumnName("Type")
-                .HasConversion<string>()
-                .IsRequired();
-
-            modelBuilder.
-                Entity<Anime>()
-                .Property(x => x.AiringStatus)
-                .HasColumnName("AiringStatus")
-                .HasConversion<string>()
-                .IsRequired();
-
-            modelBuilder.
-                Entity<Anime>()
-                .Property(x => x.AgeRating)
-                .HasColumnName("AgeRating")
                 .HasConversion<string>();
 
             modelBuilder.
-                Entity<Anime>()
+                Entity<AnimeEntity>()
+                .Property(x => x.AiringStatus)
+                .HasConversion<string>();
+
+            modelBuilder.
+                Entity<AnimeEntity>()
+                .Property(x => x.AgeRating)
+                .HasConversion<string>();
+
+            modelBuilder.
+                Entity<AnimeEntity>()
                 .Property(x => x.Source)
-                .HasColumnName("Source")
-                .HasConversion<string>()
-                .HasDefaultValue(Source.Undefined);
-
-            modelBuilder.
-                Entity<Anime>()
-                .Property(x => x.NumEpisodes)
-                .HasColumnName("NumEpisodes")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<Anime>()
-                .Property(x => x.CreatedAt)
-                .HasColumnName("CreatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<Anime>()
-                .Property(x => x.UpdatedAt)
-                .HasColumnName("UpdatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
+                .HasConversion<string>();
 
 
             //      Relation    //
 
             modelBuilder.
-                Entity<Anime>()
+                Entity<AnimeEntity>()
                 .HasMany(t => t.Titles)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
                 .HasPrincipalKey(t => t.Id);
 
+          /*  modelBuilder.
+                Entity<AnimeTitleEntity>()
+                .HasOne(t => t.Anime)
+                .WithMany(t => t.Titles)
+                .HasForeignKey(t => t.AnimeId)
+                .HasPrincipalKey(t => t.Id);*/
+
+
             modelBuilder.
-                Entity<Anime>()
+                Entity<AnimeEntity>()
                 .HasMany(t => t.Synopsises)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
@@ -122,181 +103,89 @@ namespace AnimeDB
             //      AnimeTitle       >>
 
             modelBuilder.
-                Entity<AnimeTitle>()
+                Entity<AnimeTitleEntity>()
                 .ToTable("AnimeTitle");
 
             modelBuilder.
-                Entity<AnimeTitle>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.
-                Entity<AnimeTitle>()
-                .Property(x => x.Body)
-                .HasColumnName("Body")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<AnimeTitle>()
+                Entity<AnimeTitleEntity>()
                 .Property(x => x.Language)
                 .HasColumnName("Language")
-                .HasConversion<string>()
-                .IsRequired();
+                .HasConversion<string>();
 
             modelBuilder.
-                Entity<AnimeTitle>()
+                Entity<AnimeTitleEntity>()
                 .Property(x => x.From)
                 .HasColumnName("From")
-                .HasConversion<string>()
-                .IsRequired();
+                .HasConversion<string>();
+
+            /*modelBuilder.
+               Entity<AnimeTitleEntity>()
+               .Ignore(x => x.AnimeId);
 
             modelBuilder.
-                Entity<AnimeTitle>()
-                .Ignore(x => x.MediaId);
+               Entity<AnimeTitleEntity>()
+               .Ignore(x => x.Anime);*/
 
-            modelBuilder.
-                Entity<AnimeTitle>()
-                .Ignore(x => x.Media);
+            // configures one-to-many relationship
 
-            modelBuilder.
-                Entity<AnimeTitle>()
-                .Property(x => x.IsMain)
-                .HasColumnName("IsMain")
-                .IsRequired();
+            /*modelBuilder.
+                Entity<AnimeTitleEntity>()
+                .HasOne(t => t.Anime)
+                .WithMany(c => c.Titles)
+                .HasForeignKey(t => t.AnimeId)
+                .HasPrincipalKey(t => t.Id);*/
 
-            modelBuilder.
-                Entity<AnimeTitle>()
-                .Property(x => x.IsHidden)
-                .HasColumnName("IsHidden")
-                .HasDefaultValue(false)
-                .IsRequired();
+            /*modelBuilder.Entity<AnimeTitleEntity>()
+                .HasOne(e => e.Anime)
+                .WithMany(c => c.Titles);*/
 
-            modelBuilder.
-                Entity<AnimeTitle>()
-                .Property(x => x.AnimeId)
-                .HasColumnName("AnimeId")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<AnimeTitle>()
-                .Property(x => x.CreatedAt)
-                .HasColumnName("CreatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<AnimeTitle>()
-                .Property(x => x.UpdatedAt)
-                .HasColumnName("UpdatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
+            /*modelBuilder.
+                 Entity<AnimeEntity>()
+                 .HasMany(t => t.Titles)
+                 .WithOne(t => t.Anime)
+                 .HasForeignKey(t => t.AnimeId)
+                 .HasPrincipalKey(t => t.Id);*/
 
             //      Synopsis       >>
 
             modelBuilder.
-                Entity<AnimeSynopsis>()
+                Entity<AnimeSynopsisEntity>()
                 .ToTable("AnimeSynopsis");
 
             modelBuilder.
-                Entity<AnimeSynopsis>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.
-                Entity<AnimeSynopsis>()
-                .Property(x => x.Body)
-                .HasColumnName("Body")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<AnimeSynopsis>()
+                Entity<AnimeSynopsisEntity>()
                 .Property(x => x.Language)
                 .HasColumnName("Language")
-                .HasConversion<string>()
-                .IsRequired();
+                .HasConversion<string>();
 
             modelBuilder.
-                Entity<AnimeSynopsis>()
+                Entity<AnimeSynopsisEntity>()
                 .Property(x => x.From)
                 .HasColumnName("From")
-                .HasConversion<string>()
-                .IsRequired();
-
-            modelBuilder.
-                Entity<AnimeSynopsis>()
-                .Ignore(x => x.MediaId);
-            
-            modelBuilder.
-                Entity<AnimeSynopsis>()
-                .Ignore(x => x.Media);
-
-            modelBuilder.
-                Entity<AnimeSynopsis>()
-                .Property(x => x.AnimeId)
-                .HasColumnName("AnimeId")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<AnimeSynopsis>()
-                .Property(x => x.IsMain)
-                .HasColumnName("IsMain")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<AnimeSynopsis>()
-                .Property(x => x.IsHidden)
-                .HasColumnName("IsHidden")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<AnimeSynopsis>()
-                .Property(x => x.CreatedAt)
-                .HasColumnName("CreatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<AnimeSynopsis>()
-                .Property(x => x.UpdatedAt)
-                .HasColumnName("UpdatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
+                .HasConversion<string>();
 
             //      Genre     >>
 
             modelBuilder.
-               Entity<Genre>()
+               Entity<GenreEntity>()
                .ToTable("Genres");
-
-            modelBuilder.
-                Entity<Genre>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.
-               Entity<Genre>()
-               .Property(x => x.Id)
-               .HasColumnName("Id");
-
-            modelBuilder.
-               Entity<Genre>()
-               .Property(x => x.Name)
-               .HasColumnName("Name")
-               .IsRequired();
 
             // Many to many
 
             //      Relation Genres    //
             modelBuilder.
-                Entity<AnimeGenre>()
+                Entity<AnimeGenreEntity>()
                 .HasKey(t => new { t.AnimeId, t.GenreId });
 
             modelBuilder.
-                Entity<Anime>()
+                Entity<AnimeEntity>()
                 .HasMany(t => t.Genres)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder.
-                Entity<Genre>()
+                Entity<GenreEntity>()
                 .HasMany(t => t.Animes)
                 .WithOne(t => t.Genre)
                 .HasForeignKey(t => t.GenreId)
@@ -304,18 +193,18 @@ namespace AnimeDB
 
             //      Relation Characters    //
             modelBuilder.
-                Entity<AnimeCharacter>()
+                Entity<AnimeCharacterEntity>()
                 .HasKey(t => new { t.AnimeId, t.CharacterId });
 
             modelBuilder.
-                Entity<Anime>()
+                Entity<AnimeEntity>()
                 .HasMany(t => t.Characters)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder.
-                Entity<Character>()
+                Entity<CharacterEntity>()
                 .HasMany(t => t.Animes)
                 .WithOne(t => t.Character)
                 .HasForeignKey(t => t.CharacterId)
@@ -324,122 +213,73 @@ namespace AnimeDB
             //      Relation    //
 
             modelBuilder
-                .Entity<AnotherCharacterService>()
+                .Entity<AnotherCharacterServiceEntity>()
                 .ToTable("Characters");
 
             modelBuilder.
-                Entity<Character>()
+                Entity<CharacterEntity>()
                 .HasOne(x => x.AnotherService)
                 .WithOne()
-                .HasForeignKey<AnotherCharacterService>(x => x.Id);
+                .HasForeignKey<AnotherCharacterServiceEntity>(x => x.Id);
 
             //      Premier     >>
 
-            modelBuilder.
-               Entity<Premier>()
-               .Property(x => x.Year)
-               .HasColumnName("Year")
-               .IsRequired();
-
-            modelBuilder.
-               Entity<Premier>()
-               .Property(x => x.Sezon)
-               .HasColumnName("Sezon")
-               .IsRequired();
-
             //      Beetwin Table       //
 
             modelBuilder.
-                Entity<Premier>()
+                Entity<PremierEntity>()
                 .ToTable("Animes");
 
             //      Relation    //
 
             modelBuilder.
-                Entity<Anime>()
+                Entity<AnimeEntity>()
                 .HasOne(x => x.Premier)
                 .WithOne()
-                .HasForeignKey<Premier>(x => x.Id);
+                .HasForeignKey<PremierEntity>(x => x.Id);
 
             //      Aired     >>
 
-            modelBuilder.
-               Entity<Aired>()
-               .Property(x => x.From)
-               .HasColumnName("From")
-               .IsRequired();
-
-            modelBuilder.
-               Entity<Aired>()
-               .Property(x => x.To)
-               .HasColumnName("To");
 
             //      Beetwin Table       //
 
             modelBuilder.
-                Entity<Aired>()
+                Entity<AiredEntity>()
                 .ToTable("Animes");
 
             //      Relation    //
 
             modelBuilder.
-                Entity<Anime>()
+                Entity<AnimeEntity>()
                 .HasOne(x => x.Aired)
                 .WithOne()
-                .HasForeignKey<Aired>(x => x.Id);
+                .HasForeignKey<AiredEntity>(x => x.Id);
 
             //      Images      //
 
             modelBuilder.
-                Entity<Image>()
+                Entity<ImageEntity>()
                 .ToTable("Images");
-
-            modelBuilder.
-               Entity<Image>()
-               .Property(x => x.Original)
-               .HasColumnName("Original")
-               .IsRequired();
-
-            modelBuilder.
-               Entity<Image>()
-               .Property(x => x.Large)
-               .HasColumnName("Large");
-
-            modelBuilder.
-               Entity<Image>()
-               .Property(x => x.Medium)
-               .HasColumnName("Medium");
-
-            modelBuilder.
-               Entity<Image>()
-               .Property(x => x.Small)
-               .HasColumnName("Small");
-
-            modelBuilder.
-               Entity<Image>()
-               .Property(x => x.From)
-               .HasColumnName("From")
-               .IsRequired();
 
             //      Relation        //
 
             modelBuilder
-                .Entity<AnimePoster>()
+                .Entity<AnimePosterEntity>()
                 .HasKey(t => new { t.PosterId, t.AnimeId });
 
             modelBuilder
-                .Entity<Anime>()
+                .Entity<AnimeEntity>()
                 .HasMany(t => t.Posters)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder
-                .Entity<AnimeCover>()
+                .Entity<AnimeCoverEntity>()
                 .HasKey(t => new { t.CoverId, t.AnimeId });
 
             modelBuilder
-                .Entity<Anime>()
+                .Entity<AnimeEntity>()
                 .HasMany(t => t.Covers)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
@@ -447,66 +287,33 @@ namespace AnimeDB
 
             //      AnotherAnimeService     //
             modelBuilder
-                .Entity<AnotherAnimeService>()
+                .Entity<AnotherAnimeServiceEntity>()
                 .ToTable("Animes");
 
             modelBuilder
-                .Entity<Anime>()
+                .Entity<AnimeEntity>()
                 .HasOne(x => x.AnotherService)
                 .WithOne()
-                .HasForeignKey<AnotherAnimeService>(x => x.Id);
+                .HasForeignKey<AnotherAnimeServiceEntity>(x => x.Id);
 
             //      Manga       >>
 
             modelBuilder.
-                Entity<Manga>()
+                Entity<MangaEntity>()
                 .ToTable("Mangas");
 
-            modelBuilder.
-                Entity<Manga>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.
-                Entity<Manga>()
-                .Property(x => x.ChaptersCount)
-                .HasColumnName("ChaptersCount")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<Manga>()
-                .Property(x => x.Publishing)
-                .HasColumnName("Publishing")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<Manga>()
-                .Property(x => x.Volumes)
-                .HasColumnName("Volumes")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<Manga>()
-                .Property(x => x.CreatedAt)
-                .HasColumnName("CreatedAt")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<Manga>()
-                .Property(x => x.CreatedAt)
-                .HasColumnName("CreatedAt")
-                .IsRequired();
 
             //      Relation    //
 
             modelBuilder.
-                Entity<Manga>()
+                Entity<MangaEntity>()
                 .HasMany(t => t.Titles)
                 .WithOne(t => t.Manga)
                 .HasForeignKey(t => t.MangaId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder.
-                Entity<Manga>()
+                Entity<MangaEntity>()
                 .HasMany(t => t.Synopsises)
                 .WithOne(t => t.Manga)
                 .HasForeignKey(t => t.MangaId)
@@ -515,127 +322,33 @@ namespace AnimeDB
             //      MangaTitle       >>
 
             modelBuilder.
-                Entity<MangaTitle>()
+                Entity<MangaTitleEntity>()
                 .ToTable("MangaTitles");
 
             modelBuilder.
-                Entity<MangaTitle>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.
-                Entity<MangaTitle>()
-                .Property(x => x.Body)
-                .HasColumnName("Body")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<MangaTitle>()
+                Entity<MangaTitleEntity>()
                 .Property(x => x.Language)
                 .HasColumnName("Language")
                 .HasConversion<string>()
-                .IsRequired();
-
-            modelBuilder.
-                Entity<MangaTitle>()
-                .Property(x => x.From)
-                .HasColumnName("From")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<MangaTitle>()
-                .Ignore(x => x.MediaId);
-
-            modelBuilder.
-                Entity<MangaTitle>()
-                .Ignore(x => x.Media);
-
-            modelBuilder.
-                Entity<MangaTitle>()
-                .Property(x => x.IsMain)
-                .HasColumnName("IsMain")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<MangaTitle>()
-                .Property(x => x.MangaId)
-                .HasColumnName("MangaId")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<MangaTitle>()
-                .Property(x => x.CreatedAt)
-                .HasColumnName("CreatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<MangaTitle>()
-                .Property(x => x.UpdatedAt)
-                .HasColumnName("UpdatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
                 .IsRequired();
 
             //      MangaSynopsis       >>
 
             modelBuilder.
-                Entity<MangaSynopsis>()
+                Entity<MangaSynopsisEntity>()
                 .ToTable("MangaSynopsis");
 
             modelBuilder.
-                Entity<MangaSynopsis>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.
-                Entity<MangaSynopsis>()
-                .Property(x => x.Body)
-                .HasColumnName("Body")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<MangaSynopsis>()
+                Entity<MangaSynopsisEntity>()
                 .Property(x => x.Language)
                 .HasColumnName("Language")
                 .HasConversion<string>()
                 .IsRequired();
 
             modelBuilder.
-                Entity<MangaSynopsis>()
-                .Property(x => x.From)
-                .HasColumnName("From")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<MangaSynopsis>()
-                .Ignore(x => x.MediaId);
-
-            modelBuilder.
-                Entity<MangaSynopsis>()
-                .Ignore(x => x.Media);
-
-            modelBuilder.
-                Entity<MangaSynopsis>()
+                Entity<MangaSynopsisEntity>()
                 .Property(x => x.MangaId)
                 .HasColumnName("MangaId")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<MangaSynopsis>()
-                .Property(x => x.IsMain)
-                .HasColumnName("IsMain")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<MangaSynopsis>()
-                .Property(x => x.CreatedAt)
-                .HasColumnName("CreatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<MangaSynopsis>()
-                .Property(x => x.UpdatedAt)
-                .HasColumnName("UpdatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
                 .IsRequired();
 
             //      Posters  AND Covers     >>
@@ -643,22 +356,22 @@ namespace AnimeDB
             //      Relation        //
 
             modelBuilder
-                .Entity<MangaPoster>()
+                .Entity<MangaPosterEntity>()
                 .HasKey(t => new { t.PosterId, t.MangaId });
 
             modelBuilder
-                .Entity<Manga>()
+                .Entity<MangaEntity>()
                 .HasMany(t => t.Posters)
                 .WithOne(t => t.Manga)
                 .HasForeignKey(t => t.MangaId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder
-                .Entity<MangaCover>()
+                .Entity<MangaCoverEntity>()
                 .HasKey(t => new { t.CoverId, t.MangaId });
 
             modelBuilder
-                .Entity<Manga>()
+                .Entity<MangaEntity>()
                 .HasMany(t => t.Covers)
                 .WithOne(t => t.Manga)
                 .HasForeignKey(t => t.MangaId)
@@ -668,18 +381,18 @@ namespace AnimeDB
 
             //      Relation     //
             modelBuilder.
-                Entity<MangaGenre>()
+                Entity<MangaGenreEntity>()
                 .HasKey(t => new { t.MangaId, t.GenreId });
 
             modelBuilder.
-                Entity<Manga>()
+                Entity<MangaEntity>()
                 .HasMany(t => t.Genres)
                 .WithOne(t => t.Manga)
                 .HasForeignKey(t => t.MangaId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder.
-                Entity<Genre>()
+                Entity<GenreEntity>()
                 .HasMany(t => t.Mangas)
                 .WithOne(t => t.Genre)
                 .HasForeignKey(t => t.GenreId)
@@ -687,18 +400,18 @@ namespace AnimeDB
 
             //      Relation Mangas Persons    //
             modelBuilder.
-                Entity<MangaCharacter>()
+                Entity<MangaCharacterEntity>()
                 .HasKey(t => new { t.MangaId, t.CharacterId });
 
             modelBuilder.
-                Entity<Manga>()
+                Entity<MangaEntity>()
                 .HasMany(t => t.Characters)
                 .WithOne(t => t.Manga)
                 .HasForeignKey(t => t.MangaId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder.
-                Entity<Character>()
+                Entity<CharacterEntity>()
                 .HasMany(t => t.Mangas)
                 .WithOne(t => t.Character)
                 .HasForeignKey(t => t.CharacterId)
@@ -706,61 +419,43 @@ namespace AnimeDB
 
             //      Published     //
             modelBuilder
-                .Entity<Published>()
+                .Entity<PublishedEntity>()
                 .ToTable("Mangas");
 
             modelBuilder
-                .Entity<Manga>()
+                .Entity<MangaEntity>()
                 .HasOne(x => x.Published)
                 .WithOne()
-                .HasForeignKey<Published>(x => x.Id);
+                .HasForeignKey<PublishedEntity>(x => x.Id);
 
             //      AnotherMangaService     //
             modelBuilder
-                .Entity<AnotherMangaService>()
+                .Entity<AnotherMangaServiceEntity>()
                 .ToTable("Mangas");
 
             modelBuilder
-                .Entity<Manga>()
+                .Entity<MangaEntity>()
                 .HasOne(x => x.AnotherService)
                 .WithOne()
-                .HasForeignKey<AnotherMangaService>(x => x.Id);
+                .HasForeignKey<AnotherMangaServiceEntity>(x => x.Id);
 
             //      Character       >>
 
             modelBuilder.
-                Entity<Character>()
+                Entity<CharacterEntity>()
                 .ToTable("Characters");
-
-            modelBuilder.
-                Entity<Character>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.
-                Entity<Character>()
-                .Property(x => x.CreatedAt)
-                .HasColumnName("CreatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<Character>()
-                .Property(x => x.CreatedAt)
-                .HasColumnName("UpdatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
 
             //      Relation    //
 
             modelBuilder.
-                Entity<Character>()
+                Entity<CharacterEntity>()
                 .HasMany(t => t.Names)
                 .WithOne(t => t.Character)
                 .HasForeignKey(t => t.CharacterId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder.
-                Entity<Character>()
+                Entity<CharacterEntity>()
                 .HasMany(t => t.Abouts)
                 .WithOne(t => t.Character)
                 .HasForeignKey(t => t.CharacterId)
@@ -768,174 +463,74 @@ namespace AnimeDB
 
             //      Character Names    >>
             modelBuilder.
-                Entity<CharacterNames>()
+                Entity<CharacterNamesEntity>()
                 .ToTable("CharacterNames");
 
             modelBuilder.
-                Entity<CharacterNames>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.
-                Entity<CharacterNames>()
-                .Property(x => x.Body)
-                .HasColumnName("Body")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<CharacterNames>()
+                Entity<CharacterNamesEntity>()
                 .Property(x => x.Language)
                 .HasColumnName("Language")
-                .HasConversion<string>()
-                .IsRequired();
+                .HasConversion<string>();
 
-            modelBuilder.
-                Entity<CharacterNames>()
-                .Property(x => x.From)
-                .HasColumnName("From")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<CharacterNames>()
-                .Ignore(x => x.MediaId);
-
-            modelBuilder.
-                Entity<CharacterNames>()
-                .Ignore(x => x.Media);
-
-            modelBuilder.
-                Entity<CharacterNames>()
-                .Property(x => x.IsMain)
-                .HasColumnName("IsMain")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<CharacterNames>()
-                .Property(x => x.CharacterId)
-                .HasColumnName("CharacterId")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<CharacterNames>()
-                .Property(x => x.CreatedAt)
-                .HasColumnName("CreatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<CharacterNames>()
-                .Property(x => x.UpdatedAt)
-                .HasColumnName("UpdatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
 
             //      Character About    >>
             modelBuilder.
-                Entity<CharacterAbout>()
+                Entity<CharacterAboutEntity>()
                 .ToTable("CharacterTitles");
 
             modelBuilder.
-                Entity<CharacterAbout>()
-                .HasKey(x => x.Id);
-
-            modelBuilder.
-                Entity<CharacterAbout>()
-                .Property(x => x.Body)
-                .HasColumnName("Body")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<CharacterAbout>()
+                Entity<CharacterAboutEntity>()
                 .Property(x => x.Language)
                 .HasColumnName("Language")
-                .HasConversion<string>()
-                .IsRequired();
+                .HasConversion<string>();
 
-            modelBuilder.
-                Entity<CharacterAbout>()
-                .Property(x => x.From)
-                .HasColumnName("From")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<CharacterAbout>()
-                .Ignore(x => x.MediaId);
-
-            modelBuilder.
-                Entity<CharacterAbout>()
-                .Ignore(x => x.Media);
-
-            modelBuilder.
-                Entity<CharacterAbout>()
-                .Property(x => x.IsMain)
-                .HasColumnName("IsMain")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<CharacterAbout>()
-                .Property(x => x.CharacterId)
-                .HasColumnName("CharacterId")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<CharacterAbout>()
-                .Property(x => x.CreatedAt)
-                .HasColumnName("CreatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
-
-            modelBuilder.
-                Entity<CharacterAbout>()
-                .Property(x => x.UpdatedAt)
-                .HasColumnName("UpdatedAt")
-                .HasDefaultValueSql("NOW()::timestamp")
-                .IsRequired();
 
             //      Images Relation      //
 
             modelBuilder
-                .Entity<CharacterPoster>()
+                .Entity<CharacterPosterEntity>()
                 .HasKey(t => new { t.PosterId, t.CharacterId });
 
             modelBuilder
-                .Entity<Character>()
+                .Entity<CharacterEntity>()
                 .HasMany(t => t.Posters)
                 .WithOne(t => t.Character)
                 .HasForeignKey(t => t.CharacterId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder
-                .Entity<CharacterCover>()
+                .Entity<CharacterCoverEntity>()
                 .HasKey(t => new { t.CoverId, t.CharacterId });
 
             modelBuilder
-                .Entity<Character>()
+                .Entity<CharacterEntity>()
                 .HasMany(t => t.Covers)
                 .WithOne(t => t.Character)
                 .HasForeignKey(t => t.CharacterId)
                 .HasPrincipalKey(t => t.Id);
 
-            // NekoUser
+            // UserEntity
 
             // Favorite anime
             modelBuilder.
-                Entity<UserFavoriteAnime>()
+                Entity<UserFavoriteAnimeEntity>()
                 .ToTable("UserFavoriteAnime");
 
             modelBuilder.
-                Entity<UserFavoriteAnime>()
+                Entity<UserFavoriteAnimeEntity>()
                 .HasKey(t => new { t.UserId, t.AnimeId });
 
             /// Relations M-M
 
             modelBuilder
-                .Entity<NekoUser>()
+                .Entity<UserEntity>()
                 .HasMany(t => t.FavoriteAnimes)
                 .WithOne(t => t.User)
                 .HasForeignKey(t => t.UserId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder
-                .Entity<Anime>()
+                .Entity<AnimeEntity>()
                 .HasMany(t => t.FavoriteInUsers)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
@@ -943,30 +538,25 @@ namespace AnimeDB
 
             // Rating anime
             modelBuilder.
-                Entity<UserRatingAnime>()
+                Entity<UserRatingAnimeEntity>()
                 .ToTable("UserRatingAnime");
 
             modelBuilder.
-                Entity<UserRatingAnime>()
+                Entity<UserRatingAnimeEntity>()
                 .HasKey(t => new { t.UserId, t.AnimeId });
 
-            modelBuilder.
-                Entity<UserRatingAnime>()
-                .Property(x => x.RatingValue)
-                .HasColumnName("RatingValue")
-                .IsRequired();
 
             /// Relations M - M
-            
+
             modelBuilder
-                .Entity<NekoUser>()
+                .Entity<UserEntity>()
                 .HasMany(t => t.RatingAnimes)
                 .WithOne(t => t.User)
                 .HasForeignKey(t => t.UserId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder
-                .Entity<Anime>()
+                .Entity<AnimeEntity>()
                 .HasMany(t => t.RatingInUsers)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
@@ -976,29 +566,24 @@ namespace AnimeDB
 
             // Rating anime
             modelBuilder.
-                Entity<UserAnimeViewingStatus>()
+                Entity<UserAnimeViewingStatusEntity>()
                 .ToTable("UserAnimeViewingStatus");
 
             modelBuilder.
-                Entity<UserAnimeViewingStatus>()
+                Entity<UserAnimeViewingStatusEntity>()
                 .HasKey(t => new { t.UserId, t.AnimeId });
 
-            modelBuilder.
-                Entity<UserAnimeViewingStatus>()
-                .Property(x => x.Status)
-                .HasColumnName("Status")
-                .IsRequired();
 
             /// Relations
             modelBuilder
-                .Entity<NekoUser>()
+                .Entity<UserEntity>()
                 .HasMany(t => t.AnimeViewingStatuses)
                 .WithOne(t => t.User)
                 .HasForeignKey(t => t.UserId)
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder
-                .Entity<Anime>()
+                .Entity<AnimeEntity>()
                 .HasMany(t => t.ViewingStatusInUsers)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
@@ -1015,7 +600,7 @@ namespace AnimeDB
         private Guid SeedAdminUser(ModelBuilder builder)
         {
             Guid GuidAdminUser = Guid.NewGuid();
-            NekoUser user = new NekoUser()
+            UserEntity user = new UserEntity()
             {
                 Id = GuidAdminUser.ToString(),
                 UserName = "Admin",
@@ -1026,10 +611,10 @@ namespace AnimeDB
                 LockoutEnabled = false,
             };
 
-            /*PasswordHasher<NekoUser> passwordHasher = new PasswordHasher<NekoUser>();
+            /*PasswordHasher<UserEntity> passwordHasher = new PasswordHasher<UserEntity>();
             passwordHasher.HashPassword(user, "Pass123!!!");*/
 
-            builder.Entity<NekoUser>().HasData(user);
+            builder.Entity<UserEntity>().HasData(user);
 
             return GuidAdminUser;
         }

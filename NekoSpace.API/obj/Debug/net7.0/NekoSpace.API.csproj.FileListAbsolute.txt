@@ -351,3 +351,7 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\obj\Debug\net7.
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\.filenesting.json
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\JikanDotNet.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Elasticsearch.Net.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Nest.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NekoSpace.ElasticSearch.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NekoSpace.ElasticSearch.pdb

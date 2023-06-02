@@ -25,7 +25,7 @@ namespace NekoSpace.API.Controllers
 
         [HttpPost("SignIn")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(LoginResultModel))]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized, Type = typeof(ErrorResultDTO))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> SignInAsync(Login userLoginData)
         {
             var task = _authorizationService.SignInAsync(userLoginData);
@@ -36,7 +36,46 @@ namespace NekoSpace.API.Controllers
             {
                 return Ok();
             }
-            return Unauthorized(result.Error);
+
+            /* var problemDetails = new ProblemDetails
+             {
+                 Detail = "The request parameters failed to validate.",
+                 Instance = null,
+                 Status = 401,
+                 Title = "Validation Error",
+                 Type = "https://example.net/validation-error",
+             };
+
+             problemDetails.Extensions.Add("errors", new List<ValidationProblemDetailsParam>()
+             {
+                 new("name", "Cannot be blank."),
+                 new("age", "Must be great or equals to 18.")
+             });
+
+             return new ObjectResult(problemDetails)
+             {
+                 StatusCode = 401
+             };*/
+            //return Unauthorized();
+
+            return Problem(
+                result.Error.Message,
+                null,
+                401,
+                "Unauthorized",
+                null);
+        }
+
+        public class ValidationProblemDetailsParam
+        {
+            public ValidationProblemDetailsParam(string name, string reason)
+            {
+                Name = name;
+                Reason = reason;
+            }
+
+            public string Name { get; set; }
+            public string Reason { get; set; }
         }
 
         [HttpPost("Registration")]
@@ -52,7 +91,7 @@ namespace NekoSpace.API.Controllers
             {
                 return Ok(result.Result);
             }
-            return Unauthorized(result.Error);
+            return Unauthorized(result.Error); // Fix
         }
 
         [Authorize]

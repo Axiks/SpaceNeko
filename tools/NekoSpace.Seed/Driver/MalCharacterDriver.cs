@@ -11,7 +11,7 @@ using JikanDN = JikanDotNet;
 
 namespace NekoSpace.Seed.Driver
 {
-    public class MalCharacterDriver : ISelectMediaByMALId<CharacterEntity>, IGetAllCharactersByAnimeMALId
+    public class MalCharacterDriver : ISelectMediaById<CharacterEntity>, IGetAllCharactersByAnimeMALId
     {
         private JikanDN.IJikan jikan;
 
@@ -41,7 +41,7 @@ namespace NekoSpace.Seed.Driver
             return characters;
         }
 
-        public RTO<CharacterEntity> GetByMALId(long Id)
+        public RTO<CharacterEntity> GetById(long Id)
         {
             return getMalCharacterById(Id);
         }

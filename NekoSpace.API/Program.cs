@@ -11,6 +11,10 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
+// Api errors print
+app.UseStatusCodePages();
+app.UseExceptionHandler();
+
 app.UseRouting();
 app.UseCors("allowedOrigin");
 

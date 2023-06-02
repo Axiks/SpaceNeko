@@ -54,3 +54,7 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\obj\Debug\dock
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\obj\Debug\docker-compose.dcproj.CopyComplete
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\.filenesting.json
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Nest.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Elasticsearch.Net.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.ElasticSearch.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.ElasticSearch.pdb

@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mami", "tools\MamiRepositor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Seed", "tools\NekoSpace.Seed\NekoSpace.Seed.csproj", "{3ADFCC27-B78E-436D-84D6-CC2E3AE2397E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.ElasticSearch", "NekoSpace.ElasticSearch\NekoSpace.ElasticSearch.csproj", "{F8E8284D-30FA-47CE-8883-28A9B1C81420}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{3ADFCC27-B78E-436D-84D6-CC2E3AE2397E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3ADFCC27-B78E-436D-84D6-CC2E3AE2397E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3ADFCC27-B78E-436D-84D6-CC2E3AE2397E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8E8284D-30FA-47CE-8883-28A9B1C81420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8E8284D-30FA-47CE-8883-28A9B1C81420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8E8284D-30FA-47CE-8883-28A9B1C81420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8E8284D-30FA-47CE-8883-28A9B1C81420}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

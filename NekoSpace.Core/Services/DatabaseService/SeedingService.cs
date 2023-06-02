@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NekoSpace.API.Helpers;
 using NekoSpace.Data;
+using NekoSpace.ElasticSearch;
 using NekoSpace.Seed.Driver;
 using NekoSpace.Seed.Interfaces;
 using NekoSpaceList.Models.Anime;
+using Nest;
 
 namespace NekoSpace.Core.Services.DatabaseService;
 public class SeedingService : ISeedingService
@@ -11,10 +13,16 @@ public class SeedingService : ISeedingService
     private ApplicationDbContext _context;
     // private IRepositoryDriver<Anime, int> _dBSeed;
     private ISelectMediaAll<AnimeEntity> _animeSelectAllDriver;
-    public SeedingService(ApplicationDbContext context)
+
+    private readonly IElasticClient _elasticClient;
+    private readonly ESAnimeService _esAnimeController;
+    public SeedingService(ApplicationDbContext context, IElasticClient elasticSearchExtensions)
     {
         _context = context;
         _animeSelectAllDriver = new MamiAnimeDriver();
+
+        _elasticClient = elasticSearchExtensions;
+        _esAnimeController = new ESAnimeService(elasticSearchExtensions);
     }
 
     public async Task RunAsync()
@@ -24,7 +32,7 @@ public class SeedingService : ISeedingService
         var animesRTO = _animeSelectAllDriver.GetAll();
 
         // Перевіряємо, рядок за рядком, чи дані ідентичні. Якщо ні, оновлюємо (вказуємо за якими полями перевіряти)
-        List<AnimeEntity> animeListNeedToAdd = new List<AnimeEntity>();
+        //List<AnimeEntity> animeListNeedToAdd = new List<AnimeEntity>();
 
         int c = 0;
         foreach (RTO<AnimeEntity> animeRTO in animesRTO)
@@ -55,7 +63,6 @@ public class SeedingService : ISeedingService
 
             //var testSelect = _context.Animes.
 
-
             var sss = _context.Animes.
                 Where(o => o.AnotherService.MyAnimeList == externalDBMalId).Count();
 
@@ -66,11 +73,17 @@ public class SeedingService : ISeedingService
             {
                 //animeListNeedToAdd.Add(anime);
                 _context.Animes.Add(anime);
+                ElasticSearchAnimeAsync(anime);
             }
         }
 
 
         _context.SaveChanges();
         Console.WriteLine("Add new item record: " + c.ToString());
+    }
+
+    public async Task ElasticSearchAnimeAsync(AnimeEntity anime)
+    {
+        _esAnimeController.SaveSingleAsync(anime);
     }
 }

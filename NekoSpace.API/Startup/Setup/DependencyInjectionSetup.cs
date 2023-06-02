@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json.Serialization;
+using NekoSpace.ElasticSearch;
 
 namespace NekoSpace.API.Startup.Setup
 {
@@ -38,9 +39,13 @@ namespace NekoSpace.API.Startup.Setup
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
+            services.AddProblemDetails();
+
             services.RegisterOAuth(configurationManager);
 
             services.RegisterCors();
+
+            services.AddElasticsearch(configurationManager);
 
             return services;
         }

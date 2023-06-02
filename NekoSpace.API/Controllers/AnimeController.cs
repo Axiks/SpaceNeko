@@ -29,7 +29,7 @@ namespace NekoSpace.API.Controllers
             return Ok(anime);
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{id}")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(GetAnimeResultDTO))]
         [SwaggerResponse(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAnimeById(Guid id)

@@ -11,9 +11,9 @@ using JikanDN = JikanDotNet;
 
 namespace NekoSpace.Seed.Driver
 {
-    public class MalAnimeDriver : ISelectMediaByMALId<AnimeEntity>
+    public class MalAnimeDriver : ISelectMediaById<AnimeEntity>
     {
-        public RTO<AnimeEntity> GetByMALId(long Id)
+        public RTO<AnimeEntity> GetById(long Id)
         {
             return getMalAnimeById(Id);
         }

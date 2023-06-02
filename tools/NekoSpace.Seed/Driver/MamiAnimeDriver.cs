@@ -9,13 +9,17 @@ using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.General;
+using System.Reflection;
 using static NekoSpaceList.Models.General.GeneralModel;
 
 namespace NekoSpace.Seed.Driver
 {
-    public class MamiAnimeDriver : ISelectMediaByMALId<AnimeEntity>, ISelectMediaAll<AnimeEntity>
+    public class MamiAnimeDriver : IRepository<AnimeEntity>, ISelectMediaById<AnimeEntity>, ISelectMediaAll<AnimeEntity>
     {
         private IEnumerable<RTO<AnimeEntity>> _manamiAnimes;
+
+        public string Name => "ManamiAnimeDriver";
+        public string WorkWithServiceName => "MyAnimeList";
 
         public MamiAnimeDriver()
         {
@@ -28,11 +32,26 @@ namespace NekoSpace.Seed.Driver
             return _manamiAnimes;
         }
 
-        public RTO<AnimeEntity> GetByMALId(long MALId)
+        public RTO<AnimeEntity> GetById(string Id)
         {
+            long MALId = long.Parse(Id);
             // var anime = context.Animes.Include(x => x.Titles).Single(item => item.Id == animeTitleItem.MediaId);
             RTO<AnimeEntity> animeObj = _manamiAnimes.SingleOrDefault(x => x.contain.AnotherService.MyAnimeList == MALId);
             return animeObj;
+        }
+
+        public List<string> GetAvailableFields()
+        {
+            Type type = typeof(AnimeEntity);
+            PropertyInfo[] properties = type.GetProperties();
+
+            List<string> fields = new List<string>();
+            foreach(PropertyInfo propertyInfo in properties)
+            {
+                fields.Add(propertyInfo.Name);
+            }
+
+            return fields;
         }
 
         private IEnumerable<RTO<AnimeEntity>> PullAllManamiAnimes(MamiDatabase manamiAnimeRepository)

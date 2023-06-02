@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "H7908L/GWVXw7Ev29dqgOhziC8KeVICDo7eYGGty8QbydcEpLaeeq2tTUWD1nw12MTrb1M7Ckba6RmO98FCLiA==",
+  "dgSpecHash": "5CoFb1JgsFa1JZvpP4EEDOwqMoG8xbPiq1YxjQZvPOOBh7J5SFLHTHBxa+C850zm4VBseaC5h/2LdF+VVIUcvA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API\\NekoSpace.API.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Niko\\.nuget\\packages\\arch.entityframeworkcore.relational\\2.1.15\\arch.entityframeworkcore.relational.2.1.15.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\elasticsearch.net\\7.17.5\\elasticsearch.net.7.17.5.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\graphql.server.ui.voyager\\7.2.0\\graphql.server.ui.voyager.7.2.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.abstractions\\12.16.0\\hotchocolate.abstractions.12.16.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.language\\12.16.0\\hotchocolate.language.12.16.0.nupkg.sha512",
@@ -99,6 +100,7 @@
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\nest\\7.17.5\\nest.7.17.5.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\npgsql\\7.0.1\\npgsql.7.0.1.nupkg.sha512",

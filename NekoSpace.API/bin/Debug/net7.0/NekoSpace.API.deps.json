@@ -11,8 +11,10 @@
           "Arch.EntityFrameworkCore.Design": "2.1.15",
           "GraphQL.Server.Ui.Voyager": "7.2.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.2",
+          "NEST": "7.17.5",
           "NekoSpace.API.Contracts": "1.0.0",
           "NekoSpace.Core": "1.0.0",
+          "NekoSpace.ElasticSearch": "1.0.0",
           "Swashbuckle.AspNetCore.Annotations": "6.5.0"
         },
         "runtime": {
@@ -102,6 +104,19 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.6.0.0",
             "fileVersion": "1.600.22.20503"
+          }
+        }
+      },
+      "Elasticsearch.Net/7.17.5": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "System.Buffers": "4.5.1",
+          "System.Diagnostics.DiagnosticSource": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Elasticsearch.Net.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.17.5.0"
           }
         }
       },
@@ -1566,6 +1581,17 @@
           }
         }
       },
+      "NEST/7.17.5": {
+        "dependencies": {
+          "Elasticsearch.Net": "7.17.5"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Nest.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.17.5.0"
+          }
+        }
+      },
       "NETStandard.Library/1.6.1": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.1",
@@ -2707,6 +2733,7 @@
           "NekoSpace.API.Contracts": "1.0.0",
           "NekoSpace.Core.Contracts": "1.0.0",
           "NekoSpace.Data": "1.0.0",
+          "NekoSpace.ElasticSearch": "1.0.0",
           "NekoSpace.Seed": "1.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.1",
           "Swashbuckle.AspNetCore": "6.5.0"
@@ -2746,6 +2773,18 @@
         },
         "runtime": {
           "NekoSpace.Data.Contracts.dll": {}
+        }
+      },
+      "NekoSpace.ElasticSearch/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "NEST": "7.17.5",
+          "NekoSpace.API.Contracts": "1.0.0",
+          "NekoSpace.Data.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "NekoSpace.ElasticSearch.dll": {}
         }
       },
       "NekoSpace.Seed/1.0.0": {
@@ -2818,6 +2857,13 @@
       "sha512": "sha512-EycyMsb6rD2PK9P0SyibFfEhvWWttdrYhyPF4f41uzdB/44yQlV+2Wehxyg489Rj6gbPvSPgbKq0xsHJBhipZA==",
       "path": "azure.identity/1.6.0",
       "hashPath": "azure.identity.1.6.0.nupkg.sha512"
+    },
+    "Elasticsearch.Net/7.17.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-orChsQi1Ceho/NyIylNOn6y4vuGcsbCfMZnCueNN0fzqYEGQmQdPfcVmsR5+3fwpXTgxCdjTUVmqOwvHpCSB+Q==",
+      "path": "elasticsearch.net/7.17.5",
+      "hashPath": "elasticsearch.net.7.17.5.nupkg.sha512"
     },
     "GraphQL.Server.Ui.Voyager/7.2.0": {
       "type": "package",
@@ -3434,6 +3480,13 @@
       "sha512": "sha512-hqTM5628jSsQiv+HGpiq3WKBl2c8v1KZfby2J6Pr7pEPlK9waPdgEO6b8A/+/xn/yZ9ulv8HuqK71ONy2tg67A==",
       "path": "microsoft.win32.systemevents/6.0.0",
       "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
+    },
+    "NEST/7.17.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bo9UyuIoVRx4IUQiuC8ZrlZuvAXKIccernC7UUKukQCEmRq2eVIk+gubHlnMQljrP51q0mN4cjgy9vv5uZPkoA==",
+      "path": "nest/7.17.5",
+      "hashPath": "nest.7.17.5.nupkg.sha512"
     },
     "NETStandard.Library/1.6.1": {
       "type": "package",
@@ -4320,6 +4373,11 @@
       "sha512": ""
     },
     "NekoSpace.Data.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NekoSpace.ElasticSearch/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

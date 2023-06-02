@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "o/yIKTah3tPBAHcNjQjzJANqmuWYqbl+BOETVjSB2TpH2/waZI6e32zCt9NXRAEGnxL1WBknS70L2g5bj/CaBQ==",
+  "dgSpecHash": "LoBptxWtpXVruFIRXMdCFLUn0AzfoH4C1qnFBFU4eEYA+0BvsgNQ5ZBQt5oq1S+JaoJncDMDWPAyzpVc+vIL8Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\tools\\NekoSpace.Seed\\NekoSpace.Seed.csproj",
   "expectedPackageFiles": [
@@ -9,11 +9,12 @@
     "C:\\Users\\Niko\\.nuget\\packages\\arch.entityframeworkcore.analyzers\\2.1.15\\arch.entityframeworkcore.analyzers.2.1.15.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\arch.entityframeworkcore.design\\2.1.15\\arch.entityframeworkcore.design.2.1.15.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\arch.entityframeworkcore.relational\\2.1.15\\arch.entityframeworkcore.relational.2.1.15.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\jikandotnet\\2.5.0\\jikandotnet.2.5.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.2\\microsoft.aspnetcore.cryptography.internal.7.0.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.2\\microsoft.aspnetcore.cryptography.keyderivation.7.0.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.2\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.2.nupkg.sha512",
-    "C:\\Users\\Niko\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.2\\microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.2\\microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.2\\microsoft.entityframeworkcore.analyzers.7.0.2.nupkg.sha512",

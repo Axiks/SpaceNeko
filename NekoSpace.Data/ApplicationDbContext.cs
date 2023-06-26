@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NekoSpace.Data.Contracts.Entities.Anime;
+using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Data.Contracts.Entities.Character;
+using NekoSpace.Data.Contracts.Entities.General;
 using NekoSpace.Data.Contracts.Entities.Manga;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
@@ -39,6 +41,7 @@ namespace NekoSpace.Data
         public DbSet<UserFavoriteAnimeEntity> UserFavoriteAnime { get; set; }
         public DbSet<UserRatingAnimeEntity> UserRatingAnime { get; set; }
         public DbSet<UserAnimeViewingStatusEntity> UserAnimeViewingStatus { get; set; }
+        //public DbSet<AssociatedServiceEntity> AssociatedService { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -99,6 +102,18 @@ namespace NekoSpace.Data
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
                 .HasPrincipalKey(t => t.Id);
+
+            /*modelBuilder.
+                Entity<AnimeEntity>()
+                .HasMany(t => t.AnotherService)
+                .WithOne(t => t.Anime)
+                .HasForeignKey(t => t.AnimeId)
+                .HasPrincipalKey(t => t.Id);*/
+            modelBuilder.
+                Entity<AnimeEntity>()
+                .HasMany(a => a.AnotherService)
+                .WithOne()
+                .HasForeignKey(el => el.MediaEntityId);
 
             //      AnimeTitle       >>
 
@@ -212,15 +227,33 @@ namespace NekoSpace.Data
 
             //      Relation    //
 
-            modelBuilder
+            /*modelBuilder
                 .Entity<AnotherCharacterServiceEntity>()
                 .ToTable("Characters");
-
-            modelBuilder.
+*/
+            /*modelBuilder.
                 Entity<CharacterEntity>()
                 .HasOne(x => x.AnotherService)
                 .WithOne()
-                .HasForeignKey<AnotherCharacterServiceEntity>(x => x.Id);
+                .HasForeignKey<AnotherCharacterServiceEntity>(x => x.Id);*/
+            /*modelBuilder.
+                Entity<CharacterEntity>()
+                .HasMany(t => t.AnotherService)
+                .WithOne(t => t.Character)
+                .HasForeignKey(t => t.CharacterId)
+                .HasPrincipalKey(t => t.Id);*/
+
+            modelBuilder.
+                Entity<CharacterEntity>()
+                .HasMany(a => a.AnotherService)
+                .WithOne()
+                .HasForeignKey(el => el.MediaEntityId)
+                .HasPrincipalKey(t => t.Id);
+
+            modelBuilder.
+               Entity<AssociatedServiceEntity>()
+               .ToTable("AssociatedService")
+               .HasKey(k => k.Id);
 
             //      Premier     >>
 
@@ -286,7 +319,8 @@ namespace NekoSpace.Data
                 .HasPrincipalKey(t => t.Id);
 
             //      AnotherAnimeService     //
-            modelBuilder
+
+            /*modelBuilder
                 .Entity<AnotherAnimeServiceEntity>()
                 .ToTable("Animes");
 
@@ -294,7 +328,15 @@ namespace NekoSpace.Data
                 .Entity<AnimeEntity>()
                 .HasOne(x => x.AnotherService)
                 .WithOne()
-                .HasForeignKey<AnotherAnimeServiceEntity>(x => x.Id);
+                .HasForeignKey<AnotherAnimeServiceEntity>(x => x.Id);*/
+
+            //      New AnotherAnimeService     //
+            /*modelBuilder
+                .Entity<MediaEntity>()
+                .HasMany(e => e.AnotherService)
+                .WithOne(e => e.Media)
+                .HasForeignKey(e => e.MediaId);*/
+
 
             //      Manga       >>
 
@@ -429,15 +471,28 @@ namespace NekoSpace.Data
                 .HasForeignKey<PublishedEntity>(x => x.Id);
 
             //      AnotherMangaService     //
-            modelBuilder
+            /*modelBuilder
                 .Entity<AnotherMangaServiceEntity>()
-                .ToTable("Mangas");
+                .ToTable("Mangas");*/
 
-            modelBuilder
+            /*modelBuilder
                 .Entity<MangaEntity>()
                 .HasOne(x => x.AnotherService)
                 .WithOne()
-                .HasForeignKey<AnotherMangaServiceEntity>(x => x.Id);
+                .HasForeignKey<AnotherMangaServiceEntity>(x => x.Id);*/
+
+            /*modelBuilder.
+                Entity<MangaEntity>()
+                .HasMany(t => t.AnotherService)
+                .WithOne(t => t.Manga)
+                .HasForeignKey(t => t.MangaId)
+                .HasPrincipalKey(t => t.Id);*/
+
+            modelBuilder.
+                Entity<MangaEntity>()
+                .HasMany(a => a.AnotherService)
+                .WithOne()
+                .HasForeignKey(el => el.MediaEntityId);
 
             //      Character       >>
 

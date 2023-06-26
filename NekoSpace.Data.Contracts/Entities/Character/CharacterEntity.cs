@@ -13,6 +13,6 @@ namespace NekoSpaceList.Models.CharacterModels
         public ICollection<CharacterCoverEntity> Covers { get; set; }
         public ICollection<AnimeCharacterEntity> Animes { get; set; }
         public ICollection<MangaCharacterEntity> Mangas { get; set; }
-        public AnotherCharacterServiceEntity AnotherService { get; set; } // Воно містить посилання на зовнішні ресурси
+        //public ICollection<CharacterAssociatedService> AnotherService { get; set; }
     }
 }

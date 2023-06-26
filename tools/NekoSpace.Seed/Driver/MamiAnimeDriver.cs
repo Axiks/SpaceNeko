@@ -3,7 +3,9 @@ using ManamiAnimeOfflineRepository.Constans;
 using ManamiAnimeOfflineRepository.Constans.Costumes;
 using ManamiAnimeOfflineRepository.Models;
 using ManamiAnimeOfflineRepository.Models.Costumes;
+using NekoSpace.Common.Enums;
 using NekoSpace.Data.Contracts.Entities.Anime;
+using NekoSpace.Data.Contracts.Entities.General;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
@@ -18,8 +20,9 @@ namespace NekoSpace.Seed.Driver
     {
         private IEnumerable<RTO<AnimeEntity>> _manamiAnimes;
 
-        public string Name => "ManamiAnimeDriver";
+        //public string WorkWithServiceName => "ManamiAnimeDriver";
         public string WorkWithServiceName => "MyAnimeList";
+        public string AuthorName => "Yuno";
 
         public MamiAnimeDriver()
         {
@@ -34,9 +37,10 @@ namespace NekoSpace.Seed.Driver
 
         public RTO<AnimeEntity> GetById(string Id)
         {
-            long MALId = long.Parse(Id);
             // var anime = context.Animes.Include(x => x.Titles).Single(item => item.Id == animeTitleItem.MediaId);
-            RTO<AnimeEntity> animeObj = _manamiAnimes.SingleOrDefault(x => x.contain.AnotherService.MyAnimeList == MALId);
+            //RTO<AnimeEntity> animeObj = _manamiAnimes.SingleOrDefault(x => x.contain.AnotherService.Where(x => x.Name == "MyAnimeList"));
+            RTO <AnimeEntity> animeObj = _manamiAnimes
+                .SingleOrDefault(x => x.contain.AnotherService.SingleOrDefault(q => q.ServiceName == AssociatedService.MyAnimeListNet.ToString() && q.ServiceId.ToString() == Id) != null);
             return animeObj;
         }
 
@@ -191,7 +195,7 @@ namespace NekoSpace.Seed.Driver
             }
             anime.Type = animeType;
 
-            AnotherAnimeServiceEntity anotherAnimeServices = new AnotherAnimeServiceEntity();
+/*            AnotherAnimeServiceEntity anotherAnimeServices = new AnotherAnimeServiceEntity();
             foreach (SourceLink sourceLink in manamiAnime.sourceLinks)
             {
                 switch (sourceLink.resource)
@@ -221,8 +225,26 @@ namespace NekoSpace.Seed.Driver
                         anotherAnimeServices.MyAnimeList = Int32.Parse(sourceLink.Id);
                         break;
                 }
+            }*/
+
+            List<AssociatedServiceEntity> associatedServiceSEntity = new List<AssociatedServiceEntity>();
+            foreach (SourceLink sourceLink in manamiAnime.sourceLinks)
+            {
+                // Тут ми створюємо таблицю поєднання імені сервусц з ІД, щоб потім їх добавити у БД
+
+                //string name = sourceLink.resource.ToString();
+                Enum.TryParse(sourceLink.resource.ToString(), out AssociatedService associatedService);
+                string id = sourceLink.Id.ToString();
+
+                associatedServiceSEntity.Add(new AssociatedServiceEntity
+                {
+                    ServiceName = associatedService.ToString(),
+                    ServiceId = id
+                });
             }
-            anime.AnotherService = anotherAnimeServices;
+              
+
+                anime.AnotherService = associatedServiceSEntity;
 
             List<Media2MediaLink> anime2MediaLinks = new List<Media2MediaLink>();
 

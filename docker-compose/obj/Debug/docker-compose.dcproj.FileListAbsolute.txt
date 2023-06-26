@@ -56,5 +56,6 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\.fil
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Swashbuckle.AspNetCore.Annotations.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Nest.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Elasticsearch.Net.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.ElasticSearch.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.ElasticSearch.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\EntityFrameworkCore.Triggered.Abstractions.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.ElasticSearch.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.ElasticSearch.Contracts.pdb

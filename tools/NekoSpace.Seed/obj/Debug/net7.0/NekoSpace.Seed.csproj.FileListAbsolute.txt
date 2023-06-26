@@ -110,3 +110,5 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\tools\NekoSpace.Seed\obj\Debu
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\tools\NekoSpace.Seed\obj\Debug\net7.0\scopedcss\bundle\NekoSpace.Seed.styles.css
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\tools\NekoSpace.Seed\obj\Debug\net7.0\NekoSpace.Seed.csproj.CopyComplete
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\tools\NekoSpace.Seed\obj\Debug\net7.0\ref\NekoSpace.Seed.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\tools\NekoSpace.Seed\bin\Debug\net7.0\NekoSpace.Data.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\tools\NekoSpace.Seed\bin\Debug\net7.0\NekoSpace.Data.pdb

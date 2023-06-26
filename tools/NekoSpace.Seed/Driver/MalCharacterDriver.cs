@@ -1,4 +1,6 @@
-﻿using NekoSpace.Data.Contracts.Entities.Character;
+﻿using NekoSpace.Common.Enums;
+using NekoSpace.Data.Contracts.Entities.Character;
+using NekoSpace.Data.Contracts.Entities.General;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
@@ -21,6 +23,8 @@ namespace NekoSpace.Seed.Driver
             jikan = new JikanDN.Jikan();
         }
 
+        public string WorkWithServiceName => "MyAnimeList";
+
         public IEnumerable<RTO<CharacterEntity>> GetAllCharactersByAnimeMALId(long MALId)
         {
             var characters = new List<RTO<CharacterEntity>>();
@@ -41,9 +45,10 @@ namespace NekoSpace.Seed.Driver
             return characters;
         }
 
-        public RTO<CharacterEntity> GetById(long Id)
+        public RTO<CharacterEntity> GetById(string Id)
         {
-            return getMalCharacterById(Id);
+            long malId = Int32.Parse(Id);
+            return getMalCharacterById(malId);
         }
 
         private RTO<CharacterEntity> getMalCharacterById(long MalId)
@@ -54,10 +59,17 @@ namespace NekoSpace.Seed.Driver
             var spikeAsync = jikan.GetCharacterFullDataAsync(MalId).Result;
             var spike = spikeAsync.Data;
 
-            character.AnotherService = new AnotherCharacterServiceEntity
+            /*character.AnotherService = new AnotherCharacterServiceEntity
             {
                 MyAnimeList = (int)spike.MalId
+            };*/
+
+            var malLink = new AssociatedServiceEntity {
+                ServiceId = spike.MalId.ToString(),
+                ServiceName = AssociatedService.MyAnimeListNet.ToString(),
             };
+
+            character.AnotherService.Add(malLink);
 
             var nameEng = new CharacterNamesEntity
             {

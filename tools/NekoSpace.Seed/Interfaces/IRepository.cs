@@ -4,7 +4,7 @@ namespace NekoSpace.Seed.Interfaces
 {
     public interface IRepository<T> where T : MediaEntity
     {
-        public string Name { get; }
-        //public List<string> GetAvailableFields();
+        public string WorkWithServiceName { get; }
+        public string AuthorName { get; }
     }
 }

@@ -23,6 +23,16 @@ namespace NekoSpace.Core.Services.AnimeService
         }
         public async Task<List<GetAnimeResultDTO>> GetAnimeList(GetAnimeQueryParameters parameters)
         {
+          /*  _dbContext.Animes.Add(new AnimeEntity());
+
+            try
+            {
+                int c = _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }*/
 
             var animeListQuery = (parameters.q == string.Empty || parameters.q == null) ? TakeAllAnimeQuery() : FindAnimeQuery(parameters.q);
 

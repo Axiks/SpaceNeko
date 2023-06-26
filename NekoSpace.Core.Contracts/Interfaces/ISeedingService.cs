@@ -2,6 +2,6 @@
 {
     public interface ISeedingService
     {
-        public Task RunAsync();
+        public void RunAsync();
     }
 }

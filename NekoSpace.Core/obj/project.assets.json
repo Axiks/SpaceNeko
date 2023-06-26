@@ -76,6 +76,22 @@
           }
         }
       },
+      "AutoMapper/12.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Azure.Core/1.24.0": {
         "type": "package",
         "dependencies": {
@@ -135,6 +151,36 @@
         "runtime": {
           "lib/netstandard2.1/Elasticsearch.Net.dll": {
             "related": ".pdb;.xml"
+          }
+        }
+      },
+      "EntityFrameworkCore.Triggered/3.2.2": {
+        "type": "package",
+        "dependencies": {
+          "EntityFrameworkCore.Triggered.Abstractions": "3.2.2",
+          "Microsoft.EntityFrameworkCore": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/EntityFrameworkCore.Triggered.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/EntityFrameworkCore.Triggered.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "EntityFrameworkCore.Triggered.Abstractions/3.2.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/EntityFrameworkCore.Triggered.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/EntityFrameworkCore.Triggered.Abstractions.dll": {
+            "related": ".xml"
           }
         }
       },
@@ -4365,7 +4411,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "NekoSpace.Common": "1.0.0"
+          "NekoSpace.Common": "1.0.0",
+          "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.ElasticSearch": "1.0.0"
         },
         "compile": {
           "bin/placeholder/NekoSpace.Core.Contracts.dll": {}
@@ -4419,8 +4467,7 @@
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "NEST": "7.17.5",
-          "NekoSpace.API.Contracts": "1.0.0",
-          "NekoSpace.Data.Contracts": "1.0.0"
+          "NekoSpace.ElasticSearch.Contracts": "1.0.0"
         },
         "compile": {
           "bin/placeholder/NekoSpace.ElasticSearch.dll": {}
@@ -4429,18 +4476,33 @@
           "bin/placeholder/NekoSpace.ElasticSearch.dll": {}
         }
       },
+      "NekoSpace.ElasticSearch.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "NEST": "7.17.5",
+          "NekoSpace.Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NekoSpace.ElasticSearch.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NekoSpace.ElasticSearch.Contracts.dll": {}
+        }
+      },
       "NekoSpace.Seed/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Arch.EntityFrameworkCore.Design": "2.1.15",
+          "AutoMapper": "12.0.1",
           "JikanDotNet": "2.5.0",
           "Mami": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.2",
           "NekoSpace.Common": "1.0.0",
+          "NekoSpace.Data": "1.0.0",
           "NekoSpace.Data.Contracts": "1.0.0",
-          "Newtonsoft.Json": "13.0.2",
-          "PluginBase": "1.0.0"
+          "Newtonsoft.Json": "13.0.2"
         },
         "compile": {
           "bin/placeholder/NekoSpace.Seed.dll": {}
@@ -4451,16 +4513,6 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
-      },
-      "PluginBase/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "compile": {
-          "bin/placeholder/PluginBase.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/PluginBase.dll": {}
-        }
       }
     }
   },
@@ -4533,6 +4585,21 @@
         "lib/netstandard2.0/Arch.EntityFrameworkCore.Relational.xml"
       ]
     },
+    "AutoMapper/12.0.1": {
+      "sha512": "hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
+      "type": "package",
+      "path": "automapper/12.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.12.0.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/AutoMapper.dll",
+        "lib/netstandard2.1/AutoMapper.xml"
+      ]
+    },
     "Azure.Core/1.24.0": {
       "sha512": "+/qI1j2oU1S4/nvxb2k/wDsol00iGf1AyJX5g3epV7eOpQEP/2xcgh/cxgKMeFgn3U2fmgSiBnQZdkV+l5y0Uw==",
       "type": "package",
@@ -4591,6 +4658,32 @@
         "lib/netstandard2.1/Elasticsearch.Net.xml",
         "license.txt",
         "nuget-icon.png"
+      ]
+    },
+    "EntityFrameworkCore.Triggered/3.2.2": {
+      "sha512": "TtbhqPZSiGW74EXgmCL9qoaBAfDkZdTc89T2/OCZ13JbsTOhzKkUF1iqUWIuPCrIgwDhsiRD/pe+AZApfYJQPw==",
+      "type": "package",
+      "path": "entityframeworkcore.triggered/3.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "entityframeworkcore.triggered.3.2.2.nupkg.sha512",
+        "entityframeworkcore.triggered.nuspec",
+        "lib/net6.0/EntityFrameworkCore.Triggered.dll",
+        "lib/net6.0/EntityFrameworkCore.Triggered.xml"
+      ]
+    },
+    "EntityFrameworkCore.Triggered.Abstractions/3.2.2": {
+      "sha512": "gMBLJlBeW5X4prp6San9Qo8sSxvLd3KJUOfIQxmLtOpNWVmNdfVgDR75gYTqblejg/Ci8eDqy0bUucxUcYyukA==",
+      "type": "package",
+      "path": "entityframeworkcore.triggered.abstractions/3.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "entityframeworkcore.triggered.abstractions.3.2.2.nupkg.sha512",
+        "entityframeworkcore.triggered.abstractions.nuspec",
+        "lib/net6.0/EntityFrameworkCore.Triggered.Abstractions.dll",
+        "lib/net6.0/EntityFrameworkCore.Triggered.Abstractions.xml"
       ]
     },
     "HotChocolate.Abstractions/12.16.0": {
@@ -12613,20 +12706,21 @@
       "path": "../NekoSpace.ElasticSearch/NekoSpace.ElasticSearch.csproj",
       "msbuildProject": "../NekoSpace.ElasticSearch/NekoSpace.ElasticSearch.csproj"
     },
+    "NekoSpace.ElasticSearch.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../NekoSpace.ElasticSearch.Contracts/NekoSpace.ElasticSearch.Contracts.csproj",
+      "msbuildProject": "../NekoSpace.ElasticSearch.Contracts/NekoSpace.ElasticSearch.Contracts.csproj"
+    },
     "NekoSpace.Seed/1.0.0": {
       "type": "project",
       "path": "../tools/NekoSpace.Seed/NekoSpace.Seed.csproj",
       "msbuildProject": "../tools/NekoSpace.Seed/NekoSpace.Seed.csproj"
-    },
-    "PluginBase/1.0.0": {
-      "type": "project",
-      "path": "../PluginBase/PluginBase.csproj",
-      "msbuildProject": "../PluginBase/PluginBase.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "Arch.EntityFrameworkCore.Design >= 2.1.15",
+      "EntityFrameworkCore.Triggered >= 3.2.2",
       "Mapster.Core >= 1.2.0",
       "Mapster.DependencyInjection >= 1.0.0",
       "Mapster.EFCore >= 5.1.0",
@@ -12712,6 +12806,10 @@
           "Arch.EntityFrameworkCore.Design": {
             "target": "Package",
             "version": "[2.1.15, )"
+          },
+          "EntityFrameworkCore.Triggered": {
+            "target": "Package",
+            "version": "[3.2.2, )"
           },
           "Mapster.Core": {
             "target": "Package",

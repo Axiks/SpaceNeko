@@ -8,7 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json.Serialization;
-using NekoSpace.ElasticSearch;
+using NekoSpace.Seed.Interfaces;
+using NekoSpace.Seed;
+using NekoSpace.API.Helpers;
+using NekoSpace.Core.Services.DatabaseService;
 
 namespace NekoSpace.API.Startup.Setup
 {
@@ -45,7 +48,18 @@ namespace NekoSpace.API.Startup.Setup
 
             services.RegisterCors();
 
-            services.AddElasticsearch(configurationManager);
+            //services.AddElasticsearch(configurationManager);
+
+            //services.AddScoped<ISeedAnsibleService, SeedAnsibleService>();
+            //services.AddScoped<ISeedingService, SeedingService>();
+
+            /*services.AddTransient<ISeedingService, SeedingService>((ctx) =>
+            {
+                ApplicationDbContext svc = ctx.GetService<ApplicationDbContext>();
+                //IOtherService svc = ctx.GetRequiredService<IOtherService>();
+                return new SeedingService(svc);
+            });*/
+
 
             return services;
         }

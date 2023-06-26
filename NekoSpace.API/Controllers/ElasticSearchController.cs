@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿/*using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NekoSpace.API.Contracts.Models.Anime;
-using NekoSpace.ElasticSearch;
+using NekoSpace.ElasticSearch.OLD;
 using NekoSpaceList.Models.Anime;
 using Nest;
 
@@ -12,12 +12,12 @@ namespace NekoSpace.API.Controllers
     public class ElasticSearchController : ControllerBase
     {
         private readonly IElasticClient _elasticClient;
-        private readonly ESAnimeService _esAnimeController;
+        private readonly OLDESAnimeService _esAnimeController;
 
         public ElasticSearchController(IElasticClient elasticSearchExtensions)
         {
             _elasticClient = elasticSearchExtensions;
-            _esAnimeController = new ESAnimeService(elasticSearchExtensions);
+            _esAnimeController = new OLDESAnimeService(elasticSearchExtensions);
         }
 
         [HttpPost("test")]
@@ -51,3 +51,4 @@ namespace NekoSpace.API.Controllers
         }
     }
 }
+*/

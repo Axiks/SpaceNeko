@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NekoSpace.API.Contracts.Abstract.General;
 using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
-using NekoSpace.API.Contracts.Models.SearchService;
 using NekoSpace.Core.Services.AnimeService;
 using NekoSpace.Data;
 using Swashbuckle.AspNetCore.Annotations;

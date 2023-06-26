@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
+using NekoSpace.API.Helpers;
 using NekoSpace.API.Startup;
 using NekoSpace.API.Startup.Setup;
+using NekoSpace.Core.Services.DatabaseService;
+using NekoSpace.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,5 +40,13 @@ if (app.Environment.IsDevelopment())
 app.MapControllers();
 
 app.ConfigureSeed();
+
+/*var serviceScopeFactory = app.Services.GetService<IServiceScopeFactory>();
+using (var scope = serviceScopeFactory.CreateScope())
+{
+    var services = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>;
+    builder.Services.AddScoped<ISeedingService, SeedingService>();
+}*/
+
 
 app.Run();

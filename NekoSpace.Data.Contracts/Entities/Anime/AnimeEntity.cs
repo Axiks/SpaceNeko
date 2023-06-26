@@ -1,6 +1,7 @@
 ﻿using NekoSpace.Common.Enums;
 using NekoSpace.Data.Contracts.Entities.Anime;
 using NekoSpace.Data.Contracts.Entities.Base;
+using NekoSpace.Data.Contracts.Entities.General;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
 using System.ComponentModel.DataAnnotations;
@@ -24,7 +25,8 @@ namespace NekoSpaceList.Models.Anime
         public AiredEntity? Aired { get; set; }
         public ICollection<AnimePosterEntity>? Posters { get; set; }
         public ICollection<AnimeCoverEntity>? Covers { get; set; }
-        public AnotherAnimeServiceEntity AnotherService { get; set; }
+        //public AnotherAnimeServiceEntity AnotherService { get; set; }
+        //public ICollection<AnimeAssociatedServiceEntity> AnotherService { get; set; }
         public ICollection<UserFavoriteAnimeEntity> FavoriteInUsers { get; set; }
         public ICollection<UserRatingAnimeEntity> RatingInUsers { get; set; }
         public ICollection<UserAnimeViewingStatusEntity> ViewingStatusInUsers { get; set; }

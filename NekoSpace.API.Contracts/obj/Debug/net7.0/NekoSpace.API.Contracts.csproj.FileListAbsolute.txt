@@ -48,3 +48,9 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API.Contracts\obj\D
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API.Contracts\obj\Debug\net7.0\refint\NekoSpace.API.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API.Contracts\obj\Debug\net7.0\NekoSpace.API.Contracts.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API.Contracts\obj\Debug\net7.0\ref\NekoSpace.API.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API.Contracts\bin\Debug\net7.0\NekoSpace.Data.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API.Contracts\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API.Contracts\bin\Debug\net7.0\NekoSpace.ElasticSearch.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API.Contracts\bin\Debug\net7.0\NekoSpace.Data.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API.Contracts\bin\Debug\net7.0\NekoSpace.ElasticSearch.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API.Contracts\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.pdb

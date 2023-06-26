@@ -13,8 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NekoSpace.API.Contracts\NekoSpace.API.Contracts.csproj" />
-    <ProjectReference Include="..\NekoSpace.Data.Contracts\NekoSpace.Data.Contracts.csproj" />
+    <ProjectReference Include="..\NekoSpace.ElasticSearch.Contracts\NekoSpace.ElasticSearch.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

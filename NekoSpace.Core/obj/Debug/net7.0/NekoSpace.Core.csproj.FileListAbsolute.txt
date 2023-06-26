@@ -381,5 +381,5 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\obj\Debug\net7
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\obj\Debug\net7.0\ref\NekoSpace.Core.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.ElasticSearch.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.ElasticSearch.pdb
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\PluginBase.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\PluginBase.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.pdb

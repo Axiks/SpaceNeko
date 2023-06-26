@@ -1,6 +1,7 @@
 ﻿//using JikanDotNet;
 using NekoSpace.Common.Enums;
 using NekoSpace.Data.Contracts.Entities.Anime;
+using NekoSpace.Data.Contracts.Entities.General;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
@@ -11,11 +12,18 @@ using JikanDN = JikanDotNet;
 
 namespace NekoSpace.Seed.Driver
 {
-    public class MalAnimeDriver : ISelectMediaById<AnimeEntity>
+    public class MalAnimeDriver : ISelectMediaById<AnimeEntity>, IRepository<AnimeEntity>
     {
-        public RTO<AnimeEntity> GetById(long Id)
+        //public string WorkWithServiceName => "MyAnimeList";
+
+        public string WorkWithServiceName => "MyAnimeList";
+
+        public string AuthorName => "Yuno";
+
+        public RTO<AnimeEntity> GetById(string Id)
         {
-            return getMalAnimeById(Id);
+            long MALId = Int32.Parse(Id);
+            return getMalAnimeById(MALId);
         }
 
         private RTO<AnimeEntity> getMalAnimeById(long MalId)
@@ -240,10 +248,11 @@ namespace NekoSpace.Seed.Driver
                 animePoster
             };
 
-            anime.AnotherService = new AnotherAnimeServiceEntity
+            anime.AnotherService.Add(new AssociatedServiceEntity
             {
-                MyAnimeList = (int)cowboyBebop.Data.MalId
-            };
+                ServiceName = AssociatedService.MyAnimeListNet.ToString(),
+                ServiceId = cowboyBebop.Data.MalId.ToString()
+            });
 
             AiredEntity aired = new AiredEntity()
             {

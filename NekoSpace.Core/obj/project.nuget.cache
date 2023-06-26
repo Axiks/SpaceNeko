@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jfGdRELwQhRi4xt5wRPGnTNi0SbXwfuECdVdF9fdB54X6cLIDiCdtTLYZzsi3h70DFUxiq8M7lWZsxTMdjijWA==",
+  "dgSpecHash": "i7Bqrb8JPuv9Yw8VNptjeeAqgP5BlcBLhAwV69sK8mpE0MC4n/gFY4iflibjdfCczeH6vmvYHObnrgjLeK7h6g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Core\\NekoSpace.Core.csproj",
   "expectedPackageFiles": [
@@ -9,9 +9,12 @@
     "C:\\Users\\Niko\\.nuget\\packages\\arch.entityframeworkcore.analyzers\\2.1.15\\arch.entityframeworkcore.analyzers.2.1.15.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\arch.entityframeworkcore.design\\2.1.15\\arch.entityframeworkcore.design.2.1.15.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\arch.entityframeworkcore.relational\\2.1.15\\arch.entityframeworkcore.relational.2.1.15.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\elasticsearch.net\\7.17.5\\elasticsearch.net.7.17.5.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\entityframeworkcore.triggered\\3.2.2\\entityframeworkcore.triggered.3.2.2.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\entityframeworkcore.triggered.abstractions\\3.2.2\\entityframeworkcore.triggered.abstractions.3.2.2.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.abstractions\\12.16.0\\hotchocolate.abstractions.12.16.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.language\\12.16.0\\hotchocolate.language.12.16.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\hotchocolate.language.syntaxtree\\12.16.0\\hotchocolate.language.syntaxtree.12.16.0.nupkg.sha512",

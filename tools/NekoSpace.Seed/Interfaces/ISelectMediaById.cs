@@ -5,7 +5,7 @@ namespace NekoSpace.Seed.Interfaces
 {
     public interface ISelectMediaById<T> where T : MediaEntity
     {
-        public string WorkWithServiceName { get; }
+       // public string WorkWithServiceName { get; }
         public RTO<T> GetById(string Id);
     }
 }

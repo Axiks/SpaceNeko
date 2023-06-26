@@ -1,50 +1,54 @@
-﻿using Arch.EntityFrameworkCore;
-using JikanDotNet;
-using NekoSpace.Data.Contracts.Entities.Base;
-using NekoSpace.Seed.Driver;
+﻿using NekoSpace.Seed.Driver;
 using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
 using NekoSpace.Seed.Models.DriverConfig;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.CharacterModels;
 using NekoSpaceList.Models.Manga;
-using System.Reflection;
-using System.Windows.Input;
-using AutoMapper;
+using NekoSpace.Data;
+using Microsoft.EntityFrameworkCore;
+using Arch.EntityFrameworkCore;
 
 namespace NekoSpace.Seed
 {
-    public class SeedAnsibleService
+    public class SeedAnsibleService : ISeedAnsibleService
     {
-        private List<ISelectMediaAll<AnimeEntity>> animeRepositoryList;
-        private List<ISelectMediaAll<MangaEntity>> mangaRepositoryList;
-        private List<ISelectMediaAll<CharacterEntity>> characterRepositoryList;
+        private AbstractMediaRepositoryDriver<AnimeEntity> _animeRepositoryDriver;
+        private AbstractMediaRepositoryDriver<MangaEntity> _mangaRepositoryDriver;
+        private AbstractMediaRepositoryDriver<CharacterEntity> _characterRepositoryDriver;
+        private ApplicationDbContext _dbcontext;
 
-        public void ReristerAnimeRepository(ISelectMediaAll<AnimeEntity> animeEntity) => animeRepositoryList.Add(animeEntity);
+        // IMyScopedService is injected into Invoke
+        public SeedAnsibleService(ApplicationDbContext dbcontext)
+        {
+            _dbcontext = dbcontext;
+            IRepository<AnimeEntity> mamiRepository = new MamiAnimeDriver();
+            IDictionary<string, int> map = new Dictionary<string, int>();
+
+            RepositoryConfiguration mamiRepositoryConfiguration = new RepositoryConfiguration(mamiRepository.WorkWithServiceName, true, map);
+
+            RepositoryPackage<AnimeEntity> repositoryPackage = new RepositoryPackage<AnimeEntity>{ repository = mamiRepository, repositoryConfiguration = mamiRepositoryConfiguration};
+
+            //DbSet<AnimeEntity> animeModelContext = _dbcontext.Animes;
+            List<RepositoryPackage<AnimeEntity>> animeRepositoryPackages = new List<RepositoryPackage<AnimeEntity>> { repositoryPackage };
+
+            _animeRepositoryDriver = new AbstractMediaRepositoryDriver<AnimeEntity>(_dbcontext, animeRepositoryPackages);
+        }
+
+        public void RunSeed()
+        {
+            var tablecontext = _animeRepositoryDriver.RunSeed();
+            _dbcontext.SaveChanges();
+        }
+
+        /*public void ReristerAnimeRepository(ISelectMediaAll<AnimeEntity> animeEntity) => animeRepositoryList.Add(animeEntity);
         public void ReristerMangaRepository(ISelectMediaAll<MangaEntity> mangaEntity) => mangaRepositoryList.Add(mangaEntity);
-        public void ReristerCharacterRepository(ISelectMediaAll<CharacterEntity> characterEntity) => characterRepositoryList.Add(characterEntity);
-        public void AnimeDriver()
-        {
-            // Обираємо той що має бути init (перший у списку)
-            var initRepo = animeRepositoryList.First();
+        public void ReristerCharacterRepository(ISelectMediaAll<CharacterEntity> characterEntity) => characterRepositoryList.Add(characterEntity);*/
 
-            // Сідуємо з нього усі поля у БД
-
-
-            // Далі переходимо до наступного модулю, і відповідно до пріоритетів, сідувати дані (поки не пройдемо по усіх модулях)
-        }
-        public void MangaDriver()
-        {
-
-        }
-        public void CharacterDriver()
-        {
-
-        }
 
     }
 
-    public class AnimeSeedDriver : IMediaRepositoryDriver<AnimeEntity>
+ /*   public class AnimeSeedDriver : IMediaRepositoryDriver<AnimeEntity>
     {
         private DbSet<AnimeEntity> _tableContext;
         private InterconnectionMediaLink _interconnectionMediaLink;
@@ -116,8 +120,13 @@ namespace NekoSpace.Seed
                 //Тут ми вносимо зв'язок між ID бази даних, і ID з інштх сервісів
                 var animeLinks = animeItem.AnotherService;
 
-                foreach (InterconnectionLink link in ConverAnimeLinkModelToList(animeLinks))
+                foreach (var serviceLink in animeLinks)
                 {
+                    InterconnectionLink link = new InterconnectionLink
+                    {
+                        ServiceName = serviceLink.ServiceName,
+                        Id = serviceLink.ServiceId
+                    };
                     _interconnectionMediaLink.AddLink(animeItem.Id, link);
                 }
 
@@ -139,7 +148,7 @@ namespace NekoSpace.Seed
 
         private void UpdateStorage()
         {
-            /*foreach(var repoPack in _repositoriesPackage)
+            *//*foreach(var repoPack in _repositoriesPackage)
             {
                 var repoFields = repoPack.repositoryConfiguration.PriorityFields;
 
@@ -152,7 +161,7 @@ namespace NekoSpace.Seed
                         //var DbId = _interconnectionMediaLink.GetDBIdByLink()
                     }
                 }
-            }*/
+            }*//*
 
             // Знаходимо плагін з необхідним інтерфейсом
             var avaibleRepoPackage = _repositoriesPackage.Where(x => x.repository.GetType().GetInterfaces().Contains(typeof(ISelectMediaById<AnimeEntity>)));
@@ -184,7 +193,7 @@ namespace NekoSpace.Seed
                             //_tableContext.Update()
                             //var repoMedia = repo.GetById(repoId);
 
-                            // Маюудь використати мапинг
+                            // Мабудь використати мапинг
                         }
                     }
                 }
@@ -194,14 +203,23 @@ namespace NekoSpace.Seed
 
         private void LoadInterconnectionMediaLinks()
         {
+            // Завантажує лінки з БД
             var animesEntity = _tableContext.Select(x => new { x.Id, x.AnotherService }).ToList();
 
             foreach (var anime in animesEntity)
             {
-                var links = ConverAnimeLinkModelToList(anime.AnotherService);
+                var links = anime.AnotherService;
+
                 foreach (var link in links)
                 {
-                    _interconnectionMediaLink.AddLink(anime.Id, link);
+                    var linkName = link.ServiceName;
+                    var linkId = link.ServiceId;
+                    InterconnectionLink interconnectionLink = new InterconnectionLink { 
+                        Id = linkId,
+                        ServiceName = linkName,
+                    };
+
+                    _interconnectionMediaLink.AddLink(anime.Id, interconnectionLink);
                 }
             }
         }
@@ -348,7 +366,7 @@ namespace NekoSpace.Seed
     {
         public required string ServiceName { get; set; }
         public required string Id { get; set; }
-    }
+    }*/
 
     // Helpers
 

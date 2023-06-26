@@ -4,9 +4,9 @@ using NekoSpace.Seed.Models.DriverConfig;
 
 namespace NekoSpace.Seed.Models
 {
-    public abstract class RepositoryPackage<T> where T : MediaEntity
+    public class RepositoryPackage<T> where T : MediaEntity
     {
-        public IRepository<T> repository { get; set; }
-        public RepositoryConfiguration repositoryConfiguration { get; set; }
+        public required IRepository<T> repository { get; set; }
+        public required RepositoryConfiguration repositoryConfiguration { get; set; }
     }
 }

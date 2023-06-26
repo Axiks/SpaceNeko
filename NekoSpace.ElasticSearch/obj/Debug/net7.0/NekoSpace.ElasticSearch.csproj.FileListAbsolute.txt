@@ -11,14 +11,7 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\obj\D
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\obj\Debug\net7.0\NekoSpace.ElasticSearch.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\obj\Debug\net7.0\ref\NekoSpace.ElasticSearch.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.Common.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.Data.Contracts.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.Data.Contracts.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.Common.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\obj\Debug\net7.0\NekoSpace.ElasticSearch.csproj.CopyComplete
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\Temp\ManamiRepository\database.json
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\Temp\ManamiRepository\databassmalle.json
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\Temp\ManamiRepository\setting.json
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.API.Contracts.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.Core.Contracts.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.API.Contracts.pdb
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.Core.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.pdb

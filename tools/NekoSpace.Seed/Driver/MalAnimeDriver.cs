@@ -248,7 +248,7 @@ namespace NekoSpace.Seed.Driver
                 animePoster
             };
 
-            anime.AnotherService.Add(new AssociatedServiceEntity
+            anime.AssociatedService.Add(new AssociatedServiceEntity
             {
                 ServiceName = AssociatedService.MyAnimeListNet.ToString(),
                 ServiceId = cowboyBebop.Data.MalId.ToString()

@@ -40,7 +40,7 @@ namespace NekoSpace.Seed.Driver
             // var anime = context.Animes.Include(x => x.Titles).Single(item => item.Id == animeTitleItem.MediaId);
             //RTO<AnimeEntity> animeObj = _manamiAnimes.SingleOrDefault(x => x.contain.AnotherService.Where(x => x.Name == "MyAnimeList"));
             RTO <AnimeEntity> animeObj = _manamiAnimes
-                .SingleOrDefault(x => x.contain.AnotherService.SingleOrDefault(q => q.ServiceName == AssociatedService.MyAnimeListNet.ToString() && q.ServiceId.ToString() == Id) != null);
+                .SingleOrDefault(x => x.contain.AssociatedService.SingleOrDefault(q => q.ServiceName == AssociatedService.MyAnimeListNet.ToString() && q.ServiceId.ToString() == Id) != null);
             return animeObj;
         }
 
@@ -244,7 +244,7 @@ namespace NekoSpace.Seed.Driver
             }
               
 
-                anime.AnotherService = associatedServiceSEntity;
+                anime.AssociatedService = associatedServiceSEntity;
 
             List<Media2MediaLink> anime2MediaLinks = new List<Media2MediaLink>();
 

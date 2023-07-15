@@ -18,7 +18,7 @@ namespace NekoSpace.Seed
             _dbContext = dbContext;
             //_tableContext = tableContext;
             _tableContext = _dbContext.Set<T>();
-            _interconnectionMediaLink = new InterconnectionMediaLink(new Dictionary<Guid, List<InterconnectionLink>>());
+                _interconnectionMediaLink = new InterconnectionMediaLink(new Dictionary<Guid, List<InterconnectionLink>>());
             _repositoriesPackage = repositoriesPackage;
         }
 
@@ -67,21 +67,22 @@ namespace NekoSpace.Seed
 
         private void SeedAllItem(ISelectMediaAll<T> repository)
         {
-            var RTORepoData = repository.GetAll();
+            var RTORepoData = repository.GetAll().Skip(10000).Take(5000);
 
-            var data = RTORepoData.First().contain;
-            _tableContext.Add(data);
+            /*var data = RTORepoData.First().contain;
+            _tableContext.Add(data);*/
 
-            /*foreach (var item in RTORepoData)
+            foreach (var item in RTORepoData)
             {
                 T mediaItem = item.contain; //Ось це можемо впихувати в базу даних
 
                 //Тут ми вносимо зв'язок між ID бази даних, і ID з інших сервісів
-                var mediaAssociatedServices =  mediaItem.AnotherService;
+                var mediaAssociatedServices = mediaItem.AssociatedService;
 
                 foreach (var serviceLink in mediaAssociatedServices)
                 {
-                    InterconnectionLink link = new InterconnectionLink { 
+                    InterconnectionLink link = new InterconnectionLink
+                    {
                         ServiceName = serviceLink.ServiceName.ToString(),
                         Id = serviceLink.ServiceId
                     };
@@ -89,7 +90,7 @@ namespace NekoSpace.Seed
                 }
 
                 _tableContext.Add(mediaItem);//??
-            }*/
+            }
             var x = _tableContext;
 
             var b = _tableContext.Select(x => x.Id).Count();

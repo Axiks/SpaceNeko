@@ -1,13 +1,17 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using NekoSpace.Data.Contracts.Entities.Anime;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Data.Contracts.Entities.Character;
 using NekoSpace.Data.Contracts.Entities.General;
 using NekoSpace.Data.Contracts.Entities.Manga;
 using NekoSpace.Data.Contracts.Enums;
+using NekoSpace.Data.Events;
 using NekoSpace.Data.Models.User;
+using NekoSpace.ElasticSearch;
+using NekoSpace.ElasticSearch.Contracts.Interfaces;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.CharacterModels;
 using NekoSpaceList.Models.General;
@@ -43,12 +47,42 @@ namespace NekoSpace.Data
         public DbSet<UserAnimeViewingStatusEntity> UserAnimeViewingStatus { get; set; }
         //public DbSet<AssociatedServiceEntity> AssociatedService { get; set; }
 
+        #region ContextConstructor
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
         {
             // Database.EnsureDeleted();
             // Database.EnsureCreated();
+            //ChangeTracker.Tracked += UpdateTimestamps;
         }
+        #endregion
+
+        #region UpdateTimestamps
+        private static void UpdateTimestamps(object sender, EntityEntryEventArgs e)
+        {
+            if (e.Entry.Entity is AnimeEntity entityWithTimestamps)
+            {
+                switch (e.Entry.State)
+                {
+                    case EntityState.Deleted:
+                        //entityWithTimestamps.Deleted = DateTime.UtcNow;
+                        Console.WriteLine($"Stamped for delete: {e.Entry.Entity}");
+                        break;
+                    case EntityState.Modified:
+                        //entityWithTimestamps.Modified = DateTime.UtcNow;
+                        Console.WriteLine($"Stamped for update: {e.Entry.Entity}");
+                        break;
+                    case EntityState.Added:
+                        //entityWithTimestamps.Added = DateTime.UtcNow;
+                        Console.WriteLine($"Stamped for insert: {e.Entry.Entity}");
+                        var animeObject = e.Entry.Entity;
+                        break;
+                }
+            }
+        }
+        #endregion
+        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // For identity user
@@ -109,11 +143,17 @@ namespace NekoSpace.Data
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
                 .HasPrincipalKey(t => t.Id);*/
-            modelBuilder.
+            /*modelBuilder.
                 Entity<AnimeEntity>()
                 .HasMany(a => a.AnotherService)
                 .WithOne()
-                .HasForeignKey(el => el.MediaEntityId);
+                .HasForeignKey(el => el.MediaEntityId);*/
+/*            modelBuilder.
+                Entity<AnimeEntity>()
+                .HasMany(a => a.AssociatedService)
+                .WithOne(a=> a.AnimeEntity)
+                .HasForeignKey(a => a.AnimeId)
+                .HasPrincipalKey(a => a.Id);*/
 
             //      AnimeTitle       >>
 
@@ -243,12 +283,13 @@ namespace NekoSpace.Data
                 .HasForeignKey(t => t.CharacterId)
                 .HasPrincipalKey(t => t.Id);*/
 
-            modelBuilder.
+            /*modelBuilder.
                 Entity<CharacterEntity>()
                 .HasMany(a => a.AnotherService)
                 .WithOne()
                 .HasForeignKey(el => el.MediaEntityId)
-                .HasPrincipalKey(t => t.Id);
+                .HasPrincipalKey(t => t.Id);*/
+
 
             modelBuilder.
                Entity<AssociatedServiceEntity>()
@@ -488,11 +529,18 @@ namespace NekoSpace.Data
                 .HasForeignKey(t => t.MangaId)
                 .HasPrincipalKey(t => t.Id);*/
 
-            modelBuilder.
+            /*modelBuilder.
                 Entity<MangaEntity>()
                 .HasMany(a => a.AnotherService)
                 .WithOne()
-                .HasForeignKey(el => el.MediaEntityId);
+                .HasForeignKey(el => el.MediaEntityId);*/
+
+            modelBuilder.
+                Entity<MediaEntity>()
+                .HasMany(a => a.AssociatedService)
+                .WithOne(a => a.Media)
+                .HasForeignKey(a => a.MediaId)
+                .HasPrincipalKey(a => a.Id);
 
             //      Character       >>
 
@@ -563,6 +611,13 @@ namespace NekoSpace.Data
                 .WithOne(t => t.Character)
                 .HasForeignKey(t => t.CharacterId)
                 .HasPrincipalKey(t => t.Id);
+
+/*            modelBuilder.
+                Entity<CharacterEntity>()
+                .HasMany(a => a.AssociatedService)
+                .WithOne(a => a.CharacterEntity)
+                .HasForeignKey(a => a.CharacterId)
+                .HasPrincipalKey(a => a.Id);*/
 
             // UserEntity
 

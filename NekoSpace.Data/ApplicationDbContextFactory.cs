@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using NekoSpace.ElasticSearch.Contracts.Interfaces;
+using NekoSpace.ElasticSearch;
 
 namespace NekoSpace.Data
 {

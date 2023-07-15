@@ -10,7 +10,7 @@ namespace NekoSpace.ElasticSearch
 {
     public class ElasticSearchAnimeRepository : AbstractElasticSearchRepository<ElasticSearchAnimeModel>
     {
-        private static readonly string indexName = "AnimeIndex";
+        private static readonly string indexName = "animeindex";
 
         public ElasticSearchAnimeRepository(IConfiguration configuration) : base(indexName, configuration)
         {

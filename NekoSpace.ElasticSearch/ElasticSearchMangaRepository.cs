@@ -5,7 +5,7 @@ namespace NekoSpace.ElasticSearch
 {
     public class ElasticSearchMangaRepository : AbstractElasticSearchRepository<ElasticSearchMangaModel>
     {
-        private static readonly string indexName = "MangaIndex";
+        private static readonly string indexName = "mangaindex";
 
         public ElasticSearchMangaRepository(IConfiguration configuration) : base(indexName, configuration)
         {

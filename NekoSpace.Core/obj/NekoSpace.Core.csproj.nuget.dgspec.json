@@ -455,6 +455,12 @@
             "projectReferences": {
               "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
                 "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj"
+              },
+              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj": {
+                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj"
+              },
+              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj": {
+                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj"
               }
             }
           }

@@ -13,6 +13,5 @@ namespace NekoSpaceList.Models.CharacterModels
         public ICollection<CharacterCoverEntity> Covers { get; set; }
         public ICollection<AnimeCharacterEntity> Animes { get; set; }
         public ICollection<MangaCharacterEntity> Mangas { get; set; }
-        //public ICollection<CharacterAssociatedService> AnotherService { get; set; }
     }
 }

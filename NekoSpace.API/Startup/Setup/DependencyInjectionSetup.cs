@@ -12,6 +12,8 @@ using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed;
 using NekoSpace.API.Helpers;
 using NekoSpace.Core.Services.DatabaseService;
+using NekoSpace.ElasticSearch.Contracts.Interfaces;
+using NekoSpace.ElasticSearch;
 
 namespace NekoSpace.API.Startup.Setup
 {
@@ -47,6 +49,8 @@ namespace NekoSpace.API.Startup.Setup
             services.RegisterOAuth(configurationManager);
 
             services.RegisterCors();
+
+            services.AddTransient<IElasticSearchRepository<ElasticSearchAnimeModel>, ElasticSearchAnimeRepository>();
 
             //services.AddElasticsearch(configurationManager);
 

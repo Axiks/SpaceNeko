@@ -5,6 +5,9 @@ using NekoSpace.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NekoSpace.Core.Triggers;
+using EntityFrameworkCore.Triggered;
+using NekoSpace.Data.Contracts.Entities.Base;
+using NekoSpaceList.Models.Anime;
 
 namespace NekoSpace.API.Startup.Setup
 {
@@ -13,7 +16,8 @@ namespace NekoSpace.API.Startup.Setup
         public static IServiceCollection RegisterDatabase(this IServiceCollection services)
         {
             services.AddPooledDbContextFactory<ApplicationDbContext>(
-            options => {
+            options =>
+            {
                 options.UseNpgsql("Server=postgres_db;Database=anilist_db;Username=neko;Password=mya", b => b.MigrationsAssembly("NekoSpace.Data"))
                 .EnableDetailedErrors()
                 .EnableSensitiveDataLogging()
@@ -22,12 +26,10 @@ namespace NekoSpace.API.Startup.Setup
                     new[] { DbLoggerCategory.Database.Command.Name },
                     LogLevel.Information
                 );
-                /*options.UseTriggers(triggerOptions => {
-                    triggerOptions.AddTrigger<AddMediaTrigger>();
-                });*/
+                //options.UseTriggers();
             }
-                
             );
+            //.AddSingleton<IAfterSaveTrigger<AnimeEntity>, AddMediaAnimeTrigger>();
 
             services.AddIdentity<UserEntity, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 

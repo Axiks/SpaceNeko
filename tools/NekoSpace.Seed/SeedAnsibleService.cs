@@ -38,7 +38,7 @@ namespace NekoSpace.Seed
         public void RunSeed()
         {
             var tablecontext = _animeRepositoryDriver.RunSeed();
-            _dbcontext.SaveChanges();
+            //_dbcontext.SaveChanges();
         }
 
         /*public void ReristerAnimeRepository(ISelectMediaAll<AnimeEntity> animeEntity) => animeRepositoryList.Add(animeEntity);

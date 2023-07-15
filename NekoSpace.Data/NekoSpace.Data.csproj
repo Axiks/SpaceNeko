@@ -28,6 +28,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NekoSpace.Data.Contracts\NekoSpace.Data.Contracts.csproj" />
+    <ProjectReference Include="..\NekoSpace.ElasticSearch.Contracts\NekoSpace.ElasticSearch.Contracts.csproj" />
+    <ProjectReference Include="..\NekoSpace.ElasticSearch\NekoSpace.ElasticSearch.csproj" />
   </ItemGroup>
 
   <ItemGroup>

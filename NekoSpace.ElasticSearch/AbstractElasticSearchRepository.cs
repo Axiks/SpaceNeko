@@ -62,6 +62,9 @@ namespace NekoSpace.ElasticSearch
               .Doc(mediaModel));
         }
 
+
+
+
         private ElasticClient InitClient(string url, string indexName)
         {
             var settings = new ConnectionSettings(new Uri(url)) //OAuth

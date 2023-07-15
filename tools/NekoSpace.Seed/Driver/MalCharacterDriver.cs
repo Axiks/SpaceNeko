@@ -69,7 +69,7 @@ namespace NekoSpace.Seed.Driver
                 ServiceName = AssociatedService.MyAnimeListNet.ToString(),
             };
 
-            character.AnotherService.Add(malLink);
+            character.AssociatedService.Add(malLink);
 
             var nameEng = new CharacterNamesEntity
             {

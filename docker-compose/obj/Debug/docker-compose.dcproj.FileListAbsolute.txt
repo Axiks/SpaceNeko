@@ -59,3 +59,6 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Elas
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\EntityFrameworkCore.Triggered.Abstractions.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.ElasticSearch.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.ElasticSearch.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\AutoMapper.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.ElasticSearch.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.ElasticSearch.pdb

@@ -2,6 +2,7 @@
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Data.Contracts.Entities.Manga;
 using NekoSpace.Data.Contracts.Enums;
+using NekoSpaceList.Models.Anime;
 using System.ComponentModel.DataAnnotations;
 
 namespace NekoSpaceList.Models.Manga
@@ -23,6 +24,5 @@ namespace NekoSpaceList.Models.Manga
         public MangaType Type { get; set; }
         [Required]
         public int Volumes { get; set; }
-        //public ICollection<MangaAssociatedServiceEntity> AnotherService { get; set; }
     }
 }

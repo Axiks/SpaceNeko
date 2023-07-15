@@ -13,7 +13,7 @@ namespace NekoSpace.Common.Enums
         AnilistCo,
         LivechartMe,
         AniSearchCom,
-        AnimePlanetCom, 
+        AnimeplanetCom, 
         NotifyMoe,
         KitsuIo
     }

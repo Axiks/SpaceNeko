@@ -9,6 +9,7 @@
       "NekoSpace.API/1.0.0": {
         "dependencies": {
           "Arch.EntityFrameworkCore.Design": "2.1.15",
+          "AutoMapper": "12.0.1",
           "GraphQL.Server.Ui.Voyager": "7.2.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.2",
           "NEST": "7.17.5",
@@ -2793,6 +2794,8 @@
           "Microsoft.EntityFrameworkCore.Abstractions": "7.0.2",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.2",
           "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.ElasticSearch": "1.0.0",
+          "NekoSpace.ElasticSearch.Contracts": "1.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.1",
           "Swashbuckle.AspNetCore": "6.5.0"
         },

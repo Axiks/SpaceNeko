@@ -25,8 +25,6 @@ namespace NekoSpaceList.Models.Anime
         public AiredEntity? Aired { get; set; }
         public ICollection<AnimePosterEntity>? Posters { get; set; }
         public ICollection<AnimeCoverEntity>? Covers { get; set; }
-        //public AnotherAnimeServiceEntity AnotherService { get; set; }
-        //public ICollection<AnimeAssociatedServiceEntity> AnotherService { get; set; }
         public ICollection<UserFavoriteAnimeEntity> FavoriteInUsers { get; set; }
         public ICollection<UserRatingAnimeEntity> RatingInUsers { get; set; }
         public ICollection<UserAnimeViewingStatusEntity> ViewingStatusInUsers { get; set; }

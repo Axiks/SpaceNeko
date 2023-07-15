@@ -12,7 +12,7 @@ namespace NekoSpace.ElasticSearch
     public class ElasticSearchMediaBasicModel : ElasticSearchModelBasic
     {
         public List<ESMediaBasicTitleModel> Titles { get; set; }
-        public ICollection<ESMediaBasicTitleModel> Synopsises { get; set; }
+        public List<ESMediaBasicTitleModel> Synopsises { get; set; }
         public AgeRating AgeRating { get; set; }
         public Source Source { get; set; }
         public ESPremiereModel Premiere { get; set; }

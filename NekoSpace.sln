@@ -27,7 +27,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Seed", "tools\Nek
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.ElasticSearch", "NekoSpace.ElasticSearch\NekoSpace.ElasticSearch.csproj", "{F8E8284D-30FA-47CE-8883-28A9B1C81420}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoSpace.ElasticSearch.Contracts", "NekoSpace.ElasticSearch.Contracts\NekoSpace.ElasticSearch.Contracts.csproj", "{7F7F4962-A0B8-439B-96D7-4AC12331738F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.ElasticSearch.Contracts", "NekoSpace.ElasticSearch.Contracts\NekoSpace.ElasticSearch.Contracts.csproj", "{7F7F4962-A0B8-439B-96D7-4AC12331738F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoSpace.Repository", "NekoSpace.Repository\NekoSpace.Repository.csproj", "{2F2F76DC-7A1B-4052-9FFB-47971C59BC2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoSpace.Repository.Contracts", "NekoSpace.Repository.Contracts\NekoSpace.Repository.Contracts.csproj", "{B634930A-E306-4732-9746-09EFC14B83DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +87,14 @@ Global
 		{7F7F4962-A0B8-439B-96D7-4AC12331738F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F7F4962-A0B8-439B-96D7-4AC12331738F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F7F4962-A0B8-439B-96D7-4AC12331738F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F2F76DC-7A1B-4052-9FFB-47971C59BC2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F2F76DC-7A1B-4052-9FFB-47971C59BC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F2F76DC-7A1B-4052-9FFB-47971C59BC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F2F76DC-7A1B-4052-9FFB-47971C59BC2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B634930A-E306-4732-9746-09EFC14B83DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B634930A-E306-4732-9746-09EFC14B83DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B634930A-E306-4732-9746-09EFC14B83DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B634930A-E306-4732-9746-09EFC14B83DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

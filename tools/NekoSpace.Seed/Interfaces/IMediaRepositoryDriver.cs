@@ -10,7 +10,7 @@ namespace NekoSpace.Seed.Interfaces
         public List<RepositoryPackage<T>> GetAllRepositoriesPackage { get; }
         public void AddRepositoryPackage(RepositoryPackage<T> repository);
         public void DeleteRepositoryPackage(int index);
-        public DbSet<T> RunSeed();
+        public void RunSeed();
         public void RunUpdate();
     }
 }

@@ -8,7 +8,6 @@ using NekoSpace.Data.Contracts.Entities.Character;
 using NekoSpace.Data.Contracts.Entities.General;
 using NekoSpace.Data.Contracts.Entities.Manga;
 using NekoSpace.Data.Contracts.Enums;
-using NekoSpace.Data.Events;
 using NekoSpace.Data.Models.User;
 using NekoSpace.ElasticSearch;
 using NekoSpace.ElasticSearch.Contracts.Interfaces;
@@ -51,34 +50,6 @@ namespace NekoSpace.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
         {
-            // Database.EnsureDeleted();
-            // Database.EnsureCreated();
-            //ChangeTracker.Tracked += UpdateTimestamps;
-        }
-        #endregion
-
-        #region UpdateTimestamps
-        private static void UpdateTimestamps(object sender, EntityEntryEventArgs e)
-        {
-            if (e.Entry.Entity is AnimeEntity entityWithTimestamps)
-            {
-                switch (e.Entry.State)
-                {
-                    case EntityState.Deleted:
-                        //entityWithTimestamps.Deleted = DateTime.UtcNow;
-                        Console.WriteLine($"Stamped for delete: {e.Entry.Entity}");
-                        break;
-                    case EntityState.Modified:
-                        //entityWithTimestamps.Modified = DateTime.UtcNow;
-                        Console.WriteLine($"Stamped for update: {e.Entry.Entity}");
-                        break;
-                    case EntityState.Added:
-                        //entityWithTimestamps.Added = DateTime.UtcNow;
-                        Console.WriteLine($"Stamped for insert: {e.Entry.Entity}");
-                        var animeObject = e.Entry.Entity;
-                        break;
-                }
-            }
         }
         #endregion
         

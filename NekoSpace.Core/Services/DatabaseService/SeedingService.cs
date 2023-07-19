@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MapsterMapper;
+using Microsoft.EntityFrameworkCore;
 using NekoSpace.API.Helpers;
 using NekoSpace.Common.Enums;
 using NekoSpace.Data;
@@ -17,10 +18,16 @@ public class SeedingService : ISeedingService
 
     private readonly IElasticClient _elasticClient;
     //private readonly OLDESAnimeService _esAnimeController;
-    public SeedingService(ApplicationDbContext context)
+
+    private IMapper _mapper;
+    private IConfiguration _configurate;
+
+    public SeedingService(ApplicationDbContext context, IConfiguration configurate, IMapper mapper)
     {
         _context = context;
         _animeSelectAllDriver = new MamiAnimeDriver();
+        _configurate = configurate;
+        _mapper = mapper;
 
         //_elasticClient = elasticSearchExtensions;
         //_esAnimeController = new OLDESAnimeService(elasticSearchExtensions);
@@ -87,7 +94,7 @@ Console.WriteLine("Add new item record: " + c.ToString());
 
     public void RunAsync()
     {
-        SeedAnsibleService seedAnsibleService = new SeedAnsibleService(_context);
+        SeedAnsibleService seedAnsibleService = new SeedAnsibleService(_context, _mapper, _configurate);
         seedAnsibleService.RunSeed();
     }
 

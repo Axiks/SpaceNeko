@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WXDHZOSI76ucshdXbSnw4n6bBIY8ALybPx1s+s1JuCs8TpxdM7GhdqYZjZGkmJlsw7POZGGh4OA7Q41vPvIV3A==",
+  "dgSpecHash": "Dhe0V3+rvs60QpsVLBCw3NhZ53zOzwim+Naq0aQBPchEoJVXlJXh0QUoXSfPUnD5vwLVmwYLHN7MNF3YeqEChg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API\\NekoSpace.API.csproj",
   "expectedPackageFiles": [
@@ -28,7 +28,7 @@
     "C:\\Users\\Niko\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\jikandotnet\\2.5.0\\jikandotnet.2.5.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\languagedetection.netstandard\\1.3.1\\languagedetection.netstandard.1.3.1.nupkg.sha512",
-    "C:\\Users\\Niko\\.nuget\\packages\\mapster\\5.0.0\\mapster.5.0.0.nupkg.sha512",
+    "C:\\Users\\Niko\\.nuget\\packages\\mapster\\7.3.0\\mapster.7.3.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\mapster.core\\1.2.0\\mapster.core.1.2.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\mapster.dependencyinjection\\1.0.0\\mapster.dependencyinjection.1.0.0.nupkg.sha512",
     "C:\\Users\\Niko\\.nuget\\packages\\mapster.efcore\\5.1.0\\mapster.efcore.5.1.0.nupkg.sha512",

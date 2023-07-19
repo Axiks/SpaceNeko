@@ -52,42 +52,4 @@ using (var scope = serviceScopeFactory.CreateScope())
 }*/
 
 
-
-var serviceScopeFactory2 = app.Services.GetService<IServiceScopeFactory>();
-using (var scope = serviceScopeFactory2.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var myClass = services.GetRequiredService<ApplicationDbContext>();
-
-    myClass.ChangeTracker.Tracked += Test.UpdateTimestamps;
-
-    //ChangeTracker.Tracked += UpdateTimestamps;
-}
-
 app.Run();
-
-public static class Test{
-    public static void UpdateTimestamps(object sender, EntityEntryEventArgs e)
-    {
-        if (e.Entry.Entity is AnimeEntity entityWithTimestamps)
-        {
-            switch (e.Entry.State)
-            {
-                case EntityState.Deleted:
-                    //entityWithTimestamps.Deleted = DateTime.UtcNow;
-                    Console.WriteLine($"Stamped for delete: {e.Entry.Entity}");
-                    break;
-                case EntityState.Modified:
-                    //entityWithTimestamps.Modified = DateTime.UtcNow;
-                    Console.WriteLine($"Stamped for update: {e.Entry.Entity}");
-                    break;
-                case EntityState.Added:
-                    //entityWithTimestamps.Added = DateTime.UtcNow;
-                    Console.WriteLine($"Stamped for insert: {e.Entry.Entity}");
-                    var animeObject = e.Entry.Entity;
-                    break;
-            }
-        }
-    }
-}
-

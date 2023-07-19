@@ -4,7 +4,6 @@ using NekoSpace.Data.Models.User;
 using NekoSpace.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NekoSpace.Core.Triggers;
 using EntityFrameworkCore.Triggered;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpaceList.Models.Anime;
@@ -26,11 +25,8 @@ namespace NekoSpace.API.Startup.Setup
                     new[] { DbLoggerCategory.Database.Command.Name },
                     LogLevel.Information
                 );
-                //options.UseTriggers();
             }
             );
-            //.AddSingleton<IAfterSaveTrigger<AnimeEntity>, AddMediaAnimeTrigger>();
-
             services.AddIdentity<UserEntity, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             services.AddScoped(p => p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>().CreateDbContext());

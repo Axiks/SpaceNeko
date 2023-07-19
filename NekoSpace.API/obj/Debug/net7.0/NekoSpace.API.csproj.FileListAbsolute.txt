@@ -360,3 +360,7 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\EntityFrameworkCore.Triggered.Abstractions.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NekoSpace.Repository.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NekoSpace.Repository.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NekoSpace.Repository.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NekoSpace.Repository.Contracts.pdb

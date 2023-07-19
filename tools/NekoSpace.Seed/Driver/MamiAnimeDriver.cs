@@ -16,7 +16,7 @@ using static NekoSpaceList.Models.General.GeneralModel;
 
 namespace NekoSpace.Seed.Driver
 {
-    public class MamiAnimeDriver : IRepository<AnimeEntity>, ISelectMediaById<AnimeEntity>, ISelectMediaAll<AnimeEntity>
+    public class MamiAnimeDriver :  IRepository<AnimeEntity>, ISelectMediaById<AnimeEntity>, ISelectMediaAll<AnimeEntity>
     {
         private IEnumerable<RTO<AnimeEntity>> _manamiAnimes;
 

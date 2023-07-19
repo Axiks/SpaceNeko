@@ -4492,6 +4492,35 @@
           "bin/placeholder/NekoSpace.ElasticSearch.Contracts.dll": {}
         }
       },
+      "NekoSpace.Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Mapster": "5.0.0",
+          "NekoSpace.Data": "1.0.0",
+          "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.Repository.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NekoSpace.Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NekoSpace.Repository.dll": {}
+        }
+      },
+      "NekoSpace.Repository.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "NekoSpace.Data.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NekoSpace.Repository.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NekoSpace.Repository.Contracts.dll": {}
+        }
+      },
       "NekoSpace.Seed/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -4504,6 +4533,7 @@
           "NekoSpace.Common": "1.0.0",
           "NekoSpace.Data": "1.0.0",
           "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.Repository": "1.0.0",
           "Newtonsoft.Json": "13.0.2"
         },
         "compile": {
@@ -12712,6 +12742,16 @@
       "type": "project",
       "path": "../NekoSpace.ElasticSearch.Contracts/NekoSpace.ElasticSearch.Contracts.csproj",
       "msbuildProject": "../NekoSpace.ElasticSearch.Contracts/NekoSpace.ElasticSearch.Contracts.csproj"
+    },
+    "NekoSpace.Repository/1.0.0": {
+      "type": "project",
+      "path": "../NekoSpace.Repository/NekoSpace.Repository.csproj",
+      "msbuildProject": "../NekoSpace.Repository/NekoSpace.Repository.csproj"
+    },
+    "NekoSpace.Repository.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../NekoSpace.Repository.Contracts/NekoSpace.Repository.Contracts.csproj",
+      "msbuildProject": "../NekoSpace.Repository.Contracts/NekoSpace.Repository.Contracts.csproj"
     },
     "NekoSpace.Seed/1.0.0": {
       "type": "project",

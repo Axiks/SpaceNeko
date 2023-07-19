@@ -2844,6 +2844,25 @@
           "NekoSpace.ElasticSearch.Contracts.dll": {}
         }
       },
+      "NekoSpace.Repository/1.0.0": {
+        "dependencies": {
+          "Mapster": "5.0.0",
+          "NekoSpace.Data": "1.0.0",
+          "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.Repository.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "NekoSpace.Repository.dll": {}
+        }
+      },
+      "NekoSpace.Repository.Contracts/1.0.0": {
+        "dependencies": {
+          "NekoSpace.Data.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "NekoSpace.Repository.Contracts.dll": {}
+        }
+      },
       "NekoSpace.Seed/1.0.0": {
         "dependencies": {
           "Arch.EntityFrameworkCore.Design": "2.1.15",
@@ -2854,6 +2873,7 @@
           "NekoSpace.Common": "1.0.0",
           "NekoSpace.Data": "1.0.0",
           "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.Repository": "1.0.0",
           "Newtonsoft.Json": "13.0.2"
         },
         "runtime": {
@@ -4479,6 +4499,16 @@
       "sha512": ""
     },
     "NekoSpace.ElasticSearch.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NekoSpace.Repository/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NekoSpace.Repository.Contracts/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

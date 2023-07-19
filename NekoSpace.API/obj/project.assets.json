@@ -398,9 +398,10 @@
           "lib/netstandard2.0/LanguageDetection.dll": {}
         }
       },
-      "Mapster/5.0.0": {
+      "Mapster/7.3.0": {
         "type": "package",
         "dependencies": {
+          "Mapster.Core": "1.2.0",
           "Microsoft.CSharp": "4.3.0",
           "System.Reflection.Emit": "4.3.0"
         },
@@ -4483,6 +4484,35 @@
           "bin/placeholder/NekoSpace.ElasticSearch.Contracts.dll": {}
         }
       },
+      "NekoSpace.Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Mapster": "5.0.0",
+          "NekoSpace.Data": "1.0.0",
+          "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.Repository.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NekoSpace.Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NekoSpace.Repository.dll": {}
+        }
+      },
+      "NekoSpace.Repository.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "NekoSpace.Data.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NekoSpace.Repository.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NekoSpace.Repository.Contracts.dll": {}
+        }
+      },
       "NekoSpace.Seed/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -4495,6 +4525,7 @@
           "NekoSpace.Common": "1.0.0",
           "NekoSpace.Data": "1.0.0",
           "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.Repository": "1.0.0",
           "Newtonsoft.Json": "13.0.2"
         },
         "compile": {
@@ -4951,19 +4982,17 @@
         "lib/netstandard2.0/LanguageDetection.dll"
       ]
     },
-    "Mapster/5.0.0": {
-      "sha512": "Fe1sEpAKTj6OlMIVMh+TzEineuxh8z+Ea3IfeGIW8Nj52lkrd5u9xgfNX3Ec9DC5RHXY3LjdQDgzM1ttVDmUVw==",
+    "Mapster/7.3.0": {
+      "sha512": "NrCUX/rJa5PTyo6iW4AL5dZLU9PDNlYnrJOVjgdpo5OQM9EtWH2CMHnC5sSuJWC0d0b0SnmeRrIviEem6WxtuQ==",
       "type": "package",
-      "path": "mapster/5.0.0",
+      "path": "mapster/7.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "icon.png",
-        "lib/net40/Mapster.dll",
-        "lib/net45/Mapster.dll",
         "lib/netstandard1.3/Mapster.dll",
         "lib/netstandard2.0/Mapster.dll",
-        "mapster.5.0.0.nupkg.sha512",
+        "mapster.7.3.0.nupkg.sha512",
         "mapster.nuspec"
       ]
     },
@@ -12629,6 +12658,16 @@
       "path": "../NekoSpace.ElasticSearch.Contracts/NekoSpace.ElasticSearch.Contracts.csproj",
       "msbuildProject": "../NekoSpace.ElasticSearch.Contracts/NekoSpace.ElasticSearch.Contracts.csproj"
     },
+    "NekoSpace.Repository/1.0.0": {
+      "type": "project",
+      "path": "../NekoSpace.Repository/NekoSpace.Repository.csproj",
+      "msbuildProject": "../NekoSpace.Repository/NekoSpace.Repository.csproj"
+    },
+    "NekoSpace.Repository.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../NekoSpace.Repository.Contracts/NekoSpace.Repository.Contracts.csproj",
+      "msbuildProject": "../NekoSpace.Repository.Contracts/NekoSpace.Repository.Contracts.csproj"
+    },
     "NekoSpace.Seed/1.0.0": {
       "type": "project",
       "path": "../tools/NekoSpace.Seed/NekoSpace.Seed.csproj",
@@ -12640,6 +12679,8 @@
       "Arch.EntityFrameworkCore.Design >= 2.1.15",
       "AutoMapper >= 12.0.1",
       "GraphQL.Server.Ui.Voyager >= 7.2.0",
+      "Mapster >= 7.3.0",
+      "Mapster.DependencyInjection >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.2",
       "NEST >= 7.17.5",
       "NekoSpace.API.Contracts >= 1.0.0",
@@ -12713,6 +12754,14 @@
           "GraphQL.Server.Ui.Voyager": {
             "target": "Package",
             "version": "[7.2.0, )"
+          },
+          "Mapster": {
+            "target": "Package",
+            "version": "[7.3.0, )"
+          },
+          "Mapster.DependencyInjection": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",

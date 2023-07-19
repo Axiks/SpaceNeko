@@ -50,7 +50,16 @@ namespace NekoSpace.ElasticSearch
                 .Query(media.DBId.ToString()))
             )
             .Index(_indexName)
-        );
+            );
+        }
+
+        public async Task RemoveRangeAsync(List<T> mediaList)
+        {
+            // To optimisation!!
+            foreach(var media in mediaList)
+            {
+                RemoveAsync(media);
+            }
         }
 
         public abstract Task<ISearchResponse<T>> SearchAsync(ElasticSearchQueryParameters parameters);
@@ -82,6 +91,11 @@ namespace NekoSpace.ElasticSearch
             var createIndexResponse = _elasticClient.Indices.Create(_indexName,
                 index => index.Map<T>(x => x.AutoMap())
             );
+        }
+
+        public void AddAsync<E>(Func<object, E> edMediaModel) where E : ElasticSearchModelBasic
+        {
+            throw new NotImplementedException();
         }
     }
 }

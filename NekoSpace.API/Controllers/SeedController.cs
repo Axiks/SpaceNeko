@@ -1,4 +1,5 @@
 ﻿using Arch.EntityFrameworkCore;
+using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -18,10 +19,13 @@ namespace NekoSpace.API.Controllers
     public class SeedController : ControllerBase
     {
         private IDbContextFactory<ApplicationDbContext> _contextFactory;
-
-        public SeedController(IDbContextFactory<ApplicationDbContext> contextFactory)
+        private IMapper _mapper;
+        private IConfiguration _configurate;
+        public SeedController(IDbContextFactory<ApplicationDbContext> contextFactory, IConfiguration configurate, IMapper mapper)
         {
             _contextFactory = contextFactory;
+            _mapper = mapper;
+            _configurate = configurate;
         }
 
         [HttpGet]
@@ -40,7 +44,7 @@ namespace NekoSpace.API.Controllers
 
             using (ApplicationDbContext dbContext = _contextFactory.CreateDbContext())
             {
-                ISeedingService _seedingService = new SeedingService(dbContext);
+                ISeedingService _seedingService = new SeedingService(dbContext, _configurate, _mapper);
                 _seedingService.RunAsync();
             }
 

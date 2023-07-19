@@ -1,6 +1,6 @@
 ﻿namespace NekoSpace.Seed.Models.DriverConfig
 {
-    public class AnsibleConfiguration
+    /*public class AnsibleConfiguration
     {
         public int Version { get; }
         public List<RepositoryConfiguration> RepositoriesConfiguration { get; }
@@ -10,5 +10,5 @@
             Version = version;
             RepositoriesConfiguration = repositoryDriverConfigurations;
         }
-    }
+    }*/
 }

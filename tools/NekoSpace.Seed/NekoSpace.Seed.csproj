@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\NekoSpace.Data.Contracts\NekoSpace.Data.Contracts.csproj" />
     <ProjectReference Include="..\..\NekoSpace.Data\NekoSpace.Data.csproj" />
+    <ProjectReference Include="..\..\NekoSpace.Repository\NekoSpace.Repository.csproj" />
     <ProjectReference Include="..\MamiRepository\Mami.csproj" />
     <ProjectReference Include="..\..\NekoSpace.Common\NekoSpace.Common.csproj" />
     <ProjectReference Include="..\..\NekoSpace.Data.Contracts\NekoSpace.Data.Contracts.csproj" />

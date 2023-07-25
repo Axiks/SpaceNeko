@@ -29,7 +29,8 @@ services:
       context: ..
       dockerfile: NekoSpace.API/Dockerfile
     networks:
-        - mynekonetwork-dev
+        mynekonetwork-dev:
+            ipv4_address: 172.22.0.3
 
 
   postgres_db:
@@ -49,23 +50,33 @@ services:
         - mynekonetwork-dev
 
   elasticsearch:
-   container_name: elasticsearch
-   image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
-   ports:
-    - "9200:9200"
-   volumes:
-    - elasticsearch-data:/usr/share/elasticsearch/data
-   restart: always
-   environment:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    ports:
+     - "9200:9200"
+    volumes:
+     - elasticsearch-data:/usr/share/elasticsearch/data
+    restart: always
+    environment:
       - xpack.security.enabled=false
       - discovery.type=single-node
-   ulimits:
-    memlock:
-        soft: -1
-        hard: -1
-   networks:
+    ulimits:
+        memlock:
+            soft: -1
+            hard: -1
+    networks:
         mynekonetwork-dev:
             ipv4_address: 172.22.0.4
+
+  tunnel:
+    container_name: cloudflared-tunnel
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=eyJhIjoiZjc4NzAxZTE1MzA5ZmIwYjFhN2M2MmQwMWE3OTdiZTYiLCJ0IjoiYTkxZjU2MmQtYTE3Zi00NGYxLWIwZTQtYjJhYjliMmZkNjQxIiwicyI6Ik9HWmhZVEJtTW1JdE5XTXhNQzAwWWprNExXRmxaR010WkRZNU9ERmxNVFpqTWpKbSJ9
+
+
 
 #  kibana:
 #  container_name: kibana
@@ -80,6 +91,7 @@ services:
 #     - ELASTICSEARCH_URL=http://localhost:9201 
 #  networks:
 #     - mynekonetwork-dev
+
 
 volumes:
   pgdata:

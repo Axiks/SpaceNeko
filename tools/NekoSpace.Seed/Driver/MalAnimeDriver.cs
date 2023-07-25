@@ -77,9 +77,6 @@ namespace NekoSpace.Seed.Driver
                     case ("Jp"):
                         titleAlt.Language = Language.JA;
                         break;
-                    default:
-                        titleAlt.Language = Language.und;
-                        break;
                 }
                 animeTitles.Add(titleAlt);
 
@@ -92,7 +89,6 @@ namespace NekoSpace.Seed.Driver
                 titleAlt.Body = JdnTitle;
                 titleAlt.IsOriginal = false;
                 titleAlt.IsMain = false;
-                titleAlt.Language = Language.und;
                 animeTitles.Add(titleAlt);
             }
 
@@ -122,9 +118,6 @@ namespace NekoSpace.Seed.Driver
                 case ("EveryType"):
                     animeType = AnimeType.EveryType;
                     break;
-                default:
-                    animeType = AnimeType.Unknown;
-                    break;
             }
             anime.Type = animeType;
 
@@ -152,9 +145,6 @@ namespace NekoSpace.Seed.Driver
                     break;
                 case ("RX"):
                     ageRating = AgeRating.rx;
-                    break;
-                default :
-                    ageRating = AgeRating.Unknown;
                     break;
             }
             anime.AgeRating = ageRating;
@@ -222,9 +212,6 @@ namespace NekoSpace.Seed.Driver
                 case ("Music"):
                     sorce = Source.Music;
                     break;
-                default:
-                    sorce = Source.Undefined;
-                    break;
             }
             anime.Source = sorce;
 
@@ -233,20 +220,24 @@ namespace NekoSpace.Seed.Driver
 
             anime.NumEpisodes = cowboyBebop.Data.Episodes;
 
-            ImageEntity animePosterImage = new ImageEntity();
+            /*var animePosterImage = new PosterEntity();
+            animePosterImage.Small = cowboyBebop.Data.Images.JPG.SmallImageUrl;
+            animePosterImage.Medium = cowboyBebop.Data.Images.JPG.MediumImageUrl;
+            animePosterImage.Original = cowboyBebop.Data.Images.JPG.MaximumImageUrl;*/
+
+            //AnimePosterEntity animePoster = new AnimePosterEntity();
+            // Wow -\|_|/-
+            /* animePoster.Poster = animePosterImage;
+             animePoster.Anime = anime;*/
+
+
+            MediaPosterEntity animePosterImage = new MediaPosterEntity();
             animePosterImage.Small = cowboyBebop.Data.Images.JPG.SmallImageUrl;
             animePosterImage.Medium = cowboyBebop.Data.Images.JPG.MediumImageUrl;
             animePosterImage.Original = cowboyBebop.Data.Images.JPG.MaximumImageUrl;
 
-            AnimePosterEntity animePoster = new AnimePosterEntity();
-            // Wow -\|_|/-
-            animePoster.Poster = animePosterImage;
-            animePoster.Anime = anime;
+            anime.Posters = new List<MediaPosterEntity>() { animePosterImage };
 
-            anime.Posters = new List<AnimePosterEntity>()
-            {
-                animePoster
-            };
 
             anime.AssociatedService.Add(new AssociatedServiceEntity
             {

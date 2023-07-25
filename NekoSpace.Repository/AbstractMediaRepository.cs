@@ -1,22 +1,24 @@
-﻿using Arch.EntityFrameworkCore;
-using MapsterMapper;
+﻿using MapsterMapper;
+using Microsoft.EntityFrameworkCore;
 using NekoSpace.Data;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.ElasticSearch;
 using NekoSpace.ElasticSearch.Contracts;
+using NekoSpace.ElasticSearch.Contracts.Interfaces;
 using NekoSpace.Repository.Contracts.Interfaces;
 using NekoSpace.Repository.Contracts.Models;
+using Nest;
 using System.Linq.Expressions;
 
 namespace NekoSpace.Repository;
 
-public class AbstractMediaRepository<T, E> : IMediaRepository<T>, IInterconnectionExtensions where T : MediaEntity where E : ElasticSearchMediaBasicModel
+public class AbstractMediaRepository<T, E> : IMediaRepository<T, E>, IInterconnectionExtensions where T : MediaEntity where E : ElasticSearchMediaBasicModel
 {
     private ApplicationDbContext _dbcontext;
-    private AbstractElasticSearchRepository<E> _esrepository;
+    private IElasticSearchRepository<E> _esrepository;
     private IMapper _mapper;
 
-    public AbstractMediaRepository(ApplicationDbContext dbcontext, AbstractElasticSearchRepository<E> esrepository, IMapper mapper)
+    public AbstractMediaRepository(ApplicationDbContext dbcontext, IElasticSearchRepository<E> esrepository, IMapper mapper)
     {
         _dbcontext = dbcontext;
         _esrepository = esrepository;
@@ -51,11 +53,100 @@ public class AbstractMediaRepository<T, E> : IMediaRepository<T>, IInterconnecti
 
         _dbcontext.SaveChanges();
     }
-
-    public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
+    public ISearchResponse<E> FindInElasticSearch(ElasticSearchQueryParameters elasticSearchQueryParameters)
     {
-        return _dbcontext.Set<T>().Where(expression);
+        var resAsync = _esrepository.SearchAsync(elasticSearchQueryParameters);
+        resAsync.Wait();
+        var res =  resAsync.Result;
+        return res;
     }
+
+    /*public IEnumerable<T> GetByIdListFromDB(List<Guid> guids)
+    {
+        List<T> list;
+
+        var mediaTable = _dbcontext.Set<T>();
+        mediaTable.Select( x => x.Id.ToString().cON )
+
+        return list;
+    }*/
+
+    public IEnumerable<T> GetAllDb()
+    {
+        return _dbcontext.Set<T>();
+    }
+
+    /* public ICollection<TType> FindInDb<TType>(Expression<Func<T, bool>> filter = null, Expression<Func<T, T>> returnField = null, params Expression<Func<T, object>>[] includeProperties) where TType : class
+     {
+         DbSet<T> dbSet = _dbcontext.Set<T>();
+
+         IQueryable<T> query = dbSet;
+
+         if (filter != null)
+         {
+             query = query.Where(filter);
+         }
+
+         if (returnField != null)
+         {
+             query = query.Select(returnField);
+         }
+
+         foreach (var includeProperty in includeProperties)
+         {
+             query = query.Include(includeProperty);
+         }
+
+         return dbSet.ToList();
+     }*/
+
+    public IEnumerable<TDest> FindInDb<TDest>(
+        Expression<Func<T, bool>> filter = null,
+        Expression<Func<T, TDest>> select = null,
+        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        params Expression<Func<T, object>>[] includeProperties)
+    {
+        IQueryable<T> query = _dbcontext.Set<T>();
+
+        foreach (var includeProperty in includeProperties)
+        {
+            query = query.Include(includeProperty);
+        }
+
+        if (filter != null)
+        {
+            query = query.Where(filter);
+        }
+
+        if (orderBy != null)
+        {
+            if (select == null)
+                return (IEnumerable<TDest>)orderBy(query).ToList();
+
+            return orderBy(query).Select(select).ToList();
+        }
+        else
+        {
+            if (select == null)
+                return (IEnumerable<TDest>)query.ToList();
+
+            return query.Select(select).ToList();
+        }
+    }
+
+
+    /*   public ICollection<TType> Get<TType>(Expression<Func<T, bool>> where, Expression<Func<T, TType>> select) where TType : class
+       {
+           var currentEntity = _dbcontext.Set<T>();
+           return currentEntity.Where(where).Select(select).ToList();
+       }*/
+
+    /*   public ICollection<TType> FindInDb<TType>(Expression<Func<T, bool>> where, Expression<Func<T, TType>> select, params Expression<Func<T, object>>[] includeProperties) where TType : class
+       {
+           var currentEntity = _dbcontext.Set<T>();
+           var prepere =  currentEntity.Include(x => includeProperties).Where(where).Select(select);
+           return prepere.ToList();
+       }*/
 
     public Guid? FindMediaIdByAnotherService(InterconnectionLinkModel interconnectionLinkModel)
     {

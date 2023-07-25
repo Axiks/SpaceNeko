@@ -7,8 +7,7 @@ namespace NekoSpaceList.Models.General
     public abstract class RootVariantSubItemEntity
     {
         public Guid Id { get; set; }
-        [Required]
-        public Language Language { get; set; } // region
+        public Language? Language { get; set; } // region
         [Required]
         public ItemFrom From { get; set; }
         [Required]

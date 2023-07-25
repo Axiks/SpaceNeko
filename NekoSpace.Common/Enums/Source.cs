@@ -16,7 +16,6 @@
         Book,
         PictureBook,
         Radio,
-        Music,
-        Undefined
+        Music
     }
 }

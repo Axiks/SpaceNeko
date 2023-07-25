@@ -6,17 +6,17 @@ using Nest;
 
 namespace NekoSpace.ElasticSearch
 {
-    public abstract class AbstractElasticSearchRepository<T> : IElasticSearchRepository<T> where T : ElasticSearchModelBasic
+    public abstract class AbstractElasticSearchRepository<T> : IElasticSearchRepository<T> where T : ElasticSearchMediaBasicModel
     {
-        protected readonly IElasticClient _elasticClient;
         protected readonly string _indexName;
+        protected readonly IElasticClient _elasticClient;
         public AbstractElasticSearchRepository(string indexName, IConfiguration configuration)
         {
-            var url = configuration["elasticsearch:url"];
-            //var _indexName = configuration["elasticsearch:index"];
             _indexName = indexName;
 
+            var url = configuration["elasticsearch:url"];
             _elasticClient = InitClient(url, _indexName);
+
             CreateIndex();
         }
 
@@ -62,11 +62,11 @@ namespace NekoSpace.ElasticSearch
             }
         }
 
-        public abstract Task<ISearchResponse<T>> SearchAsync(ElasticSearchQueryParameters parameters);
+        public abstract Task<ISearchResponse<T>> SearchAsync(ElasticSearchQueryParameters parameters);//??
 
         public async Task UpdateAsync(Guid Id, T mediaModel)
         {
-            var responsw = await _elasticClient.UpdateAsync<T>(Id, u => u
+            var response = await _elasticClient.UpdateAsync<T>(Id, u => u
               .Index(_indexName)
               .Doc(mediaModel));
         }
@@ -89,13 +89,25 @@ namespace NekoSpace.ElasticSearch
         private void CreateIndex()
         {
             var createIndexResponse = _elasticClient.Indices.Create(_indexName,
-                index => index.Map<T>(x => x.AutoMap())
+                index => index.Map<T>( x => x
+                    .AutoMap()
+                    .Properties(ps => ps
+                    //.Object<ElasticSearchMediaBasicModel>(n => n.Name)
+                    )
+                    .Properties(ps => ps.
+                        Nested<ESMediaBasicTitleModel>(n => n
+                            .Name(nn => nn.Titles)
+                        )
+                    )
+                    .Properties(ps => ps.
+                        Nested<ESMediaBasicTitleModel>(n => n
+                            .Name(nn => nn.Synopsises)
+                        )
+                    )
+                )
             );
         }
 
-        public void AddAsync<E>(Func<object, E> edMediaModel) where E : ElasticSearchModelBasic
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

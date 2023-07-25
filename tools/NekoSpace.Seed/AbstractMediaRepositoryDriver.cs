@@ -17,8 +17,6 @@ namespace NekoSpace.Seed
         private List<RepositoryPackage<T>> _repositoriesPackage;
         private AbstractMediaRepository<T, E> _coreMediaRepository;
         private IMapper _mapper;
-        private List<RepositoryPackage<AnimeEntity>> animeRepositoryPackages;
-        private AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel> abstractMediaRepository;
 
         public AbstractMediaRepositoryDriver(List<RepositoryPackage<T>> repositoriesPackage, AbstractMediaRepository<T, E> abstractMediaRepository, IMapper mapper)
         {
@@ -26,12 +24,6 @@ namespace NekoSpace.Seed
             _repositoriesPackage = repositoriesPackage;
             _coreMediaRepository = abstractMediaRepository;
             _mapper = mapper;
-        }
-
-        public AbstractMediaRepositoryDriver(List<RepositoryPackage<AnimeEntity>> animeRepositoryPackages, AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel> abstractMediaRepository)
-        {
-            this.animeRepositoryPackages = animeRepositoryPackages;
-            this.abstractMediaRepository = abstractMediaRepository;
         }
 
         public List<RepositoryPackage<T>> GetAllRepositoriesPackage => throw new NotImplementedException();
@@ -188,7 +180,7 @@ namespace NekoSpace.Seed
 
                 var Id = _coreMediaRepository.FindMediaIdByAnotherServiceList(mapLinks);
                 if (Id == null) continue;
-                var mediaEntity = _coreMediaRepository.Find(x => x.Id == Id);
+                //var mediaEntity = _coreMediaRepository.FindInDb(x => x.Id == Id);
 
                 // Пеервіряємо чи одинокові значення, якщо ні => змінюємо
 

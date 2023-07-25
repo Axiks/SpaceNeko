@@ -4497,6 +4497,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Mapster": "5.0.0",
+          "NekoSpace.API.Contracts": "1.0.0",
           "NekoSpace.Data": "1.0.0",
           "NekoSpace.Data.Contracts": "1.0.0",
           "NekoSpace.Repository.Contracts": "1.0.0"
@@ -4512,7 +4513,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "NekoSpace.Data.Contracts": "1.0.0"
+          "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.ElasticSearch.Contracts": "1.0.0"
         },
         "compile": {
           "bin/placeholder/NekoSpace.Repository.Contracts.dll": {}

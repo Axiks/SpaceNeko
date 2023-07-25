@@ -1,4 +1,7 @@
 ﻿using NekoSpace.API.Contracts.Abstract;
+using NekoSpace.API.Contracts.Models.Anime;
+using NekoSpace.Data.Contracts.Enums;
+using NekoSpaceList.Models.Anime;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,11 +14,15 @@ namespace NekoSpace.API.Contracts.Models.AnimeService
     public class GetAnimeResultDTO : BaseMediaItem
     {
         [Required]
-        public string TitleOriginal { get; set; }
-        public string? SynopsisOriginal { get; set; }
-        public string? PosterOriginal { get; set; }
-        public int? NumEpisodes { get; set; }
-        public int? EpisodesDurationSeconds { get; set; }
-
+        public string PrimaryTitle { get; set; }//+
+        public string? SecondaryTitle { get; set; }//+
+        public string? PrimarySynopsis { get; set; }//+
+        public string? SecondarySynopsis { get; set; }//+
+        public int? NumEpisodes { get; set; }//+
+        public int? EpisodesDurationSeconds { get; set; }//+
+        public AnimeType AnimeType { get; set; }//+
+        public AiringStatus AiringStatus { get; set; }//+
+        public PremierDTO Premiere { get; set; }//+
+        public Poster? Poster { get; set; }  //FromDB
     }
 }

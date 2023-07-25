@@ -719,6 +719,9 @@
             "projectReferences": {
               "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
                 "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj"
+              },
+              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj": {
+                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj"
               }
             }
           }
@@ -780,6 +783,9 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj": {
+                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj"
+              },
               "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
                 "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj"
               },

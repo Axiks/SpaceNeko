@@ -97,7 +97,6 @@ namespace NekoSpace.Seed.Driver
                 animeTitle.IsOriginal = false;
                 animeTitle.IsMain = false;
                 animeTitle.From = ItemFrom.ExternalSource;
-                animeTitle.Language = Language.und;
                 //animeTitle.LanguageDetectionBySystem = false;
                 //Console.WriteLine("Assert");
                 animeTitles.Add(animeTitle);
@@ -105,23 +104,34 @@ namespace NekoSpace.Seed.Driver
 
             anime.Titles = animeTitles;
 
-            ImageEntity poster = new ImageEntity();
+            var posters = new List<MediaPosterEntity>();
+
+            var poster = new MediaPosterEntity();
             poster.Original = manamiAnime.picture;
             poster.Small = manamiAnime.thumbnail;
             poster.From = ItemFrom.ExternalSource;
+            posters.Add(poster);
 
-            List<AnimePosterEntity> animePosterConnections = new List<AnimePosterEntity>() {
+            anime.Posters = posters;
+
+            /*MediaImageEntity mediaImageEntity = new MediaImageEntity();
+            mediaImageEntity.Image = poster;
+            mediaImageEntity.Media = anime;*//*
+
+            anime.Posters.Add(poster);*/
+
+            /*List<AnimePosterEntity> animePosterConnections = new List<AnimePosterEntity>() {
                     new AnimePosterEntity()
                     {
                         Anime = anime,
                         Poster = poster
                     }
                 };
-            anime.Posters = animePosterConnections;
+            anime.Posters = animePosterConnections;*/
 
             anime.NumEpisodes = manamiAnime.episodes;
 
-            AiringStatus airingStatus;
+            AiringStatus? airingStatus = null;
             switch (manamiAnime.status)
             {
                 case Status.FINISHED:
@@ -137,11 +147,6 @@ namespace NekoSpace.Seed.Driver
                 case Status.ONGOING:
                     {
                         airingStatus = AiringStatus.NotYetAired;
-                        break;
-                    }
-                default:
-                    {
-                        airingStatus = AiringStatus.Unknown;
                         break;
                     }
             }

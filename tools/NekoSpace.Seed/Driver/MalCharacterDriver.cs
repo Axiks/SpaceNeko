@@ -100,7 +100,6 @@ namespace NekoSpace.Seed.Driver
                 characterAlt.Body = JdnNickname;
                 characterAlt.IsOriginal = false;
                 characterAlt.IsMain = false;
-                characterAlt.Language = Language.und;
                 animeCharacters.Add(characterAlt);
             }
 
@@ -115,7 +114,7 @@ namespace NekoSpace.Seed.Driver
 
             character.Abouts = new List<CharacterAboutEntity> { about };
 
-            ImageEntity mangaPosterImage = new ImageEntity();
+            /*var mangaPosterImage = new PosterEntity();
             mangaPosterImage.Small = spike.Images.JPG.SmallImageUrl;
             mangaPosterImage.Medium = spike.Images.JPG.MediumImageUrl;
             mangaPosterImage.Original = spike.Images.JPG.MaximumImageUrl;
@@ -128,7 +127,7 @@ namespace NekoSpace.Seed.Driver
             character.Posters = new List<CharacterPosterEntity>()
             {
                 charaterPoster
-            };
+            };*/
 
             // Link module
             // Character to Anime

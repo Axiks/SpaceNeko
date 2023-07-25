@@ -17,32 +17,28 @@ namespace NekoSpace.Seed
     public class SeedAnsibleService : ISeedAnsibleService
     {
         private AbstractMediaRepositoryDriver<AnimeEntity, ElasticSearchAnimeModel> _animeRepositoryDriver;
-        //private AbstractMediaRepositoryDriver<MangaEntity> _mangaRepositoryDriver;
-        //private AbstractMediaRepositoryDriver<CharacterEntity> _characterRepositoryDriver;
-        private ApplicationDbContext _dbcontext;
+        private IMapper _mapper;
 
-        // IMyScopedService is injected into Invoke
-        public SeedAnsibleService(ApplicationDbContext dbcontext, IMapper mapper, IConfiguration configuration)
+        public SeedAnsibleService(AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel> animeRepository, IMapper mapper)
         {
-            _dbcontext = dbcontext;
+            _mapper = mapper;
+
             IRepository<AnimeEntity> mamiRepository = new MamiAnimeDriver();
 
+
+            // Це є пакунок репозиторія, з його налаштуваннями
             RepositoryPackage<AnimeEntity> repositoryPackage = new RepositoryPackage<AnimeEntity>
             {
                 repository = mamiRepository,
                 Name = mamiRepository.WorkWithServiceName,
                 IsInitial = true,
-                //repositoryConfiguration = mamiRepositoryConfiguration
             };
 
-            //DbSet<AnimeEntity> animeModelContext = _dbcontext.Animes;
-            List<RepositoryPackage<AnimeEntity>> animeRepositoryPackages = new List<RepositoryPackage<AnimeEntity>> { repositoryPackage };
+            // Це уже сптсок пакунків
+            var animeRepositoryPackages = new List<RepositoryPackage<AnimeEntity>> { repositoryPackage };
 
-            AbstractElasticSearchRepository<ElasticSearchAnimeModel> esrepository = new ElasticSearchAnimeRepository(configuration);
-
-            var abstractMediaRepository = new AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel>(dbcontext, esrepository, mapper);
-
-            _animeRepositoryDriver = new AbstractMediaRepositoryDriver<AnimeEntity, ElasticSearchAnimeModel>(animeRepositoryPackages, abstractMediaRepository);
+            // Лрайвер репозиторій
+            _animeRepositoryDriver = new AbstractMediaRepositoryDriver<AnimeEntity, ElasticSearchAnimeModel>(animeRepositoryPackages, animeRepository, _mapper);
         }
 
         public void RunSeed()

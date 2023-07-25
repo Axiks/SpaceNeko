@@ -8,7 +8,5 @@
         Movie,
         Special,
         ONA,
-        Music,
-        Unknown
-    }
+        Music    }
 }

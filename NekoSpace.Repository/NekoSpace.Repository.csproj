@@ -7,14 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Mapster" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NekoSpace.API.Contracts\NekoSpace.API.Contracts.csproj" />
     <ProjectReference Include="..\NekoSpace.Data.Contracts\NekoSpace.Data.Contracts.csproj" />
     <ProjectReference Include="..\NekoSpace.Data\NekoSpace.Data.csproj" />
     <ProjectReference Include="..\NekoSpace.Repository.Contracts\NekoSpace.Repository.Contracts.csproj" />

@@ -7,7 +7,7 @@ namespace NekoSpace.ElasticSearch
     {
         public Guid Id { get; set; }
         public string Body { get; set; }
-        public Language Language { get; set; }
+        public Language? Language { get; set; }
         public ItemFrom From { get; set; }
         public bool IsMain { get; set; }
         public bool IsNative{ get; set; }

@@ -3,6 +3,10 @@ using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.Core.Services.AnimeService;
 using NekoSpace.Data;
+using NekoSpace.ElasticSearch;
+using NekoSpace.Repository;
+using NekoSpace.Repository.Repositories;
+using NekoSpaceList.Models.Anime;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace NekoSpace.API.Controllers
@@ -12,19 +16,24 @@ namespace NekoSpace.API.Controllers
     public class AnimeController : ControllerBase
     {
         private readonly ApplicationDbContext _dbContext;
+        private AnimeRepository _animeRepository;
 
-        public AnimeController(ApplicationDbContext dbContext)
+        public AnimeController(ApplicationDbContext dbContext, AnimeRepository animeRepository)
         {
             _dbContext = dbContext;
+            _animeRepository = animeRepository;
         }
 
         [HttpGet]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<GetAnimeResultDTO>))]
         public async Task<IActionResult> GetAnime([FromQuery] GetAnimeQueryParameters parameters)
         {
-            var service = new AnimeService(_dbContext);
-            var anime = await service.GetAnimeList(parameters);
-            return Ok(anime);
+            var service = new AnimeService(_dbContext, _animeRepository);
+            //var anime = await service.GetAnimeList(parameters, animeRepository);
+            //animeRepository.FindInElasticSearch(parameters);
+
+            var result = service.GetAnimeList(parameters);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
@@ -32,7 +41,7 @@ namespace NekoSpace.API.Controllers
         [SwaggerResponse(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAnimeById(Guid id)
         {
-            var service = new AnimeService(_dbContext);
+            var service = new AnimeService(_dbContext, _animeRepository);
             var anime = await service.GetAnimeById(id);
             if(anime == null)
             {
@@ -41,24 +50,23 @@ namespace NekoSpace.API.Controllers
             return Ok(anime);
         }
 
-        /*[HttpGet("Search")]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(SearchAnimeResultDTO))]
+        [HttpGet("SearchOld")]
         public async Task<IActionResult> SearchAnimeByName(string q)
         {
-            var service = new AnimeService(_dbContext);
+            var service = new AnimeService(_dbContext, _animeRepository);
             var result = await service.SearchAnimeByName(q);
             return Ok(result);
-        }*/
+        }
 
-       /* [HttpPost("{Id}/Update")]
-        public async Task<IActionResult> UpdateAnime(Guid id)
-        {
+        /* [HttpPost("{Id}/Update")]
+         public async Task<IActionResult> UpdateAnime(Guid id)
+         {
 
-            *//*var service = new AnimeService(_dbContext);
-            var result = service.SearchAnimeByName(q);
-            return Ok(result);*//*
-            return Ok();
-        }*/
+             *//*var service = new AnimeService(_dbContext);
+             var result = service.SearchAnimeByName(q);
+             return Ok(result);*//*
+             return Ok();
+         }*/
 
         // Create translation proposition title
         // Create translation proposition synopsis

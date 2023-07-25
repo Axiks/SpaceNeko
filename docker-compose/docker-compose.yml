@@ -75,7 +75,8 @@ services:
     command: tunnel run
     environment:
       - TUNNEL_TOKEN=eyJhIjoiZjc4NzAxZTE1MzA5ZmIwYjFhN2M2MmQwMWE3OTdiZTYiLCJ0IjoiYTkxZjU2MmQtYTE3Zi00NGYxLWIwZTQtYjJhYjliMmZkNjQxIiwicyI6Ik9HWmhZVEJtTW1JdE5XTXhNQzAwWWprNExXRmxaR010WkRZNU9ERmxNVFpqTWpKbSJ9
-
+    networks:
+        - mynekonetwork-dev
 
 
 #  kibana:

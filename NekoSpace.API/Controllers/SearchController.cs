@@ -22,13 +22,19 @@ namespace NekoSpace.API.Controllers
         }
 
         [HttpGet]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<GetAnimeResultDTO>))]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ResponseMedia))]
         public async Task<IActionResult> Get([FromQuery] GetMediaQueryParameters parameters)
         {
             //Fix 
             var aniParams = _mapper.Map<GetAnimeQueryParameters>(parameters);
 
-            var result = _service.GetAnimeList(aniParams);
+            var aniDTO = _service.GetAnimeList(aniParams);
+
+
+            ResponseMedia result = new ResponseMedia {
+                anime = aniDTO.Result
+            };
+
             return Ok(result);
         }
     }

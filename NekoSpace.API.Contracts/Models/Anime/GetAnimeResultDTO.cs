@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NekoSpace.API.Contracts.Models.AnimeService
 {
-    public class GetAnimeResultDTO : BaseMediaItem
+    public class GetAnimeResultDTO : BaseMediaResultDTO
     {
         [Required]
         public string PrimaryTitle { get; set; }//+

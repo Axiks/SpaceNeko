@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NekoSpace.API.Contracts.Abstract
 {
-    public abstract class BaseMediaItem
+    public abstract class BaseMediaResultDTO
     {
         [Required]
         public Guid Id { get; set; }

@@ -2,11 +2,6 @@
 using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.Core.Services.AnimeService;
-using NekoSpace.Data;
-using NekoSpace.ElasticSearch;
-using NekoSpace.Repository;
-using NekoSpace.Repository.Repositories;
-using NekoSpaceList.Models.Anime;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace NekoSpace.API.Controllers
@@ -42,13 +37,13 @@ namespace NekoSpace.API.Controllers
             }
             return Ok(anime);
         }
-
+/*
         [HttpGet("SearchOld")]
         public async Task<IActionResult> SearchAnimeByName(string q)
         {
             var result = await _animeService.SearchAnimeByName(q);
             return Ok(result);
-        }
+        }*/
 
         /* [HttpPost("{Id}/Update")]
          public async Task<IActionResult> UpdateAnime(Guid id)

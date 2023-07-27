@@ -2,6 +2,7 @@
 using MapsterMapper;
 using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
+using NekoSpace.API.Contracts.Models.Media;
 using NekoSpace.Data;
 using NekoSpace.ElasticSearch;
 using NekoSpace.ElasticSearch.Contracts.Interfaces;
@@ -18,15 +19,16 @@ namespace NekoSpace.Repository.Repositories
             _mapper = mapper;
         }
 
-        public List<GetAnimeResultDTO> Find(GetAnimeQueryParameters parameters)
+        public GetMediaListDTO<GetAnimeResultDTO> Find(GetAnimeQueryParameters parameters)
         {
             var result = new List<GetAnimeResultDTO>();
             //Мапимо питання в об'єкт зрозумілий ES
             // GetAnimeQueryParameters => ElasticSearchQueryParameters (Мало би працювати)
             ElasticSearchQueryParameters elasticSearchQueryParameters = _mapper.Map<ElasticSearchQueryParameters>(parameters); //Перевіряємо чи усе мапиться правильно
-            
+
             // Спочатку шукаємо в ES
-            var esResult = this.FindInElasticSearch(elasticSearchQueryParameters).Documents;
+            var esObj = this.FindInElasticSearch(elasticSearchQueryParameters);
+            var esResult = esObj.Documents;
 
             // Мапимо на об'єкт котрий вертатимо у фронт
             // ElasticSearchAnimeModel => ElasticSearchAnimeModel
@@ -68,7 +70,12 @@ namespace NekoSpace.Repository.Repositories
                 result.Add(animeDTO);
             }
 
-            return result;
+            GetMediaListDTO<GetAnimeResultDTO> resultDTO = new GetMediaListDTO<GetAnimeResultDTO>() {
+                results = result,
+                total = esObj.Total
+            };
+
+            return resultDTO;
         }
     }
 }

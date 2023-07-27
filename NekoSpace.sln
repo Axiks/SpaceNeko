@@ -29,9 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.ElasticSearch", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.ElasticSearch.Contracts", "NekoSpace.ElasticSearch.Contracts\NekoSpace.ElasticSearch.Contracts.csproj", "{7F7F4962-A0B8-439B-96D7-4AC12331738F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoSpace.Repository", "NekoSpace.Repository\NekoSpace.Repository.csproj", "{2F2F76DC-7A1B-4052-9FFB-47971C59BC2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Repository", "NekoSpace.Repository\NekoSpace.Repository.csproj", "{2F2F76DC-7A1B-4052-9FFB-47971C59BC2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoSpace.Repository.Contracts", "NekoSpace.Repository.Contracts\NekoSpace.Repository.Contracts.csproj", "{B634930A-E306-4732-9746-09EFC14B83DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoSpace.Repository.Contracts", "NekoSpace.Repository.Contracts\NekoSpace.Repository.Contracts.csproj", "{B634930A-E306-4732-9746-09EFC14B83DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storages", "Storages", "{65ED0263-60B7-4305-8B5A-FCC11B3CA9B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,8 +102,12 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{9DB5D321-F592-4F13-AA5F-FF5415EFC1C5} = {65ED0263-60B7-4305-8B5A-FCC11B3CA9B6}
+		{A6C201A0-AAF3-4383-A5E1-502291EEFC55} = {65ED0263-60B7-4305-8B5A-FCC11B3CA9B6}
 		{80FBFF68-B104-4E38-9D72-7EB9E7636C43} = {E2CD7886-F5BB-483B-BC6E-891AA8374B1F}
 		{3ADFCC27-B78E-436D-84D6-CC2E3AE2397E} = {E2CD7886-F5BB-483B-BC6E-891AA8374B1F}
+		{F8E8284D-30FA-47CE-8883-28A9B1C81420} = {65ED0263-60B7-4305-8B5A-FCC11B3CA9B6}
+		{7F7F4962-A0B8-439B-96D7-4AC12331738F} = {65ED0263-60B7-4305-8B5A-FCC11B3CA9B6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8783DAB8-AF69-4964-B5CF-74097BA8CFAD}

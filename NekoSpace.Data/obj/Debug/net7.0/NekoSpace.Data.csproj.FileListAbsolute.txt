@@ -36,14 +36,6 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.AssemblyInfoInputs.cache
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.AssemblyInfo.cs
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.csproj.CoreCompileInputs.cache
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\staticwebassets\msbuild.NekoSpace.Data.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\staticwebassets\msbuild.build.NekoSpace.Data.props
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.NekoSpace.Data.props
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.NekoSpace.Data.props
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\staticwebassets.pack.json
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\staticwebassets.build.json
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\staticwebassets.development.json
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\scopedcss\bundle\NekoSpace.Data.styles.css
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.csproj.CopyComplete
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\NekoSpace.Data.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Data\obj\Debug\net7.0\refint\NekoSpace.Data.dll

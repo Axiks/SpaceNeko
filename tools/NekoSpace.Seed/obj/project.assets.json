@@ -2131,10 +2131,7 @@
         },
         "runtime": {
           "bin/placeholder/NekoSpace.Data.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "NekoSpace.Data.Contracts/1.0.0": {
         "type": "project",

@@ -25,6 +25,7 @@ using NekoSpace.Repository.Repositories;
 using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.Data.Contracts.Entities.Base;
+using NekoSpace.Core.Services.AnimeService;
 
 namespace NekoSpace.API.Startup.Setup
 {
@@ -64,7 +65,11 @@ namespace NekoSpace.API.Startup.Setup
             services.AddScoped<IElasticSearchRepository<ElasticSearchAnimeModel>, ElasticSearchAnimeRepository>();
             
 
+
             services.AddScoped<AnimeRepository, AnimeRepository>();
+
+
+            services.AddScoped<AnimeService, AnimeService>();
 
             //services.AddElasticsearch(configurationManager);
 

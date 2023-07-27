@@ -15,24 +15,18 @@ namespace NekoSpace.API.Controllers
     [Route("api/[controller]")]
     public class AnimeController : ControllerBase
     {
-        private readonly ApplicationDbContext _dbContext;
-        private AnimeRepository _animeRepository;
+        private AnimeService _animeService;
 
-        public AnimeController(ApplicationDbContext dbContext, AnimeRepository animeRepository)
+        public AnimeController(AnimeService animeService)
         {
-            _dbContext = dbContext;
-            _animeRepository = animeRepository;
+            _animeService = animeService;
         }
 
         [HttpGet]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<GetAnimeResultDTO>))]
         public async Task<IActionResult> GetAnime([FromQuery] GetAnimeQueryParameters parameters)
         {
-            var service = new AnimeService(_dbContext, _animeRepository);
-            //var anime = await service.GetAnimeList(parameters, animeRepository);
-            //animeRepository.FindInElasticSearch(parameters);
-
-            var result = service.GetAnimeList(parameters);
+            var result = _animeService.GetAnimeList(parameters);
             return Ok(result);
         }
 
@@ -41,8 +35,7 @@ namespace NekoSpace.API.Controllers
         [SwaggerResponse(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAnimeById(Guid id)
         {
-            var service = new AnimeService(_dbContext, _animeRepository);
-            var anime = await service.GetAnimeById(id);
+            var anime = await _animeService.GetAnimeById(id);
             if(anime == null)
             {
                 return NotFound();
@@ -53,8 +46,7 @@ namespace NekoSpace.API.Controllers
         [HttpGet("SearchOld")]
         public async Task<IActionResult> SearchAnimeByName(string q)
         {
-            var service = new AnimeService(_dbContext, _animeRepository);
-            var result = await service.SearchAnimeByName(q);
+            var result = await _animeService.SearchAnimeByName(q);
             return Ok(result);
         }
 

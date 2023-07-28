@@ -9,6 +9,6 @@ namespace NekoSpaceList.Models.Anime
         [Required]
         public int? Year { get; set; }
         [Required]
-        public Sezon? Sezon { get; set; }
+        public Season? Season { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace NekoSpaceList.Models.General
     {
         public Guid Id { get; set; }
         public Language? Language { get; set; } // region
+
         [Required]
         public ItemFrom From { get; set; }
         [Required]

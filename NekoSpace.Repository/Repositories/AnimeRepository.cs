@@ -4,6 +4,7 @@ using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.API.Contracts.Models.Media;
 using NekoSpace.Data;
+using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.ElasticSearch;
 using NekoSpace.ElasticSearch.Contracts.Interfaces;
 using NekoSpaceList.Models.Anime;
@@ -14,9 +15,13 @@ namespace NekoSpace.Repository.Repositories
     public class AnimeRepository : AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel>
     {
         private IMapper _mapper;
+        private Language _primaryLang;
+        private Language _secondaryLang;
         public AnimeRepository(ApplicationDbContext dbcontext, IElasticSearchRepository<ElasticSearchAnimeModel> esrepository, IMapper mapper) : base(dbcontext, esrepository, mapper)
         {
             _mapper = mapper;
+            _primaryLang = Language.EN;
+            _secondaryLang = Language.UK;
         }
 
         public GetMediaListDTO<GetAnimeResultDTO> Find(GetAnimeQueryParameters parameters)
@@ -65,8 +70,13 @@ namespace NekoSpace.Repository.Repositories
 
             foreach (var animeDTO in getAnimeResultDTOs)
             {
-                var poster  = dataFromDb.FirstOrDefault(x => x.Id == animeDTO.Id).Posters.FirstOrDefault();
-                animeDTO.Poster = poster.Adapt<Poster>();
+                var posters = dataFromDb.FirstOrDefault(x => x.Id == animeDTO.Id).Posters;
+                var primaryPoster = posters.FirstOrDefault(x => x.Language == _primaryLang && x.IsMain == true);
+                var secondaryPoster = posters.FirstOrDefault(x => x.Language == _secondaryLang && x.IsMain == true);
+
+                animeDTO.PrimaryPoster = primaryPoster.Adapt<Poster>();
+                animeDTO.SecondaryPoster = secondaryPoster.Adapt<Poster>();
+
                 result.Add(animeDTO);
             }
 

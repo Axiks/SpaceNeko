@@ -28,12 +28,32 @@ public class AbstractMediaRepository<T, E> : IMediaRepository<T, E>, IInterconne
     public async void Add(T mediaEntity)
     {
         //DatabaseSection
-        var entityMediaObj = _dbcontext.Set<T>().Add(mediaEntity).Entity;
+        var entityMediaObj = _dbcontext.Set<T>();
+        var entity = entityMediaObj.Add(mediaEntity).Entity;
+
+        // Change image parameter
+        AutoImageMainSetHelper(entity);
+
         _dbcontext.SaveChanges();
 
         //ES section
         var edMediaModel = _mapper.Map<E>(entityMediaObj);
         await _esrepository.AddAsync(edMediaModel);
+    }
+
+    private void AutoImageMainSetHelper(T entity)
+    {
+        // Set auto poster main
+        var groupByLanguage = entity.Posters.GroupBy(x => x.Language);
+        foreach (var langPoster in groupByLanguage)
+        {
+            bool isMainPosterExist = langPoster.FirstOrDefault(x => x.IsMain == true) != null;
+            if (isMainPosterExist) continue;
+
+            //var originalPoster = langPoster.FirstOrDefault(x => x.IsOriginal == true);
+            var originalPoster = langPoster.FirstOrDefault(); //Firest random img
+            if (originalPoster != null) originalPoster.IsMain = true;
+        }
     }
 
     public void AddRange(List<T> mediaEntityCollection)
@@ -44,6 +64,8 @@ public class AbstractMediaRepository<T, E> : IMediaRepository<T, E>, IInterconne
         foreach (var mediaEntity in mediaEntityCollection)
         {
             var entityMediaObj = entityMediaEntity.Add(mediaEntity).Entity;
+            // Change image parameter
+            AutoImageMainSetHelper(entityMediaObj);
 
             //ES section
             var edMediaModel = _mapper.Map<E>(entityMediaObj);

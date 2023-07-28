@@ -11,6 +11,6 @@ namespace NekoSpace.API.Contracts.Models.Anime
     public class PremierDTO
     {
         public int? Year { get; set; }
-        public Sezon? Sezon { get; set; }
+        public Season? Season { get; set; }
     }
 }

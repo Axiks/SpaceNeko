@@ -14,7 +14,7 @@ namespace NekoSpace.ElasticSearch
         //public int? max_episode_duration { get; set; }
         public int? from_year_release { get; set; }
         public int? to_year_release { get; set; }
-        public Sezon? sezon { get; set; }
+        public Season? sezon { get; set; }
         public AiringStatus? airing_status { get; set; }
         public List<AnimeType>? anime_types { get; set; }
         //public List<AgeRating>? age_ratings { get; set; }

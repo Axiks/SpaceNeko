@@ -110,6 +110,8 @@ namespace NekoSpace.Seed.Driver
             poster.Original = manamiAnime.picture;
             poster.Small = manamiAnime.thumbnail;
             poster.From = ItemFrom.ExternalSource;
+            poster.Language = Language.EN;
+            poster.IsOriginal = true;
             posters.Add(poster);
 
             anime.Posters = posters;
@@ -153,30 +155,30 @@ namespace NekoSpace.Seed.Driver
             anime.AiringStatus = airingStatus;
 
             //manamiAnime.animeSeason
-            Sezon sezon = Sezon.Undefined;
+            Data.Contracts.Enums.Season sezon = Data.Contracts.Enums.Season.Undefined;
             switch (manamiAnime.animeSeason.season)
             {
-                case Season.WINTER:
-                    sezon = Sezon.Winter;
+                case ManamiAnimeOfflineRepository.Constans.Season.WINTER:
+                    sezon = Data.Contracts.Enums.Season.Winter;
                     break;
 
-                case Season.SPRING:
-                    sezon = Sezon.Spring;
+                case ManamiAnimeOfflineRepository.Constans.Season.SPRING:
+                    sezon = Data.Contracts.Enums.Season.Spring;
                     break;
 
-                case Season.SUMMER:
-                    sezon = Sezon.Summer;
+                case ManamiAnimeOfflineRepository.Constans.Season.SUMMER:
+                    sezon = Data.Contracts.Enums.Season.Summer;
                     break;
 
-                case Season.FALL:
-                    sezon = Sezon.Autumn;
+                case ManamiAnimeOfflineRepository.Constans.Season.FALL:
+                    sezon = Data.Contracts.Enums.Season.Autumn;
                     break;
             }
 
             anime.Premier = new PremierEntity
             {
                 Year = manamiAnime.animeSeason.year,
-                Sezon = sezon
+                Season = sezon
             };
 
             AnimeType animeType = AnimeType.EveryType;

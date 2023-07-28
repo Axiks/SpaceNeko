@@ -57,7 +57,7 @@ namespace NekoSpace.ElasticSearch
                                       .GreaterThanOrEquals(parameters.from_year_release)
                                       .LessThan(parameters.to_year_release)),
                                   fa => fa.Term(
-                                          rn => rn.Field(msg => msg.Premiere.Sezon).Value(parameters.sezon)),
+                                          rn => rn.Field(msg => msg.Premiere.Season).Value(parameters.sezon)),
                                   fa => fa.Term(
                                           rn => rn.Field(msg => msg.AiringStatus).Value(parameters.airing_status))
                                   )

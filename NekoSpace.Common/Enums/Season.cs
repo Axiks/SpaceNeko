@@ -1,6 +1,6 @@
 ﻿namespace NekoSpace.Data.Contracts.Enums
 {
-    public enum Sezon
+    public enum Season
     {
         Winter,
         Spring,

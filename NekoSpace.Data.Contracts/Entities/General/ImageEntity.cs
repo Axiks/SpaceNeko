@@ -1,11 +1,12 @@
 ﻿using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Data.Contracts.Enums;
+using NekoSpaceList.Models.General;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NekoSpace.Data.Contracts.Entities.General;
 
-public abstract class ImageEntity
+public abstract class ImageEntity : RootVariantSubItemEntity
 {
     public Guid Id { get; set; }
 

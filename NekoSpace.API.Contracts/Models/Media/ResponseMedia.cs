@@ -5,7 +5,7 @@ namespace NekoSpace.API.Contracts.Models.Media
 {
     public class ResponseMedia
     {
-        public long total { get { return anime.total; } }
+        public long allTotal { get { return anime.total; } }
         public GetMediaListDTO<GetAnimeResultDTO>? anime { get; set; }
     }
 

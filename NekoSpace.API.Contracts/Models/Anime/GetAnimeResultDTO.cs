@@ -14,15 +14,9 @@ namespace NekoSpace.API.Contracts.Models.AnimeService
     public class GetAnimeResultDTO : BaseMediaResultDTO
     {
         [Required]
-        public string PrimaryTitle { get; set; }//+
-        public string? SecondaryTitle { get; set; }//+
-        public string? PrimarySynopsis { get; set; }//+
-        public string? SecondarySynopsis { get; set; }//+
         public int? NumEpisodes { get; set; }//+
-        public int? EpisodesDurationSeconds { get; set; }//+
+        //public int? EpisodesDurationSeconds { get; set; }//+
         public AnimeType AnimeType { get; set; }//+
         public AiringStatus AiringStatus { get; set; }//+
-        public PremierDTO Premiere { get; set; }//+
-        public Poster? Poster { get; set; }  //FromDB
     }
 }

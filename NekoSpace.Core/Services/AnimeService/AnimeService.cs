@@ -101,7 +101,7 @@ namespace NekoSpace.Core.Services.AnimeService
                dest => dest.PrimarySynopsis,
                src => src.Synopsises.First().Body
             )
-            .IgnoreIf((src, dest) => src.Posters.IsNullOrEmpty(), src => src.Poster.Original);
+            .IgnoreIf((src, dest) => src.Posters.IsNullOrEmpty(), src => src.PrimaryPoster.Original);
             /*.Map(
             dest => dest.Poster.Original,
             src => src.Posters.FirstOrDefault(x => x.Original);*/

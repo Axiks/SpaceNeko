@@ -130,7 +130,7 @@ namespace NekoSpace.API.Startup.Setup
                 )*/
                 ;
             config.NewConfig<MediaEntity, GetAnimeResultDTO>()
-                .Map(dest => dest.Poster, src => src.Posters.FirstOrDefault())
+                .Map(dest => dest.PrimaryPoster, src => src.Posters.FirstOrDefault())
 
                 ;
 

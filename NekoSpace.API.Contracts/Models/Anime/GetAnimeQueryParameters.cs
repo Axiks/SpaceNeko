@@ -10,7 +10,7 @@ namespace NekoSpace.API.Contracts.Models.Anime
         public int? max_episodes { get; set; }
         //public int? min_episode_duration { get; set; }
         //public int? max_episode_duration { get; set; }
-        public Sezon? sezon { get; set; }
+        public Season? sezon { get; set; }
         public AiringStatus? airing_status { get; set; }
         //public List<AgeRating>? age_ratings { get; set; }
         //public List<AnimeType>? anime_types { get; set; }

@@ -10,6 +10,7 @@ using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.CharacterModels;
+using NekoSpaceList.Models.General;
 using NekoSpaceList.Models.Manga;
 using static NekoSpaceList.Models.General.GeneralModel;
 
@@ -103,6 +104,14 @@ namespace NekoSpace.Data
 
             //////////////////////////////////////////
             ///
+            modelBuilder
+                .Entity<RootVariantSubItemEntity>()
+                .UseTpcMappingStrategy();
+
+            modelBuilder
+                .Entity<RootVariantSubItemEntity>()
+                .UseTpcMappingStrategy();
+
 
             modelBuilder
                 .Entity<MediaEntity>()
@@ -388,8 +397,7 @@ namespace NekoSpace.Data
                 Entity<MangaTitleEntity>()
                 .Property(x => x.Language)
                 .HasColumnName("Language")
-                .HasConversion<string>()
-                .IsRequired();
+                .HasConversion<string>();
 
             //      MangaSynopsis       >>
 
@@ -401,8 +409,7 @@ namespace NekoSpace.Data
                 Entity<MangaSynopsisEntity>()
                 .Property(x => x.Language)
                 .HasColumnName("Language")
-                .HasConversion<string>()
-                .IsRequired();
+                .HasConversion<string>();
 
             modelBuilder.
                 Entity<MangaSynopsisEntity>()

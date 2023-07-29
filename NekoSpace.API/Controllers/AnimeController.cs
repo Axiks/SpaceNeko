@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
+using NekoSpace.API.Contracts.Models.Media;
 using NekoSpace.Core.Services.AnimeService;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -18,11 +19,16 @@ namespace NekoSpace.API.Controllers
         }
 
         [HttpGet]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<GetAnimeResultDTO>))]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ResponseMedia))]
         public async Task<IActionResult> GetAnime([FromQuery] GetAnimeQueryParameters parameters)
         {
-            var result = _animeService.GetAnimeList(parameters);
-            return Ok(result);
+            var aniDTO = _animeService.GetAnimeList(parameters);
+            ResponseMedia response = new ResponseMedia
+            {
+                anime = aniDTO.Result
+            };
+
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
@@ -31,10 +37,8 @@ namespace NekoSpace.API.Controllers
         public async Task<IActionResult> GetAnimeById(Guid id)
         {
             var anime = await _animeService.GetAnimeById(id);
-            if(anime == null)
-            {
-                return NotFound();
-            }
+            if(anime == null) return NotFound();
+
             return Ok(anime);
         }
 /*

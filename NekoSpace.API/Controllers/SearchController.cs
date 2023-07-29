@@ -27,9 +27,7 @@ namespace NekoSpace.API.Controllers
         {
             //Fix 
             var aniParams = _mapper.Map<GetAnimeQueryParameters>(parameters);
-
             var aniDTO = _service.GetAnimeList(aniParams);
-
 
             ResponseMedia result = new ResponseMedia {
                 anime = aniDTO.Result

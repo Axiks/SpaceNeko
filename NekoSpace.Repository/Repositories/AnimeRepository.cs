@@ -53,12 +53,12 @@ namespace NekoSpace.Repository.Repositories
             }
             var getAnimeResultDTOs = _mapper.Map<List<GetAnimeResultDTO>>(esResult); //????
 
-            // Виставляємо score елементам
 
             int mediaCollecitionCounter = 0;
             foreach (var hit in esObj.Hits)
             {
-                getAnimeResultDTOs[mediaCollecitionCounter].SearchScore = hit.Score;
+                //getAnimeResultDTOs[mediaCollecitionCounter].SearchScore = hit.Score; // Виставляємо score елементам
+                getAnimeResultDTOs[mediaCollecitionCounter].RelevantPosition = mediaCollecitionCounter; // Виставляємо позицію елементам
 
                 mediaCollecitionCounter++;
             }

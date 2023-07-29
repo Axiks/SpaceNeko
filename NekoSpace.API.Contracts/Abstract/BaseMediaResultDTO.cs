@@ -12,7 +12,8 @@ namespace NekoSpace.API.Contracts.Abstract
     {
         [Required]
         public Guid Id { get; set; }
-        public double? SearchScore { get; set; }
+        //public double? SearchScore { get; set; }
+        public int RelevantPosition { get; set; }
 
         public string PrimaryTitle { get; set; }//+
         public string? SecondaryTitle { get; set; }//+

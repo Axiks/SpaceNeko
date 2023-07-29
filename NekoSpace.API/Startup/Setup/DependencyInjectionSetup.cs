@@ -85,6 +85,8 @@ namespace NekoSpace.API.Startup.Setup
 
             var config = new TypeAdapterConfig();
 
+            config.Default.EnumMappingStrategy(EnumMappingStrategy.ByName);
+
             config.NewConfig<AnimeEntity, ElasticSearchAnimeModel>()
                 .Map(dest => dest.DBId, src => src.Id)
                 //.Map(dest => dest.ReleaseDatePeriod, src => src.Aired)

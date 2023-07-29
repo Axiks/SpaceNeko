@@ -45,7 +45,7 @@ namespace NekoSpace.ElasticSearch
                           .Size(parameters.limit)
                           .Query(q => q
                               .Bool(bq => bq.
-                                Must( 
+                                Filter( 
                                   fa => fa.Range(
                                       ta => ta
                                       .Field(f => f.NumEpisodes)

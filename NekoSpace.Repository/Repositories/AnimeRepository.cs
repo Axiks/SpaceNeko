@@ -35,9 +35,12 @@ namespace NekoSpace.Repository.Repositories
             var esObj = this.FindInElasticSearch(elasticSearchQueryParameters);
             var esResult = esObj.Documents;
 
+
+            // Отримуємо і вносимо оцінки
+
             // Мапимо на об'єкт котрий вертатимо у фронт
             // ElasticSearchAnimeModel => ElasticSearchAnimeModel
-            
+
             try
             {
                 //  Block of code to try
@@ -49,6 +52,18 @@ namespace NekoSpace.Repository.Repositories
                 var es = e;
             }
             var getAnimeResultDTOs = _mapper.Map<List<GetAnimeResultDTO>>(esResult); //????
+
+            // Виставляємо score елементам
+
+            int mediaCollecitionCounter = 0;
+            foreach (var hit in esObj.Hits)
+            {
+                getAnimeResultDTOs[mediaCollecitionCounter].SearchScore = hit.Score;
+
+                mediaCollecitionCounter++;
+            }
+
+
             // Тут ми проходимся по кожному елементу, й отримуємо усі його ID
             var animesId = new List<Guid>();
             foreach (var animeDTO in getAnimeResultDTOs)
@@ -61,21 +76,28 @@ namespace NekoSpace.Repository.Repositories
                 select: r => new {
                     r.Id,
                     r.Posters,
-                    r.UpdatedAt
+                    r.CreatedAt
                 },
                 includeProperties: i => i.Posters
-                );
+             );
+
 
             // Тут, через маппер, добавляємо бракуючі поля
 
             foreach (var animeDTO in getAnimeResultDTOs)
             {
-                var posters = dataFromDb.FirstOrDefault(x => x.Id == animeDTO.Id).Posters;
+                var media = dataFromDb.FirstOrDefault(x => x.Id == animeDTO.Id);
+
+                var posters = media.Posters;
                 var primaryPoster = posters.FirstOrDefault(x => x.Language == _primaryLang && x.IsMain == true);
                 var secondaryPoster = posters.FirstOrDefault(x => x.Language == _secondaryLang && x.IsMain == true);
 
                 animeDTO.PrimaryPoster = primaryPoster.Adapt<Poster>();
                 animeDTO.SecondaryPoster = secondaryPoster.Adapt<Poster>();
+
+                var createdAt = media.CreatedAt;
+
+                animeDTO.CreatedAt = createdAt;
 
                 result.Add(animeDTO);
             }

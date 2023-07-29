@@ -8,8 +8,6 @@ namespace NekoSpace.Data.Contracts.Entities.General;
 
 public abstract class ImageEntity : RootVariantSubItemEntity
 {
-    public Guid Id { get; set; }
-
     [Required]
     public string Original { get; set; }
     public string? Large { get; set; }

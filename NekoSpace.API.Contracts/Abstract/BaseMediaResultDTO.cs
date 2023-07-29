@@ -12,6 +12,8 @@ namespace NekoSpace.API.Contracts.Abstract
     {
         [Required]
         public Guid Id { get; set; }
+        public double? SearchScore { get; set; }
+
         public string PrimaryTitle { get; set; }//+
         public string? SecondaryTitle { get; set; }//+
         public string? PrimarySynopsis { get; set; }//+
@@ -19,6 +21,7 @@ namespace NekoSpace.API.Contracts.Abstract
         public PremierDTO Premiere { get; set; }//+
         public Poster? PrimaryPoster { get; set; }  //FromDB
         public Poster? SecondaryPoster { get; set; }  //FromDB
+
         [Required]
         public DateTimeOffset CreatedAt { get; set; }
         [Required]

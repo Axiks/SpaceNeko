@@ -11,5 +11,6 @@ namespace NekoSpace.API.Contracts.Models.Basic
         public string? q { get; set; }
         public int limit { get; set; } = 40;
         public int offset { get; set; } = 0;
+
     }
 }

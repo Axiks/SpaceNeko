@@ -13,6 +13,7 @@ using NekoSpace.Repository;
 using NekoSpace.Repository.Repositories;
 using JikanDotNet;
 using NekoSpace.API.Contracts.Models.Media;
+using NekoSpace.Repository.Contracts.Models;
 
 namespace NekoSpace.Core.Services.AnimeService
 {
@@ -25,7 +26,7 @@ namespace NekoSpace.Core.Services.AnimeService
             _animeRepository = animeRepository;
             MapConfigurate();
         }
-        public async Task<GetMediaListDTO<GetAnimeResultDTO>> GetAnimeList(GetAnimeQueryParameters parameters)
+        public async Task<ResponseMedia> GetAnimeList(GetAnimeQueryParameters parameters)
         {
             var animes = _animeRepository.Find(parameters);
             //_animeRepository.Find

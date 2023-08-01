@@ -1,17 +1,14 @@
 ﻿using NekoSpace.API.Contracts.Abstract;
 using NekoSpace.API.Contracts.Models.AnimeService;
+using NekoSpaceList.Models.Anime;
+using NekoSpaceList.Models.Manga;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace NekoSpace.API.Contracts.Models.Media
 {
     public class ResponseMedia
     {
-        public long allTotal { get { return anime.total; } }
-        public GetMediaListDTO<GetAnimeResultDTO>? anime { get; set; }
-    }
-
-    public class GetMediaListDTO<T> where T : BaseMediaResultDTO
-    {
-        public long total { get; set; } = 0;
-        public List<GetAnimeResultDTO>? results { get; set; }
+        public long TotalHits { get; set; }
+        public List<BaseMediaResultDTO>? Result { get; set; }
     }
 }

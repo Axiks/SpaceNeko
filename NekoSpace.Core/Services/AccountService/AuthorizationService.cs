@@ -9,6 +9,8 @@ using NekoSpace.Core.Services.AccountService.JwtConfiguration;
 using NekoSpace.API.General;
 using NekoSpace.API.Contracts.Models.AccountService.Login;
 using NekoSpace.API.Contracts.Abstract.General;
+using NekoSpaceList.Models.Anime;
+using NekoSpaceList.Models.Manga;
 
 namespace NekoSpace.Core.Services.AccountService
 {
@@ -45,10 +47,11 @@ namespace NekoSpace.Core.Services.AccountService
                 new Claim(ClaimTypes.Role, stringRoles)
             };
             var jwtToken = new JwtSecurityToken(
-                issuer: _jwtConfig.validIssuer,
-                audience: _jwtConfig.validAudience,
-                claims: userClaims,
-                expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(60 * 24)), // час дії 1 день
+                    issuer: _jwtConfig.validIssuer,
+                    audience: _jwtConfig.validAudience,
+                    claims: userClaims,
+                    expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(60 * 24)
+                ), // час дії 1 день
                 signingCredentials: new SigningCredentials(_jwtConfig.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)
             );
 
@@ -80,6 +83,9 @@ namespace NekoSpace.Core.Services.AccountService
                 var errorResult = new ErrorResultDTO("The password does not match");
                 return new LoginResultDTO(null, errorResult);
             }
+
+            //user.
+
 
             string token = createNewToken(user);
             var lgm = new LoginResultModel(token);

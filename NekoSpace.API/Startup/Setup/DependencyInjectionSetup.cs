@@ -26,6 +26,7 @@ using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Core.Services.AnimeService;
+using Microsoft.OpenApi.Models;
 
 namespace NekoSpace.API.Startup.Setup
 {
@@ -54,7 +55,13 @@ namespace NekoSpace.API.Startup.Setup
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Neko Space API", Version = "v1" });
+
+                c.EnableAnnotations(enableAnnotationsForInheritance: true, enableAnnotationsForPolymorphism: true);
+                //c.GeneratePolymorphicSchemas();
+            });
 
             services.AddProblemDetails();
 

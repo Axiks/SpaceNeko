@@ -2740,7 +2740,8 @@
         "dependencies": {
           "HotChocolate.Types": "12.16.0",
           "NekoSpace.Common": "1.0.0",
-          "NekoSpace.Core.Contracts": "1.0.0"
+          "NekoSpace.Core.Contracts": "1.0.0",
+          "Swashbuckle.AspNetCore.Annotations": "6.5.0"
         },
         "runtime": {
           "NekoSpace.API.Contracts.dll": {}

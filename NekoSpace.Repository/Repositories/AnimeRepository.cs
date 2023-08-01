@@ -1,5 +1,6 @@
 ﻿using Mapster;
 using MapsterMapper;
+using NekoSpace.API.Contracts.Abstract;
 using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.API.Contracts.Models.Media;
@@ -8,7 +9,6 @@ using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.ElasticSearch;
 using NekoSpace.ElasticSearch.Contracts.Interfaces;
 using NekoSpaceList.Models.Anime;
-using System.Linq;
 
 namespace NekoSpace.Repository.Repositories
 {
@@ -24,7 +24,7 @@ namespace NekoSpace.Repository.Repositories
             _secondaryLang = Language.UK;
         }
 
-        public GetMediaListDTO<GetAnimeResultDTO> Find(GetAnimeQueryParameters parameters)
+        public ResponseMedia Find(GetAnimeQueryParameters parameters)
         {
             var result = new List<GetAnimeResultDTO>();
             //Мапимо питання в об'єкт зрозумілий ES
@@ -52,16 +52,6 @@ namespace NekoSpace.Repository.Repositories
                 var es = e;
             }
             var getAnimeResultDTOs = _mapper.Map<List<GetAnimeResultDTO>>(esResult); //????
-
-
-            int mediaCollecitionCounter = 0;
-            foreach (var hit in esObj.Hits)
-            {
-                //getAnimeResultDTOs[mediaCollecitionCounter].SearchScore = hit.Score; // Виставляємо score елементам
-                getAnimeResultDTOs[mediaCollecitionCounter].RelevantPosition = mediaCollecitionCounter; // Виставляємо позицію елементам
-
-                mediaCollecitionCounter++;
-            }
 
 
             // Тут ми проходимся по кожному елементу, й отримуємо усі його ID
@@ -102,9 +92,10 @@ namespace NekoSpace.Repository.Repositories
                 result.Add(animeDTO);
             }
 
-            GetMediaListDTO<GetAnimeResultDTO> resultDTO = new GetMediaListDTO<GetAnimeResultDTO>() {
-                results = result,
-                total = esObj.Total
+            var resultDTO = new ResponseMedia
+            {
+                TotalHits = esObj.Total,
+                Result = result.Cast<BaseMediaResultDTO>().ToList()
             };
 
             return resultDTO;

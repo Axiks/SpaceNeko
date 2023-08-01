@@ -1,10 +1,16 @@
 ﻿using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
+using NekoSpace.API.Contracts.Abstract;
 using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.API.Contracts.Models.Media;
 using NekoSpace.Core.Services.AnimeService;
+using NekoSpaceList.Models.Anime;
+using NekoSpaceList.Models.Manga;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Drawing;
+using static Nest.JoinField;
 
 namespace NekoSpace.API.Controllers
 {
@@ -29,11 +35,8 @@ namespace NekoSpace.API.Controllers
             var aniParams = _mapper.Map<GetAnimeQueryParameters>(parameters);
             var aniDTO = _service.GetAnimeList(aniParams);
 
-            ResponseMedia result = new ResponseMedia {
-                anime = aniDTO.Result
-            };
-
-            return Ok(result);
+            return Ok(aniDTO.Result);
         }
+
     }
 }

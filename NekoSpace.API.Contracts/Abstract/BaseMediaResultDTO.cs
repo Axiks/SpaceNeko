@@ -1,4 +1,9 @@
 ﻿using NekoSpace.API.Contracts.Models.Anime;
+using NekoSpace.API.Contracts.Models.AnimeService;
+using NekoSpace.API.Contracts.Models.Manga;
+using NekoSpaceList.Models.Anime;
+using NekoSpaceList.Models.Manga;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,12 +13,15 @@ using System.Threading.Tasks;
 
 namespace NekoSpace.API.Contracts.Abstract
 {
+    [SwaggerSubType(typeof(GetAnimeResultDTO))]
+    [SwaggerSubType(typeof(GetMangaResultDTO))]
     public abstract class BaseMediaResultDTO
     {
         [Required]
         public Guid Id { get; set; }
         //public double? SearchScore { get; set; }
-        public int RelevantPosition { get; set; }
+        
+        //public int RelevantPosition { get; set; }
 
         public string PrimaryTitle { get; set; }//+
         public string? SecondaryTitle { get; set; }//+

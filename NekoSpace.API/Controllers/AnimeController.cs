@@ -18,18 +18,14 @@ namespace NekoSpace.API.Controllers
             _animeService = animeService;
         }
 
-        [HttpGet]
+        /*[HttpGet]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ResponseMedia))]
         public async Task<IActionResult> GetAnime([FromQuery] GetAnimeQueryParameters parameters)
         {
             var aniDTO = _animeService.GetAnimeList(parameters);
-            ResponseMedia response = new ResponseMedia
-            {
-                anime = aniDTO.Result
-            };
 
-            return Ok(response);
-        }
+            return Ok(aniDTO.Result);
+        }*/
 
         [HttpGet("{id}")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(GetAnimeResultDTO))]
@@ -41,29 +37,6 @@ namespace NekoSpace.API.Controllers
 
             return Ok(anime);
         }
-/*
-        [HttpGet("SearchOld")]
-        public async Task<IActionResult> SearchAnimeByName(string q)
-        {
-            var result = await _animeService.SearchAnimeByName(q);
-            return Ok(result);
-        }*/
-
-        /* [HttpPost("{Id}/Update")]
-         public async Task<IActionResult> UpdateAnime(Guid id)
-         {
-
-             *//*var service = new AnimeService(_dbContext);
-             var result = service.SearchAnimeByName(q);
-             return Ok(result);*//*
-             return Ok();
-         }*/
-
-        // Create translation proposition title
-        // Create translation proposition synopsis
-        // Decision proposition
-        // Set main
-        // Update anime data
 
     }
 }

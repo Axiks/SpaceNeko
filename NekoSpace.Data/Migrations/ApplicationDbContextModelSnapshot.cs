@@ -50,35 +50,35 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e9e62f05-b193-4fe9-9340-b44a79097108",
+                            Id = "7d1ae767-42ae-44d3-9e28-a8050def76cf",
                             ConcurrencyStamp = "1",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "3243fce7-5d35-4530-a200-494e8a2a6a9b",
+                            Id = "80718012-e7d6-45d2-b360-7329ff0dc7e1",
                             ConcurrencyStamp = "1",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "2e880e1d-f590-4859-a7a2-588448715256",
+                            Id = "eb287bbe-c944-4442-b20b-3e237d24e889",
                             ConcurrencyStamp = "1",
                             Name = "Creator",
                             NormalizedName = "CREATOR"
                         },
                         new
                         {
-                            Id = "c2f5c092-62b7-445c-a3d4-b29cfa51c050",
+                            Id = "0962d682-0a0d-4432-b71e-ac0adfe5feae",
                             ConcurrencyStamp = "1",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "950ebab0-4ae7-4b6c-89b8-ff0458cf8d99",
+                            Id = "938847f2-a8d3-4647-86a3-833ea26f73d1",
                             ConcurrencyStamp = "1",
                             Name = "Guest",
                             NormalizedName = "GUEST"
@@ -174,8 +174,8 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "cf577178-6712-4d4d-812f-a3f86e77e645",
-                            RoleId = "e9e62f05-b193-4fe9-9340-b44a79097108"
+                            UserId = "d7661412-d0cf-4736-ad0d-d1cf5224d527",
+                            RoleId = "7d1ae767-42ae-44d3-9e28-a8050def76cf"
                         });
                 });
 
@@ -245,6 +245,43 @@ namespace NekoSpace.Data.Migrations
                     b.HasIndex("MediaId");
 
                     b.ToTable("AssociatedService", (string)null);
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.User.OAuth.RefreshToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("JwtId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("NekoSpace.Data.Models.User.UserAnimeViewingStatusEntity", b =>
@@ -340,9 +377,9 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cf577178-6712-4d4d-812f-a3f86e77e645",
+                            Id = "d7661412-d0cf-4736-ad0d-d1cf5224d527",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3c6a1152-9374-4cb3-a2b1-64fd4659086f",
+                            ConcurrencyStamp = "8ed341eb-9f7f-40a3-b98f-f5d3ecea2981",
                             Email = "admin@example.local",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -350,7 +387,7 @@ namespace NekoSpace.Data.Migrations
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "AQAAAAEAACcQAAAAEHcnJe+yZ9BMU/ZP+V42eQaJYhEMQw4gKoLXDQFEHKcwhElL+c2NC7MkZJu2onNIdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fd548af2-b869-4977-9b24-f5b929a5a436",
+                            SecurityStamp = "241e2268-0064-4d79-acb1-49c1dcab8b8a",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -450,7 +487,7 @@ namespace NekoSpace.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
-                    b.Property<int>("Sezon")
+                    b.Property<int>("Season")
                         .HasColumnType("integer");
 
                     b.Property<int?>("Year")
@@ -843,6 +880,17 @@ namespace NekoSpace.Data.Migrations
                     b.Navigation("Media");
                 });
 
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.User.OAuth.RefreshToken", b =>
+                {
+                    b.HasOne("NekoSpace.Data.Models.User.UserEntity", "User")
+                        .WithOne("RefreshToken")
+                        .HasForeignKey("NekoSpace.Data.Contracts.Entities.User.OAuth.RefreshToken", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("NekoSpace.Data.Models.User.UserAnimeViewingStatusEntity", b =>
                 {
                     b.HasOne("NekoSpaceList.Models.Anime.AnimeEntity", "Anime")
@@ -1134,6 +1182,9 @@ namespace NekoSpace.Data.Migrations
                     b.Navigation("FavoriteAnimes");
 
                     b.Navigation("RatingAnimes");
+
+                    b.Navigation("RefreshToken")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NekoSpaceList.Models.General.GeneralModel+GenreEntity", b =>

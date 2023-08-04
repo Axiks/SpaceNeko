@@ -1,8 +1,4 @@
 ﻿using NekoSpace.API.Contracts.Abstract;
-using NekoSpace.API.Contracts.Models.AnimeService;
-using NekoSpaceList.Models.Anime;
-using NekoSpaceList.Models.Manga;
-using Swashbuckle.AspNetCore.Annotations;
 
 namespace NekoSpace.API.Contracts.Models.Media
 {

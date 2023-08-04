@@ -6,6 +6,7 @@ using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Data.Contracts.Entities.Character;
 using NekoSpace.Data.Contracts.Entities.General;
 using NekoSpace.Data.Contracts.Entities.Manga;
+using NekoSpace.Data.Contracts.Entities.User.OAuth;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
 using NekoSpaceList.Models.Anime;
@@ -38,6 +39,7 @@ namespace NekoSpace.Data
         public DbSet<UserRatingAnimeEntity> UserRatingAnime { get; set; }
         public DbSet<UserAnimeViewingStatusEntity> UserAnimeViewingStatus { get; set; }
         //public DbSet<AssociatedServiceEntity> AssociatedService { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         #region ContextConstructor
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -50,6 +52,12 @@ namespace NekoSpace.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // For identity user
+
+            /*modelBuilder.
+              Entity<RefreshToken>()
+              .HasOne(x => x.User)
+              .WithOne(x => x.RefreshToken)
+              .HasForeignKey(x => x.)*/
 
             //      Associated Service      >>
 

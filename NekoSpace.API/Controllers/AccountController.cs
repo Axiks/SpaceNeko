@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NekoSpace.API.Contracts.Abstract.General;
+using NekoSpace.API.Contracts.Models.Account;
 using NekoSpace.API.Contracts.Models.AccountService.Login;
 using NekoSpace.Core.Contracts.Models.AccountController.Login;
 using NekoSpace.Core.Contracts.Models.AccountService.Registration;
 using NekoSpace.Core.Services.AccountService;
 using NekoSpace.Core.Services.AccountService.JwtConfiguration;
+using NekoSpace.Data;
 using NekoSpace.Data.Models.User;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Security.Claims;
@@ -18,9 +20,9 @@ namespace NekoSpace.API.Controllers
     public class AccountController : ControllerBase
     {
         private AuthorizationService _authorizationService;
-        public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, ClaimsPrincipal claimsPrincipal, JwtConfig jwtConfig)
+        public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, ClaimsPrincipal claimsPrincipal, JwtConfig jwtConfig, ApplicationDbContext applicationDbContext, ConfigurationManager configurationManager)
         {
-            _authorizationService = new AuthorizationService(userManager, signInManager, jwtConfig);
+            _authorizationService = new AuthorizationService(userManager, signInManager, jwtConfig, applicationDbContext, configurationManager);
         }
 
         [HttpPost("SignIn")]
@@ -34,7 +36,7 @@ namespace NekoSpace.API.Controllers
 
             if(result.Error == null)
             {
-                return Ok();
+                return Ok(result);
             }
 
             /* var problemDetails = new ProblemDetails
@@ -109,5 +111,25 @@ namespace NekoSpace.API.Controllers
                 throw;
             }
         }
+
+
+
+        [HttpPost("RefreshToken")]
+        public async Task<IActionResult> RefreshTockenAsync([FromBody] TokenRequest tokenRefresh)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _authorizationService.VerefityAndGenerateToken(tokenRefresh);
+
+                if(result == null) {
+                    return BadRequest();
+                }
+
+                return Ok(result);
+            }
+
+            return BadRequest();
+        }
+
     }
 }

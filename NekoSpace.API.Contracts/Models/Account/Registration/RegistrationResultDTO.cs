@@ -20,11 +20,8 @@ namespace NekoSpace.Core.Contracts.Models.AccountService.Registration
     {
         [Required]
         public string Token { get; set; }
-
-        public RegistrationResultModel(string token)
-        {
-            Token = token;
-        }
+        [Required]
+        public string RefreshToken { get; set; }
     }
 
 }

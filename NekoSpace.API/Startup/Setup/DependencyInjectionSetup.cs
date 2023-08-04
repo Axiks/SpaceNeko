@@ -69,6 +69,8 @@ namespace NekoSpace.API.Startup.Setup
 
             services.RegisterCors();
 
+            services.AddSingleton<ConfigurationManager>(configurationManager);
+
             services.AddScoped<IElasticSearchRepository<ElasticSearchAnimeModel>, ElasticSearchAnimeRepository>();
             
 

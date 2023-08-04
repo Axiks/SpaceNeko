@@ -1,10 +1,5 @@
 ﻿using NekoSpace.API.Contracts.Abstract.General;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NekoSpace.API.Contracts.Models.AccountService.Login
 {
@@ -18,11 +13,9 @@ namespace NekoSpace.API.Contracts.Models.AccountService.Login
     public class LoginResultModel
     {
         [Required]
-        public string token { get; set; }
+        public string Token { get; set; }
 
-        public LoginResultModel(string token)
-        {
-            token = token;
-        }
+        [Required]
+        public required string RefreshToken { get; set; }
     }
 }

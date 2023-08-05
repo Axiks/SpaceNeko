@@ -8,13 +8,14 @@ using NekoSpace.Core.Contracts.Models.AccountService.Registration;
 using NekoSpace.Core.Services.AccountService.JwtConfiguration;
 using NekoSpace.API.General;
 using NekoSpace.API.Contracts.Models.AccountService.Login;
-using NekoSpace.API.Contracts.Abstract.General;
 using System.Security.Cryptography;
 using NekoSpace.Data.Contracts.Entities.User.OAuth;
 using NekoSpace.Data;
 using NekoSpace.API.Contracts.Models.Account;
 using NekoSpace.Core.Helpers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace NekoSpace.Core.Services.AccountService
 {
@@ -72,6 +73,7 @@ namespace NekoSpace.Core.Services.AccountService
 
         public async Task<LoginResultDTO> SignInAsync(Login loginInput)
         {
+
             UserEntity user;
             if (isEmail(loginInput.Username))
             {
@@ -84,14 +86,14 @@ namespace NekoSpace.Core.Services.AccountService
 
             if (user == null)
             {
-                var errorResult = new ErrorResultDTO("No user found for this username or email");
+                var errorResult = new ProblemDetails { Title = "No user found for this email or username", Status = 401 };
                 return new LoginResultDTO(null, errorResult);
             }
 
             var result = await _signInManager.PasswordSignInAsync(user, loginInput.Password, true, true);
             if (!result.Succeeded)
             {
-                var errorResult = new ErrorResultDTO("The password does not match");
+                var errorResult = new ProblemDetails { Title = "The password does not match", Status = 401 };
                 return new LoginResultDTO(null, errorResult);
             }
 
@@ -100,8 +102,9 @@ namespace NekoSpace.Core.Services.AccountService
 
             string refreshTocken = ApplyRefreshToken(jwtToken);
 
-            var lgm = new LoginResultModel {
-                Token = token,
+            var lgm = new TokenRequest
+            {
+                AccessToken = token,
                 RefreshToken = refreshTocken,
             };
 
@@ -149,13 +152,29 @@ namespace NekoSpace.Core.Services.AccountService
             _dbContext.SaveChangesAsync();
         }
 
-        public async Task SignOutAsync()
+        private async Task RevokeRefreshTocken(Guid userId)
         {
+            var refreshToken = _dbContext.RefreshTokens.FirstOrDefaultAsync(x => x.UserId == userId.ToString()).Result;
+            refreshToken.IsRevoked = true;
+            _dbContext.SaveChangesAsync();
+        }
+
+        public async Task SignOutAsync(Guid userId)
+        {
+            await RevokeRefreshTocken(userId);
             await _signInManager.SignOutAsync();
         }
 
         public async Task<RegistrationResultDTO> RegistrationAsync(Registration registrationInput)
         {
+
+            // Перевіряємо на унікальність
+            if (_userManager.FindByEmailAsync(registrationInput.Email).Result != null)
+                return new RegistrationResultDTO(null, new ProblemDetails { Title = "Error create user", Detail = "A user with this email already exists", Status = 409 });
+
+            if (_userManager.FindByNameAsync(registrationInput.Username).Result != null)
+                return new RegistrationResultDTO(null, new ProblemDetails { Title = "Error create user", Detail = "A user with this usermame already exists", Status = 409 });
+
 
             var user = new UserEntity
             {
@@ -168,7 +187,7 @@ namespace NekoSpace.Core.Services.AccountService
             if (!result.Succeeded)
             {
                 List<string> errors = result.Errors.Select(e => e.Description).ToList();
-                var errorResult = new ErrorResultDTO(String.Join(", ", errors.ToArray()));
+                var errorResult = new ProblemDetails { Title = "Error create user", Detail = String.Join(", ", errors.ToArray()), Status = 500 };
                 return new RegistrationResultDTO(null, errorResult);
             }
 
@@ -177,73 +196,74 @@ namespace NekoSpace.Core.Services.AccountService
             if (!setRoleResult.Succeeded)
             {
                 var errors = setRoleResult.Errors.Select(e => e.Description);
-                var errorResult = new ErrorResultDTO(String.Join(", ", errors.ToArray()));
+                var errorResult = new ProblemDetails { Title = "Error setting user role", Detail = String.Join(", ", errors.ToArray()), Status = 500 };
                 return new RegistrationResultDTO(null, errorResult);
             }
 
             //SignIn
             var loginData = new Login(registrationInput.Username, registrationInput.Password);
             var signInResult = await SignInAsync(loginData);
-            if(signInResult.Error != null) return new RegistrationResultDTO(null, new ErrorResultDTO("An error occurred while signing in"));
+            if(signInResult.Error != null) return new RegistrationResultDTO(null, new ProblemDetails { Title = "Authorization error", Status = 500 });
 
-            return new RegistrationResultDTO(new RegistrationResultModel { Token = signInResult.Result.Token, RefreshToken = signInResult.Result.RefreshToken }, null);
+            return new RegistrationResultDTO(new TokenRequest { AccessToken = signInResult.Result.AccessToken, RefreshToken = signInResult.Result.RefreshToken }, null);
         }
 
         public async Task<LoginResultDTO> VerefityAndGenerateToken(TokenRequest tokenRequest)
         {
             var tokenValidationParameter = new TokenValidationHelper(_configurationManager).GetTokenValidationParameters();
+            tokenValidationParameter.ValidateLifetime = false;
 
             var tokenHandler = new JwtSecurityTokenHandler();
             SecurityToken validatedToken = null;
             try
             {
                 var tokenInVerification = 
-                    tokenHandler.ValidateToken(tokenRequest.Token, tokenValidationParameter, out validatedToken);
+                    tokenHandler.ValidateToken(tokenRequest.AccessToken, tokenValidationParameter, out validatedToken);
 
 
                 if (validatedToken is JwtSecurityToken jwtSecurityToken)
                 {
                     var result = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase);
-                    if (result == false) return new LoginResultDTO(null, new ErrorResultDTO("ErrorNeedWrite"));
+                    if (result == false) return new LoginResultDTO(null, new ProblemDetails { Title = "Invalid token", Status = 403 });
                 }
 
+                // Token time check
                 var utcExpiryDate = long.Parse(tokenInVerification.Claims
                     .FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
-
                 var expiryDate = UnixTimeStampToDateTime(utcExpiryDate);
-                if(expiryDate <= DateTime.Now) return new LoginResultDTO(null, new ErrorResultDTO("ErrorNeedWrite"));
+                if(expiryDate >= DateTime.Now) return new LoginResultDTO(null, new ProblemDetails { Title = "The token has not yet expired", Status = 403 });
 
-                var storedToken = _dbContext.RefreshTokens.FirstOrDefaultAsync(x => x.Token == tokenRequest.RefreshToken).Result;
-                if (storedToken == null) return new LoginResultDTO(null, new ErrorResultDTO("ErrorNeedWrite"));
 
-                if (storedToken.IsUsed) return new LoginResultDTO(null, new ErrorResultDTO("ErrorNeedWrite"));
+                var storedRefreshToken = _dbContext.RefreshTokens.FirstOrDefaultAsync(x => x.Token == tokenRequest.RefreshToken).Result;
+                if (storedRefreshToken == null) return new LoginResultDTO(null, new ProblemDetails { Title = "Invalid refresh token", Status = 403 });
 
-                if (storedToken.IsRevoked) return new LoginResultDTO(null, new ErrorResultDTO("ErrorNeedWrite"));
+
+                if (storedRefreshToken.IsUsed) return new LoginResultDTO(null, new ProblemDetails { Title = "Invalid refresh token", Status = 403 });
+
+                if (storedRefreshToken.IsRevoked) return new LoginResultDTO(null, new ProblemDetails { Title = "Refresh token revoked", Status = 403 });
 
                 var jti = tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
 
-                if (storedToken.JwtId.ToString() != jti) return new LoginResultDTO(null, new ErrorResultDTO("ErrorNeedWrite"));
+                if (storedRefreshToken.JwtId.ToString() != jti) return new LoginResultDTO(null, new ProblemDetails { Title = "Invalid refresh token", Status = 403 });
 
-                var a = 
+                if (storedRefreshToken.ExpiryDate < DateTime.UtcNow) return new LoginResultDTO(null, new ProblemDetails { Title = "Expired refresh token", Status = 403 });
 
-                if (storedToken.ExpiryDate < DateTime.UtcNow) return new LoginResultDTO(null, new ErrorResultDTO("Time expendet"));
-
-                storedToken.IsUsed = true;
+                storedRefreshToken.IsUsed = true;
 
 
-                _dbContext.RefreshTokens.Update(storedToken);
+                _dbContext.RefreshTokens.Update(storedRefreshToken);
                 await _dbContext.SaveChangesAsync();
 
                 // Generate new tokens
-                var dbUser = _userManager.FindByIdAsync(storedToken.UserId).Result;
+                var dbUser = _userManager.FindByIdAsync(storedRefreshToken.UserId).Result;
                 var jwtToken = GenerateJwtToken(dbUser);
                 string token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
                 string refreshTocken = ApplyRefreshToken(jwtToken);
 
-                var lgm = new LoginResultModel
+                var lgm = new TokenRequest
                 {
-                    Token = token,
+                    AccessToken = token,
                     RefreshToken = refreshTocken,
                 };
 
@@ -252,16 +272,15 @@ namespace NekoSpace.Core.Services.AccountService
             }
             catch (SecurityTokenException se)
             {
-                var x = se;
-                return new LoginResultDTO(null, new ErrorResultDTO("ErrorNeedWrite"));
+                //return new LoginResultDTO(null, new ProblemDetails { Title = "Server error" });
+                return new LoginResultDTO(null, new ProblemDetails { Title = "Invalid token", Detail = se.Message, Status = 403 });
             }
             catch (Exception e)
             {
                 //log(e.ToString()); //something else happened
                 throw;
             }
-            //... manual validations return false if anything untoward is discovered
-            return new LoginResultDTO(null, new ErrorResultDTO("ErrorNeedWrite...When i can see true.. all is ok"));
+
         }
 
         // Helper section

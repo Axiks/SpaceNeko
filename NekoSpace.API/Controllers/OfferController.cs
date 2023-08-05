@@ -38,7 +38,7 @@ namespace NekoSpace.API.Controllers
                 return Ok(result.Result);
                 //return CreatedAtAction(result.Result);
             }
-            return Problem(result.Error.Message, statusCode: 400);
+            return Problem(result.Error.Title, statusCode: 400);
         }
         [HttpGet("anime/synopsis")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<OfferBasicResultDTO>))]
@@ -53,7 +53,7 @@ namespace NekoSpace.API.Controllers
                 return Ok(result.Result);
                 //return CreatedAtAction(result.Result);
             }
-            return Problem(result.Error.Message, statusCode: 400);
+            return Problem(result.Error.Title, statusCode: 400);
         }
 
         [HttpGet("anime/titles/{titleId}")]
@@ -66,7 +66,7 @@ namespace NekoSpace.API.Controllers
             {
                 return Ok(result.Result);
             }
-            return Problem(result.Error.Message, statusCode: 400);
+            return Problem(result.Error.Title, statusCode: 400);
         }
 
         [HttpPost("anime/{animeId}/titles")]
@@ -80,7 +80,7 @@ namespace NekoSpace.API.Controllers
                 return Ok(result.Result);
                 //return CreatedAtAction(result.Result);
             }
-            return Problem(result.Error.Message, statusCode: 400);
+            return Problem(result.Error.Title, statusCode: 400);
             //return BadRequest(result.Error);
         }
 
@@ -94,7 +94,7 @@ namespace NekoSpace.API.Controllers
             {
                 return Ok(result.Result);
             }
-            return Problem(result.Error.Message, statusCode: 400);
+            return Problem(result.Error.Title, statusCode: 400);
         }
 
 
@@ -109,7 +109,7 @@ namespace NekoSpace.API.Controllers
                 return Ok(result.Result);
                 //return CreatedAtAction(result.Result);
             }
-            return Problem(result.Error.Message, statusCode: 400);
+            return Problem(result.Error.Title, statusCode: 400);
             //return BadRequest(result.Error);
         }
     }

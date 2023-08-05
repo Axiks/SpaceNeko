@@ -1,11 +1,12 @@
-﻿using NekoSpace.API.Contracts.Abstract.General;
+﻿using Microsoft.AspNetCore.Mvc;
+using NekoSpace.API.Contracts.Abstract.General;
 using NekoSpace.API.Contracts.Models.ProvidingTranslationOffer;
 
 namespace NekoSpace.Core.Services.AnimeService
 {
-    public class ProvidingTranslationOffertResultDTO : AbstractResultModel<OfferBasicResultDTO>
+    public class ProvidingTranslationOffertResultDTO : AbstractResultDTO<OfferBasicResultDTO>
     {
-        public ProvidingTranslationOffertResultDTO(OfferBasicResultDTO? result, ErrorResultDTO? error) : base(result, error)
+        public ProvidingTranslationOffertResultDTO(OfferBasicResultDTO? result, ProblemDetails? error) : base(result, error)
         {
         }
     }

@@ -1,5 +1,6 @@
 ﻿using JikanDotNet;
 using Mapster;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
 using NekoSpace.API.Contracts.Abstract.General;
@@ -45,7 +46,7 @@ namespace NekoSpace.Core.Services.OfferController
                 title = NewAnimeTitleOfferModel(animeId, providingTranslationOfferInput);
             }
             else {
-                return new ProvidingTranslationOffertResultDTO(null, new ErrorResultDTO("No media found"));
+                return new ProvidingTranslationOffertResultDTO(null, new ProblemDetails { Title = "No media found" });
             }
 
             /*if (IsUserHasAutomaticAcceptPermission() && IsFirstTitleLanguageProposition(animeId, providingTranslationOfferInput.Language))
@@ -61,7 +62,7 @@ namespace NekoSpace.Core.Services.OfferController
                 return new ProvidingTranslationOffertResultDTO(offerResult, null);
             }
 
-            return new ProvidingTranslationOffertResultDTO(null, new ErrorResultDTO("Save failure"));
+            return new ProvidingTranslationOffertResultDTO(null, new ProblemDetails { Title = "Save failure" });
         }
 
         public async Task<ProvidingTranslationOffertResultListDTO> GetOfferAnimeTitles()
@@ -102,7 +103,7 @@ namespace NekoSpace.Core.Services.OfferController
             }
             else
             {
-                return new ProvidingTranslationOffertResultDTO(null, new ErrorResultDTO("No media found"));
+                return new ProvidingTranslationOffertResultDTO(null, new ProblemDetails { Title = "No media found" });
             }
 
             animeItem.Synopsises.Add(synopsis);
@@ -113,7 +114,7 @@ namespace NekoSpace.Core.Services.OfferController
                 return new ProvidingTranslationOffertResultDTO(offerResult, null);
             }
 
-            return new ProvidingTranslationOffertResultDTO(null, new ErrorResultDTO("Save failure"));
+            return new ProvidingTranslationOffertResultDTO(null, new ProblemDetails { Title = "Save failure" });
         }
 
         private AnimeTitleEntity NewAnimeTitleOfferModel(Guid animeId, ProvidingTranslationOffer providingTranslationOfferInput)

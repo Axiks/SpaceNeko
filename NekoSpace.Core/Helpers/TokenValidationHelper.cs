@@ -23,12 +23,12 @@ public class TokenValidationHelper
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = jwtConfig.GetSymmetricSecurityKey(),
-            ValidateIssuer = false,
+            ValidateIssuer = true,
             ValidIssuer = jwtConfig.validIssuer, // for dev
-            ValidateAudience = false, // fore dev
+            ValidateAudience = true, // fore dev
             ValidAudience = jwtConfig.validAudience,
             ValidateLifetime = true,
-            RequireExpirationTime = false, // Only test!
+            RequireExpirationTime = true, // Only test!
         };
     }
 }

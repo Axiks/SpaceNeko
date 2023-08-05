@@ -17,7 +17,7 @@ namespace NekoSpace.API.Controllers
     [Authorize]
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService;
+        /*private readonly UserService _userService;
         public UserController(ApplicationDbContext dbContext, UserManager<UserEntity> userManager, ClaimsPrincipal claimsPrincipal)
         {
             _userService = new UserService(dbContext, userManager, claimsPrincipal);
@@ -53,7 +53,7 @@ namespace NekoSpace.API.Controllers
                 return BadRequest(response.Error);
             }
             return Ok(response.Result);
-        }
+        }*/
 
     }
 }

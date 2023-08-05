@@ -1,21 +1,12 @@
-﻿using NekoSpace.API.Contracts.Abstract.General;
-using System.ComponentModel.DataAnnotations;
-
+﻿using Microsoft.AspNetCore.Mvc;
+using NekoSpace.API.Contracts.Abstract.General;
+using NekoSpace.API.Contracts.Models.Account;
 namespace NekoSpace.API.Contracts.Models.AccountService.Login
 {
-    public class LoginResultDTO : AbstractResultModel<LoginResultModel>
+    public class LoginResultDTO : AbstractResultDTO<TokenRequest>
     {
-        public LoginResultDTO(LoginResultModel? result, ErrorResultDTO? error) : base(result, error)
+        public LoginResultDTO(TokenRequest? result, ProblemDetails? error) : base(result, error)
         {
         }
-    }
-
-    public class LoginResultModel
-    {
-        [Required]
-        public string Token { get; set; }
-
-        [Required]
-        public required string RefreshToken { get; set; }
     }
 }

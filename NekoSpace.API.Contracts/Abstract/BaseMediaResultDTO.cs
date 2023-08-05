@@ -1,15 +1,8 @@
 ﻿using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.API.Contracts.Models.Manga;
-using NekoSpaceList.Models.Anime;
-using NekoSpaceList.Models.Manga;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NekoSpace.API.Contracts.Abstract
 {

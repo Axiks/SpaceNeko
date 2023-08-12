@@ -2,14 +2,14 @@
 using NekoSpace.Common.Enums.API;
 using NekoLang = NekoSpace.Data.Contracts.Enums.Language;
 using Nest;
-using System.Linq;
+using NekoSpace.ElasticSearch.Contracts.Enums;
 
 namespace NekoSpace.ElasticSearch
 {
-    public class ElasticSearchAnimeRepository : AbstractElasticSearchRepository<ElasticSearchAnimeModel>
+    public class ElasticSearchAnimeRepository : AbstractElasticSearchRepository<ElasticSearchAnimeModel, ElasticSearchAnimeQueryParameters>
     {
-        private static readonly string indexName = "animeindex";
-        private ElasticSearchQueryParameters _parameters;
+        private static readonly string indexName = IndexNameEnum.Animeindex.ToString();
+        private ElasticSearchAnimeQueryParameters _parameters;
 
         public ElasticSearchAnimeRepository(IConfiguration configuration) : base(indexName, configuration)
         {
@@ -21,7 +21,7 @@ namespace NekoSpace.ElasticSearch
             return _parameters.sort_by.Contains(adaptationType);
         }
 
-        public override async Task<ISearchResponse<ElasticSearchAnimeModel>> SearchAsync(ElasticSearchQueryParameters parameters)
+        public override async Task<ISearchResponse<ElasticSearchAnimeModel>> SearchAsync(ElasticSearchAnimeQueryParameters parameters)
         {
             _parameters = parameters;
             // Where adapted
@@ -29,11 +29,11 @@ namespace NekoSpace.ElasticSearch
             var noAdapted = parameters.where_no_adapted;
             var lang = NekoLang.UK;
 
-            var titleAdapted = adapted != null && adapted.Contains(AdaptationType.Title);
-            var titleNoAdapted = noAdapted != null && adapted.Contains(AdaptationType.Title);
+            var titleAdapted = adapted != null && adapted.Contains(OfferType.Title);
+            var titleNoAdapted = noAdapted != null && adapted.Contains(OfferType.Title);
 
-            var descriptionAdapted = adapted != null && adapted.Contains(AdaptationType.Description);
-            var descriptionNoAdapted = noAdapted != null && adapted.Contains(AdaptationType.Description);
+            var descriptionAdapted = adapted != null && adapted.Contains(OfferType.Description);
+            var descriptionNoAdapted = noAdapted != null && adapted.Contains(OfferType.Description);
 
             // Sort
             

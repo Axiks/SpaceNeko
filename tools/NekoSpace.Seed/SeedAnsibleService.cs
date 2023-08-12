@@ -10,16 +10,17 @@ using Microsoft.EntityFrameworkCore;
 using Arch.EntityFrameworkCore;
 using NekoSpace.ElasticSearch;
 using MapsterMapper;
+using NekoSpace.ElasticSearch.Contracts.General;
 using NekoSpace.Repository;
 
 namespace NekoSpace.Seed
 {
     public class SeedAnsibleService : ISeedAnsibleService
     {
-        private AbstractMediaRepositoryDriver<AnimeEntity, ElasticSearchAnimeModel> _animeRepositoryDriver;
+        private AbstractMediaRepositoryDriver<AnimeEntity, ElasticSearchAnimeModel, ElasticSearchAnimeQueryParameters> _animeRepositoryDriver;
         private IMapper _mapper;
 
-        public SeedAnsibleService(AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel> animeRepository, IMapper mapper)
+        public SeedAnsibleService(AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel, ElasticSearchAnimeQueryParameters> animeRepository, IMapper mapper)
         {
             _mapper = mapper;
 
@@ -38,7 +39,7 @@ namespace NekoSpace.Seed
             var animeRepositoryPackages = new List<RepositoryPackage<AnimeEntity>> { repositoryPackage };
 
             // Лрайвер репозиторій
-            _animeRepositoryDriver = new AbstractMediaRepositoryDriver<AnimeEntity, ElasticSearchAnimeModel>(animeRepositoryPackages, animeRepository, _mapper);
+            _animeRepositoryDriver = new AbstractMediaRepositoryDriver<AnimeEntity, ElasticSearchAnimeModel, ElasticSearchAnimeQueryParameters>(animeRepositoryPackages, animeRepository, _mapper);
         }
 
         public void RunSeed()

@@ -1,18 +1,19 @@
 ﻿using Elasticsearch.Net;
 using Microsoft.Extensions.Configuration;
 using NekoSpace.ElasticSearch.Contracts;
+using NekoSpace.ElasticSearch.Contracts.General;
 using NekoSpace.ElasticSearch.Contracts.Interfaces;
 using Nest;
 
 namespace NekoSpace.ElasticSearch
 {
-    public abstract class AbstractElasticSearchRepository<T> : IElasticSearchRepository<T> where T : ElasticSearchMediaBasicModel
+    public abstract class AbstractElasticSearchRepository<T,S> : IElasticSearchRepository<T,S> where T : ElasticSearchMediaBasicModel where S : ElasticSearchMediaQueryParameters
     {
         protected readonly string _indexName;
         protected readonly IElasticClient _elasticClient;
         public AbstractElasticSearchRepository(string indexName, IConfiguration configuration)
         {
-            _indexName = indexName;
+            _indexName = indexName.ToLower();
 
             var url = configuration["elasticsearch:url"];
             _elasticClient = InitClient(url, _indexName);
@@ -62,7 +63,7 @@ namespace NekoSpace.ElasticSearch
             }
         }
 
-        public abstract Task<ISearchResponse<T>> SearchAsync(ElasticSearchQueryParameters parameters);//??
+        public abstract Task<ISearchResponse<T>> SearchAsync(S parameters);//??
 
         public async Task UpdateAsync(Guid Id, T mediaModel)
         {

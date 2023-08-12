@@ -12,12 +12,12 @@ using NekoSpaceList.Models.Anime;
 
 namespace NekoSpace.Repository.Repositories
 {
-    public class AnimeRepository : AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel>
+    public class AnimeRepository : AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel, ElasticSearchAnimeQueryParameters>
     {
         private IMapper _mapper;
         private Language _primaryLang;
         private Language _secondaryLang;
-        public AnimeRepository(ApplicationDbContext dbcontext, IElasticSearchRepository<ElasticSearchAnimeModel> esrepository, IMapper mapper) : base(dbcontext, esrepository, mapper)
+        public AnimeRepository(ApplicationDbContext dbcontext, IElasticSearchRepository<ElasticSearchAnimeModel, ElasticSearchAnimeQueryParameters> esrepository, IMapper mapper) : base(dbcontext, esrepository, mapper)
         {
             _mapper = mapper;
             _primaryLang = Language.EN;
@@ -29,7 +29,7 @@ namespace NekoSpace.Repository.Repositories
             var result = new List<GetAnimeResultDTO>();
             //Мапимо питання в об'єкт зрозумілий ES
             // GetAnimeQueryParameters => ElasticSearchQueryParameters (Мало би працювати)
-            ElasticSearchQueryParameters elasticSearchQueryParameters = _mapper.Map<ElasticSearchQueryParameters>(parameters); //Перевіряємо чи усе мапиться правильно
+            ElasticSearchAnimeQueryParameters elasticSearchQueryParameters = _mapper.Map<ElasticSearchAnimeQueryParameters>(parameters); //Перевіряємо чи усе мапиться правильно
 
             // Спочатку шукаємо в ES
             var esObj = this.FindInElasticSearch(elasticSearchQueryParameters);

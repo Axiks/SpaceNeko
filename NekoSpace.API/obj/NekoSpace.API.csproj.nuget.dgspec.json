@@ -138,9 +138,9 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
-            "GraphQL.Server.Ui.Voyager": {
+            "JsonSubTypes": {
               "target": "Package",
-              "version": "[7.2.0, )"
+              "version": "[2.0.1, )"
             },
             "Mapster": {
               "target": "Package",
@@ -154,11 +154,23 @@
               "target": "Package",
               "version": "[7.0.2, )"
             },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
             "NEST": {
               "target": "Package",
               "version": "[7.17.5, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.Newtonsoft": {
               "target": "Package",
               "version": "[6.5.0, )"
             }

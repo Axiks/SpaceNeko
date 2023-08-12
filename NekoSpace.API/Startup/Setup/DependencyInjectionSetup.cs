@@ -27,6 +27,12 @@ using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Core.Services.AnimeService;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using JsonSubTypes;
+using NekoSpace.API.Contracts.Models.ProvidingTranslationOffer.Request;
+using NekoSpace.Common.Enums.API;
+using Newtonsoft.Json.Converters;
+using NekoSpace.ElasticSearch.Contracts.General;
 
 namespace NekoSpace.API.Startup.Setup
 {
@@ -45,21 +51,51 @@ namespace NekoSpace.API.Startup.Setup
 
             //services.RegisterGraphQl();
 
-            services.AddControllers().AddJsonOptions(x =>
+            /* services.AddControllers().AddJsonOptions(x =>
+             {
+                 // serialize enums as strings in api responses (e.g. Role)
+                 x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+             });*/
+
+            services.AddControllers().AddNewtonsoftJson(options =>
             {
-                // serialize enums as strings in api responses (e.g. Role)
-                x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                //Register the subtypes of the Device (Phone and Laptop)
+                //and define the device Discriminator
+                options.SerializerSettings.Converters.Add(
+                    JsonSubtypesConverterBuilder
+                    .Of(typeof(OfferBasicRequest), "OfferType")
+                    .RegisterSubtype(typeof(TitleOfferRequest), OfferType.Title)
+                    .RegisterSubtype(typeof(DescriptionOfferRequest), OfferType.Description)
+                    .SerializeDiscriminatorProperty()
+                    .Build()
+                );
+                options.SerializerSettings.Converters.Add(new StringEnumConverter());
             });
+
+            services.AddSwaggerGenNewtonsoftSupport();
 
             //services.ConfigureHttpJsonOptions(options => options.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Neko Space API", Version = "v1" });
 
+                c.UseAllOfToExtendReferenceSchemas();
+                c.UseAllOfForInheritance();
+                c.UseOneOfForPolymorphism();
+                c.SelectDiscriminatorNameUsing(type =>
+                {
+                    return type.Name switch
+                    {
+                        nameof(OfferBasicRequest) => "OfferType",
+                        _ => null
+                    };
+                });
                 c.EnableAnnotations(enableAnnotationsForInheritance: true, enableAnnotationsForPolymorphism: true);
+                 
                 //c.GeneratePolymorphicSchemas();
             });
 
@@ -71,7 +107,7 @@ namespace NekoSpace.API.Startup.Setup
 
             services.AddSingleton<ConfigurationManager>(configurationManager);
 
-            services.AddScoped<IElasticSearchRepository<ElasticSearchAnimeModel>, ElasticSearchAnimeRepository>();
+            services.AddScoped<IElasticSearchRepository<ElasticSearchAnimeModel, ElasticSearchAnimeQueryParameters>, ElasticSearchAnimeRepository>();
             
 
 
@@ -110,7 +146,7 @@ namespace NekoSpace.API.Startup.Setup
                 .Map(dest => dest.Id, src => src.ServiceId)
                 .Map(dest => dest.ServiceName, src => src.ServiceName);
 
-            config.NewConfig<GetAnimeQueryParameters, ElasticSearchQueryParameters>();
+            config.NewConfig<GetAnimeQueryParameters, ElasticSearchAnimeQueryParameters>();
 
             config.NewConfig<ElasticSearchAnimeModel, GetAnimeResultDTO>()
                 .Map(dest => dest.Id, src => src.DBId)

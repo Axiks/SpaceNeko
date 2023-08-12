@@ -2,7 +2,7 @@
 using NekoSpace.ElasticSearch;
 using NekoSpace.Repository.Contracts.Models;
 
-namespace NekoSpace.Seed
+namespace NekoSpace.Repository
 {
     public partial class AbstractMediaRepositoryDriver<T, E> where T : MediaEntity where E : ElasticSearchMediaBasicModel
     {

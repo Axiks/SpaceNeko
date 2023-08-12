@@ -4,6 +4,7 @@ using NekoSpace.Data;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.ElasticSearch;
 using NekoSpace.ElasticSearch.Contracts;
+using NekoSpace.ElasticSearch.Contracts.General;
 using NekoSpace.Repository;
 using NekoSpace.Repository.Contracts.Models;
 using NekoSpace.Seed.Interfaces;
@@ -12,13 +13,13 @@ using NekoSpaceList.Models.Anime;
 
 namespace NekoSpace.Seed
 {
-    public partial class AbstractMediaRepositoryDriver<T, E> : IMediaRepositoryDriver<T> where T : MediaEntity where E : ElasticSearchMediaBasicModel
+    public partial class AbstractMediaRepositoryDriver<T, E, S> : IMediaRepositoryDriver<T> where T : MediaEntity where E : ElasticSearchMediaBasicModel where S : ElasticSearchMediaQueryParameters
     {
         private List<RepositoryPackage<T>> _repositoriesPackage;
-        private AbstractMediaRepository<T, E> _coreMediaRepository;
+        private AbstractMediaRepository<T, E, S> _coreMediaRepository;
         private IMapper _mapper;
 
-        public AbstractMediaRepositoryDriver(List<RepositoryPackage<T>> repositoriesPackage, AbstractMediaRepository<T, E> abstractMediaRepository, IMapper mapper)
+        public AbstractMediaRepositoryDriver(List<RepositoryPackage<T>> repositoriesPackage, AbstractMediaRepository<T, E, S> abstractMediaRepository, IMapper mapper)
         {
 
             _repositoriesPackage = repositoriesPackage;

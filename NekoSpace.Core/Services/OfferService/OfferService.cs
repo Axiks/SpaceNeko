@@ -1,20 +1,14 @@
-﻿using JikanDotNet;
-using Mapster;
+﻿/*using Mapster;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
-using NekoSpace.API.Contracts.Abstract.General;
-using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.API.Contracts.Models.ProvidingTranslationOffer;
-using NekoSpace.API.General;
 using NekoSpace.Core.Contracts.Models.ProvidingTranslationOfferService;
 using NekoSpace.Core.Services.AnimeService;
 using NekoSpace.Data;
 using NekoSpace.Data.Contracts.Entities.Anime;
-using NekoSpace.Data.Contracts.Entities.Base;
+using NekoSpace.Data.Contracts.Entities.General;
 using NekoSpace.Data.Contracts.Entities.Manga;
 using NekoSpace.Data.Contracts.Enums;
-using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.General;
 using System.Security.Claims;
 
@@ -31,7 +25,7 @@ namespace NekoSpace.Core.Services.OfferController
             _dbContext = context;
             _claimsPrincipal = claimsPrincipal;
             string userGuid = claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
-            _userId = Guid.Parse(userGuid);
+            //_userId = Guid.Parse(userGuid);
 
             MapConfigurate();
         }
@@ -40,19 +34,20 @@ namespace NekoSpace.Core.Services.OfferController
         {
             var animeItem = _dbContext.Animes.Include(x => x.Titles).FirstOrDefault(item => item.Id == animeId);
 
-            AnimeTitleEntity title = new AnimeTitleEntity();
+            MediaTitleEntity title = new MediaTitleEntity();
             if (animeItem != null)
             {
                 title = NewAnimeTitleOfferModel(animeId, providingTranslationOfferInput);
             }
-            else {
+            else
+            {
                 return new ProvidingTranslationOffertResultDTO(null, new ProblemDetails { Title = "No media found" });
             }
 
-            /*if (IsUserHasAutomaticAcceptPermission() && IsFirstTitleLanguageProposition(animeId, providingTranslationOfferInput.Language))
+            if (IsUserHasAutomaticAcceptPermission() && IsFirstTitleLanguageProposition(animeId, providingTranslationOfferInput.Language))
             {
                 title.IsMain = true;
-            }*/
+            }
 
             animeItem.Titles.Add(title);
 
@@ -159,7 +154,7 @@ namespace NekoSpace.Core.Services.OfferController
             return title;
         }
 
-/*        private bool IsUserHasAutomaticAcceptPermission()
+        private bool IsUserHasAutomaticAcceptPermission()
         {
             if (_claimsPrincipal.IsInRole(Roles.AdministratorRole) || _claimsPrincipal.IsInRole(Roles.ModeratorRole) || _claimsPrincipal.IsInRole(Roles.CreatorRole))
             {
@@ -182,7 +177,7 @@ namespace NekoSpace.Core.Services.OfferController
                 return true;
             }
             return false;
-        }*/
+        }
 
         private void MapConfigurate()
         {
@@ -198,3 +193,4 @@ namespace NekoSpace.Core.Services.OfferController
         }
     }
 }
+*/

@@ -78,9 +78,9 @@ namespace NekoSpace.Seed.Driver
             ////////////
             AnimeEntity anime = new AnimeEntity();
 
-            List<AnimeTitleEntity> animeTitles = new List<AnimeTitleEntity>();
+            List<MediaTitleEntity> animeTitles = new List<MediaTitleEntity>();
 
-            AnimeTitleEntity animeTitle = new AnimeTitleEntity();
+            MediaTitleEntity animeTitle = new MediaTitleEntity();
             animeTitle.Body = manamiAnime.title;
             animeTitle.IsOriginal = true;
             animeTitle.IsMain = true;
@@ -92,7 +92,7 @@ namespace NekoSpace.Seed.Driver
 
             foreach (string synomim in manamiAnime.synonyms)
             {
-                animeTitle = new AnimeTitleEntity();
+                animeTitle = new MediaTitleEntity();
                 animeTitle.Body = synomim;
                 animeTitle.IsOriginal = false;
                 animeTitle.IsMain = false;

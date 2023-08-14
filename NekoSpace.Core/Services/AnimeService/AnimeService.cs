@@ -14,7 +14,6 @@ using NekoSpace.Repository.Repositories;
 using JikanDotNet;
 using NekoSpace.API.Contracts.Models.Media;
 using NekoSpace.Repository.Contracts.Models;
-using NekoSpace.Data.Contracts.Entities.General;
 
 namespace NekoSpace.Core.Services.AnimeService
 {
@@ -57,19 +56,19 @@ namespace NekoSpace.Core.Services.AnimeService
 
 
 
-            var searchMedias = _dbContext.MediaTitles
-                .Include(i => i.Media).ThenInclude(x => x.Titles)
-                .Include(i => i.Media).ThenInclude(x => x.Synopsises)
-                .Include(i => i.Media).ThenInclude(x => x.Posters)
+            var searchAnime = _dbContext.AnimeTitles
+                .Include(i => i.Anime).ThenInclude(x => x.Titles)
+                .Include(i => i.Anime).ThenInclude(x => x.Synopsises)
+                .Include(i => i.Anime).ThenInclude(x => x.Posters)
                 .Where(t => t.Body.Contains(query));
 
-            var searchResultAsync = searchMedias.ToListAsync();
+            var searchResultAsync = searchAnime.ToListAsync();
             searchResultAsync.Wait();
 
             List<GetAnimeResultDTO> findedAnime = new List<GetAnimeResultDTO>();
-            foreach (var mediaTitile in searchResultAsync.Result)
+            foreach (var animeTitile in searchResultAsync.Result)
             {
-                findedAnime.Add(mediaTitile.Media.Adapt<GetAnimeResultDTO>());
+                findedAnime.Add(animeTitile.Anime.Adapt<GetAnimeResultDTO>());
             }
 
             SearchAnimeResultDTO searchAnimeResponse = new SearchAnimeResultDTO{
@@ -83,7 +82,7 @@ namespace NekoSpace.Core.Services.AnimeService
         public async Task<bool> UpdateAnimeTitle(UpdateAnimeTitle updateAnimeTitleInput)
         {
             Guid titleId = updateAnimeTitleInput.TitleId;
-            var searchAnime = await _dbContext.MediaTitles
+            var searchAnime = await _dbContext.AnimeTitles
                .FirstOrDefaultAsync(t => t.Id == titleId);
 
             // var result = searchAnime.Adapt<UpdateAnimeTitleInput>();
@@ -109,7 +108,7 @@ namespace NekoSpace.Core.Services.AnimeService
             dest => dest.Poster.Original,
             src => src.Posters.FirstOrDefault(x => x.Original);*/
 
-            TypeAdapterConfig<MediaTitleEntity, GetAnimeResultDTO>.NewConfig()
+            TypeAdapterConfig<AnimeTitleEntity, GetAnimeResultDTO>.NewConfig()
 /*            .Map(
             dest => dest.TitleOriginal,
             src => src.Anime.Titles.FirstOrDefault(x => x.IsOriginal == true))
@@ -119,9 +118,9 @@ namespace NekoSpace.Core.Services.AnimeService
             .Map(
             dest => dest.SynopsisOriginal,
             src => src.Anime.Synopsises.FirstOrDefault(x => x.IsOriginal == true))*/
-            /*.Map(
+            .Map(
             dest => dest.NumEpisodes,
-            src => src.Anime.NumEpisodes)*/
+            src => src.Anime.NumEpisodes)
             /*.Map(
             dest => dest.PosterOriginal,
             src => src.Anime.Posters.FirstOrDefault().Poster.)*/

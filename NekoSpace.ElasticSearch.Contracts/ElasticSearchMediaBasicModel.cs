@@ -1,5 +1,4 @@
 ﻿using NekoSpace.Common.Enums;
-using NekoSpace.Common.Enums.API;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.ElasticSearch.Contracts;
 using Nest;
@@ -17,6 +16,6 @@ namespace NekoSpace.ElasticSearch
         public List<ESMediaBasicTitleModel> Synopsises { get; set; }
         //public AgeRating? AgeRating { get; set; }
         public Source? Source { get; set; }
-        public ESPremiereModel Premiere { get; set; }
+        public ESPremiereModel Premiere { get; set; } 
     }
 }

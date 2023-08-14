@@ -1,10 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
-using NekoSpace.ElasticSearch.Contracts;
 using Nest;
 
 namespace NekoSpace.ElasticSearch
 {
-    public class ElasticSearchMangaRepository : AbstractElasticSearchRepository<ElasticSearchMangaModel, ElasticSearchMangaQueryParameters>
+    public class ElasticSearchMangaRepository : AbstractElasticSearchRepository<ElasticSearchMangaModel>
     {
         private static readonly string indexName = "mangaindex";
 
@@ -12,7 +11,7 @@ namespace NekoSpace.ElasticSearch
         {
         }
 
-        public override async Task<ISearchResponse<ElasticSearchMangaModel>> SearchAsync(ElasticSearchMangaQueryParameters parameters)
+        public override async Task<ISearchResponse<ElasticSearchMangaModel>> SearchAsync(ElasticSearchQueryParameters parameters)
         {
 
             var result = await _elasticClient.SearchAsync<ElasticSearchMangaModel>(m => m

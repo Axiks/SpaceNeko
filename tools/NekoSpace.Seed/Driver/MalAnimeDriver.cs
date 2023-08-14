@@ -36,25 +36,25 @@ namespace NekoSpace.Seed.Driver
             var cowboyBebop = jikan.GetAnimeFullDataAsync(MalId).Result;
 
             // Мапим новими даними нашу модель
-            MediaTitleEntity title = new MediaTitleEntity();
+            AnimeTitleEntity title = new AnimeTitleEntity();
                 title.Body = cowboyBebop.Data.Title;
                 title.IsOriginal = true;
                 title.IsMain = true;
                 title.Language = Language.EN;
 
-            MediaTitleEntity titleEng = new MediaTitleEntity();
+            AnimeTitleEntity titleEng = new AnimeTitleEntity();
                 titleEng.Body = cowboyBebop.Data.TitleEnglish;
                 titleEng.IsOriginal = false;
                 titleEng.IsMain = false;
                 titleEng.Language = Language.EN;
 
-            MediaTitleEntity titleJp = new MediaTitleEntity();
+            AnimeTitleEntity titleJp = new AnimeTitleEntity();
                 titleJp.Body = cowboyBebop.Data.TitleJapanese;
                 titleJp.IsOriginal = true;
                 titleJp.IsMain = true;
                 titleJp.Language = Language.JA;
 
-            ICollection<MediaTitleEntity> animeTitles = new List<MediaTitleEntity>()
+            ICollection<AnimeTitleEntity> animeTitles = new List<AnimeTitleEntity>()
             {
                 title,
                 titleJp,
@@ -64,7 +64,7 @@ namespace NekoSpace.Seed.Driver
             var JdnTitles = cowboyBebop.Data.Titles;
             foreach (var JdnTitle in JdnTitles)
             {
-                MediaTitleEntity titleAlt = new MediaTitleEntity();
+                AnimeTitleEntity titleAlt = new AnimeTitleEntity();
                 titleAlt.Body = JdnTitle.Title;
                 titleAlt.IsOriginal = false;
                 titleAlt.IsMain = false;
@@ -85,7 +85,7 @@ namespace NekoSpace.Seed.Driver
             var JdnTitlesSyn = cowboyBebop.Data.TitleSynonyms;
             foreach (var JdnTitle in JdnTitlesSyn)
             {
-                MediaTitleEntity titleAlt = new MediaTitleEntity();
+                AnimeTitleEntity titleAlt = new AnimeTitleEntity();
                 titleAlt.Body = JdnTitle;
                 titleAlt.IsOriginal = false;
                 titleAlt.IsMain = false;
@@ -252,9 +252,9 @@ namespace NekoSpace.Seed.Driver
             };
             anime.Aired = aired;
 
-            anime.Synopsises = new List<MediaSynopsisEntity>
+            anime.Synopsises = new List<AnimeSynopsisEntity>
             {
-                new MediaSynopsisEntity
+                new AnimeSynopsisEntity
                 {
                     Body = cowboyBebop.Data.Synopsis,
                     Language = Language.EN,

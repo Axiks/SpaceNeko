@@ -9,8 +9,8 @@ namespace NekoSpaceList.Models.Manga
 {
     public class MangaEntity : MediaEntity
     {
-/*        public ICollection<MangaTitleEntity> Titles { get; set; }
-        public ICollection<MangaSynopsisEntity> Synopsises { get; set; }*/
+        public ICollection<MangaTitleEntity> Titles { get; set; }
+        public ICollection<MangaSynopsisEntity> Synopsises { get; set; }
         [Required]
         public int ChaptersCount { get; set; }
         public ICollection<MangaGenreEntity> Genres { get; set; }

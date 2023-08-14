@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NekoSpace.Data.Contracts.Entities.Anime
 {
-/*    public class AnimeTitleEntity : TextVariantSubItemEntity
+    public class AnimeTitleEntity : TextVariantSubItemEntity
     {
         public Guid AnimeId { get; set; }
         public AnimeEntity Anime { get; set; }
-    }*/
+    }
 }

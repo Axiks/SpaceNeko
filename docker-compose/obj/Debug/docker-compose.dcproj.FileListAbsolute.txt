@@ -66,8 +66,3 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Neko
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.Repository.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.Repository.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\NekoSpace.Repository.Contracts.pdb
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\JsonSubTypes.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Newtonsoft.Json.Bson.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\docker-compose\bin\Debug\Swashbuckle.AspNetCore.Newtonsoft.dll

@@ -10,8 +10,8 @@ namespace NekoSpaceList.Models.Anime;
 
 public class AnimeEntity : MediaEntity
 {
-/*    public ICollection<AnimeTitleEntity> Titles { get; set; }
-    public ICollection<AnimeSynopsisEntity>? Synopsises { get; set; }*/
+    public ICollection<AnimeTitleEntity> Titles { get; set; }
+    public ICollection<AnimeSynopsisEntity>? Synopsises { get; set; }
     public AnimeType? Type { get; set; }
     public AiringStatus? AiringStatus { get; set; }
     public AgeRating? AgeRating { get; set; }

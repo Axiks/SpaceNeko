@@ -1,10 +1,9 @@
-﻿ using MapsterMapper;
+﻿using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using NekoSpace.Data;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.ElasticSearch;
 using NekoSpace.ElasticSearch.Contracts;
-using NekoSpace.ElasticSearch.Contracts.General;
 using NekoSpace.ElasticSearch.Contracts.Interfaces;
 using NekoSpace.Repository.Contracts.Interfaces;
 using NekoSpace.Repository.Contracts.Models;
@@ -13,13 +12,13 @@ using System.Linq.Expressions;
 
 namespace NekoSpace.Repository;
 
-public class AbstractMediaRepository<T, E, S> : IMediaRepository<T, E, S>, IInterconnectionExtensions where T : MediaEntity where E : ElasticSearchMediaBasicModel where S : ElasticSearchMediaQueryParameters
+public class AbstractMediaRepository<T, E> : IMediaRepository<T, E>, IInterconnectionExtensions where T : MediaEntity where E : ElasticSearchMediaBasicModel
 {
     private ApplicationDbContext _dbcontext;
-    private IElasticSearchRepository<E,S> _esrepository;
+    private IElasticSearchRepository<E> _esrepository;
     private IMapper _mapper;
 
-    public AbstractMediaRepository(ApplicationDbContext dbcontext, IElasticSearchRepository<E,S> esrepository, IMapper mapper)
+    public AbstractMediaRepository(ApplicationDbContext dbcontext, IElasticSearchRepository<E> esrepository, IMapper mapper)
     {
         _dbcontext = dbcontext;
         _esrepository = esrepository;
@@ -76,7 +75,7 @@ public class AbstractMediaRepository<T, E, S> : IMediaRepository<T, E, S>, IInte
 
         _dbcontext.SaveChanges();
     }
-    public ISearchResponse<E> FindInElasticSearch(S elasticSearchQueryParameters)
+    public ISearchResponse<E> FindInElasticSearch(ElasticSearchQueryParameters elasticSearchQueryParameters)
     {
         var resAsync = _esrepository.SearchAsync(elasticSearchQueryParameters);
         resAsync.Wait();

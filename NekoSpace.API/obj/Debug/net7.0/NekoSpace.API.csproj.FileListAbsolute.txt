@@ -45,6 +45,7 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Arch.EntityFrameworkCore.Relational.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Azure.Identity.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\GraphQL.Server.Ui.Voyager.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\HotChocolate.Abstractions.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\HotChocolate.Language.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\HotChocolate.Language.SyntaxTree.dll
@@ -363,8 +364,3 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NekoSpace.Repository.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NekoSpace.Repository.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\NekoSpace.Repository.Contracts.pdb
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\JsonSubTypes.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
-C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Newtonsoft.dll

@@ -1,5 +1,4 @@
-﻿using NekoSpace.Common.Enums.API;
-using NekoSpace.Data.Contracts.Enums;
+﻿using NekoSpace.Data.Contracts.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

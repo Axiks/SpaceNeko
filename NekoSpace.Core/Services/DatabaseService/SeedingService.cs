@@ -4,7 +4,6 @@ using NekoSpace.API.Helpers;
 using NekoSpace.Common.Enums;
 using NekoSpace.Data;
 using NekoSpace.ElasticSearch;
-using NekoSpace.ElasticSearch.Contracts.General;
 using NekoSpace.Repository;
 using NekoSpace.Seed;
 using NekoSpace.Seed.Driver;
@@ -16,9 +15,9 @@ namespace NekoSpace.Core.Services.DatabaseService;
 public class SeedingService : ISeedingService
 {
     private IMapper _mapper;
-    private AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel, ElasticSearchAnimeQueryParameters> _animeRepository;
+    private AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel> _animeRepository;
 
-    public SeedingService(AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel, ElasticSearchAnimeQueryParameters> animeRepository, IMapper mapper)
+    public SeedingService(AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel> animeRepository, IMapper mapper)
     {
         _animeRepository= animeRepository;
         _mapper = mapper;

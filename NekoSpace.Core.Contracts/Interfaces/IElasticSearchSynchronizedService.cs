@@ -15,6 +15,6 @@ namespace NekoSpace.Core.Contracts.Interfaces
         public Task AddManyAsync(ICollection<T> mediaModels);
         public Task UpdateAsync(Guid Id, T mediaModel);
         public Task RemoveAsync(T media);
-        public Task SearchAsync(ElasticSearchAnimeQueryParameters parameters);
+        public Task SearchAsync(ElasticSearchQueryParameters parameters);
     }
 }

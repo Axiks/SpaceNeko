@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Arch.EntityFrameworkCore;
 using NekoSpace.ElasticSearch;
 using MapsterMapper;
-using NekoSpace.Repository;
+using NekoSpace.Repository.Repositories.Media;
 
 namespace NekoSpace.Seed
 {

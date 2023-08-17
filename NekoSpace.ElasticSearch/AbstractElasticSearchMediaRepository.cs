@@ -1,16 +1,14 @@
-﻿using Elasticsearch.Net;
-using Microsoft.Extensions.Configuration;
-using NekoSpace.ElasticSearch.Contracts;
+﻿using Microsoft.Extensions.Configuration;
 using NekoSpace.ElasticSearch.Contracts.Interfaces;
 using Nest;
 
 namespace NekoSpace.ElasticSearch
 {
-    public abstract class AbstractElasticSearchRepository<T> : IElasticSearchRepository<T> where T : ElasticSearchMediaBasicModel
+    public abstract class AbstractElasticSearchMediaRepository<T> : IElasticSearchRepository<T> where T : ElasticSearchMediaBasicModel
     {
         protected readonly string _indexName;
         protected readonly IElasticClient _elasticClient;
-        public AbstractElasticSearchRepository(string indexName, IConfiguration configuration)
+        public AbstractElasticSearchMediaRepository(string indexName, IConfiguration configuration)
         {
             _indexName = indexName;
 
@@ -64,11 +62,39 @@ namespace NekoSpace.ElasticSearch
 
         public abstract Task<ISearchResponse<T>> SearchAsync(ElasticSearchQueryParameters parameters);//??
 
-        public async Task UpdateAsync(Guid Id, T mediaModel)
+        /*        public async Task<ISearchResponse<ElasticSearchMediaBasicModel>> GetByMediaIdAsync(Guid mediaId)
+                {
+                    var response = await _elasticClient.SearchAsync<ElasticSearchMediaBasicModel>(m => m
+                                    .Index(_indexName)
+                                    .Query(q => q
+                                      .Bool(bq => bq
+                                        .Must( qq =>
+                                            qq.Term(t => t.Field(msg => msg.DBId).Value(mediaId))
+                                          )
+                                      )
+                                  )
+                             );
+                    return response;
+                }*/
+
+        public async Task UpdateAsync(T media)
         {
-            var response = await _elasticClient.UpdateAsync<T>(Id, u => u
+            // Find ES index Id by MediaId // Fix ?
+            var findESId = await _elasticClient.SearchAsync<T>(q => q
+            .Query(rq => rq
+                .Match(m => m
+                .Field(f => f.DBId)
+                .Query(media.DBId.ToString()))
+            )
+            .Index(_indexName)
+            );
+            bool isCurentMediaExist = findESId != null && findESId.Documents.Count != 0;
+
+            if (!isCurentMediaExist) throw new Exception("This record does not exist");
+
+            var response = await _elasticClient.UpdateAsync<T>(findESId.Hits.First().Id, u => u
               .Index(_indexName)
-              .Doc(mediaModel));
+              .Doc(media));
         }
 
 
@@ -107,7 +133,5 @@ namespace NekoSpace.ElasticSearch
                 )
             );
         }
-
-
     }
 }

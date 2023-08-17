@@ -1,19 +1,11 @@
-﻿using Arch.EntityFrameworkCore;
-using MapsterMapper;
+﻿using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using NekoSpace.API.Helpers;
 using NekoSpace.Core.Services.DatabaseService;
 using NekoSpace.Data;
-using NekoSpace.Data.Contracts.Entities.Anime;
-using NekoSpace.ElasticSearch;
-using NekoSpace.Repository;
 using NekoSpace.Repository.Repositories;
-using NekoSpace.Seed;
-using NekoSpace.Seed.Interfaces;
-using NekoSpaceList.Models.Anime;
-using System;
+using NekoSpace.Repository.Repositories.Media;
 
 namespace NekoSpace.API.Controllers
 {

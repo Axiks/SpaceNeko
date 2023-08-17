@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NekoSpace.Data.Contracts.Entities.General
+namespace NekoSpace.Data.Contracts.Entities.General.Media
 {
     public class MediaCoverEntity : ImageEntity
     {

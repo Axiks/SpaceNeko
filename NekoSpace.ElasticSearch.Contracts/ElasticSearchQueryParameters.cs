@@ -18,8 +18,8 @@ namespace NekoSpace.ElasticSearch
         public AiringStatus? airing_status { get; set; }
         public List<AnimeType>? anime_types { get; set; }
         //public List<AgeRating>? age_ratings { get; set; }
-        public List<AdaptationType>? where_adapted { get; set; }
-        public List<AdaptationType>? where_no_adapted { get; set; }
+        public List<OfferType>? where_adapted { get; set; }
+        public List<OfferType>? where_no_adapted { get; set; }
 
         public List<AnimeSort>? sort_by { get; set; }
     }

@@ -46,3 +46,5 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core.Contracts\bin\
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core.Contracts\bin\Debug\net7.0\NekoSpace.Data.Contracts.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core.Contracts\bin\Debug\net7.0\NekoSpace.ElasticSearch.pdb
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core.Contracts\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core.Contracts\bin\Debug\net7.0\NekoSpace.Repository.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.Core.Contracts\bin\Debug\net7.0\NekoSpace.Repository.Contracts.pdb

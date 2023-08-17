@@ -1,4 +1,4 @@
-﻿using Mapster;
+﻿/*using Mapster;
 using MapsterMapper;
 using NekoSpace.API.Contracts.Abstract;
 using NekoSpace.API.Contracts.Models.Anime;
@@ -8,6 +8,7 @@ using NekoSpace.Data;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.ElasticSearch;
 using NekoSpace.ElasticSearch.Contracts.Interfaces;
+using NekoSpace.Repository.Repositories.Media;
 using NekoSpaceList.Models.Anime;
 
 namespace NekoSpace.Repository.Repositories
@@ -102,3 +103,4 @@ namespace NekoSpace.Repository.Repositories
         }
     }
 }
+*/

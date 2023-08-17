@@ -15,3 +15,7 @@ C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\D
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\obj\Debug\net7.0\NekoSpace.ElasticSearch.csproj.CopyComplete
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.dll
 C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.Data.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.Repository.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.Repository.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch\bin\Debug\net7.0\NekoSpace.Data.Contracts.pdb

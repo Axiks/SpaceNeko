@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static NekoSpaceList.Models.General.GeneralModel;
 
-namespace NekoSpace.Data.Contracts.Entities.General
+namespace NekoSpace.Data.Contracts.Entities.General.Media
 {
     public class MediaPosterEntity : ImageEntity
     {

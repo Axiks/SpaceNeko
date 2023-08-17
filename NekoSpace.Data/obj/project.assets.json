@@ -2254,7 +2254,8 @@
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "NEST": "7.17.5",
-          "NekoSpace.ElasticSearch.Contracts": "1.0.0"
+          "NekoSpace.ElasticSearch.Contracts": "1.0.0",
+          "NekoSpace.Repository.Contracts": "1.0.0"
         },
         "compile": {
           "bin/placeholder/NekoSpace.ElasticSearch.dll": {}
@@ -2275,6 +2276,20 @@
         },
         "runtime": {
           "bin/placeholder/NekoSpace.ElasticSearch.Contracts.dll": {}
+        }
+      },
+      "NekoSpace.Repository.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.ElasticSearch.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NekoSpace.Repository.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NekoSpace.Repository.Contracts.dll": {}
         }
       }
     }
@@ -7436,6 +7451,11 @@
       "type": "project",
       "path": "../NekoSpace.ElasticSearch.Contracts/NekoSpace.ElasticSearch.Contracts.csproj",
       "msbuildProject": "../NekoSpace.ElasticSearch.Contracts/NekoSpace.ElasticSearch.Contracts.csproj"
+    },
+    "NekoSpace.Repository.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../NekoSpace.Repository.Contracts/NekoSpace.Repository.Contracts.csproj",
+      "msbuildProject": "../NekoSpace.Repository.Contracts/NekoSpace.Repository.Contracts.csproj"
     }
   },
   "projectFileDependencyGroups": {

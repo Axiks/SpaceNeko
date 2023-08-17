@@ -1,7 +1,7 @@
 ﻿using NekoSpace.Common.Enums;
-using NekoSpace.Data.Contracts.Entities.Anime;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Data.Contracts.Entities.General;
+using NekoSpace.Data.Contracts.Entities.General.Media;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
 using System.ComponentModel.DataAnnotations;
@@ -10,8 +10,8 @@ namespace NekoSpaceList.Models.Anime;
 
 public class AnimeEntity : MediaEntity
 {
-    public ICollection<AnimeTitleEntity> Titles { get; set; }
-    public ICollection<AnimeSynopsisEntity>? Synopsises { get; set; }
+    //public ICollection<AnimeTitleEntity> Titles { get; set; }
+    //public ICollection<AnimeSynopsisEntity>? Synopsises { get; set; }
     public AnimeType? Type { get; set; }
     public AiringStatus? AiringStatus { get; set; }
     public AgeRating? AgeRating { get; set; }

@@ -2841,7 +2841,8 @@
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "NEST": "7.17.5",
-          "NekoSpace.ElasticSearch.Contracts": "1.0.0"
+          "NekoSpace.ElasticSearch.Contracts": "1.0.0",
+          "NekoSpace.Repository.Contracts": "1.0.0"
         },
         "runtime": {
           "NekoSpace.ElasticSearch.dll": {}

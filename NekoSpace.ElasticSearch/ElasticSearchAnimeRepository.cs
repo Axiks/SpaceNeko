@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace NekoSpace.ElasticSearch
 {
-    public class ElasticSearchAnimeRepository : AbstractElasticSearchRepository<ElasticSearchAnimeModel>
+    public class ElasticSearchAnimeRepository : AbstractElasticSearchMediaRepository<ElasticSearchAnimeModel>
     {
         private static readonly string indexName = "animeindex";
         private ElasticSearchQueryParameters _parameters;
@@ -29,11 +29,11 @@ namespace NekoSpace.ElasticSearch
             var noAdapted = parameters.where_no_adapted;
             var lang = NekoLang.UK;
 
-            var titleAdapted = adapted != null && adapted.Contains(AdaptationType.Title);
-            var titleNoAdapted = noAdapted != null && adapted.Contains(AdaptationType.Title);
+            var titleAdapted = adapted != null && adapted.Contains(OfferType.Title);
+            var titleNoAdapted = noAdapted != null && adapted.Contains(OfferType.Title);
 
-            var descriptionAdapted = adapted != null && adapted.Contains(AdaptationType.Description);
-            var descriptionNoAdapted = noAdapted != null && adapted.Contains(AdaptationType.Description);
+            var descriptionAdapted = adapted != null && adapted.Contains(OfferType.Description);
+            var descriptionNoAdapted = noAdapted != null && adapted.Contains(OfferType.Description);
 
             // Sort
             

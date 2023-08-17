@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NekoSpace.Common.Enums.API
+namespace NekoSpace.Repository.Contracts.Enums
 {
-    public enum AdaptationType
+    public enum ESMediaTypeIndex
     {
-        Title,
-        Description,
-        Image
+        animeIndex,
+        mangaIndex,
+        gameIndex
     }
 }

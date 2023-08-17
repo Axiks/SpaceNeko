@@ -1196,7 +1196,8 @@
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "NEST": "7.17.5",
-          "NekoSpace.ElasticSearch.Contracts": "1.0.0"
+          "NekoSpace.ElasticSearch.Contracts": "1.0.0",
+          "NekoSpace.Repository.Contracts": "1.0.0"
         },
         "runtime": {
           "NekoSpace.ElasticSearch.dll": {}
@@ -1209,6 +1210,15 @@
         },
         "runtime": {
           "NekoSpace.ElasticSearch.Contracts.dll": {}
+        }
+      },
+      "NekoSpace.Repository.Contracts/1.0.0": {
+        "dependencies": {
+          "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.ElasticSearch.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "NekoSpace.Repository.Contracts.dll": {}
         }
       }
     }
@@ -2145,6 +2155,11 @@
       "sha512": ""
     },
     "NekoSpace.ElasticSearch.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NekoSpace.Repository.Contracts/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

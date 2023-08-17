@@ -4,7 +4,7 @@ using NekoSpace.API.Helpers;
 using NekoSpace.Common.Enums;
 using NekoSpace.Data;
 using NekoSpace.ElasticSearch;
-using NekoSpace.Repository;
+using NekoSpace.Repository.Repositories.Media;
 using NekoSpace.Seed;
 using NekoSpace.Seed.Driver;
 using NekoSpace.Seed.Interfaces;

@@ -2,18 +2,11 @@
 using NekoSpace.Data;
 using Mapster;
 using NekoSpaceList.Models.Anime;
-using NekoSpace.API.Contracts.Models.SearchService;
-using NekoSpace.Data.Contracts.Entities.Anime;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NekoSpace.API.Contracts.Models.Anime;
-using NekoSpace.Common.Enums.API;
-using NekoSpace.ElasticSearch;
-using NekoSpace.Repository;
-using NekoSpace.Repository.Repositories;
-using JikanDotNet;
 using NekoSpace.API.Contracts.Models.Media;
-using NekoSpace.Repository.Contracts.Models;
+using NekoSpace.Repository.Repositories.Media;
 
 namespace NekoSpace.Core.Services.AnimeService
 {
@@ -45,7 +38,7 @@ namespace NekoSpace.Core.Services.AnimeService
             return response;
         }
 
-        public async Task<SearchAnimeResultDTO> SearchAnimeByName(string query)
+/*        public async Task<SearchAnimeResultDTO> SearchAnimeByName(string query)
         {
             var tedt = _dbContext.Animes
                 .Include(x => x.Titles)
@@ -78,8 +71,8 @@ namespace NekoSpace.Core.Services.AnimeService
 
             return searchAnimeResponse;
         }
-
-        public async Task<bool> UpdateAnimeTitle(UpdateAnimeTitle updateAnimeTitleInput)
+*/
+/*        public async Task<bool> UpdateAnimeTitle(UpdateAnimeTitle updateAnimeTitleInput)
         {
             Guid titleId = updateAnimeTitleInput.TitleId;
             var searchAnime = await _dbContext.AnimeTitles
@@ -87,7 +80,7 @@ namespace NekoSpace.Core.Services.AnimeService
 
             // var result = searchAnime.Adapt<UpdateAnimeTitleInput>();
             return true;
-        }
+        }*/
 
         private void MapConfigurate()
         {
@@ -108,8 +101,8 @@ namespace NekoSpace.Core.Services.AnimeService
             dest => dest.Poster.Original,
             src => src.Posters.FirstOrDefault(x => x.Original);*/
 
-            TypeAdapterConfig<AnimeTitleEntity, GetAnimeResultDTO>.NewConfig()
-/*            .Map(
+           /* TypeAdapterConfig<MediaTitleEntity, GetAnimeResultDTO>.NewConfig()
+*//*            .Map(
             dest => dest.TitleOriginal,
             src => src.Anime.Titles.FirstOrDefault(x => x.IsOriginal == true))
             .Map(
@@ -117,14 +110,14 @@ namespace NekoSpace.Core.Services.AnimeService
             src => src.Anime.Synopsises.FirstOrDefault(x => x.IsOriginal == true))
             .Map(
             dest => dest.SynopsisOriginal,
-            src => src.Anime.Synopsises.FirstOrDefault(x => x.IsOriginal == true))*/
+            src => src.Anime.Synopsises.FirstOrDefault(x => x.IsOriginal == true))*//*
             .Map(
             dest => dest.NumEpisodes,
             src => src.Anime.NumEpisodes)
-            /*.Map(
+            *//*.Map(
             dest => dest.PosterOriginal,
-            src => src.Anime.Posters.FirstOrDefault().Poster.)*/
-            ;
+            src => src.Anime.Posters.FirstOrDefault().Poster.)*//*
+            ;*/
         }
     }
 }

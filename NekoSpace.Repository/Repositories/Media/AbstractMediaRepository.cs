@@ -10,7 +10,7 @@ using NekoSpace.Repository.Contracts.Models;
 using Nest;
 using System.Linq.Expressions;
 
-namespace NekoSpace.Repository;
+namespace NekoSpace.Repository.Repositories.Media;
 
 public class AbstractMediaRepository<T, E> : IMediaRepository<T, E>, IInterconnectionExtensions where T : MediaEntity where E : ElasticSearchMediaBasicModel
 {
@@ -79,7 +79,7 @@ public class AbstractMediaRepository<T, E> : IMediaRepository<T, E>, IInterconne
     {
         var resAsync = _esrepository.SearchAsync(elasticSearchQueryParameters);
         resAsync.Wait();
-        var res =  resAsync.Result;
+        var res = resAsync.Result;
         return res;
     }
 
@@ -192,7 +192,7 @@ public class AbstractMediaRepository<T, E> : IMediaRepository<T, E>, IInterconne
             .Where(x => x.AssociatedService.Any(c => c.ServiceId == link.Id))
             .Select(x => x.Id)
             .FirstOrDefault();
-            if(mediaGuid != null) return mediaGuid;
+            if (mediaGuid != null) return mediaGuid;
         }
         return null;
     }
@@ -229,7 +229,7 @@ public class AbstractMediaRepository<T, E> : IMediaRepository<T, E>, IInterconne
                 associatedServices.Add(interconnectionLinkModel);
             }
             servicsInterconnectionDic.Add(service.Id, associatedServices);
-    }
+        }
 
         return servicsInterconnectionDic;
     }
@@ -298,6 +298,6 @@ public class AbstractMediaRepository<T, E> : IMediaRepository<T, E>, IInterconne
 
         //ES section
         var edMediaModelList = _mapper.Map<E>(mediaEntity);
-        _esrepository.UpdateAsync(mediaEntity.Id, edMediaModelList);
+        _esrepository.UpdateAsync(edMediaModelList);
     }
 }

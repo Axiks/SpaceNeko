@@ -3,7 +3,7 @@ using Nest;
 
 namespace NekoSpace.ElasticSearch
 {
-    public class ElasticSearchMangaRepository : AbstractElasticSearchRepository<ElasticSearchMangaModel>
+    public class ElasticSearchMangaRepository : AbstractElasticSearchMediaRepository<ElasticSearchMangaModel>
     {
         private static readonly string indexName = "mangaindex";
 

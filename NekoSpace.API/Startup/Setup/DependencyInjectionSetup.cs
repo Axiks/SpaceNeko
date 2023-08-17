@@ -1,18 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using NekoSpace.Core.Services.AccountService.JwtConfiguration;
-using NekoSpace.Data.Models.User;
-using NekoSpace.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using System.Text.Json.Serialization;
-using NekoSpace.Seed.Interfaces;
-using NekoSpace.Seed;
-using NekoSpace.API.Helpers;
-using NekoSpace.Core.Services.DatabaseService;
-using NekoSpace.ElasticSearch.Contracts.Interfaces;
+﻿using NekoSpace.ElasticSearch.Contracts.Interfaces;
 using NekoSpace.ElasticSearch;
 using Mapster;
 using MapsterMapper;
@@ -27,6 +13,16 @@ using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Core.Services.AnimeService;
 using Microsoft.OpenApi.Models;
+using NekoSpace.Repository.Repositories.Media;
+using NekoSpace.Repository.Contracts.Enums;
+using NekoSpace.API.Contracts.Models.ProvidingTranslationOffer.Request;
+using Microsoft.AspNetCore.Http.HttpResults;
+using static Nest.JoinField;
+using JsonSubTypes;
+using NekoSpace.Common.Enums.API;
+using Newtonsoft.Json.Converters;
+using NekoSpace.API.Contracts.Models.Offer.Response.Basic;
+using NekoSpace.API.Contracts.Models.Offer.Request.Update;
 
 namespace NekoSpace.API.Startup.Setup
 {
@@ -45,11 +41,34 @@ namespace NekoSpace.API.Startup.Setup
 
             //services.RegisterGraphQl();
 
-            services.AddControllers().AddJsonOptions(x =>
+            services.AddControllers().AddNewtonsoftJson();
+
+            services.AddControllers().AddNewtonsoftJson(options =>
             {
-                // serialize enums as strings in api responses (e.g. Role)
-                x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                //Register the subtypes of the Device (Phone and Laptop)
+                //and define the device Discriminator
+                options.SerializerSettings.Converters.Add(
+                    JsonSubtypesConverterBuilder
+                    .Of(typeof(OfferBasicRequest), "OfferType")
+                    .RegisterSubtype(typeof(TitleOfferRequest), OfferType.Title)
+                    .RegisterSubtype(typeof(DescriptionOfferRequest), OfferType.Description)
+                    .SerializeDiscriminatorProperty()
+                    .Build()
+                );
+
+                options.SerializerSettings.Converters.Add(
+                    JsonSubtypesConverterBuilder
+                    .Of(typeof(UpdateBasicOfferRequest), "OfferType")
+                    .RegisterSubtype(typeof(UpdateTitleOfferRequest), OfferType.Title)
+                    .RegisterSubtype(typeof(UpdateDescriptionOfferRequest), OfferType.Description)
+                    .SerializeDiscriminatorProperty()
+                    .Build()
+                );
+                options.SerializerSettings.Converters.Add(new StringEnumConverter());
             });
+
+            services.AddSwaggerGenNewtonsoftSupport();
+
 
             //services.ConfigureHttpJsonOptions(options => options.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
@@ -59,8 +78,19 @@ namespace NekoSpace.API.Startup.Setup
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Neko Space API", Version = "v1" });
 
+                c.UseAllOfToExtendReferenceSchemas();
+                c.UseAllOfForInheritance();
+                c.UseOneOfForPolymorphism();
+                c.SelectDiscriminatorNameUsing(type =>
+                {
+                    return type.Name switch
+                    {
+                        nameof(OfferBasicRequest) => "OfferType",
+                        nameof(UpdateBasicOfferRequest) => "OfferType",
+                        _ => null
+                    };
+                });
                 c.EnableAnnotations(enableAnnotationsForInheritance: true, enableAnnotationsForPolymorphism: true);
-                //c.GeneratePolymorphicSchemas();
             });
 
             services.AddProblemDetails();
@@ -71,14 +101,19 @@ namespace NekoSpace.API.Startup.Setup
 
             services.AddSingleton<ConfigurationManager>(configurationManager);
 
+            var sp = services.BuildServiceProvider();
+            var x = sp.GetService<IConfiguration>();
+            services.AddScoped<IElasticSearchRepository<ElasticSearchMediaBasicModel>, ElasticSearchMediaGeneralRepository>();
+            //services.AddScoped < AbstractMediaRepository<MediaEntity, ElasticSearchMediaBasicModel>>();
             services.AddScoped<IElasticSearchRepository<ElasticSearchAnimeModel>, ElasticSearchAnimeRepository>();
-            
 
+            services.AddScoped<AbstractMediaRepository<MediaEntity, ElasticSearchMediaBasicModel>, MediaRepository>();
+            services.AddScoped<AbstractMediaRepository<AnimeEntity, ElasticSearchAnimeModel>, AnimeRepository>();
 
-            services.AddScoped<AnimeRepository, AnimeRepository>();
+            services.AddScoped<AnimeRepository>();
 
+            services.AddScoped<AnimeService>();
 
-            services.AddScoped<AnimeService, AnimeService>();
 
             //services.AddElasticsearch(configurationManager);
 
@@ -141,9 +176,15 @@ namespace NekoSpace.API.Startup.Setup
                 )*/
                 ;
             config.NewConfig<MediaEntity, GetAnimeResultDTO>()
-                .Map(dest => dest.PrimaryPoster, src => src.Posters.FirstOrDefault())
+                .Map(dest => dest.PrimaryPoster, src => src.Posters.FirstOrDefault());
 
-                ;
+            config.NewConfig<TextVariantSubItemEntity, TitleOfferResponse>()
+                .Map(dest => dest.OfferId, src => src.Id)
+                .Map(dest => dest.Name, src => src.Body);
+
+            config.NewConfig<TextVariantSubItemEntity, DescriptionOfferResponse>()
+                .Map(dest => dest.OfferId, src => src.Id)
+                .Map(dest => dest.Description, src => src.Body);
 
             services.AddSingleton(config);
             services.AddScoped<IMapper, ServiceMapper>();

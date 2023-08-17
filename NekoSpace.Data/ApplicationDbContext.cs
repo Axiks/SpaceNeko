@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using NekoSpace.Data.Contracts.Entities.Anime;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Data.Contracts.Entities.Character;
 using NekoSpace.Data.Contracts.Entities.General;
-using NekoSpace.Data.Contracts.Entities.Manga;
+using NekoSpace.Data.Contracts.Entities.General.Media;
 using NekoSpace.Data.Contracts.Entities.User.OAuth;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
@@ -20,12 +19,14 @@ namespace NekoSpace.Data
     public class ApplicationDbContext : IdentityDbContext<UserEntity>
     {
         public DbSet<AnimeEntity> Animes { get; set; }
-        public DbSet<AnimeTitleEntity> AnimeTitles { get; set; }
-        public DbSet<AnimeSynopsisEntity> AnimeSynopsises { get; set; }
+        public DbSet<MediaTitleEntity> MediaTitles { get; set; }
+        public DbSet<MediaSynopsisEntity> MediaSynopsis { get; set; }
+        // public DbSet<AnimeTitleEntity> AnimeTitles { get; set; }
+        // public DbSet<AnimeSynopsisEntity> AnimeSynopsises { get; set; }
         public DbSet<AnimeCharacterEntity> AnimeCharacters { get; set; }
         public DbSet<MangaEntity> Mangas { get; set; }
-        public DbSet<MangaTitleEntity> MangaTitles { get; set; }
-        public DbSet<MangaSynopsisEntity> MangaSynopsises { get; set; }
+/*        public DbSet<MangaTitleEntity> MangaTitles { get; set; }
+        public DbSet<MangaSynopsisEntity> MangaSynopsises { get; set; }*/
         public DbSet<MangaCharacterEntity> MangaCharacters { get; set; }
         public DbSet<CharacterNamesEntity> CharacterNames { get; set; }
         public DbSet<CharacterAboutEntity> CharacterAbouts { get; set; }
@@ -95,7 +96,25 @@ namespace NekoSpace.Data
 
             //      Relation    //
 
+            modelBuilder
+                .Entity<TextVariantSubItemEntity>()
+                .UseTpcMappingStrategy();
+
             modelBuilder.
+                Entity<MediaEntity>()
+                .HasMany(e => e.Titles)
+                .WithOne(e => e.Media)
+                .HasForeignKey(e => e.MediaId)
+                .HasPrincipalKey(e => e.Id);
+
+            modelBuilder.
+                Entity<MediaEntity>()
+                .HasMany(e => e.Synopsises)
+                .WithOne(e => e.Media)
+                .HasForeignKey(e => e.MediaId)
+                .HasPrincipalKey(e => e.Id);
+
+        /*    modelBuilder.
                 Entity<AnimeEntity>()
                 .HasMany(t => t.Titles)
                 .WithOne(t => t.Anime)
@@ -107,7 +126,7 @@ namespace NekoSpace.Data
                 .HasMany(t => t.Synopsises)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
-                .HasPrincipalKey(t => t.Id);
+                .HasPrincipalKey(t => t.Id);*/
 
 
             //////////////////////////////////////////
@@ -153,7 +172,7 @@ namespace NekoSpace.Data
 
             //      AnimeTitle       >>
 
-            modelBuilder.
+     /*       modelBuilder.
                 Entity<AnimeTitleEntity>()
                 .ToTable("AnimeTitle");
 
@@ -167,7 +186,7 @@ namespace NekoSpace.Data
                 Entity<AnimeTitleEntity>()
                 .Property(x => x.From)
                 .HasColumnName("From")
-                .HasConversion<string>();
+                .HasConversion<string>();*/
 
             /*modelBuilder.
                Entity<AnimeTitleEntity>()
@@ -199,7 +218,7 @@ namespace NekoSpace.Data
 
             //      Synopsis       >>
 
-            modelBuilder.
+/*            modelBuilder.
                 Entity<AnimeSynopsisEntity>()
                 .ToTable("AnimeSynopsis");
 
@@ -213,7 +232,7 @@ namespace NekoSpace.Data
                 Entity<AnimeSynopsisEntity>()
                 .Property(x => x.From)
                 .HasColumnName("From")
-                .HasConversion<string>();
+                .HasConversion<string>();*/
 
             //      Genre     >>
 
@@ -381,7 +400,7 @@ namespace NekoSpace.Data
 
             //      Relation    //
 
-            modelBuilder.
+         /*   modelBuilder.
                 Entity<MangaEntity>()
                 .HasMany(t => t.Titles)
                 .WithOne(t => t.Manga)
@@ -393,11 +412,11 @@ namespace NekoSpace.Data
                 .HasMany(t => t.Synopsises)
                 .WithOne(t => t.Manga)
                 .HasForeignKey(t => t.MangaId)
-                .HasPrincipalKey(t => t.Id);
+                .HasPrincipalKey(t => t.Id);*/
 
             //      MangaTitle       >>
 
-            modelBuilder.
+            /*modelBuilder.
                 Entity<MangaTitleEntity>()
                 .ToTable("MangaTitles");
 
@@ -405,11 +424,11 @@ namespace NekoSpace.Data
                 Entity<MangaTitleEntity>()
                 .Property(x => x.Language)
                 .HasColumnName("Language")
-                .HasConversion<string>();
+                .HasConversion<string>();*/
 
             //      MangaSynopsis       >>
 
-            modelBuilder.
+            /*modelBuilder.
                 Entity<MangaSynopsisEntity>()
                 .ToTable("MangaSynopsis");
 
@@ -423,7 +442,7 @@ namespace NekoSpace.Data
                 Entity<MangaSynopsisEntity>()
                 .Property(x => x.MangaId)
                 .HasColumnName("MangaId")
-                .IsRequired();
+                .IsRequired();*/
 
             //      Posters  AND Covers     >>
 

@@ -14,6 +14,7 @@ using NekoSpace.API.Contracts.Models.Offer.Request.Update;
 using NekoSpace.API.Contracts.Models.Offer.Response;
 using NekoSpace.API.Contracts.Models.Offer.Request.Get;
 using NekoSpace.API.Contracts.Models.Offer.Request.Decision;
+using NekoSpace.API.Contracts.Models.Offer.Response.BasicDTO;
 
 namespace NekoSpace.API.Controllers
 {
@@ -144,7 +145,7 @@ namespace NekoSpace.API.Controllers
         }
 
         [HttpGet]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<BasicOfferResponse>))]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(BasicListOfferResult<BasicOfferResponse>))]
         public IActionResult GetAllOffer([FromQuery] GetOfferListRequest request)
         {
             var reultResponse = _offerService.GetAllOffer(request).Result;

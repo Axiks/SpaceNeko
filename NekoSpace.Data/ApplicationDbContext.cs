@@ -96,6 +96,17 @@ namespace NekoSpace.Data
 
             //      Relation    //
 
+            modelBuilder.
+                Entity<RootVariantSubItemEntity>()
+                .UseTpcMappingStrategy();
+
+            modelBuilder.
+               Entity<RootVariantSubItemEntity>()
+               .HasOne(e => e.CreatorUser)
+               .WithMany()
+               .HasForeignKey(e => e.CreatorUserId)
+               .HasPrincipalKey(e => e.Id);
+
             modelBuilder
                 .Entity<TextVariantSubItemEntity>()
                 .UseTpcMappingStrategy();

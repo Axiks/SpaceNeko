@@ -68,7 +68,7 @@ namespace NekoSpace.Core.Services.OfferController
             var offerTextVariant = new MediaTitleEntity();
             offerTextVariant.Body = offerRequest.Name;
             offerTextVariant.Language = offerRequest.Language;
-            offerTextVariant.CreatorUserId = _userId;
+            offerTextVariant.CreatorUserId = _userId.ToString();
             offerTextVariant.MediaId = offerRequest.MediaId;
             offerTextVariant.From = ItemFrom.User;
             offerTextVariant.IsMain = false;
@@ -125,7 +125,7 @@ namespace NekoSpace.Core.Services.OfferController
             var offerTextVariant = new MediaSynopsisEntity();
             offerTextVariant.Body = offerRequest.Description;
             offerTextVariant.Language = offerRequest.Language;
-            offerTextVariant.CreatorUserId = _userId;
+            offerTextVariant.CreatorUserId = _userId.ToString();
             offerTextVariant.MediaId = offerRequest.MediaId;
             offerTextVariant.From = ItemFrom.User;
             offerTextVariant.IsMain = false;
@@ -224,7 +224,15 @@ namespace NekoSpace.Core.Services.OfferController
 
 
             resultList = resultList.GetRange(index, count);
-            return new GetBasicListOfferResponseDTO<BasicOfferResponse>(resultList, null);
+            var result = new BasicListOfferResult<BasicOfferResponse>
+            {
+                totalApplication = resultList.Count,
+                applicationAccepted = resultList.Where(x => x.IsAcceptProposal == true).Count(),
+                applicationRejected = resultList.Where(x => x.IsAcceptProposal == false).Count(),
+                applicationsArePending = resultList.Where(x => x.IsAcceptProposal == null).Count(),
+                results = resultList
+            };
+            return new GetBasicListOfferResponseDTO<BasicOfferResponse>(result, null);
         }
 
         private async Task<RootVariantSubItemEntity> MakeDecision(RootVariantSubItemEntity offer, UpdateOfferDecisionRequest decision)
@@ -264,7 +272,7 @@ namespace NekoSpace.Core.Services.OfferController
                 offer.IsAcceptProposal == null ||
                 offer.IsHidden != null ||
                 offer.IsHidden != false ||
-                offer.CreatorUserId == _userId
+                offer.CreatorUserId == _userId.ToString()
                 ) return true;
             if (isModerator) return true;
             return false;

@@ -50,35 +50,35 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ba1a8443-a50a-4913-b01e-14278d329179",
+                            Id = "7d782e39-d9c0-47f7-b641-6f49a20cfe77",
                             ConcurrencyStamp = "1",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "dc2306e6-c20b-42bf-923d-34cc0a5f1a25",
+                            Id = "18fad7af-1679-4e5c-931d-5034d677099a",
                             ConcurrencyStamp = "1",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "09d9f372-65a9-410a-ac2c-aafb685b27a9",
+                            Id = "c29ebbbd-a470-4791-bafa-ea1b18f84243",
                             ConcurrencyStamp = "1",
                             Name = "Creator",
                             NormalizedName = "CREATOR"
                         },
                         new
                         {
-                            Id = "cd35aaa5-b190-4475-8089-1f9279189252",
+                            Id = "216e305b-9624-411a-8393-d20a2a4d19dd",
                             ConcurrencyStamp = "1",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "c2df6333-b40f-4778-a5be-08ed4b012381",
+                            Id = "53e0e4c8-b3fd-4f7f-a275-aa67cf5ecb33",
                             ConcurrencyStamp = "1",
                             Name = "Guest",
                             NormalizedName = "GUEST"
@@ -174,8 +174,8 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "c1fd55dc-64ff-4f3e-ab68-316264302441",
-                            RoleId = "ba1a8443-a50a-4913-b01e-14278d329179"
+                            UserId = "344cacc1-9f8a-4a20-b9c0-597454dcac19",
+                            RoleId = "7d782e39-d9c0-47f7-b641-6f49a20cfe77"
                         });
                 });
 
@@ -377,9 +377,9 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c1fd55dc-64ff-4f3e-ab68-316264302441",
+                            Id = "344cacc1-9f8a-4a20-b9c0-597454dcac19",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8c8ec7e5-305e-4c79-b50c-a6ba944578a0",
+                            ConcurrencyStamp = "f6cc50eb-84ec-4265-bf50-968497a001e3",
                             Email = "admin@example.local",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -387,7 +387,7 @@ namespace NekoSpace.Data.Migrations
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "AQAAAAEAACcQAAAAEHcnJe+yZ9BMU/ZP+V42eQaJYhEMQw4gKoLXDQFEHKcwhElL+c2NC7MkZJu2onNIdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4c38ab14-f886-4c25-a975-93cac9709896",
+                            SecurityStamp = "2cd31d3d-64d4-4c81-95cb-1bc51d1578f4",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -528,8 +528,8 @@ namespace NekoSpace.Data.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("CreatorUserId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("CreatorUserId")
+                        .HasColumnType("text");
 
                     b.Property<int>("From")
                         .HasColumnType("integer");
@@ -560,6 +560,8 @@ namespace NekoSpace.Data.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatorUserId");
 
                     b.ToTable((string)null);
 
@@ -946,6 +948,15 @@ namespace NekoSpace.Data.Migrations
                         .HasForeignKey("NekoSpaceList.Models.Anime.PremierEntity", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("NekoSpaceList.Models.General.RootVariantSubItemEntity", b =>
+                {
+                    b.HasOne("NekoSpace.Data.Models.User.UserEntity", "CreatorUser")
+                        .WithMany()
+                        .HasForeignKey("CreatorUserId");
+
+                    b.Navigation("CreatorUser");
                 });
 
             modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaCharacterEntity", b =>

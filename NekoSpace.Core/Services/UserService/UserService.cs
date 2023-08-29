@@ -17,6 +17,8 @@ using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.General;
+using Nest;
+using System.Linq;
 using System.Security.Claims;
 
 namespace NekoSpace.Core.Services.UserService
@@ -106,6 +108,37 @@ namespace NekoSpace.Core.Services.UserService
             };
 
             return new GetBasicListOfferResponseDTO<BasicOfferResponse>(result, null);
+        }
+
+        public void AddRole(Guid userId, Role newRole)
+        {
+            var user = _userManager.FindByIdAsync(userId.ToString()).Result;
+            var existingRoles = _userManager.GetRolesAsync(user).Result.ToList();
+
+            if (existingRoles.Contains(newRole.ToString())) return;
+
+            var result = _userManager.AddToRoleAsync(user, newRole.ToString()).Result;
+            if (!result.Succeeded)
+            {
+                throw new Exception($"Error managing roles of the user. "); // Server error
+            }
+
+            return;
+        }
+        public void RemoveRole(Guid userId, Role newRole)
+        {
+            var user = _userManager.FindByIdAsync(userId.ToString()).Result;
+            var existingRoles = _userManager.GetRolesAsync(user).Result.ToList();
+
+            if (!existingRoles.Contains(newRole.ToString())) return;
+
+            var result = _userManager.RemoveFromRoleAsync(user, newRole.ToString()).Result;
+            if (!result.Succeeded)
+            {
+                throw new Exception($"Error managing roles of the user. "); // Server error
+            }
+
+            return;
         }
 
         public async Task<UserUpdateResult> UpdateMe(UserUpdateCommand userUpdateCommand)

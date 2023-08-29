@@ -5,7 +5,6 @@
         Administrator,
         Moderator,
         Creator,
-        User,
-        Guest
+        User
     }
 }

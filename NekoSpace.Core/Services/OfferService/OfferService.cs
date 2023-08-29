@@ -70,6 +70,8 @@ namespace NekoSpace.Core.Services.OfferController
             offerTextVariant.Language = offerRequest.Language;
             offerTextVariant.CreatorUserId = _userId.ToString();
             offerTextVariant.MediaId = offerRequest.MediaId;
+            offerTextVariant.SourceName = offerRequest.SourceName;
+            offerTextVariant.SourceUrl = offerRequest.SourceUrl;
             offerTextVariant.From = ItemFrom.User;
             offerTextVariant.IsMain = false;
 

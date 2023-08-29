@@ -24,6 +24,8 @@ namespace NekoSpaceList.Models.General
         public UserEntity? CreatorUser { get; set; }
         public Guid? AcceptOfferUserId { get; set; }
         public string? Notes { get; set; }
+        public string? SourceName { get; set; }
+        public string? SourceUrl { get; set; }
         public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
         [Required]
         public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.Now;

@@ -762,9 +762,9 @@ namespace NekoSpace.Data
                 new IdentityRole() { Id = GuidAdminRole.ToString(), Name = Role.Administrator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Administrator.ToString().ToUpper() },
                 new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Moderator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Moderator.ToString().ToUpper() },
                 new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Creator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Creator.ToString().ToUpper() },
-                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.User.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.User.ToString().ToUpper() },
-                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Guest.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Guest.ToString().ToUpper() }
-                );
+                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.User.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.User.ToString().ToUpper() }
+/*                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Guest.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Guest.ToString().ToUpper() }
+*/                );
             return GuidAdminRole;
         }
 

@@ -18,5 +18,7 @@ namespace NekoSpace.API.Contracts.Models.ProvidingTranslationOffer.Request
         public OfferType OfferType { get; set; }
         [Required]
         public Language Language { get; set; }
+        public string? SourceName { get; set; }
+        public string? SourceUrl { get; set; }
     }
 }

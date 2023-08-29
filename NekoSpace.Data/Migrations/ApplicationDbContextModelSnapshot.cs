@@ -50,38 +50,31 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7d782e39-d9c0-47f7-b641-6f49a20cfe77",
+                            Id = "02266f8d-7dac-470f-a65d-df81c117a5de",
                             ConcurrencyStamp = "1",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "18fad7af-1679-4e5c-931d-5034d677099a",
+                            Id = "c03edc51-521f-4219-aeed-10c50a6f9af3",
                             ConcurrencyStamp = "1",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "c29ebbbd-a470-4791-bafa-ea1b18f84243",
+                            Id = "1e7afb9f-d83a-4b56-bf85-7f88f1cf4b7f",
                             ConcurrencyStamp = "1",
                             Name = "Creator",
                             NormalizedName = "CREATOR"
                         },
                         new
                         {
-                            Id = "216e305b-9624-411a-8393-d20a2a4d19dd",
+                            Id = "dbc1cb2d-4cb1-4502-b6cc-56ab1423b7d0",
                             ConcurrencyStamp = "1",
                             Name = "User",
                             NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "53e0e4c8-b3fd-4f7f-a275-aa67cf5ecb33",
-                            ConcurrencyStamp = "1",
-                            Name = "Guest",
-                            NormalizedName = "GUEST"
                         });
                 });
 
@@ -174,8 +167,8 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "344cacc1-9f8a-4a20-b9c0-597454dcac19",
-                            RoleId = "7d782e39-d9c0-47f7-b641-6f49a20cfe77"
+                            UserId = "d6070a05-591c-4ffb-b336-d869730aff74",
+                            RoleId = "02266f8d-7dac-470f-a65d-df81c117a5de"
                         });
                 });
 
@@ -377,9 +370,9 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "344cacc1-9f8a-4a20-b9c0-597454dcac19",
+                            Id = "d6070a05-591c-4ffb-b336-d869730aff74",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f6cc50eb-84ec-4265-bf50-968497a001e3",
+                            ConcurrencyStamp = "d9c74b8f-e495-484d-ae46-ab0ad0137875",
                             Email = "admin@example.local",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -387,7 +380,7 @@ namespace NekoSpace.Data.Migrations
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "AQAAAAEAACcQAAAAEHcnJe+yZ9BMU/ZP+V42eQaJYhEMQw4gKoLXDQFEHKcwhElL+c2NC7MkZJu2onNIdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2cd31d3d-64d4-4c81-95cb-1bc51d1578f4",
+                            SecurityStamp = "ea578983-573e-4522-a310-d4839c020340",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -554,6 +547,12 @@ namespace NekoSpace.Data.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Notes")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SourceName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SourceUrl")
                         .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("UpdatedAt")

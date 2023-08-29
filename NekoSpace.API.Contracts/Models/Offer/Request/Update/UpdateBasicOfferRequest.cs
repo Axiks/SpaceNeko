@@ -18,6 +18,9 @@ namespace NekoSpace.API.Contracts.Models.Offer.Request.Update
         public bool IsMain { get; set; }
         public bool IsOriginal { get; set; }
         public bool IsHidden { get; set; } = false;
+        public string? SourceName { get; set; }
+        public string? SourceUrl { get; set; }
+
         //Temp?
         public UpdateOfferDecisionRequest? Decision { get; set; }
     }

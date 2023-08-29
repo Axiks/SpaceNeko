@@ -1,16 +1,13 @@
 ﻿using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NekoSpace.API.Contracts.Models.Offer.Response.Basic;
 using NekoSpace.API.Contracts.Models.Offer.Response.BasicDTO;
 using NekoSpace.API.Contracts.Models.User;
-using NekoSpace.API.Contracts.Models.User.Library.Update;
-using NekoSpace.API.Contracts.Models.UserService;
-using NekoSpace.API.Contracts.Models.UserService.UserUpdates;
 using NekoSpace.Core.Services.UserService;
 using NekoSpace.Data;
+using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Security.Claims;
@@ -30,7 +27,6 @@ namespace NekoSpace.API.Controllers
 
         [HttpGet]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(UserListResponse))]
-        [SwaggerResponse(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
         public IActionResult GetAllUsers()
         {
             var resultResponse = _userService.GetAllUsers().Result;
@@ -58,6 +54,20 @@ namespace NekoSpace.API.Controllers
             return Ok(resultResponse.Result);
         }
 
+/*        [HttpPost("{id}/roles")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, Type = typeof(object))]
+        public IActionResult AddRole([FromQuery] Guid id)
+        {
+            return Ok(id);
+        }*/
+
+     /*   [HttpDelete("{id}/roles")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, Type = typeof(object))]
+        public IActionResult DeleteRole([FromQuery] Guid id, Role role)
+        {
+            return Ok();
+        }
+
         [HttpGet("{id}/offers")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(BasicListOfferResult<BasicOfferResponse>))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
@@ -72,7 +82,7 @@ namespace NekoSpace.API.Controllers
             }
 
             return Ok(reultResponse.Result);
-        }
+        }*/
 
         /*[HttpGet]
         public async Task<IActionResult> GetMe()

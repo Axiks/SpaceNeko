@@ -8,51 +8,131 @@
 
 ![GitHub status](https://img.shields.io/pypi/status/ansicolortags.svg)
 
-<!-- This is a unofficial C# library for Manami [anime offline database](https://github.com/manami-project/anime-offline-database/blob/master/anime-offline-database.json). It allows you to download a database from a remote repository and interact with it locally without the need to connect to the Internet. -->
+## **Our Goal**
 
+Popularizing the passion for anime, manga, and games in various corners of the world.
 
-## Apabilities
-<!-- - Download database from [remote repository]()
-- Automatic update of the local database
-- Selection of all anime
-- Search anime by ID -->
+## Our Vision
 
-## Technologies used
+We believe that this translation portal will become a great starting point for popularizing anime and manga in different countries around the world where information about them is limited due to language barriers. Additionally, we plan to open an API for third-party developers so that they can create their own fantastic applications!
 
-<img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white">
-<img src="https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white">
+## **Our Capabilities**
 
-## Installation
-Copy repository to local project
+- Providing information about the work in various languages of the world.
+- Viewing information about the work in different languages.
 
-## Configuration
-<!-- ```
-var mamiAnimeDatabase = new MamiDatabase(pathToDatabaseFolder, autoUpdateLocalDatabase);
-```
+## **Our Audience**
 
-- ```pathToDatabaseFolder``` - The path to the folder where the necessary files will be stored when working with the library
-- ```autoUpdateLocalDatabase``` - Updates the database, if a newer version is available -->
+- People interested in anime, manga, or games.
+- Creators.
+- Developers.
 
-## How To Use
+## **Platform Features**
 
-<!-- This method returns all anime from the database
-```
-List<ManamiAnime> mamiAnimes = mamiAnimeDatabase.GetAllAnime();
-```
+### **Login and Registration**
 
-This method returns searches for anime by ID from any available service
-```
-List<ManamiAnime> mamiAnimes = mamiAnimeDatabase.GetAnimeById("4224");
-```
-This is how you can get information about anime
-```
-ManamiAnime anime = mamiAnimes.First();
-string title = anime.title;
-string posterLink = anime.picture;
-List<string> tags = anime.tags;
-string animeType = anime.type.ToString();
-```
+It is done through:
 
-All available methods and fields are similar to those posted in the documentation to [anime offline database](https://github.com/manami-project/anime-offline-database/blob/master/anime-offline-database.json). -->
-## Sources
-<!-- This library is based on the [manami-project](https://github.com/manami-project) -->
+- Email and Password
+- Social networks
+    - Facebook
+    - Google
+    - Telegram
+
+> Authorization is based on Jwt tokens. The token is refreshed using a refresh token.
+> 
+
+### Search
+
+With the help of search, you can search for works available in the database in different languages. Available functions include:
+
+- Filtering
+- Sorting
+- Pagination
+
+### Data Localization
+
+The process of data localization is divided into 2 stages:
+
+1. User-provided translation.
+2. Administration verification of the correctness of the translation.
+
+Localization can be done for:
+
+- Title
+- Description
+- Poster
+
+Users have the ability to provide translations for any work through a special form. In addition to providing the translation of the title or description, or uploading a localized poster, the user needs to specify the language to which the translation is being made.
+
+Also, if necessary, they can indicate the source of the translation if they are not the author.
+
+In the administrator panel, all proposals submitted by site users are displayed. Here, the administrator can accept or reject the proposal or change the decision already made. They can also view additional information about the work or the user.
+
+In addition, the administration can modify the properties of proposals:
+
+- Priority
+- Visibility
+
+### Roles
+
+- Administrator: A user who has full access to granting and changing roles of other users.
+- Moderator: A user who can view and make decisions regarding proposals.
+- Registered User: An individual who is registered on the website and has the right to submit proposals.
+- Guest: A user who does not have an account on the website and can only view information.
+
+> Ролі працюють на базі **ClaimsPrincipal**
+> 
+
+### Data Seeding and Auto-Updates
+
+A plugin system for data providers has been implemented. It allows adding various data providers for information about anime, manga, light novels, and more to the program.
+
+Additionally, a priority system has been developed, which allows specifying priorities for each individual repository. In other words, you can indicate which data is considered a priority when it's available from different sources.
+
+The following functions are available based on the plugin system:
+
+- Auto-Seeding: Fills the portal with initial data.
+- Auto-Updates: Keeps the data up-to-date through regular updates.
+
+## The libraries used
+
+- Entity Framework Core
+- DependencyInjection
+- Mapster
+- AspNetCore.Authentication
+- AspNetCore.Identity
+- Microsoft.Extensions.Configuration
+- AspNet.WebApi
+- JikanDotNet
+
+And other
+
+## The technologies used
+
+- Elastic Search
+- Postgres SQL
+- Identity / Refresh tocken
+- Swagger   / OpenAPI 3.1
+- Docker
+
+## The used software
+
+- Visual Studio
+- Swagger UI
+- Insomnia
+- Jira
+- Docker CLI
+- Cloudflare (zero trust tunnel)
+
+The project is hosted on an external Linux server. To expedite the testing and deployment process, relevant scripts have been written.
+
+## Architecture
+
+We plan to develop this project as a multi-service platform.
+
+## Prototype UI
+![Home page](https://github.com/Axiks/SpaceNeko/assets/36519646/8daf789b-730d-4b75-afb2-1f6c8ab686b1)
+![Search page](https://github.com/Axiks/SpaceNeko/assets/36519646/007d6c57-8470-4db8-8d93-6b3784b260e9)
+![Login page](https://github.com/Axiks/SpaceNeko/assets/36519646/cb4f1175-3db1-4b94-99b1-3321619e3176)
+

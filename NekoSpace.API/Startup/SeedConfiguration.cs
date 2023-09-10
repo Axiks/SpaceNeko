@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.DependencyInjection;
 using NekoSpace.API.Helpers;
 using NekoSpace.Data;
+using NekoSpaceList.Models.Anime;
 
 namespace NekoSpace.API.Startup;
 

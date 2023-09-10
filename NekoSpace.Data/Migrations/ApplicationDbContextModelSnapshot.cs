@@ -50,38 +50,31 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "66618be5-6635-4053-83ee-880bb4828c96",
+                            Id = "02266f8d-7dac-470f-a65d-df81c117a5de",
                             ConcurrencyStamp = "1",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "57c6f76c-2dba-44ad-85a1-ad285245887d",
+                            Id = "c03edc51-521f-4219-aeed-10c50a6f9af3",
                             ConcurrencyStamp = "1",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "40c94fc4-7907-4b01-a1da-d59f8a1007f5",
+                            Id = "1e7afb9f-d83a-4b56-bf85-7f88f1cf4b7f",
                             ConcurrencyStamp = "1",
                             Name = "Creator",
                             NormalizedName = "CREATOR"
                         },
                         new
                         {
-                            Id = "6b2bb961-eb95-435a-bd3f-0922c3ddabe1",
+                            Id = "dbc1cb2d-4cb1-4502-b6cc-56ab1423b7d0",
                             ConcurrencyStamp = "1",
                             Name = "User",
                             NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "9c43e451-b598-4131-a69c-0dbadfd6c0cf",
-                            ConcurrencyStamp = "1",
-                            Name = "Guest",
-                            NormalizedName = "GUEST"
                         });
                 });
 
@@ -174,8 +167,8 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "ccb5562e-62f7-4470-b781-ef788733119e",
-                            RoleId = "66618be5-6635-4053-83ee-880bb4828c96"
+                            UserId = "d6070a05-591c-4ffb-b336-d869730aff74",
+                            RoleId = "02266f8d-7dac-470f-a65d-df81c117a5de"
                         });
                 });
 
@@ -198,304 +191,90 @@ namespace NekoSpace.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Anime.AnimeSynopsisEntity", b =>
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("AnimeId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatorUserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("From")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("From");
-
-                    b.Property<bool?>("IsAcceptProposal")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsHidden")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsOriginal")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Language");
-
-                    b.Property<bool>("LanguageDetectionBySystem")
-                        .HasColumnType("boolean");
 
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AnimeId");
+                    b.ToTable("Medias", (string)null);
 
-                    b.ToTable("AnimeSynopsis", (string)null);
+                    b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Anime.AnimeTitleEntity", b =>
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.General.AssociatedServiceEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("AnimeId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("CreatorUserId")
+                    b.Property<Guid>("MediaId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("From")
+                    b.Property<string>("ServiceId")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("From");
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("IsAcceptProposal")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsHidden")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsOriginal")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Language")
+                    b.Property<string>("ServiceName")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Language");
-
-                    b.Property<bool>("LanguageDetectionBySystem")
-                        .HasColumnType("boolean");
+                        .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AnimeId");
+                    b.HasIndex("MediaId");
 
-                    b.ToTable("AnimeTitle", (string)null);
+                    b.ToTable("AssociatedService", (string)null);
                 });
 
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Character.AnotherCharacterServiceEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<int?>("AnilistId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("AnimeDBId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("MyAnimeList")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Characters", (string)null);
-                });
-
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Character.CharacterAboutEntity", b =>
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.User.OAuth.RefreshToken", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Body")
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("JwtId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Token")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("CharacterId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatorUserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("From")
-                        .HasColumnType("integer");
-
-                    b.Property<bool?>("IsAcceptProposal")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsHidden")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsOriginal")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Language");
-
-                    b.Property<bool>("LanguageDetectionBySystem")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharacterId");
-
-                    b.ToTable("CharacterTitles", (string)null);
-                });
-
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Manga.AnotherMangaServiceEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<int?>("AnilistId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("AnimeDBId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Mangas", (string)null);
-                });
-
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Manga.MangaSynopsisEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Body")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatorUserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("From")
-                        .HasColumnType("integer");
-
-                    b.Property<bool?>("IsAcceptProposal")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsHidden")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsOriginal")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Language");
-
-                    b.Property<bool>("LanguageDetectionBySystem")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid>("MangaId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("MangaId");
-
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("MangaId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
-                    b.ToTable("MangaSynopsis", (string)null);
-                });
-
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Manga.MangaTitleEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatorUserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("From")
-                        .HasColumnType("integer");
-
-                    b.Property<bool?>("IsAcceptProposal")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsHidden")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsOriginal")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Language");
-
-                    b.Property<bool>("LanguageDetectionBySystem")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid>("MangaId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MangaId");
-
-                    b.ToTable("MangaTitles", (string)null);
+                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("NekoSpace.Data.Models.User.UserAnimeViewingStatusEntity", b =>
@@ -591,9 +370,9 @@ namespace NekoSpace.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ccb5562e-62f7-4470-b781-ef788733119e",
+                            Id = "d6070a05-591c-4ffb-b336-d869730aff74",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "febe3e04-8d0c-428a-9351-594a29ab2a2e",
+                            ConcurrencyStamp = "d9c74b8f-e495-484d-ae46-ab0ad0137875",
                             Email = "admin@example.local",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -601,7 +380,7 @@ namespace NekoSpace.Data.Migrations
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "AQAAAAEAACcQAAAAEHcnJe+yZ9BMU/ZP+V42eQaJYhEMQw4gKoLXDQFEHKcwhElL+c2NC7MkZJu2onNIdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7890ce60-acd2-42f7-8302-24461ae50589",
+                            SecurityStamp = "ea578983-573e-4522-a310-d4839c020340",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -681,61 +460,6 @@ namespace NekoSpace.Data.Migrations
                     b.ToTable("AnimeCharacters");
                 });
 
-            modelBuilder.Entity("NekoSpaceList.Models.Anime.AnimeCoverEntity", b =>
-                {
-                    b.Property<int>("CoverId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("AnimeId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("CoverId", "AnimeId");
-
-                    b.HasIndex("AnimeId");
-
-                    b.ToTable("AnimeCover");
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.Anime.AnimeEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("AgeRating")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("AiringStatus")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int?>("EpisodesDurationSeconds")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("NumEpisodes")
-                        .IsRequired()
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Source")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Animes", (string)null);
-                });
-
             modelBuilder.Entity("NekoSpaceList.Models.Anime.AnimeGenreEntity", b =>
                 {
                     b.Property<Guid>("AnimeId")
@@ -751,64 +475,12 @@ namespace NekoSpace.Data.Migrations
                     b.ToTable("AnimeGenre");
                 });
 
-            modelBuilder.Entity("NekoSpaceList.Models.Anime.AnimePosterEntity", b =>
-                {
-                    b.Property<int>("PosterId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("AnimeId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("PosterId", "AnimeId");
-
-                    b.HasIndex("AnimeId");
-
-                    b.HasIndex("PosterId")
-                        .IsUnique();
-
-                    b.ToTable("AnimePoster");
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.Anime.AnotherAnimeServiceEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<int?>("AniSearchId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("AnilistId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("AnimeDBId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("AnimePlanetId")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("KitsuId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("LivechartMeId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("MyAnimeList")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("NotifyId")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Animes", (string)null);
-                });
-
             modelBuilder.Entity("NekoSpaceList.Models.Anime.PremierEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
-                    b.Property<int>("Sezon")
+                    b.Property<int>("Season")
                         .HasColumnType("integer");
 
                     b.Property<int?>("Year")
@@ -818,105 +490,6 @@ namespace NekoSpace.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Animes", (string)null);
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterCoverEntity", b =>
-                {
-                    b.Property<int>("CoverId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("CharacterId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("CoverId", "CharacterId");
-
-                    b.HasIndex("CharacterId");
-
-                    b.ToTable("CharacterCover");
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Characters", (string)null);
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterNamesEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("CharacterId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatorUserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("From")
-                        .HasColumnType("integer");
-
-                    b.Property<bool?>("IsAcceptProposal")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsHidden")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsOriginal")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Language");
-
-                    b.Property<bool>("LanguageDetectionBySystem")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharacterId");
-
-                    b.ToTable("CharacterNames", (string)null);
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterPosterEntity", b =>
-                {
-                    b.Property<int>("PosterId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("CharacterId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("PosterId", "CharacterId");
-
-                    b.HasIndex("CharacterId");
-
-                    b.ToTable("CharacterPoster");
                 });
 
             modelBuilder.Entity("NekoSpaceList.Models.General.GeneralModel+GenreEntity", b =>
@@ -936,33 +509,62 @@ namespace NekoSpace.Data.Migrations
                     b.ToTable("Genres", (string)null);
                 });
 
-            modelBuilder.Entity("NekoSpaceList.Models.General.GeneralModel+ImageEntity", b =>
+            modelBuilder.Entity("NekoSpaceList.Models.General.RootVariantSubItemEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("uuid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    b.Property<Guid?>("AcceptOfferUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorUserId")
+                        .HasColumnType("text");
 
                     b.Property<int>("From")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Large")
+                    b.Property<bool?>("IsAcceptProposal")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsHidden")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsOriginal")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Language")
+                        .HasColumnType("text")
+                        .HasColumnName("Language");
+
+                    b.Property<Guid>("MediaId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Notes")
                         .HasColumnType("text");
 
-                    b.Property<string>("Medium")
+                    b.Property<string>("SourceName")
                         .HasColumnType("text");
 
-                    b.Property<string>("Original")
-                        .IsRequired()
+                    b.Property<string>("SourceUrl")
                         .HasColumnType("text");
 
-                    b.Property<string>("Small")
-                        .HasColumnType("text");
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images", (string)null);
+                    b.HasIndex("CreatorUserId");
+
+                    b.ToTable((string)null);
+
+                    b.UseTpcMappingStrategy();
                 });
 
             modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaCharacterEntity", b =>
@@ -980,53 +582,6 @@ namespace NekoSpace.Data.Migrations
                     b.ToTable("MangaCharacters");
                 });
 
-            modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaCoverEntity", b =>
-                {
-                    b.Property<int>("CoverId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("MangaId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("CoverId", "MangaId");
-
-                    b.HasIndex("MangaId");
-
-                    b.ToTable("MangaCoverEntity");
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("ChaptersCount")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("Publishing")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("ReadStatus")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("Volumes")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Mangas", (string)null);
-                });
-
             modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaGenreEntity", b =>
                 {
                     b.Property<Guid>("MangaId")
@@ -1040,21 +595,6 @@ namespace NekoSpace.Data.Migrations
                     b.HasIndex("GenreId");
 
                     b.ToTable("MangaGenreEntity");
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaPosterEntity", b =>
-                {
-                    b.Property<int>("PosterId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("MangaId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("PosterId", "MangaId");
-
-                    b.HasIndex("MangaId");
-
-                    b.ToTable("MangaPosterEntity");
                 });
 
             modelBuilder.Entity("NekoSpaceList.Models.Manga.PublishedEntity", b =>
@@ -1072,6 +612,155 @@ namespace NekoSpace.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Mangas", (string)null);
+                });
+
+            modelBuilder.Entity("NekoSpaceList.Models.Anime.AnimeEntity", b =>
+                {
+                    b.HasBaseType("NekoSpace.Data.Contracts.Entities.Base.MediaEntity");
+
+                    b.Property<string>("AgeRating")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AiringStatus")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("EpisodesDurationSeconds")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("NumEpisodes")
+                        .IsRequired()
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("text");
+
+                    b.ToTable("Animes", (string)null);
+                });
+
+            modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterEntity", b =>
+                {
+                    b.HasBaseType("NekoSpace.Data.Contracts.Entities.Base.MediaEntity");
+
+                    b.ToTable("Characters", (string)null);
+                });
+
+            modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaEntity", b =>
+                {
+                    b.HasBaseType("NekoSpace.Data.Contracts.Entities.Base.MediaEntity");
+
+                    b.Property<int>("ChaptersCount")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Publishing")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("ReadStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Volumes")
+                        .HasColumnType("integer");
+
+                    b.ToTable("Mangas", (string)null);
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.General.ImageEntity", b =>
+                {
+                    b.HasBaseType("NekoSpaceList.Models.General.RootVariantSubItemEntity");
+
+                    b.Property<string>("Large")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Medium")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Original")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Small")
+                        .HasColumnType("text");
+                });
+
+            modelBuilder.Entity("NekoSpaceList.Models.General.TextVariantSubItemEntity", b =>
+                {
+                    b.HasBaseType("NekoSpaceList.Models.General.RootVariantSubItemEntity");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("LanguageDetectionBySystem")
+                        .HasColumnType("boolean");
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.General.Media.MediaCoverEntity", b =>
+                {
+                    b.HasBaseType("NekoSpace.Data.Contracts.Entities.General.ImageEntity");
+
+                    b.HasIndex("MediaId");
+
+                    b.ToTable("MediaCovers", (string)null);
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.General.Media.MediaPosterEntity", b =>
+                {
+                    b.HasBaseType("NekoSpace.Data.Contracts.Entities.General.ImageEntity");
+
+                    b.HasIndex("MediaId");
+
+                    b.ToTable("MediaPosters", (string)null);
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Character.CharacterAboutEntity", b =>
+                {
+                    b.HasBaseType("NekoSpaceList.Models.General.TextVariantSubItemEntity");
+
+                    b.Property<Guid>("CharacterId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("MediaId");
+
+                    b.ToTable("CharacterTitles", (string)null);
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.General.Media.MediaSynopsisEntity", b =>
+                {
+                    b.HasBaseType("NekoSpaceList.Models.General.TextVariantSubItemEntity");
+
+                    b.HasIndex("MediaId");
+
+                    b.ToTable("MediaSynopsis");
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.General.Media.MediaTitleEntity", b =>
+                {
+                    b.HasBaseType("NekoSpaceList.Models.General.TextVariantSubItemEntity");
+
+                    b.HasIndex("MediaId");
+
+                    b.ToTable("MediaTitles");
+                });
+
+            modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterNamesEntity", b =>
+                {
+                    b.HasBaseType("NekoSpaceList.Models.General.TextVariantSubItemEntity");
+
+                    b.Property<Guid>("CharacterId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("MediaId");
+
+                    b.ToTable("CharacterNames", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1125,77 +814,26 @@ namespace NekoSpace.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Anime.AnimeSynopsisEntity", b =>
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.General.AssociatedServiceEntity", b =>
                 {
-                    b.HasOne("NekoSpaceList.Models.Anime.AnimeEntity", "Anime")
-                        .WithMany("Synopsises")
-                        .HasForeignKey("AnimeId")
+                    b.HasOne("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", "Media")
+                        .WithMany("AssociatedService")
+                        .HasForeignKey("MediaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Anime");
+                    b.Navigation("Media");
                 });
 
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Anime.AnimeTitleEntity", b =>
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.User.OAuth.RefreshToken", b =>
                 {
-                    b.HasOne("NekoSpaceList.Models.Anime.AnimeEntity", "Anime")
-                        .WithMany("Titles")
-                        .HasForeignKey("AnimeId")
+                    b.HasOne("NekoSpace.Data.Models.User.UserEntity", "User")
+                        .WithOne("RefreshToken")
+                        .HasForeignKey("NekoSpace.Data.Contracts.Entities.User.OAuth.RefreshToken", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Anime");
-                });
-
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Character.AnotherCharacterServiceEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.CharacterModels.CharacterEntity", null)
-                        .WithOne("AnotherService")
-                        .HasForeignKey("NekoSpace.Data.Contracts.Entities.Character.AnotherCharacterServiceEntity", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Character.CharacterAboutEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.CharacterModels.CharacterEntity", "Character")
-                        .WithMany("Abouts")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Character");
-                });
-
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Manga.AnotherMangaServiceEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.Manga.MangaEntity", null)
-                        .WithOne("AnotherService")
-                        .HasForeignKey("NekoSpace.Data.Contracts.Entities.Manga.AnotherMangaServiceEntity", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Manga.MangaSynopsisEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.Manga.MangaEntity", "Manga")
-                        .WithMany("Synopsises")
-                        .HasForeignKey("MangaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Manga");
-                });
-
-            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Manga.MangaTitleEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.Manga.MangaEntity", "Manga")
-                        .WithMany("Titles")
-                        .HasForeignKey("MangaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Manga");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("NekoSpace.Data.Models.User.UserAnimeViewingStatusEntity", b =>
@@ -1283,25 +921,6 @@ namespace NekoSpace.Data.Migrations
                     b.Navigation("Character");
                 });
 
-            modelBuilder.Entity("NekoSpaceList.Models.Anime.AnimeCoverEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.Anime.AnimeEntity", "Anime")
-                        .WithMany("Covers")
-                        .HasForeignKey("AnimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NekoSpaceList.Models.General.GeneralModel+ImageEntity", "Cover")
-                        .WithMany()
-                        .HasForeignKey("CoverId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Anime");
-
-                    b.Navigation("Cover");
-                });
-
             modelBuilder.Entity("NekoSpaceList.Models.Anime.AnimeGenreEntity", b =>
                 {
                     b.HasOne("NekoSpaceList.Models.Anime.AnimeEntity", "Anime")
@@ -1321,34 +940,6 @@ namespace NekoSpace.Data.Migrations
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("NekoSpaceList.Models.Anime.AnimePosterEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.Anime.AnimeEntity", "Anime")
-                        .WithMany("Posters")
-                        .HasForeignKey("AnimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NekoSpaceList.Models.General.GeneralModel+ImageEntity", "Poster")
-                        .WithOne("Posters")
-                        .HasForeignKey("NekoSpaceList.Models.Anime.AnimePosterEntity", "PosterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Anime");
-
-                    b.Navigation("Poster");
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.Anime.AnotherAnimeServiceEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.Anime.AnimeEntity", null)
-                        .WithOne("AnotherService")
-                        .HasForeignKey("NekoSpaceList.Models.Anime.AnotherAnimeServiceEntity", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("NekoSpaceList.Models.Anime.PremierEntity", b =>
                 {
                     b.HasOne("NekoSpaceList.Models.Anime.AnimeEntity", null)
@@ -1358,53 +949,13 @@ namespace NekoSpace.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterCoverEntity", b =>
+            modelBuilder.Entity("NekoSpaceList.Models.General.RootVariantSubItemEntity", b =>
                 {
-                    b.HasOne("NekoSpaceList.Models.CharacterModels.CharacterEntity", "Character")
-                        .WithMany("Covers")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NekoSpaceList.Models.General.GeneralModel+ImageEntity", "Cover")
+                    b.HasOne("NekoSpace.Data.Models.User.UserEntity", "CreatorUser")
                         .WithMany()
-                        .HasForeignKey("CoverId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatorUserId");
 
-                    b.Navigation("Character");
-
-                    b.Navigation("Cover");
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterNamesEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.CharacterModels.CharacterEntity", "Character")
-                        .WithMany("Names")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Character");
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterPosterEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.CharacterModels.CharacterEntity", "Character")
-                        .WithMany("Posters")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NekoSpaceList.Models.General.GeneralModel+ImageEntity", "Poster")
-                        .WithMany()
-                        .HasForeignKey("PosterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Character");
-
-                    b.Navigation("Poster");
+                    b.Navigation("CreatorUser");
                 });
 
             modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaCharacterEntity", b =>
@@ -1422,25 +973,6 @@ namespace NekoSpace.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Character");
-
-                    b.Navigation("Manga");
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaCoverEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.General.GeneralModel+ImageEntity", "Cover")
-                        .WithMany()
-                        .HasForeignKey("CoverId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NekoSpaceList.Models.Manga.MangaEntity", "Manga")
-                        .WithMany("Covers")
-                        .HasForeignKey("MangaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cover");
 
                     b.Navigation("Manga");
                 });
@@ -1464,25 +996,6 @@ namespace NekoSpace.Data.Migrations
                     b.Navigation("Manga");
                 });
 
-            modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaPosterEntity", b =>
-                {
-                    b.HasOne("NekoSpaceList.Models.Manga.MangaEntity", "Manga")
-                        .WithMany("Posters")
-                        .HasForeignKey("MangaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NekoSpaceList.Models.General.GeneralModel+ImageEntity", "Poster")
-                        .WithMany()
-                        .HasForeignKey("PosterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Manga");
-
-                    b.Navigation("Poster");
-                });
-
             modelBuilder.Entity("NekoSpaceList.Models.Manga.PublishedEntity", b =>
                 {
                     b.HasOne("NekoSpaceList.Models.Manga.MangaEntity", null)
@@ -1492,6 +1005,128 @@ namespace NekoSpace.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("NekoSpaceList.Models.Anime.AnimeEntity", b =>
+                {
+                    b.HasOne("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", null)
+                        .WithOne()
+                        .HasForeignKey("NekoSpaceList.Models.Anime.AnimeEntity", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterEntity", b =>
+                {
+                    b.HasOne("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", null)
+                        .WithOne()
+                        .HasForeignKey("NekoSpaceList.Models.CharacterModels.CharacterEntity", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaEntity", b =>
+                {
+                    b.HasOne("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", null)
+                        .WithOne()
+                        .HasForeignKey("NekoSpaceList.Models.Manga.MangaEntity", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.General.Media.MediaCoverEntity", b =>
+                {
+                    b.HasOne("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", "Media")
+                        .WithMany("Covers")
+                        .HasForeignKey("MediaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Media");
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.General.Media.MediaPosterEntity", b =>
+                {
+                    b.HasOne("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", "Media")
+                        .WithMany("Posters")
+                        .HasForeignKey("MediaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Media");
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Character.CharacterAboutEntity", b =>
+                {
+                    b.HasOne("NekoSpaceList.Models.CharacterModels.CharacterEntity", "Character")
+                        .WithMany("Abouts")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", "Media")
+                        .WithMany()
+                        .HasForeignKey("MediaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Media");
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.General.Media.MediaSynopsisEntity", b =>
+                {
+                    b.HasOne("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", "Media")
+                        .WithMany("Synopsises")
+                        .HasForeignKey("MediaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Media");
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.General.Media.MediaTitleEntity", b =>
+                {
+                    b.HasOne("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", "Media")
+                        .WithMany("Titles")
+                        .HasForeignKey("MediaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Media");
+                });
+
+            modelBuilder.Entity("NekoSpaceList.Models.CharacterModels.CharacterNamesEntity", b =>
+                {
+                    b.HasOne("NekoSpaceList.Models.CharacterModels.CharacterEntity", "Character")
+                        .WithMany("Names")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", "Media")
+                        .WithMany()
+                        .HasForeignKey("MediaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Media");
+                });
+
+            modelBuilder.Entity("NekoSpace.Data.Contracts.Entities.Base.MediaEntity", b =>
+                {
+                    b.Navigation("AssociatedService");
+
+                    b.Navigation("Covers");
+
+                    b.Navigation("Posters");
+
+                    b.Navigation("Synopsises");
+
+                    b.Navigation("Titles");
+                });
+
             modelBuilder.Entity("NekoSpace.Data.Models.User.UserEntity", b =>
                 {
                     b.Navigation("AnimeViewingStatuses");
@@ -1499,32 +1134,31 @@ namespace NekoSpace.Data.Migrations
                     b.Navigation("FavoriteAnimes");
 
                     b.Navigation("RatingAnimes");
+
+                    b.Navigation("RefreshToken")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("NekoSpaceList.Models.General.GeneralModel+GenreEntity", b =>
+                {
+                    b.Navigation("Animes");
+
+                    b.Navigation("Mangas");
                 });
 
             modelBuilder.Entity("NekoSpaceList.Models.Anime.AnimeEntity", b =>
                 {
                     b.Navigation("Aired");
 
-                    b.Navigation("AnotherService")
-                        .IsRequired();
-
                     b.Navigation("Characters");
-
-                    b.Navigation("Covers");
 
                     b.Navigation("FavoriteInUsers");
 
                     b.Navigation("Genres");
 
-                    b.Navigation("Posters");
-
                     b.Navigation("Premier");
 
                     b.Navigation("RatingInUsers");
-
-                    b.Navigation("Synopsises");
-
-                    b.Navigation("Titles");
 
                     b.Navigation("ViewingStatusInUsers");
                 });
@@ -1535,50 +1169,19 @@ namespace NekoSpace.Data.Migrations
 
                     b.Navigation("Animes");
 
-                    b.Navigation("AnotherService")
-                        .IsRequired();
-
-                    b.Navigation("Covers");
-
                     b.Navigation("Mangas");
 
                     b.Navigation("Names");
-
-                    b.Navigation("Posters");
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.General.GeneralModel+GenreEntity", b =>
-                {
-                    b.Navigation("Animes");
-
-                    b.Navigation("Mangas");
-                });
-
-            modelBuilder.Entity("NekoSpaceList.Models.General.GeneralModel+ImageEntity", b =>
-                {
-                    b.Navigation("Posters")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("NekoSpaceList.Models.Manga.MangaEntity", b =>
                 {
-                    b.Navigation("AnotherService")
-                        .IsRequired();
-
                     b.Navigation("Characters");
-
-                    b.Navigation("Covers");
 
                     b.Navigation("Genres");
 
-                    b.Navigation("Posters");
-
                     b.Navigation("Published")
                         .IsRequired();
-
-                    b.Navigation("Synopsises");
-
-                    b.Navigation("Titles");
                 });
 #pragma warning restore 612, 618
         }

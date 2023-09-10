@@ -1,25 +1,13 @@
-﻿using NekoSpace.API.Contracts.Abstract.General;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using NekoSpace.API.Contracts.Abstract.General;
+using NekoSpace.API.Contracts.Models.User;
 
 namespace NekoSpace.API.Contracts.Models.UserService
 {
-    public class UserResultDTO : AbstractResultModel<UserGetResponse>
+    public class UserResultDTO : AbstractResultDTO<UserResponse>
     {
-        public UserResultDTO(UserGetResponse? result, ErrorResultDTO? error) : base(result, error)
+        public UserResultDTO(UserResponse? result, ProblemDetails? error) : base(result, error)
         {
         }
-    }
-
-    public class UserGetResponse
-    {
-        public Guid UserId { get; set; }
-        public string Email { get; set; }
-        public string UserName { get; set; }
-        public string About { get; set; }
-        public List<string> Roles { get; set; } = new List<string>();
     }
 }

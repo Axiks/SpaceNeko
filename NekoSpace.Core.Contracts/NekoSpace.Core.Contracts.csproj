@@ -32,10 +32,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NekoSpace.Common\NekoSpace.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EntitiesExtension\" />
+    <ProjectReference Include="..\NekoSpace.Data.Contracts\NekoSpace.Data.Contracts.csproj" />
+    <ProjectReference Include="..\NekoSpace.ElasticSearch\NekoSpace.ElasticSearch.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace NekoSpace.Data.Contracts.Enums
+﻿namespace NekoSpace.Common.Enums
 {
     public enum MangaType
     {

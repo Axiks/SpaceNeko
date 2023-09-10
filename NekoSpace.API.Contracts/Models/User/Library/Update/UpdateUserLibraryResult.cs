@@ -1,15 +1,11 @@
-﻿using NekoSpace.API.Contracts.Abstract.General;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using NekoSpace.API.Contracts.Abstract.General;
 
 namespace NekoSpace.API.Contracts.Models.User.Library.Update
 {
-    public class UpdateUserLibraryResult : AbstractResultModel<bool?>
+    public class UpdateUserLibraryResult : AbstractResultDTO<object?>
     {
-        public UpdateUserLibraryResult(bool? result, ErrorResultDTO? error) : base(result, error)
+        public UpdateUserLibraryResult(bool? result, ProblemDetails? error) : base(result, error)
         {
         }
     }

@@ -9,10 +9,9 @@ namespace NekoSpaceList.Models.CharacterModels
     {
         public ICollection<CharacterNamesEntity> Names { get; set; }
         public ICollection<CharacterAboutEntity> Abouts { get; set; }
-        public ICollection<CharacterPosterEntity> Posters { get; set; }
-        public ICollection<CharacterCoverEntity> Covers { get; set; }
+        //public ICollection<CharacterPosterEntity> Posters { get; set; }
+        //public ICollection<CharacterCoverEntity> Covers { get; set; }
         public ICollection<AnimeCharacterEntity> Animes { get; set; }
         public ICollection<MangaCharacterEntity> Mangas { get; set; }
-        public AnotherCharacterServiceEntity AnotherService { get; set; } // Воно містить посилання на зовнішні ресурси
     }
 }

@@ -19,9 +19,8 @@ namespace NekoSpace.Core.Contracts.Models.AccountService.Registration
 
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress]
-        [RegularExpression(@"/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
-",
-         ErrorMessage = "The email is not valid")]
+        /*[RegularExpression(@"/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/",
+         ErrorMessage = "The email is not valid")]*/
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Password is required")]

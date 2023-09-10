@@ -3,19 +3,26 @@ using ManamiAnimeOfflineRepository.Constans;
 using ManamiAnimeOfflineRepository.Constans.Costumes;
 using ManamiAnimeOfflineRepository.Models;
 using ManamiAnimeOfflineRepository.Models.Costumes;
-using NekoSpace.Data.Contracts.Entities.Anime;
+using NekoSpace.Common.Enums;
+using NekoSpace.Data.Contracts.Entities.General;
+using NekoSpace.Data.Contracts.Entities.General.Media;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
 using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.General;
+using System.Reflection;
 using static NekoSpaceList.Models.General.GeneralModel;
 
 namespace NekoSpace.Seed.Driver
 {
-    public class MamiAnimeDriver : ISelectMediaByMALId<AnimeEntity>, ISelectMediaAll<AnimeEntity>
+    public class MamiAnimeDriver :  IRepository<AnimeEntity>, ISelectMediaById<AnimeEntity>, ISelectMediaAll<AnimeEntity>
     {
         private IEnumerable<RTO<AnimeEntity>> _manamiAnimes;
+
+        //public string WorkWithServiceName => "ManamiAnimeDriver";
+        public string WorkWithServiceName => "MyAnimeList";
+        public string AuthorName => "Yuno";
 
         public MamiAnimeDriver()
         {
@@ -28,11 +35,27 @@ namespace NekoSpace.Seed.Driver
             return _manamiAnimes;
         }
 
-        public RTO<AnimeEntity> GetByMALId(long MALId)
+        public RTO<AnimeEntity> GetById(string Id)
         {
             // var anime = context.Animes.Include(x => x.Titles).Single(item => item.Id == animeTitleItem.MediaId);
-            RTO<AnimeEntity> animeObj = _manamiAnimes.SingleOrDefault(x => x.contain.AnotherService.MyAnimeList == MALId);
+            //RTO<AnimeEntity> animeObj = _manamiAnimes.SingleOrDefault(x => x.contain.AnotherService.Where(x => x.Name == "MyAnimeList"));
+            RTO <AnimeEntity> animeObj = _manamiAnimes
+                .SingleOrDefault(x => x.contain.AssociatedService.SingleOrDefault(q => q.ServiceName == AssociatedService.MyAnimeListNet.ToString() && q.ServiceId.ToString() == Id) != null);
             return animeObj;
+        }
+
+        public List<string> GetAvailableFields()
+        {
+            Type type = typeof(AnimeEntity);
+            PropertyInfo[] properties = type.GetProperties();
+
+            List<string> fields = new List<string>();
+            foreach(PropertyInfo propertyInfo in properties)
+            {
+                fields.Add(propertyInfo.Name);
+            }
+
+            return fields;
         }
 
         private IEnumerable<RTO<AnimeEntity>> PullAllManamiAnimes(MamiDatabase manamiAnimeRepository)
@@ -55,9 +78,9 @@ namespace NekoSpace.Seed.Driver
             ////////////
             AnimeEntity anime = new AnimeEntity();
 
-            List<AnimeTitleEntity> animeTitles = new List<AnimeTitleEntity>();
+            List<MediaTitleEntity> animeTitles = new List<MediaTitleEntity>();
 
-            AnimeTitleEntity animeTitle = new AnimeTitleEntity();
+            MediaTitleEntity animeTitle = new MediaTitleEntity();
             animeTitle.Body = manamiAnime.title;
             animeTitle.IsOriginal = true;
             animeTitle.IsMain = true;
@@ -69,12 +92,11 @@ namespace NekoSpace.Seed.Driver
 
             foreach (string synomim in manamiAnime.synonyms)
             {
-                animeTitle = new AnimeTitleEntity();
+                animeTitle = new MediaTitleEntity();
                 animeTitle.Body = synomim;
                 animeTitle.IsOriginal = false;
                 animeTitle.IsMain = false;
                 animeTitle.From = ItemFrom.ExternalSource;
-                animeTitle.Language = Language.und;
                 //animeTitle.LanguageDetectionBySystem = false;
                 //Console.WriteLine("Assert");
                 animeTitles.Add(animeTitle);
@@ -82,23 +104,36 @@ namespace NekoSpace.Seed.Driver
 
             anime.Titles = animeTitles;
 
-            ImageEntity poster = new ImageEntity();
+            var posters = new List<MediaPosterEntity>();
+
+            var poster = new MediaPosterEntity();
             poster.Original = manamiAnime.picture;
             poster.Small = manamiAnime.thumbnail;
             poster.From = ItemFrom.ExternalSource;
+            poster.Language = Language.EN;
+            poster.IsOriginal = true;
+            posters.Add(poster);
 
-            List<AnimePosterEntity> animePosterConnections = new List<AnimePosterEntity>() {
+            anime.Posters = posters;
+
+            /*MediaImageEntity mediaImageEntity = new MediaImageEntity();
+            mediaImageEntity.Image = poster;
+            mediaImageEntity.Media = anime;*//*
+
+            anime.Posters.Add(poster);*/
+
+            /*List<AnimePosterEntity> animePosterConnections = new List<AnimePosterEntity>() {
                     new AnimePosterEntity()
                     {
                         Anime = anime,
                         Poster = poster
                     }
                 };
-            anime.Posters = animePosterConnections;
+            anime.Posters = animePosterConnections;*/
 
             anime.NumEpisodes = manamiAnime.episodes;
 
-            AiringStatus airingStatus;
+            AiringStatus? airingStatus = null;
             switch (manamiAnime.status)
             {
                 case Status.FINISHED:
@@ -116,39 +151,34 @@ namespace NekoSpace.Seed.Driver
                         airingStatus = AiringStatus.NotYetAired;
                         break;
                     }
-                default:
-                    {
-                        airingStatus = AiringStatus.Unknown;
-                        break;
-                    }
             }
             anime.AiringStatus = airingStatus;
 
             //manamiAnime.animeSeason
-            Sezon sezon = Sezon.Undefined;
+            Data.Contracts.Enums.Season sezon = Data.Contracts.Enums.Season.Undefined;
             switch (manamiAnime.animeSeason.season)
             {
-                case Season.WINTER:
-                    sezon = Sezon.Winter;
+                case ManamiAnimeOfflineRepository.Constans.Season.WINTER:
+                    sezon = Data.Contracts.Enums.Season.Winter;
                     break;
 
-                case Season.SPRING:
-                    sezon = Sezon.Spring;
+                case ManamiAnimeOfflineRepository.Constans.Season.SPRING:
+                    sezon = Data.Contracts.Enums.Season.Spring;
                     break;
 
-                case Season.SUMMER:
-                    sezon = Sezon.Summer;
+                case ManamiAnimeOfflineRepository.Constans.Season.SUMMER:
+                    sezon = Data.Contracts.Enums.Season.Summer;
                     break;
 
-                case Season.FALL:
-                    sezon = Sezon.Autumn;
+                case ManamiAnimeOfflineRepository.Constans.Season.FALL:
+                    sezon = Data.Contracts.Enums.Season.Autumn;
                     break;
             }
 
             anime.Premier = new PremierEntity
             {
                 Year = manamiAnime.animeSeason.year,
-                Sezon = sezon
+                Season = sezon
             };
 
             AnimeType animeType = AnimeType.EveryType;
@@ -172,7 +202,7 @@ namespace NekoSpace.Seed.Driver
             }
             anime.Type = animeType;
 
-            AnotherAnimeServiceEntity anotherAnimeServices = new AnotherAnimeServiceEntity();
+/*            AnotherAnimeServiceEntity anotherAnimeServices = new AnotherAnimeServiceEntity();
             foreach (SourceLink sourceLink in manamiAnime.sourceLinks)
             {
                 switch (sourceLink.resource)
@@ -202,8 +232,26 @@ namespace NekoSpace.Seed.Driver
                         anotherAnimeServices.MyAnimeList = Int32.Parse(sourceLink.Id);
                         break;
                 }
+            }*/
+
+            List<AssociatedServiceEntity> associatedServiceSEntity = new List<AssociatedServiceEntity>();
+            foreach (SourceLink sourceLink in manamiAnime.sourceLinks)
+            {
+                // Тут ми створюємо таблицю поєднання імені сервусц з ІД, щоб потім їх добавити у БД
+
+                //string name = sourceLink.resource.ToString();
+                Enum.TryParse(sourceLink.resource.ToString(), out AssociatedService associatedService);
+                string id = sourceLink.Id.ToString();
+
+                associatedServiceSEntity.Add(new AssociatedServiceEntity
+                {
+                    ServiceName = associatedService.ToString(),
+                    ServiceId = id
+                });
             }
-            anime.AnotherService = anotherAnimeServices;
+              
+
+                anime.AssociatedService = associatedServiceSEntity;
 
             List<Media2MediaLink> anime2MediaLinks = new List<Media2MediaLink>();
 

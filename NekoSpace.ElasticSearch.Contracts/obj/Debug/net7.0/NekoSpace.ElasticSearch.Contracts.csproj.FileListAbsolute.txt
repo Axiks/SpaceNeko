@@ -1,0 +1,15 @@
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.deps.json
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\bin\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\bin\Debug\net7.0\NekoSpace.Common.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\bin\Debug\net7.0\NekoSpace.Common.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\obj\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.csproj.AssemblyReference.cache
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\obj\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\obj\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.AssemblyInfoInputs.cache
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\obj\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.AssemblyInfo.cs
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\obj\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\obj\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.csproj.CopyComplete
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\obj\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\obj\Debug\net7.0\refint\NekoSpace.ElasticSearch.Contracts.dll
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\obj\Debug\net7.0\NekoSpace.ElasticSearch.Contracts.pdb
+C:\Users\Niko\source\repos\NekoSpace\NekoSpaceList\NekoSpace.ElasticSearch.Contracts\obj\Debug\net7.0\ref\NekoSpace.ElasticSearch.Contracts.dll

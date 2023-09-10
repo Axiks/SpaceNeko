@@ -1,13 +1,8 @@
 ﻿using NekoSpace.Data.Contracts.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NekoSpace.API.Contracts.Abstract
 {
-    public abstract class TextVariantSubItem : BaseMediaItem
+    public abstract class TextVariantSubItem : BaseMediaResultDTO
     {
         public string Body { get; set; }
         public Language Language { get; set; }

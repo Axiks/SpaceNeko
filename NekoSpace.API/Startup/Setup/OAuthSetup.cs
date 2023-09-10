@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using NekoSpace.Core.Helpers;
 using NekoSpace.Core.Services.AccountService.JwtConfiguration;
 using System.Security.Claims;
+using System.Text;
 
 namespace NekoSpace.API.Startup.Setup
 {
@@ -21,6 +21,20 @@ namespace NekoSpace.API.Startup.Setup
             };
             services.AddSingleton(jwtConfig);
 
+            var tokenValidationParameter = new TokenValidationHelper(configurationManager).GetTokenValidationParameters();
+
+            /*var tokenValidationParameter = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = jwtConfig.GetSymmetricSecurityKey(),
+                ValidateIssuer = false,
+                ValidIssuer = jwtConfig.validIssuer, // for dev
+                ValidateAudience = false, // fore dev
+                ValidAudience = jwtConfig.validAudience,
+                ValidateLifetime = true,
+                RequireExpirationTime = false, // Only test!
+            };*/
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -30,18 +44,7 @@ namespace NekoSpace.API.Startup.Setup
                 .AddJwtBearer(options =>
                 {
                     options.SaveToken = true;
-                    options.TokenValidationParameters =
-                    new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = jwtConfig.GetSymmetricSecurityKey(),
-                        ValidateIssuer = false,
-                        ValidIssuer = jwtConfig.validIssuer,
-                        ValidateAudience = false,
-                        ValidAudience = jwtConfig.validAudience,
-                        ValidateLifetime = true,
-                        RequireExpirationTime = false, // Only test!
-                    };
+                    options.TokenValidationParameters = tokenValidationParameter;
                 });
 
             services.AddAuthorization();

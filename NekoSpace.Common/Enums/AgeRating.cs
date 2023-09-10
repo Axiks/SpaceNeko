@@ -7,7 +7,6 @@
         pg13,
         r17,
         r,
-        rx,
-        Unknown
+        rx
     }
 }

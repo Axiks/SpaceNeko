@@ -4,7 +4,6 @@
     {
         FinishedAiring,
         CurrentlyAiring,
-        NotYetAired,
-        Unknown
+        NotYetAired
     }
 }

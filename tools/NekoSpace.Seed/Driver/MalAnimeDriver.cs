@@ -1,6 +1,7 @@
 ﻿//using JikanDotNet;
 using NekoSpace.Common.Enums;
-using NekoSpace.Data.Contracts.Entities.Anime;
+using NekoSpace.Data.Contracts.Entities.General;
+using NekoSpace.Data.Contracts.Entities.General.Media;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Seed.Interfaces;
 using NekoSpace.Seed.Models;
@@ -11,11 +12,18 @@ using JikanDN = JikanDotNet;
 
 namespace NekoSpace.Seed.Driver
 {
-    public class MalAnimeDriver : ISelectMediaByMALId<AnimeEntity>
+    public class MalAnimeDriver : ISelectMediaById<AnimeEntity>, IRepository<AnimeEntity>
     {
-        public RTO<AnimeEntity> GetByMALId(long Id)
+        //public string WorkWithServiceName => "MyAnimeList";
+
+        public string WorkWithServiceName => "MyAnimeList";
+
+        public string AuthorName => "Yuno";
+
+        public RTO<AnimeEntity> GetById(string Id)
         {
-            return getMalAnimeById(Id);
+            long MALId = Int32.Parse(Id);
+            return getMalAnimeById(MALId);
         }
 
         private RTO<AnimeEntity> getMalAnimeById(long MalId)
@@ -28,25 +36,25 @@ namespace NekoSpace.Seed.Driver
             var cowboyBebop = jikan.GetAnimeFullDataAsync(MalId).Result;
 
             // Мапим новими даними нашу модель
-            AnimeTitleEntity title = new AnimeTitleEntity();
+            MediaTitleEntity title = new MediaTitleEntity();
                 title.Body = cowboyBebop.Data.Title;
                 title.IsOriginal = true;
                 title.IsMain = true;
                 title.Language = Language.EN;
 
-            AnimeTitleEntity titleEng = new AnimeTitleEntity();
+            MediaTitleEntity titleEng = new MediaTitleEntity();
                 titleEng.Body = cowboyBebop.Data.TitleEnglish;
                 titleEng.IsOriginal = false;
                 titleEng.IsMain = false;
                 titleEng.Language = Language.EN;
 
-            AnimeTitleEntity titleJp = new AnimeTitleEntity();
+            MediaTitleEntity titleJp = new MediaTitleEntity();
                 titleJp.Body = cowboyBebop.Data.TitleJapanese;
                 titleJp.IsOriginal = true;
                 titleJp.IsMain = true;
                 titleJp.Language = Language.JA;
 
-            ICollection<AnimeTitleEntity> animeTitles = new List<AnimeTitleEntity>()
+            List<MediaTitleEntity> animeTitles = new List<MediaTitleEntity>()
             {
                 title,
                 titleJp,
@@ -56,7 +64,7 @@ namespace NekoSpace.Seed.Driver
             var JdnTitles = cowboyBebop.Data.Titles;
             foreach (var JdnTitle in JdnTitles)
             {
-                AnimeTitleEntity titleAlt = new AnimeTitleEntity();
+                MediaTitleEntity titleAlt = new MediaTitleEntity();
                 titleAlt.Body = JdnTitle.Title;
                 titleAlt.IsOriginal = false;
                 titleAlt.IsMain = false;
@@ -69,9 +77,6 @@ namespace NekoSpace.Seed.Driver
                     case ("Jp"):
                         titleAlt.Language = Language.JA;
                         break;
-                    default:
-                        titleAlt.Language = Language.und;
-                        break;
                 }
                 animeTitles.Add(titleAlt);
 
@@ -80,11 +85,10 @@ namespace NekoSpace.Seed.Driver
             var JdnTitlesSyn = cowboyBebop.Data.TitleSynonyms;
             foreach (var JdnTitle in JdnTitlesSyn)
             {
-                AnimeTitleEntity titleAlt = new AnimeTitleEntity();
+                MediaTitleEntity titleAlt = new MediaTitleEntity();
                 titleAlt.Body = JdnTitle;
                 titleAlt.IsOriginal = false;
                 titleAlt.IsMain = false;
-                titleAlt.Language = Language.und;
                 animeTitles.Add(titleAlt);
             }
 
@@ -114,9 +118,6 @@ namespace NekoSpace.Seed.Driver
                 case ("EveryType"):
                     animeType = AnimeType.EveryType;
                     break;
-                default:
-                    animeType = AnimeType.Unknown;
-                    break;
             }
             anime.Type = animeType;
 
@@ -144,9 +145,6 @@ namespace NekoSpace.Seed.Driver
                     break;
                 case ("RX"):
                     ageRating = AgeRating.rx;
-                    break;
-                default :
-                    ageRating = AgeRating.Unknown;
                     break;
             }
             anime.AgeRating = ageRating;
@@ -214,9 +212,6 @@ namespace NekoSpace.Seed.Driver
                 case ("Music"):
                     sorce = Source.Music;
                     break;
-                default:
-                    sorce = Source.Undefined;
-                    break;
             }
             anime.Source = sorce;
 
@@ -225,25 +220,30 @@ namespace NekoSpace.Seed.Driver
 
             anime.NumEpisodes = cowboyBebop.Data.Episodes;
 
-            ImageEntity animePosterImage = new ImageEntity();
+            /*var animePosterImage = new PosterEntity();
+            animePosterImage.Small = cowboyBebop.Data.Images.JPG.SmallImageUrl;
+            animePosterImage.Medium = cowboyBebop.Data.Images.JPG.MediumImageUrl;
+            animePosterImage.Original = cowboyBebop.Data.Images.JPG.MaximumImageUrl;*/
+
+            //AnimePosterEntity animePoster = new AnimePosterEntity();
+            // Wow -\|_|/-
+            /* animePoster.Poster = animePosterImage;
+             animePoster.Anime = anime;*/
+
+
+            MediaPosterEntity animePosterImage = new MediaPosterEntity();
             animePosterImage.Small = cowboyBebop.Data.Images.JPG.SmallImageUrl;
             animePosterImage.Medium = cowboyBebop.Data.Images.JPG.MediumImageUrl;
             animePosterImage.Original = cowboyBebop.Data.Images.JPG.MaximumImageUrl;
 
-            AnimePosterEntity animePoster = new AnimePosterEntity();
-            // Wow -\|_|/-
-            animePoster.Poster = animePosterImage;
-            animePoster.Anime = anime;
+            anime.Posters = new List<MediaPosterEntity>() { animePosterImage };
 
-            anime.Posters = new List<AnimePosterEntity>()
-            {
-                animePoster
-            };
 
-            anime.AnotherService = new AnotherAnimeServiceEntity
+            anime.AssociatedService.Add(new AssociatedServiceEntity
             {
-                MyAnimeList = (int)cowboyBebop.Data.MalId
-            };
+                ServiceName = AssociatedService.MyAnimeListNet.ToString(),
+                ServiceId = cowboyBebop.Data.MalId.ToString()
+            });
 
             AiredEntity aired = new AiredEntity()
             {
@@ -252,9 +252,9 @@ namespace NekoSpace.Seed.Driver
             };
             anime.Aired = aired;
 
-            anime.Synopsises = new List<AnimeSynopsisEntity>
+            anime.Synopsises = new List<MediaSynopsisEntity>
             {
-                new AnimeSynopsisEntity
+                new MediaSynopsisEntity
                 {
                     Body = cowboyBebop.Data.Synopsis,
                     Language = Language.EN,

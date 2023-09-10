@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using NekoSpace.Data.Contracts.Entities.Anime;
+using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Data.Contracts.Entities.Character;
-using NekoSpace.Data.Contracts.Entities.Manga;
+using NekoSpace.Data.Contracts.Entities.General;
+using NekoSpace.Data.Contracts.Entities.General.Media;
+using NekoSpace.Data.Contracts.Entities.User.OAuth;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
 using NekoSpaceList.Models.Anime;
@@ -17,12 +19,14 @@ namespace NekoSpace.Data
     public class ApplicationDbContext : IdentityDbContext<UserEntity>
     {
         public DbSet<AnimeEntity> Animes { get; set; }
-        public DbSet<AnimeTitleEntity> AnimeTitles { get; set; }
-        public DbSet<AnimeSynopsisEntity> AnimeSynopsises { get; set; }
+        public DbSet<MediaTitleEntity> MediaTitles { get; set; }
+        public DbSet<MediaSynopsisEntity> MediaSynopsis { get; set; }
+        // public DbSet<AnimeTitleEntity> AnimeTitles { get; set; }
+        // public DbSet<AnimeSynopsisEntity> AnimeSynopsises { get; set; }
         public DbSet<AnimeCharacterEntity> AnimeCharacters { get; set; }
         public DbSet<MangaEntity> Mangas { get; set; }
-        public DbSet<MangaTitleEntity> MangaTitles { get; set; }
-        public DbSet<MangaSynopsisEntity> MangaSynopsises { get; set; }
+/*        public DbSet<MangaTitleEntity> MangaTitles { get; set; }
+        public DbSet<MangaSynopsisEntity> MangaSynopsises { get; set; }*/
         public DbSet<MangaCharacterEntity> MangaCharacters { get; set; }
         public DbSet<CharacterNamesEntity> CharacterNames { get; set; }
         public DbSet<CharacterAboutEntity> CharacterAbouts { get; set; }
@@ -31,24 +35,38 @@ namespace NekoSpace.Data
         public DbSet<AiredEntity> Aireds { get; set; }
         public DbSet<PremierEntity> Premiers { get; set; }
         public DbSet<AnimeGenreEntity> AnimeGenre { get; set; }
-        public DbSet<AnimePosterEntity> AnimePoster { get; set; }
-        public DbSet<AnimeCoverEntity> AnimeCover { get; set; }
         public DbSet<CharacterEntity> Characters { get; set; }
-        public DbSet<CharacterPosterEntity> CharacterPoster { get; set; }
-        public DbSet<CharacterCoverEntity> CharacterCover { get; set; }
         public DbSet<UserFavoriteAnimeEntity> UserFavoriteAnime { get; set; }
         public DbSet<UserRatingAnimeEntity> UserRatingAnime { get; set; }
         public DbSet<UserAnimeViewingStatusEntity> UserAnimeViewingStatus { get; set; }
+        //public DbSet<AssociatedServiceEntity> AssociatedService { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
+        #region ContextConstructor
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
         {
-            // Database.EnsureDeleted();
-            // Database.EnsureCreated();
         }
+        #endregion
+        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // For identity user
+
+            /*modelBuilder.
+              Entity<RefreshToken>()
+              .HasOne(x => x.User)
+              .WithOne(x => x.RefreshToken)
+              .HasForeignKey(x => x.)*/
+
+            //      Associated Service      >>
+
+            modelBuilder.
+               Entity<AssociatedServiceEntity>()
+               .ToTable("AssociatedService")
+               .HasKey(k => k.Id);
+
             //      Anime       >>
 
             modelBuilder.
@@ -79,30 +97,93 @@ namespace NekoSpace.Data
             //      Relation    //
 
             modelBuilder.
+                Entity<RootVariantSubItemEntity>()
+                .UseTpcMappingStrategy();
+
+            modelBuilder.
+               Entity<RootVariantSubItemEntity>()
+               .HasOne(e => e.CreatorUser)
+               .WithMany()
+               .HasForeignKey(e => e.CreatorUserId)
+               .HasPrincipalKey(e => e.Id);
+
+            modelBuilder
+                .Entity<TextVariantSubItemEntity>()
+                .UseTpcMappingStrategy();
+
+            modelBuilder.
+                Entity<MediaEntity>()
+                .HasMany(e => e.Titles)
+                .WithOne(e => e.Media)
+                .HasForeignKey(e => e.MediaId)
+                .HasPrincipalKey(e => e.Id);
+
+            modelBuilder.
+                Entity<MediaEntity>()
+                .HasMany(e => e.Synopsises)
+                .WithOne(e => e.Media)
+                .HasForeignKey(e => e.MediaId)
+                .HasPrincipalKey(e => e.Id);
+
+        /*    modelBuilder.
                 Entity<AnimeEntity>()
                 .HasMany(t => t.Titles)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
                 .HasPrincipalKey(t => t.Id);
 
-          /*  modelBuilder.
-                Entity<AnimeTitleEntity>()
-                .HasOne(t => t.Anime)
-                .WithMany(t => t.Titles)
-                .HasForeignKey(t => t.AnimeId)
-                .HasPrincipalKey(t => t.Id);*/
-
-
             modelBuilder.
                 Entity<AnimeEntity>()
                 .HasMany(t => t.Synopsises)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
-                .HasPrincipalKey(t => t.Id);
+                .HasPrincipalKey(t => t.Id);*/
+
+
+            //////////////////////////////////////////
+            ///
+            modelBuilder
+                .Entity<RootVariantSubItemEntity>()
+                .UseTpcMappingStrategy();
+
+            modelBuilder
+                .Entity<RootVariantSubItemEntity>()
+                .UseTpcMappingStrategy();
+
+
+            modelBuilder
+                .Entity<MediaEntity>()
+                .ToTable("Medias")
+                .UseTptMappingStrategy();
+
+            modelBuilder
+                .Entity<ImageEntity>()
+                .UseTpcMappingStrategy();
+
+            modelBuilder
+                .Entity<MediaPosterEntity>()
+                .ToTable("MediaPosters");
+
+            modelBuilder
+                .Entity<MediaCoverEntity>()
+                .ToTable("MediaCovers");
+
+            modelBuilder.
+                Entity<MediaEntity>()
+                .HasMany(e => e.Posters)
+                .WithOne(e => e.Media)
+                .HasForeignKey(e => e.MediaId);
+
+            modelBuilder.
+                Entity<MediaEntity>()
+                .HasMany(e => e.Covers)
+                .WithOne(e => e.Media)
+                .HasForeignKey(e => e.MediaId);
+
 
             //      AnimeTitle       >>
 
-            modelBuilder.
+     /*       modelBuilder.
                 Entity<AnimeTitleEntity>()
                 .ToTable("AnimeTitle");
 
@@ -116,7 +197,7 @@ namespace NekoSpace.Data
                 Entity<AnimeTitleEntity>()
                 .Property(x => x.From)
                 .HasColumnName("From")
-                .HasConversion<string>();
+                .HasConversion<string>();*/
 
             /*modelBuilder.
                Entity<AnimeTitleEntity>()
@@ -148,7 +229,7 @@ namespace NekoSpace.Data
 
             //      Synopsis       >>
 
-            modelBuilder.
+/*            modelBuilder.
                 Entity<AnimeSynopsisEntity>()
                 .ToTable("AnimeSynopsis");
 
@@ -162,7 +243,7 @@ namespace NekoSpace.Data
                 Entity<AnimeSynopsisEntity>()
                 .Property(x => x.From)
                 .HasColumnName("From")
-                .HasConversion<string>();
+                .HasConversion<string>();*/
 
             //      Genre     >>
 
@@ -212,15 +293,31 @@ namespace NekoSpace.Data
 
             //      Relation    //
 
-            modelBuilder
+            /*modelBuilder
                 .Entity<AnotherCharacterServiceEntity>()
                 .ToTable("Characters");
-
-            modelBuilder.
+*/
+            /*modelBuilder.
                 Entity<CharacterEntity>()
                 .HasOne(x => x.AnotherService)
                 .WithOne()
-                .HasForeignKey<AnotherCharacterServiceEntity>(x => x.Id);
+                .HasForeignKey<AnotherCharacterServiceEntity>(x => x.Id);*/
+            /*modelBuilder.
+                Entity<CharacterEntity>()
+                .HasMany(t => t.AnotherService)
+                .WithOne(t => t.Character)
+                .HasForeignKey(t => t.CharacterId)
+                .HasPrincipalKey(t => t.Id);*/
+
+            /*modelBuilder.
+                Entity<CharacterEntity>()
+                .HasMany(a => a.AnotherService)
+                .WithOne()
+                .HasForeignKey(el => el.MediaEntityId)
+                .HasPrincipalKey(t => t.Id);*/
+
+
+
 
             //      Premier     >>
 
@@ -257,13 +354,13 @@ namespace NekoSpace.Data
 
             //      Images      //
 
-            modelBuilder.
+            /*modelBuilder.
                 Entity<ImageEntity>()
-                .ToTable("Images");
+                .ToTable("Images");*/
 
             //      Relation        //
 
-            modelBuilder
+/*            modelBuilder
                 .Entity<AnimePosterEntity>()
                 .HasKey(t => new { t.PosterId, t.AnimeId });
 
@@ -283,10 +380,11 @@ namespace NekoSpace.Data
                 .HasMany(t => t.Covers)
                 .WithOne(t => t.Anime)
                 .HasForeignKey(t => t.AnimeId)
-                .HasPrincipalKey(t => t.Id);
+                .HasPrincipalKey(t => t.Id);*/
 
             //      AnotherAnimeService     //
-            modelBuilder
+
+            /*modelBuilder
                 .Entity<AnotherAnimeServiceEntity>()
                 .ToTable("Animes");
 
@@ -294,7 +392,15 @@ namespace NekoSpace.Data
                 .Entity<AnimeEntity>()
                 .HasOne(x => x.AnotherService)
                 .WithOne()
-                .HasForeignKey<AnotherAnimeServiceEntity>(x => x.Id);
+                .HasForeignKey<AnotherAnimeServiceEntity>(x => x.Id);*/
+
+            //      New AnotherAnimeService     //
+            /*modelBuilder
+                .Entity<MediaEntity>()
+                .HasMany(e => e.AnotherService)
+                .WithOne(e => e.Media)
+                .HasForeignKey(e => e.MediaId);*/
+
 
             //      Manga       >>
 
@@ -305,7 +411,7 @@ namespace NekoSpace.Data
 
             //      Relation    //
 
-            modelBuilder.
+         /*   modelBuilder.
                 Entity<MangaEntity>()
                 .HasMany(t => t.Titles)
                 .WithOne(t => t.Manga)
@@ -317,11 +423,11 @@ namespace NekoSpace.Data
                 .HasMany(t => t.Synopsises)
                 .WithOne(t => t.Manga)
                 .HasForeignKey(t => t.MangaId)
-                .HasPrincipalKey(t => t.Id);
+                .HasPrincipalKey(t => t.Id);*/
 
             //      MangaTitle       >>
 
-            modelBuilder.
+            /*modelBuilder.
                 Entity<MangaTitleEntity>()
                 .ToTable("MangaTitles");
 
@@ -329,12 +435,11 @@ namespace NekoSpace.Data
                 Entity<MangaTitleEntity>()
                 .Property(x => x.Language)
                 .HasColumnName("Language")
-                .HasConversion<string>()
-                .IsRequired();
+                .HasConversion<string>();*/
 
             //      MangaSynopsis       >>
 
-            modelBuilder.
+            /*modelBuilder.
                 Entity<MangaSynopsisEntity>()
                 .ToTable("MangaSynopsis");
 
@@ -342,20 +447,19 @@ namespace NekoSpace.Data
                 Entity<MangaSynopsisEntity>()
                 .Property(x => x.Language)
                 .HasColumnName("Language")
-                .HasConversion<string>()
-                .IsRequired();
+                .HasConversion<string>();
 
             modelBuilder.
                 Entity<MangaSynopsisEntity>()
                 .Property(x => x.MangaId)
                 .HasColumnName("MangaId")
-                .IsRequired();
+                .IsRequired();*/
 
             //      Posters  AND Covers     >>
 
             //      Relation        //
 
-            modelBuilder
+           /* modelBuilder
                 .Entity<MangaPosterEntity>()
                 .HasKey(t => new { t.PosterId, t.MangaId });
 
@@ -375,7 +479,8 @@ namespace NekoSpace.Data
                 .HasMany(t => t.Covers)
                 .WithOne(t => t.Manga)
                 .HasForeignKey(t => t.MangaId)
-                .HasPrincipalKey(t => t.Id);
+                .HasPrincipalKey(t => t.Id);*/
+
 
             //      Genres     >>
 
@@ -429,15 +534,39 @@ namespace NekoSpace.Data
                 .HasForeignKey<PublishedEntity>(x => x.Id);
 
             //      AnotherMangaService     //
-            modelBuilder
+            /*modelBuilder
                 .Entity<AnotherMangaServiceEntity>()
-                .ToTable("Mangas");
+                .ToTable("Mangas");*/
 
-            modelBuilder
+            /*modelBuilder
                 .Entity<MangaEntity>()
                 .HasOne(x => x.AnotherService)
                 .WithOne()
-                .HasForeignKey<AnotherMangaServiceEntity>(x => x.Id);
+                .HasForeignKey<AnotherMangaServiceEntity>(x => x.Id);*/
+
+            /*modelBuilder.
+                Entity<MangaEntity>()
+                .HasMany(t => t.AnotherService)
+                .WithOne(t => t.Manga)
+                .HasForeignKey(t => t.MangaId)
+                .HasPrincipalKey(t => t.Id);*/
+
+            /*modelBuilder.
+                Entity<MangaEntity>()
+                .HasMany(a => a.AnotherService)
+                .WithOne()
+                .HasForeignKey(el => el.MediaEntityId);*/
+     /*       modelBuilder
+                .Entity<MediaEntity>()
+                .UseTptMappingStrategy();*/
+
+
+            modelBuilder.
+                Entity<MediaEntity>()
+                .HasMany(a => a.AssociatedService)
+                .WithOne(a => a.Media)
+                .HasForeignKey(a => a.MediaId)
+                .HasPrincipalKey(a => a.Id);
 
             //      Character       >>
 
@@ -487,7 +616,7 @@ namespace NekoSpace.Data
 
             //      Images Relation      //
 
-            modelBuilder
+           /* modelBuilder
                 .Entity<CharacterPosterEntity>()
                 .HasKey(t => new { t.PosterId, t.CharacterId });
 
@@ -496,9 +625,9 @@ namespace NekoSpace.Data
                 .HasMany(t => t.Posters)
                 .WithOne(t => t.Character)
                 .HasForeignKey(t => t.CharacterId)
-                .HasPrincipalKey(t => t.Id);
+                .HasPrincipalKey(t => t.Id);*/
 
-            modelBuilder
+            /*modelBuilder
                 .Entity<CharacterCoverEntity>()
                 .HasKey(t => new { t.CoverId, t.CharacterId });
 
@@ -507,7 +636,14 @@ namespace NekoSpace.Data
                 .HasMany(t => t.Covers)
                 .WithOne(t => t.Character)
                 .HasForeignKey(t => t.CharacterId)
-                .HasPrincipalKey(t => t.Id);
+                .HasPrincipalKey(t => t.Id);*/
+
+/*            modelBuilder.
+                Entity<CharacterEntity>()
+                .HasMany(a => a.AssociatedService)
+                .WithOne(a => a.CharacterEntity)
+                .HasForeignKey(a => a.CharacterId)
+                .HasPrincipalKey(a => a.Id);*/
 
             // UserEntity
 
@@ -626,9 +762,9 @@ namespace NekoSpace.Data
                 new IdentityRole() { Id = GuidAdminRole.ToString(), Name = Role.Administrator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Administrator.ToString().ToUpper() },
                 new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Moderator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Moderator.ToString().ToUpper() },
                 new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Creator.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Creator.ToString().ToUpper() },
-                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.User.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.User.ToString().ToUpper() },
-                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Guest.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Guest.ToString().ToUpper() }
-                );
+                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.User.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.User.ToString().ToUpper() }
+/*                new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = Role.Guest.ToString(), ConcurrencyStamp = "1", NormalizedName = Role.Guest.ToString().ToUpper() }
+*/                );
             return GuidAdminRole;
         }
 

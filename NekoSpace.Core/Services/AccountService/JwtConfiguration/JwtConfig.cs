@@ -7,6 +7,7 @@ namespace NekoSpace.Core.Services.AccountService.JwtConfiguration
     {
         // private static string _secretKey;
         private string _secretKey;
+        public TimeSpan ExpiryTimeFrame { get; set; }
         public string validIssuer { get; set; }
         public string validAudience { get; set; }
 

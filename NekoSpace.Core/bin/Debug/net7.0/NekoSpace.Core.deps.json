@@ -9,6 +9,7 @@
       "NekoSpace.Core/1.0.0": {
         "dependencies": {
           "Arch.EntityFrameworkCore.Design": "2.1.15",
+          "EntityFrameworkCore.Triggered": "3.2.2",
           "Mapster.Core": "1.2.0",
           "Mapster.DependencyInjection": "1.0.0",
           "Mapster.EFCore": "5.1.0",
@@ -25,6 +26,7 @@
           "NekoSpace.API.Contracts": "1.0.0",
           "NekoSpace.Core.Contracts": "1.0.0",
           "NekoSpace.Data": "1.0.0",
+          "NekoSpace.ElasticSearch": "1.0.0",
           "NekoSpace.Seed": "1.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.1",
           "Swashbuckle.AspNetCore": "6.5.0"
@@ -85,6 +87,17 @@
           }
         }
       },
+      "AutoMapper/12.0.1": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.0"
+          }
+        }
+      },
       "Azure.Core/1.24.0": {
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "6.0.0",
@@ -116,6 +129,39 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.6.0.0",
             "fileVersion": "1.600.22.20503"
+          }
+        }
+      },
+      "Elasticsearch.Net/7.17.5": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "System.Buffers": "4.5.1",
+          "System.Diagnostics.DiagnosticSource": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Elasticsearch.Net.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.17.5.0"
+          }
+        }
+      },
+      "EntityFrameworkCore.Triggered/3.2.2": {
+        "dependencies": {
+          "EntityFrameworkCore.Triggered.Abstractions": "3.2.2",
+          "Microsoft.EntityFrameworkCore": "7.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/EntityFrameworkCore.Triggered.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "EntityFrameworkCore.Triggered.Abstractions/3.2.2": {
+        "runtime": {
+          "lib/net6.0/EntityFrameworkCore.Triggered.Abstractions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -1614,6 +1660,17 @@
           }
         }
       },
+      "NEST/7.17.5": {
+        "dependencies": {
+          "Elasticsearch.Net": "7.17.5"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Nest.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.17.5.0"
+          }
+        }
+      },
       "NETStandard.Library/1.6.1": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.1",
@@ -1871,6 +1928,17 @@
           "Swashbuckle.AspNetCore.Swagger": "6.5.0",
           "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0",
           "Swashbuckle.AspNetCore.SwaggerUI": "6.5.0"
+        }
+      },
+      "Swashbuckle.AspNetCore.Annotations/6.5.0": {
+        "dependencies": {
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0"
+        },
+        "runtime": {
+          "lib/net7.0/Swashbuckle.AspNetCore.Annotations.dll": {
+            "assemblyVersion": "6.5.0.0",
+            "fileVersion": "6.5.0.0"
+          }
         }
       },
       "Swashbuckle.AspNetCore.Swagger/6.5.0": {
@@ -2719,7 +2787,8 @@
         "dependencies": {
           "HotChocolate.Types": "12.16.0",
           "NekoSpace.Common": "1.0.0",
-          "NekoSpace.Core.Contracts": "1.0.0"
+          "NekoSpace.Core.Contracts": "1.0.0",
+          "Swashbuckle.AspNetCore.Annotations": "6.5.0"
         },
         "runtime": {
           "NekoSpace.API.Contracts.dll": {}
@@ -2732,7 +2801,9 @@
       },
       "NekoSpace.Core.Contracts/1.0.0": {
         "dependencies": {
-          "NekoSpace.Common": "1.0.0"
+          "NekoSpace.Common": "1.0.0",
+          "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.ElasticSearch": "1.0.0"
         },
         "runtime": {
           "NekoSpace.Core.Contracts.dll": {}
@@ -2747,6 +2818,8 @@
           "Microsoft.EntityFrameworkCore.Abstractions": "7.0.2",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.2",
           "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.ElasticSearch": "1.0.0",
+          "NekoSpace.ElasticSearch.Contracts": "1.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.1",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
@@ -2763,14 +2836,59 @@
           "NekoSpace.Data.Contracts.dll": {}
         }
       },
+      "NekoSpace.ElasticSearch/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "NEST": "7.17.5",
+          "NekoSpace.ElasticSearch.Contracts": "1.0.0",
+          "NekoSpace.Repository.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "NekoSpace.ElasticSearch.dll": {}
+        }
+      },
+      "NekoSpace.ElasticSearch.Contracts/1.0.0": {
+        "dependencies": {
+          "NEST": "7.17.5",
+          "NekoSpace.Common": "1.0.0"
+        },
+        "runtime": {
+          "NekoSpace.ElasticSearch.Contracts.dll": {}
+        }
+      },
+      "NekoSpace.Repository/1.0.0": {
+        "dependencies": {
+          "Mapster": "5.0.0",
+          "NekoSpace.API.Contracts": "1.0.0",
+          "NekoSpace.Data": "1.0.0",
+          "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.Repository.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "NekoSpace.Repository.dll": {}
+        }
+      },
+      "NekoSpace.Repository.Contracts/1.0.0": {
+        "dependencies": {
+          "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.ElasticSearch.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "NekoSpace.Repository.Contracts.dll": {}
+        }
+      },
       "NekoSpace.Seed/1.0.0": {
         "dependencies": {
           "Arch.EntityFrameworkCore.Design": "2.1.15",
+          "AutoMapper": "12.0.1",
           "JikanDotNet": "2.5.0",
           "Mami": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.2",
           "NekoSpace.Common": "1.0.0",
+          "NekoSpace.Data": "1.0.0",
           "NekoSpace.Data.Contracts": "1.0.0",
+          "NekoSpace.Repository": "1.0.0",
           "Newtonsoft.Json": "13.0.2"
         },
         "runtime": {
@@ -2820,6 +2938,13 @@
       "path": "arch.entityframeworkcore.relational/2.1.15",
       "hashPath": "arch.entityframeworkcore.relational.2.1.15.nupkg.sha512"
     },
+    "AutoMapper/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
+      "path": "automapper/12.0.1",
+      "hashPath": "automapper.12.0.1.nupkg.sha512"
+    },
     "Azure.Core/1.24.0": {
       "type": "package",
       "serviceable": true,
@@ -2833,6 +2958,27 @@
       "sha512": "sha512-EycyMsb6rD2PK9P0SyibFfEhvWWttdrYhyPF4f41uzdB/44yQlV+2Wehxyg489Rj6gbPvSPgbKq0xsHJBhipZA==",
       "path": "azure.identity/1.6.0",
       "hashPath": "azure.identity.1.6.0.nupkg.sha512"
+    },
+    "Elasticsearch.Net/7.17.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-orChsQi1Ceho/NyIylNOn6y4vuGcsbCfMZnCueNN0fzqYEGQmQdPfcVmsR5+3fwpXTgxCdjTUVmqOwvHpCSB+Q==",
+      "path": "elasticsearch.net/7.17.5",
+      "hashPath": "elasticsearch.net.7.17.5.nupkg.sha512"
+    },
+    "EntityFrameworkCore.Triggered/3.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TtbhqPZSiGW74EXgmCL9qoaBAfDkZdTc89T2/OCZ13JbsTOhzKkUF1iqUWIuPCrIgwDhsiRD/pe+AZApfYJQPw==",
+      "path": "entityframeworkcore.triggered/3.2.2",
+      "hashPath": "entityframeworkcore.triggered.3.2.2.nupkg.sha512"
+    },
+    "EntityFrameworkCore.Triggered.Abstractions/3.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gMBLJlBeW5X4prp6San9Qo8sSxvLd3KJUOfIQxmLtOpNWVmNdfVgDR75gYTqblejg/Ci8eDqy0bUucxUcYyukA==",
+      "path": "entityframeworkcore.triggered.abstractions/3.2.2",
+      "hashPath": "entityframeworkcore.triggered.abstractions.3.2.2.nupkg.sha512"
     },
     "HotChocolate.Abstractions/12.16.0": {
       "type": "package",
@@ -3471,6 +3617,13 @@
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
     },
+    "NEST/7.17.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bo9UyuIoVRx4IUQiuC8ZrlZuvAXKIccernC7UUKukQCEmRq2eVIk+gubHlnMQljrP51q0mN4cjgy9vv5uZPkoA==",
+      "path": "nest/7.17.5",
+      "hashPath": "nest.7.17.5.nupkg.sha512"
+    },
     "NETStandard.Library/1.6.1": {
       "type": "package",
       "serviceable": true,
@@ -3687,6 +3840,13 @@
       "sha512": "sha512-FK05XokgjgwlCI6wCT+D4/abtQkL1X1/B9Oas6uIwHFmYrIO9WUD5aLC9IzMs9GnHfUXOtXZ2S43gN1mhs5+aA==",
       "path": "swashbuckle.aspnetcore/6.5.0",
       "hashPath": "swashbuckle.aspnetcore.6.5.0.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.Annotations/6.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EcHd1z2pEdnpaBMTI9qjVxk6mFVGVMZ1n0ySC3fjrkXCQQ8O9fMdt9TxPJRKyjiTiTjvO9700jKjmyl+hPBinQ==",
+      "path": "swashbuckle.aspnetcore.annotations/6.5.0",
+      "hashPath": "swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore.Swagger/6.5.0": {
       "type": "package",
@@ -4351,6 +4511,26 @@
       "sha512": ""
     },
     "NekoSpace.Data.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NekoSpace.ElasticSearch/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NekoSpace.ElasticSearch.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NekoSpace.Repository/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NekoSpace.Repository.Contracts/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

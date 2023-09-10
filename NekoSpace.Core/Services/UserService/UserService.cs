@@ -1,8 +1,14 @@
-﻿using Mapster;
+﻿using HotChocolate.Execution;
+using Mapster;
+using MapsterMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using NekoSpace.API.Contracts.Abstract.General;
+using NekoSpace.API.Contracts.Models.Offer.Response.Basic;
+using NekoSpace.API.Contracts.Models.Offer.Response.BasicDTO;
+using NekoSpace.API.Contracts.Models.User;
 using NekoSpace.API.Contracts.Models.User.Library.Update;
 using NekoSpace.API.Contracts.Models.UserService;
 using NekoSpace.API.Contracts.Models.UserService.UserUpdates;
@@ -10,9 +16,10 @@ using NekoSpace.Data;
 using NekoSpace.Data.Contracts.Enums;
 using NekoSpace.Data.Models.User;
 using NekoSpaceList.Models.Anime;
-using NuGet.Protocol;
+using NekoSpaceList.Models.General;
+using Nest;
+using System.Linq;
 using System.Security.Claims;
-using System.Xml.Linq;
 
 namespace NekoSpace.Core.Services.UserService
 {
@@ -22,12 +29,14 @@ namespace NekoSpace.Core.Services.UserService
         private readonly UserManager<UserEntity> _userManager;
         private readonly ClaimsPrincipal _claimsPrincipal;
         private readonly UserEntity _authUserContext;
+        private readonly IMapper _mapper;
 
-        public UserService(ApplicationDbContext dbContext, UserManager<UserEntity> userManager, ClaimsPrincipal claimsPrincipal)
+        public UserService(ApplicationDbContext dbContext, UserManager<UserEntity> userManager, ClaimsPrincipal claimsPrincipal, IMapper mapper)
         {
             _dbContext = dbContext;
             _userManager = userManager;
             _claimsPrincipal = claimsPrincipal;
+            _mapper = mapper;
 
             string userId = _userManager.GetUserId(_claimsPrincipal);
             _authUserContext = _dbContext.Users
@@ -41,7 +50,7 @@ namespace NekoSpace.Core.Services.UserService
 
         public async Task<UserResultDTO> GetMe()
         {
-            var userResponse = _authUserContext.Adapt<UserGetResponse>();
+            var userResponse = _authUserContext.Adapt<UserResponse>();
             var userIdentity = _claimsPrincipal.Identities;
             
             foreach(ClaimsIdentity role in userIdentity)
@@ -53,11 +62,90 @@ namespace NekoSpace.Core.Services.UserService
             return userResult;
         }
 
+        public async Task<UserListResponseDTO> GetAllUsers()
+        {
+            var users = _userManager.Users.ToList();
+            var usersResult = users.Adapt<List<UserResponse>>();
+            var response = new UserListResponse { numberOfUsers = usersResult.Count(), users = usersResult };
+
+            return new UserListResponseDTO(response, null);
+        }
+
+        public async Task<UserResultDTO> GetUser(Guid userId)
+        {
+            var user = _userManager.FindByIdAsync(userId.ToString()).Result;
+            if (user == null) return new UserResultDTO(null, new ProblemDetails { Title = "No user found for this id" , Status = 404 });
+
+            var userResponse = user.Adapt<UserResponse>();
+
+            var userIdentity = _userManager.GetRolesAsync(user).Result;
+            foreach (string role in userIdentity)
+            {
+                userResponse.Roles.Add(role);
+            }
+
+            return new UserResultDTO(userResponse, null);
+        }
+
+        public async Task<GetBasicListOfferResponseDTO<BasicOfferResponse>> GetUserOffers(Guid userId)
+        {
+            var userTitleOffers = _dbContext.MediaTitles.Where(x => x.CreatorUserId == userId.ToString()).ToList();
+            var userSynopsisOffers = _dbContext.MediaSynopsis.Where(x => x.CreatorUserId == userId.ToString()).ToList();
+
+            var titles = _mapper.Map<List<TitleOfferResponse>>(userTitleOffers);
+            var synopsis = _mapper.Map<List<DescriptionOfferResponse>>(userSynopsisOffers);
+
+            var userOffersResult = new List<BasicOfferResponse>();
+            if (titles != null) userOffersResult.AddRange(titles);
+            if (synopsis != null) userOffersResult.AddRange(synopsis);
+
+            var result = new BasicListOfferResult<BasicOfferResponse> {
+                totalApplication = userOffersResult.Count,
+                applicationAccepted = userOffersResult.Where(x => x.IsAcceptProposal == true).Count(),
+                applicationRejected = userOffersResult.Where(x => x.IsAcceptProposal == false).Count(),
+                applicationsArePending = userOffersResult.Where(x => x.IsAcceptProposal == null).Count(),
+                results = userOffersResult
+            };
+
+            return new GetBasicListOfferResponseDTO<BasicOfferResponse>(result, null);
+        }
+
+        public void AddRole(Guid userId, Role newRole)
+        {
+            var user = _userManager.FindByIdAsync(userId.ToString()).Result;
+            var existingRoles = _userManager.GetRolesAsync(user).Result.ToList();
+
+            if (existingRoles.Contains(newRole.ToString())) return;
+
+            var result = _userManager.AddToRoleAsync(user, newRole.ToString()).Result;
+            if (!result.Succeeded)
+            {
+                throw new Exception($"Error managing roles of the user. "); // Server error
+            }
+
+            return;
+        }
+        public void RemoveRole(Guid userId, Role newRole)
+        {
+            var user = _userManager.FindByIdAsync(userId.ToString()).Result;
+            var existingRoles = _userManager.GetRolesAsync(user).Result.ToList();
+
+            if (!existingRoles.Contains(newRole.ToString())) return;
+
+            var result = _userManager.RemoveFromRoleAsync(user, newRole.ToString()).Result;
+            if (!result.Succeeded)
+            {
+                throw new Exception($"Error managing roles of the user. "); // Server error
+            }
+
+            return;
+        }
+
         public async Task<UserUpdateResult> UpdateMe(UserUpdateCommand userUpdateCommand)
         {
             _authUserContext.About = userUpdateCommand.About;
             if (_dbContext.SaveChanges() > 0) return new UserUpdateResult(true, null);
-            return new UserUpdateResult(false, new ErrorResultDTO("Error saving data"));
+            return new UserUpdateResult(false, new ProblemDetails { Title = "Error saving data" });
         }
 
         public async Task<UserLibraryResult> GetLibrary()
@@ -90,7 +178,7 @@ namespace NekoSpace.Core.Services.UserService
             // GetAnimeObj
             var animeContext = await _dbContext.Animes.FirstOrDefaultAsync(item => item.Id == updateUserLibrary.AnimeId);
 
-            if (animeContext == null) return new UpdateUserLibraryResult(false, new ErrorResultDTO("Could not find this media. Did you enter the ID correctly?"));
+            if (animeContext == null) return new UpdateUserLibraryResult(false, new ProblemDetails { Title = "Could not find this media. Did you enter the ID correctly?" });
 
             // Update
             if (updateUserLibrary.UserViewStatus != null)
@@ -110,7 +198,7 @@ namespace NekoSpace.Core.Services.UserService
 
 
             if (_dbContext.SaveChanges() > 0) return new UpdateUserLibraryResult(true, null);
-            return new UpdateUserLibraryResult(false, new ErrorResultDTO("Error saving data"));
+            return new UpdateUserLibraryResult(false, new ProblemDetails { Title = "Error saving data" });
         }
 
         private async Task ChangeAnimeFavoriteStatus(AnimeEntity animeContext, bool? isFavorite)
@@ -181,7 +269,7 @@ namespace NekoSpace.Core.Services.UserService
 
         private void MapConfigurate()
         {
-            TypeAdapterConfig<UserEntity, UserGetResponse>.NewConfig()
+            TypeAdapterConfig<UserEntity, UserResponse>.NewConfig()
             .Map(
             dest =>  dest.UserId,
             src => src.Id);

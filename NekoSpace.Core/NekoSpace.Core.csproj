@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Arch.EntityFrameworkCore.Design" Version="2.1.15" />
+    <PackageReference Include="EntityFrameworkCore.Triggered" Version="3.2.2" />
     <PackageReference Include="Mapster.Core" Version="1.2.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
     <PackageReference Include="Mapster.EFCore" Version="5.1.0" />
@@ -39,6 +40,7 @@
     <ProjectReference Include="..\NekoSpace.API.Contracts\NekoSpace.API.Contracts.csproj" />
     <ProjectReference Include="..\NekoSpace.Core.Contracts\NekoSpace.Core.Contracts.csproj" />
     <ProjectReference Include="..\NekoSpace.Data\NekoSpace.Data.csproj" />
+    <ProjectReference Include="..\NekoSpace.ElasticSearch\NekoSpace.ElasticSearch.csproj" />
     <ProjectReference Include="..\tools\NekoSpace.Seed\NekoSpace.Seed.csproj" />
   </ItemGroup>
 

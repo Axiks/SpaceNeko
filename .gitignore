@@ -377,5 +377,3 @@ FodyWeavers.xsd
 /NekoSpace.API/Models/Temp/ManamiRepositorydatabase.json
 /NekoSpace.Core.Contracts/Temp/ManamiRepository/database.json
 /NekoSpace.Core.Contracts/Temp/ManamiRepository/databassmalle.json
-/docker-compose/.env
-/NekoSpace.API/appsettings.json

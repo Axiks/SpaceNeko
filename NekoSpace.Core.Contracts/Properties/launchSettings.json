@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "NekoSpace.Core.Contracts": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56643;http://localhost:56644"
+    }
+  }
+}

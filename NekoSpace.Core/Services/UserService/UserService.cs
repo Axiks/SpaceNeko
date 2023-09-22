@@ -1,11 +1,8 @@
-﻿using HotChocolate.Execution;
-using Mapster;
+﻿using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
-using NekoSpace.API.Contracts.Abstract.General;
 using NekoSpace.API.Contracts.Models.Offer.Response.Basic;
 using NekoSpace.API.Contracts.Models.Offer.Response.BasicDTO;
 using NekoSpace.API.Contracts.Models.User;

@@ -1,6 +1,5 @@
 ﻿using NekoSpace.Common.Enums.API;
 using NekoSpace.Data.Contracts.Enums;
-using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 

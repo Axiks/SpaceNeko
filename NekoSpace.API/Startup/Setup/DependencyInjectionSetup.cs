@@ -6,18 +6,13 @@ using NekoSpaceList.Models.Anime;
 using NekoSpaceList.Models.General;
 using NekoSpace.Data.Contracts.Entities.General;
 using NekoSpace.Repository.Contracts.Models;
-using NekoSpace.Repository;
-using NekoSpace.Repository.Repositories;
 using NekoSpace.API.Contracts.Models.Anime;
 using NekoSpace.API.Contracts.Models.AnimeService;
 using NekoSpace.Data.Contracts.Entities.Base;
 using NekoSpace.Core.Services.AnimeService;
 using Microsoft.OpenApi.Models;
 using NekoSpace.Repository.Repositories.Media;
-using NekoSpace.Repository.Contracts.Enums;
 using NekoSpace.API.Contracts.Models.ProvidingTranslationOffer.Request;
-using Microsoft.AspNetCore.Http.HttpResults;
-using static Nest.JoinField;
 using JsonSubTypes;
 using NekoSpace.Common.Enums.API;
 using Newtonsoft.Json.Converters;
@@ -32,14 +27,12 @@ namespace NekoSpace.API.Startup.Setup
         {
             // services.ConfigureHttpJsonOptions(options => options.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
-            services.RegisterDatabase();
+            services.RegisterDatabase(configurationManager);
 
             /*services.AddScoped<ILog, FileLoger>(provider =>
             {
                 return new FileLoger("log.txt") { };
             });*/
-
-            //services.RegisterGraphQl();
 
             services.AddControllers().AddNewtonsoftJson();
 

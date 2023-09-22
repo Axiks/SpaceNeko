@@ -2,22 +2,21 @@
 using Microsoft.EntityFrameworkCore;
 using NekoSpace.Data.Models.User;
 using NekoSpace.Data;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using EntityFrameworkCore.Triggered;
-using NekoSpace.Data.Contracts.Entities.Base;
-using NekoSpaceList.Models.Anime;
 
 namespace NekoSpace.API.Startup.Setup
 {
     public static class DataBaseSetup
     {
-        public static IServiceCollection RegisterDatabase(this IServiceCollection services)
+        public static IServiceCollection RegisterDatabase(this IServiceCollection services, ConfigurationManager configurationManager)
         {
+            string dbName = configurationManager["PGDatabase:DatabaseName"];
+            string dbUsername = configurationManager["PGDatabase:Username"];
+            string dbPassword = configurationManager["PGDatabase:Password"];
+
             services.AddPooledDbContextFactory<ApplicationDbContext>(
             options =>
             {
-                options.UseNpgsql("Server=postgres_db;Database=anilist_db;Username=neko;Password=mya", b => b.MigrationsAssembly("NekoSpace.Data"))
+                options.UseNpgsql(String.Format("Server=postgres_db;Database={0};Username={1};Password={2}", dbName, dbUsername, dbPassword), b => b.MigrationsAssembly("NekoSpace.Data"))
                 .EnableDetailedErrors()
                 .EnableSensitiveDataLogging()
                 .LogTo(

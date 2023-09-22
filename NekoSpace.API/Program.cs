@@ -1,13 +1,5 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.Extensions.Hosting;
-using NekoSpace.API.Helpers;
 using NekoSpace.API.Startup;
 using NekoSpace.API.Startup.Setup;
-using NekoSpace.Core.Services.DatabaseService;
-using NekoSpace.Data;
-using NekoSpaceList.Models.Anime;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,8 +21,6 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    //endpoints.MapGraphQL();
-    //endpoints.MapGraphQLVoyager("ui/voyager");
 });
 
 // Configure the HTTP request pipeline.

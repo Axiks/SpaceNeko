@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
 using NekoSpace.Core.Helpers;
 using NekoSpace.Core.Services.AccountService.JwtConfiguration;
 using System.Security.Claims;
-using System.Text;
 
 namespace NekoSpace.API.Startup.Setup
 {

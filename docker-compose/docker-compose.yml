@@ -19,8 +19,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=NekoTestPass123
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/nekospacetestcert.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${CERT_PASS}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=${CERT_PATH}
     volumes:
      - ./https:/https:ro
       # - ~/.aspnet/https:/https:ro
@@ -43,9 +43,9 @@ services:
       - pgconf:/etc/postgresql
       - pglog:/var/log/postgresql
     environment:
-        POSTGRES_DB: "anilist_db"
-        POSTGRES_USER: "neko"
-        POSTGRES_PASSWORD: "mya"
+        POSTGRES_DB: "${DB_NAME}"
+        POSTGRES_USER: "${DB_USERNAME}"
+        POSTGRES_PASSWORD: "${DB_PASSWORD}"
     networks:
         - mynekonetwork-dev
 

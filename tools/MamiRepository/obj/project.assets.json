@@ -5243,23 +5243,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Niko\\.nuget\\packages\\": {},
+    "C:\\Users\\artwa\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\tools\\MamiRepository\\Mami.csproj",
+      "projectUniqueName": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\tools\\MamiRepository\\Mami.csproj",
       "projectName": "Mami",
-      "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\tools\\MamiRepository\\Mami.csproj",
-      "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\tools\\MamiRepository\\obj\\",
+      "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\tools\\MamiRepository\\Mami.csproj",
+      "packagesPath": "C:\\Users\\artwa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\tools\\MamiRepository\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Niko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\artwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5315,7 +5315,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

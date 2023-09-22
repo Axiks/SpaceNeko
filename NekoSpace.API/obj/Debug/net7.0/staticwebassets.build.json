@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "q2Lu7GRW4NYQEeMsRAhTQEp6nMJ6sgEMkE78l0dFZhs=",
+  "Hash": "TUoF7qC5paX5VIDv45NvFi2hd5yU5t8uQBAK6A07RoU=",
   "Source": "NekoSpace.API",
   "BasePath": "_content/NekoSpace.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Core\\NekoSpace.Core.csproj",
+      "Identity": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Core\\NekoSpace.Core.csproj",
       "Version": 2,
       "Source": "NekoSpace.Core",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
@@ -18,7 +18,7 @@
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
     },
     {
-      "Identity": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\tools\\NekoSpace.Seed\\NekoSpace.Seed.csproj",
+      "Identity": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\tools\\NekoSpace.Seed\\NekoSpace.Seed.csproj",
       "Version": 2,
       "Source": "NekoSpace.Seed",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",

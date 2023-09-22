@@ -15,7 +15,12 @@ namespace NekoSpace.API.Startup.Setup
                                 "https://localhost:3000",
                                 "http://localhost:2083",
                                 "https://localhost:2083",
-                                "https://web.neko3.space"
+                                "http://neko3.space",
+                                "https://neko3.space",
+                                "http://web.neko3.space",
+                                "https://web.neko3.space",
+                                "http://dev.neko3.space",
+                                "https://dev.neko3.space"
                                 )
                             .AllowAnyHeader()
                             .AllowAnyMethod();

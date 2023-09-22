@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository\\NekoSpace.Repository.csproj": {}
+    "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository\\NekoSpace.Repository.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj": {
+    "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj",
         "projectName": "NekoSpace.API.Contracts",
-        "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj",
-        "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API.Contracts\\obj\\",
+        "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj",
+        "packagesPath": "C:\\Users\\artwa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.API.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Niko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\artwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,11 +32,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\NekoSpace.Common.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\NekoSpace.Common.csproj"
               },
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj"
               }
             }
           }
@@ -76,24 +76,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj": {
+    "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\NekoSpace.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj",
+        "projectUniqueName": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\NekoSpace.Common.csproj",
         "projectName": "NekoSpace.Common",
-        "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj",
-        "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\obj\\",
+        "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\NekoSpace.Common.csproj",
+        "packagesPath": "C:\\Users\\artwa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Niko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\artwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -135,24 +135,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj": {
+    "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj",
         "projectName": "NekoSpace.Core.Contracts",
-        "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj",
-        "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Core.Contracts\\obj\\",
+        "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Core.Contracts\\NekoSpace.Core.Contracts.csproj",
+        "packagesPath": "C:\\Users\\artwa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Core.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Niko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\artwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -167,14 +167,14 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\NekoSpace.Common.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\NekoSpace.Common.csproj"
               },
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj"
               },
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj"
               }
             }
           }
@@ -204,24 +204,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
+    "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj",
         "projectName": "NekoSpace.Data.Contracts",
-        "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj",
-        "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\obj\\",
+        "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj",
+        "packagesPath": "C:\\Users\\artwa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Niko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\artwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -236,8 +236,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\NekoSpace.Common.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\NekoSpace.Common.csproj"
               }
             }
           }
@@ -273,24 +273,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj": {
+    "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data\\NekoSpace.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj",
+        "projectUniqueName": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data\\NekoSpace.Data.csproj",
         "projectName": "NekoSpace.Data",
-        "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj",
-        "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data\\obj\\",
+        "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data\\NekoSpace.Data.csproj",
+        "packagesPath": "C:\\Users\\artwa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Niko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\artwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -305,14 +305,14 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj"
               },
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj"
               },
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj"
               }
             }
           }
@@ -388,24 +388,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj": {
+    "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj",
         "projectName": "NekoSpace.ElasticSearch.Contracts",
-        "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj",
-        "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\obj\\",
+        "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj",
+        "packagesPath": "C:\\Users\\artwa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Niko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\artwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -420,8 +420,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Common\\NekoSpace.Common.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\NekoSpace.Common.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Common\\NekoSpace.Common.csproj"
               }
             }
           }
@@ -457,24 +457,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj": {
+    "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj",
+        "projectUniqueName": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj",
         "projectName": "NekoSpace.ElasticSearch",
-        "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj",
-        "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch\\obj\\",
+        "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch\\NekoSpace.ElasticSearch.csproj",
+        "packagesPath": "C:\\Users\\artwa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Niko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\artwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -489,11 +489,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj"
               },
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj"
               }
             }
           }
@@ -537,24 +537,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj": {
+    "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj",
         "projectName": "NekoSpace.Repository.Contracts",
-        "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj",
-        "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository.Contracts\\obj\\",
+        "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj",
+        "packagesPath": "C:\\Users\\artwa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Niko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\artwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -569,11 +569,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj"
               },
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.ElasticSearch.Contracts\\NekoSpace.ElasticSearch.Contracts.csproj"
               }
             }
           }
@@ -603,24 +603,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository\\NekoSpace.Repository.csproj": {
+    "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository\\NekoSpace.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository\\NekoSpace.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository\\NekoSpace.Repository.csproj",
         "projectName": "NekoSpace.Repository",
-        "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository\\NekoSpace.Repository.csproj",
-        "packagesPath": "C:\\Users\\Niko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository\\obj\\",
+        "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository\\NekoSpace.Repository.csproj",
+        "packagesPath": "C:\\Users\\artwa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Niko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\artwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -635,17 +635,17 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.API.Contracts\\NekoSpace.API.Contracts.csproj"
               },
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data.Contracts\\NekoSpace.Data.Contracts.csproj"
               },
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Data\\NekoSpace.Data.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data\\NekoSpace.Data.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Data\\NekoSpace.Data.csproj"
               },
-              "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Niko\\source\\repos\\NekoSpace\\NekoSpaceList\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj"
+              "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj": {
+                "projectPath": "C:\\Users\\artwa\\Desktop\\SpaceNeko\\NekoSpace.Repository.Contracts\\NekoSpace.Repository.Contracts.csproj"
               }
             }
           }
@@ -681,7 +681,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
